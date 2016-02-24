@@ -30,10 +30,10 @@
     <title>Inicio Docente</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="../dist/css/timeline.css" rel="stylesheet">
@@ -42,10 +42,10 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../component/morrisjs/morris.css" rel="stylesheet">
+    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -159,70 +159,71 @@
         <div id="page-content-wrapper content" >
             <div class="container separate-rows tall-rows">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="well well-lg">
                         <div class="text-center">
+                            </br>
                             <h2><ins>Sugerencias que púedes<br/> elegir</ins></h2>
+                            </br>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6 text-right">
-                                <br/>
-                                <br/>
-                                <?php //meter contenido de grilla :D?>
-                                <a class="lead" href="CrearUnidad.php">Crear Actividad<br> Heuristica Movil</a>
-                                <br/>
+                         
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
+                                        <br/>                             
+                                        <a class="lead" href="CrearUnidad.php">Crear Actividad</a>
+                                
+                                        <br/>
+                                        <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
+                                    </div>     
+                                </div>
                             </div>
-                            <div class="col-xs-6">
-                                <br/>
-                                <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
-                            </div>
+                            
 
                             <div class="clearfix visible-xs"></div>
 
-                            <div class="col-xs-6 text-right">
-                                <br/>
-                                <?php //meter contenido de grilla :D?>
-                                <a class="lead" href="Biblioteca.php">Biblioteca de<br/> Actividades</a>
-                                <br/>
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        </br>
+                                        <p><img src="img/biblioteca.png" alt="lista" width="76" height="80"></p>
+                                        <br/>
+                                        <?php //meter contenido de grilla :D?>
+                                        <a class="lead" href="Biblioteca.php">Biblioteca y Rúbricas</a>
+                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
+                                        <br/>
+                                    </div>
+                                    
+                                </div>        
                             </div>
-                            <div class="col-xs-6">
-                                <br/>
-                                <p><img src="img/biblioteca.png" alt="lista" width="76" height="80"></p>
-                            </div>
-
+                            
                             <div class="clearfix visible-xs"></div>
+                            
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        </br>
+                                        <p><img src="img/lista.png" alt="lista" width="76" height="80"></p>
+                                        <br/>
+                                        <?php //meter contenido de grilla :D?>
+                                        <a class="lead" href="Evaluar.php">Evalua</a>
+                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
+                                        <br/>
+                                    </div>
+                                    
+                                </div>    
+                            </div>    
+                                
+                            <div   class="clearfix visible-xs"></div>
 
-                            <div class="col-xs-6 text-right">
-                                <br/>
-                                <?php //meter contenido de grilla :D?>
-                                <a class="lead" href="Evaluar.php">Evaluar<br> Proyectos</a>
-                                <br/>
-                            </div>
-                            <div class="col-xs-6">
-                                <br/>
-                                <p><img src="img/lista.png" alt="lista" width="76" height="80"></p>
-                            </div>
-                            <div class="clearfix visible-xs"></div>
-
-                            <div class="col-xs-6 text-right">
-                                <br/>
-                                <br/>
-                                <?php //meter contenido de grilla :D?>
-                                <a class="lead">Rúbrica</a>
-                                <br/>
-                            </div>
-                            <div class="col-xs-6">
-                                <p><img src="img/evaluacion.png" alt="lista" width="100" height="100"></p>
-                            </div>
-                            <div class="clearfix visible-xs"></div>
+                          
                         </div>
                         </div>
                     </div>
-                    <div class="hidden-xs col-sm-5 col-md-5 col-lg-5 text-center well well-lg">
-                        <div class="text-center">
-                            <h2><ins>Portal Docente</ins></h2>
-                        </div>
-                    </div>
+        
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
@@ -266,22 +267,49 @@
                             </div> 
                         </div>
                     </div>
-                </div>  
+                </div> 
+                <!--Fin seccion de invitacion-->
+                <!--Inicio seccion de cursos-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <div class="row well">
+                            <div class="col-sm-8 col-md-8 col-lg-8 text-center">
+                                <div class="text-center">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p class="lead">Administración de Cursos o Secciones.</p>
+                                    <br/>
+                                    <a  class="btn btn-default" href="cursos.php">Administre sus Cursos</a>
+                                    
+                                </div>        
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+                                <div class="text-center">
+                                    <br/>
+                                    <img src="img/folder.png" alt="folder" width="128" height="128"/>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <!--Fin seccion de cursos-->
+                
             </div>
         </div>
         </div>
     <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../component/morrisjs/morris.min.js"></script>
+    <script src="../bower_components/morrisjs/morris.min.js"></script>
     <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
