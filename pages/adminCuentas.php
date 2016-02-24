@@ -42,10 +42,10 @@
     <title>Administrar cuentas</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="../dist/css/timeline.css" rel="stylesheet">
@@ -54,10 +54,10 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="../component/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -69,7 +69,7 @@
 <!--jquery code -->
     <link rel="stylesheet" href="../pages/css/validationEngine.jquery.css" type="text/css">
     <link rel="stylesheet" href="../pages/css/template.css" type="text/css">
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>   
+    <script src="../component/jquery/dist/jquery.min.js"></script>   
     <script src="../js/languages/jquery.validationEngine-es.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
     <script>
@@ -280,14 +280,14 @@
     <!-- jQuery -->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
+    <script src="../component/morrisjs/morris.min.js"></script>
     <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->

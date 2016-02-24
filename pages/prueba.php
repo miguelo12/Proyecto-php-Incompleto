@@ -25,7 +25,7 @@
         </form>
 
         <!-- jQuery -->
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../component/jquery/dist/jquery.min.js"></script>
         <script src="../js/jquery.form-validator.min.js"></script>
         <script>
           $.validate({
