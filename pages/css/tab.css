@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10-feb-2016, 14:16:54
+    Author     : darkg
+*/
+.wizard > .content {
+min-height: 20em !important;
+}
+.wizard .content > .body {
+width: 100%;
+height: auto;
+padding: 15px;
+position: relative;
+}
