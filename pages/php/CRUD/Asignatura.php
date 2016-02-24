@@ -21,4 +21,30 @@ class Asignatura {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function TraerNombre()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from asignatura where nombre=?");
+      
+      $sentencia->bind_param("s", $this->nombre);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = array("id" => $row["idAsignatura"],"nombre" => $row["nombre"],);
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
 }
