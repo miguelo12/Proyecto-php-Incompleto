@@ -70,22 +70,55 @@ class Alumno {
       return false;
     }
     
+    public function FueActualizado()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumno where email=?");
+      
+      $sentencia->bind_param("s", $this->email);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row["nombre"];
+          }       
+      }
+      
+      if($res == "Sin nombre")
+      {
+        return false;
+      } 
+      
+      return true;
+    }
+    
     public function Ingresar()
     {
       
       $c=$this->con->getConexion();
       
-      $dates1 = date("yd");
+      $dates1 = date("d");
+      
+      $dates2 = date("s");
       
       $subemail = substr($this->email, 0, 2);
       
-      $rand1 = rand(0,9);
+      $rand1 = chr(rand(65,90));
       
-      $this->setidAlumno((string)"{$rand1}{$dates1}{$subemail}");
+      $rand3 = chr(rand(65,90));
       
-      $sentencia=$c->prepare("insert into alumno values(?,?,?,?,?)");
+      $rand2 = rand(1,8);
       
-      $sentencia->bind_param("sssss", $this->idAlumno, $this->email, $this->password, $this->nombre);
+      $this->setidAlumno((string)"{$dates2}{$rand1}{$rand3}{$dates1}{$subemail}{$rand2}ALU");
+      
+      $sentencia=$c->prepare("insert into alumno values(?,?,?,?)");
+      
+      $sentencia->bind_param("ssss", $this->idAlumno, $this->email, $this->password, $this->nombre);
       
       $sentencia->execute();
       

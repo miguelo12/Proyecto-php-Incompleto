@@ -113,9 +113,25 @@ if(isset($_GET["user"])){
                 include_once("./CRUD/Alumno.php");
                 $idAlumno = "";
                 $email = "";
-                if(isset($_POST["email3"]))
+                if(isset($_POST["email"]))
                 {
-
+                  $alumno = new Alumno();
+                  $alumno->setEmail($_POST["email"]);
+                  $alumno->setNombre("Sin nombre");
+                  $alumno->setPassword("1A*2b#3C9R*");   
+                  
+                  if(!$alumno->Existeono()){
+                      if($alumno->Ingresar())
+                      {
+                          header("location: ../indexDocente.php?exitoenvio=1");
+                          die();
+                      }
+                  }
+                  else
+                  {
+                      header("location: ../loginDocente.php?errorenvio=1");
+                      die();
+                  }
                 }
             }elseif($_GET["action"]==2){
                //Modificar Alumno
@@ -135,10 +151,24 @@ if(isset($_GET["user"])){
                  if($alumno->ExisteonoPorID())
                  {  
                     //modificar
-                    if($alumno->Actualizar())
+                    if(!$alumno->FueActualizado()){
+                        if($alumno->Actualizar())
+                        {
+                          header("location: ../loginAlumno.php?exito=1");
+                          die();
+                        }
+                        else
+                        {
+                          //error sql :(
+                          header("location: ../loginAlumno.php?error=9000");
+                          die();
+                        }
+                    }
+                    else
                     {
-                      header("location: ../loginAlumno.php?exito=1");
-                      die();
+                        //fue creado y actualizado..
+                        header("location: ../loginAlumno.php?error=4");
+                        die();
                     }
                  }
                  else

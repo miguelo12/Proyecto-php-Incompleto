@@ -115,9 +115,11 @@ class Docente {
       
       $subemail = substr($this->email, 0, 2);
       
-      $rand1 = rand(0,9);
+      $rand1 = chr(rand(65,90));
       
-      $this->setidDocente((string)"{$rand1}{$dates1}{$subemail}");
+      $rand2 = rand(0,9);
+      
+      $this->setidDocente((string)"{$rand2}{$rand1}{$dates1}{$subemail}");
       
       $sentencia=$c->prepare("insert into docente values(?,?,?,?,?)");
       

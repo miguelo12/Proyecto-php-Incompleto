@@ -237,17 +237,19 @@
                                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
+                                                <form method="POST" autocomplete="off" action="php/UsuarioAction.php?user=2&action=1">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                     <h4 class="modal-title" id="myModalLabel">Para invitar ingrese un correo.</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <input class="form-control" type="text" name="correo" value="" placeholder="Ingrese aquí el correo."/>
+                                                    <input class="form-control" type="email" name="email" value="" placeholder="Ingrese aquí el correo."/>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                                    <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Enviar</button>
+                                                    <button type="submit" class="btn btn-primary">Enviar</button>
                                                 </div>
+                                                </form>
                                             </div>
                                             <!-- /.modal-content -->
                                         </div>
