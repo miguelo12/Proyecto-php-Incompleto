@@ -22,13 +22,13 @@ class Asignatura {
         $this->con = new Conexion();
     }
     
-    public function TraerNombre()
+    public function TraerporID()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from asignatura where nombre=?");
+      $sentencia=$c->prepare("select * from asignatura where idAsignatura=?");
       
-      $sentencia->bind_param("s", $this->nombre);
+      $sentencia->bind_param("s", $this->idAsignatura);
       
       $sentencia->execute();
       
@@ -45,6 +45,58 @@ class Asignatura {
       }
       
       return $res;
+    }
+    
+    public function Ingresar()
+    {
+      
+      $c=$this->con->getConexion();
+      
+      $rand = rand(0,10);
+      
+      $rand2 = substr($this->nombre, 0, 2);
+      
+      $rand1 = chr(rand(65,90));
+      
+      $newid = "{$rand1}{$rand}{$rand2}";
+      
+      $this->setNombre($newid);
+      
+      $sentencia=$c->prepare("insert into asignatura values(?,?)");
+      
+      $sentencia->bind_param("ss", $this->idAsignatura, $this->nombre);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function DevolverAsignaturas()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from asignatura");
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
+    public function setNombre($nom)
+    {
+        $this->nombre=$nom;
     }
     
 }

@@ -22,4 +22,31 @@ class UnidadAprendizaje {
         $this->con = new Conexion();
     }
     
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into UnidadAprendizaje values(?,?,?)");
+      
+      $sentencia->bind_param("iss", $this->idAprendizaje, $this->Titulo, $this->idSeccion);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setidAprendizaje($idAprendizaje)
+    {
+        $this->idAprendizaje=$idAprendizaje;
+    }
+    
+    public function setTitulo($Titulo)
+    {
+        $this->Titulo=$Titulo;
+    }
+    
+    public function setidSeccion($idSeccion)
+    {
+        $this->idSeccion=$idSeccion;
+    }
 }

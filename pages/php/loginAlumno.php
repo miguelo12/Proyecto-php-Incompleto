@@ -20,7 +20,6 @@ if( isset($_POST["email"]) && isset($_POST["password"]) )
        
        if(isset($res))
        {
-           
            $usuario->setidAlumno($res["id"]);
            if($res["habilitado"]==0){
            $usuario->sethabilitado(1);
