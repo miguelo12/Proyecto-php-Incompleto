@@ -21,6 +21,7 @@ class Docente {
     private $nombre;
     private $password;
     private $admin;
+    private $habilitado;
     
     private $con;
     
@@ -43,7 +44,7 @@ class Docente {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res = array("id" => $row["idDocente"], "nombre" => $row["nombre"], "email" => $row["email"], "admin" => $row["admin"]);
+              $res = array("id" => $row["idDocente"], "nombre" => $row["nombre"], "email" => $row["email"], "admin" => $row["admin"], "habilitado" => $row["habilitado"]);
           }
       }
       else {
@@ -51,6 +52,19 @@ class Docente {
       }
       
       return $res;
+    }
+    
+    public function Habilitarono()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update docente set habilitado=? where idDocente=?");
+      
+      $sentencia->bind_param("ss", $this->habilitado, $this->idDocente);
+      
+      $sentencia->execute();
+      
+      return true;
     }
     
     public function Existeono()
@@ -121,9 +135,11 @@ class Docente {
       
       $this->setidDocente((string)"{$rand2}{$rand1}{$dates1}{$subemail}");
       
-      $sentencia=$c->prepare("insert into docente values(?,?,?,?,?)");
+      $this->sethabilitado(1);
       
-      $sentencia->bind_param("sssss", $this->idDocente, $this->email, $this->password, $this->nombre, $this->admin);
+      $sentencia=$c->prepare("insert into docente values(?,?,?,?,?,?)");
+      
+      $sentencia->bind_param("ssssss", $this->idDocente, $this->email, $this->password, $this->nombre, $this->admin, $this->habilitado);
       
       $sentencia->execute();
       
@@ -150,6 +166,27 @@ class Docente {
           unset($res);
       }
       
+      return $res;
+    }
+    
+    public function isHabilitado()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from docente where idDocente=?");
+      
+      $sentencia->bind_param("s", $this->idDocente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row["habilitado"];
+          }       
+      }
       return $res;
     }
     
@@ -187,5 +224,10 @@ class Docente {
     public function setidDocente($docente)
     {
         $this->idDocente=$docente;
+    }
+    
+    public function sethabilitado($habilitado)
+    {
+        $this->habilitado=$habilitado;
     }
 }

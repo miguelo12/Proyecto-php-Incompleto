@@ -20,10 +20,21 @@ if( isset($_POST["email"]) && isset($_POST["password"]) )
        
        if(isset($res))
        {
+           
+           $usuario->setidAlumno($res["id"]);
+           if($res["habilitado"]==0){
+           $usuario->sethabilitado(1);
+           $usuario->Habilitarono();
+           session_start();
+           $_SESSION["alumno"] = $res;
+           header("location:../indexAlumno.php?Bienvenido=1");
+           die();
+           }else {
            session_start();
            $_SESSION["alumno"] = $res;
            header("location:../indexAlumno.php");
            die();
+           }
        }
        else 
        {

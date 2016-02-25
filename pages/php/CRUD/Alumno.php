@@ -19,6 +19,7 @@ class Alumno {
     private $email;
     private $nombre;
     private $password;
+    private $habilitado;
     
     private $con;
     
@@ -41,7 +42,7 @@ class Alumno {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res = array("id" => $row["idAlumno"], "nombre" => $row["nombre"], "email" => $row["email"]);
+              $res = array("id" => $row["idAlumno"], "nombre" => $row["nombre"], "email" => $row["email"], "habilitado" => $row["habilitado"]);
           }
       }
       else {
@@ -97,6 +98,27 @@ class Alumno {
       return true;
     }
     
+    public function isHabilitado()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumno where idAlumno=?");
+      
+      $sentencia->bind_param("s", $this->idAlumno);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row["habilitado"];
+          }       
+      }
+      return $res;
+    }
+    
     public function Ingresar()
     {
       
@@ -114,11 +136,13 @@ class Alumno {
       
       $rand2 = rand(1,8);
       
-      $this->setidAlumno((string)"{$dates2}{$rand1}{$rand3}{$dates1}{$subemail}{$rand2}ALU");
+      $this->setidAlumno((string)"{$rand3}{$dates2}{$rand1}{$dates1}{$subemail}{$rand2}ALU");
       
-      $sentencia=$c->prepare("insert into alumno values(?,?,?,?)");
+      $this->sethabilitado(0);
       
-      $sentencia->bind_param("ssss", $this->idAlumno, $this->email, $this->password, $this->nombre);
+      $sentencia=$c->prepare("insert into alumno values(?,?,?,?,?)");
+      
+      $sentencia->bind_param("sssss", $this->idAlumno, $this->email, $this->password, $this->nombre, $this->habilitado);
       
       $sentencia->execute();
       
@@ -161,9 +185,22 @@ class Alumno {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=? where idAlumno=?");
+      $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=?, habilitado=? where idAlumno=?");
       
-      $sentencia->bind_param("ssss", $this->email, $this->nombre, $this->password, $this->idAlumno);
+      $sentencia->bind_param("sssss", $this->email, $this->nombre, $this->password, $this->idAlumno, $this->habilitado);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function Habilitarono()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update alumno set habilitado=? where idAlumno=?");
+      
+      $sentencia->bind_param("ss", $this->habilitado, $this->idAlumno);
       
       $sentencia->execute();
       
@@ -227,6 +264,11 @@ class Alumno {
     public function getidAlumno()
     {
         return $this->idAlumno;
+    }
+    
+    public function sethabilitado($habilitado)
+    {
+        $this->habilitado=$habilitado;
     }
 }
 

@@ -71,11 +71,17 @@ if(isset($_GET["user"])){
                    try{    
                        $docente = new Docente();
                        $docente->setidDocente($id);
+                       
                        if($docente->ExisteonoPorID())
-                       {
-                           if($docente->Eliminar())
-                           {
-                               //se elimino
+                       {   
+                           if($docente->isHabilitado()==0){
+                               $docente->sethabilitado(1);
+                               $docente->Habilitarono();
+                               header("location: ../adminCuentas.php?exito=2");
+                               die();
+                           }elseif ($docente->isHabilitado()==1) {
+                               $docente->sethabilitado(0);
+                               $docente->Habilitarono();
                                header("location: ../adminCuentas.php?exito=2");
                                die();
                            }

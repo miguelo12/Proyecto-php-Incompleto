@@ -192,10 +192,25 @@
                             <h2 class="text-center"><ins>Cuentas de profesores</ins></h2>
                             <br/>
                             <br/>
-                            <br/>
                             <?php //Agregar for... ?>
-                            <pre><ul class="list-unstyled"><?php foreach($docentetodos as $do){echo "<li>[Nombre]: ".$do["nombre"]." [Email]: ".$do["email"]." <a href='php/UsuarioAction.php?user=1&action=2&id=".$do["idDocente"]."'>Eliminar</a>"." <a href='php/UsuarioAction.php?user=1&action=3&id=".$do["idDocente"]."'>Actualizar</a></li>"; }?></ul></pre>
+                            <div class="well">
+                                <ul class="list-unstyled">
+                                <br/>
+                                <?php foreach($docentetodos as $do){
+                                    if(!($do["idDocente"]==$docente["id"])){
+                                        if($do["habilitado"]==1){
+                                            echo "<li>[Nombre]: ".$do["nombre"]." [Email]: ".$do["email"]." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=2&id=".$do["idDocente"]."'>Deshabilitar</a>"." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=3&id=".$do["idDocente"]."'>Actualizar</a></li>";
+                                        }
+                                        else{
+                                            echo "<li>[Nombre]: ".$do["nombre"]." [Email]: ".$do["email"]." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=2&id=".$do["idDocente"]."'>Habilitar</a>"." <a class='btn btn' id='myLink' href='php/UsuarioAction.php?user=1&action=3&id=".$do["idDocente"]."'>Actualizar</a></li>";
+                                        }
+                                    }
+                                    }
+                                ?>
+                                </ul>
+                            </div>
                         </div> 
+                        
                     </div>
                         <!--boton activador del modal-->
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear nueva cuenta</button>
@@ -292,7 +307,11 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
