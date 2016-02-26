@@ -24,4 +24,32 @@ class AlumnosGrupo {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into alumnogrupo values(?,?,?)");
+      
+      $sentencia->bind_param("iii", $this->idAlumnosGrupo, $this->idAlumno, $this->idGrupo);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setidAlumnosGrupo($idAlumnosGrupo)
+    {
+        $this->idAlumnosGrupo=$idAlumnosGrupo;
+    }
+    
+    public function setidAlumno($idAlumno)
+    {
+        $this->idAlumno=$idAlumno;
+    }
+    
+    public function setidGrupo($idGrupo)
+    {
+        $this->idGrupo=$idGrupo;
+    }
 }

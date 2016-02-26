@@ -25,4 +25,33 @@ class ResultadoCoevaluacion {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into resultadocoevaluacion values(?,?,?,?)");
+      
+      $sentencia->bind_param("iiii", $this->idResultadoCoevaluacion, $this->idAlumnosGrupo, $this->idCriterioNivelRubrica, $this->PuntajeObtenido);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setIdResultadoCoevaluacion($idResultadoCoevaluacion) {
+        $this->idResultadoCoevaluacion = $idResultadoCoevaluacion;
+    }
+
+    public function setIdAlumnosGrupo($idAlumnosGrupo) {
+        $this->idAlumnosGrupo = $idAlumnosGrupo;
+    }
+
+    public function setIdCriterioNivelRubrica($idCriterioNivelRubrica) {
+        $this->idCriterioNivelRubrica = $idCriterioNivelRubrica;
+    }
+
+    public function setPuntajeObtenido($PuntajeObtenido) {
+        $this->PuntajeObtenido = $PuntajeObtenido;
+    }
 }

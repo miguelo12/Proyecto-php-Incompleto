@@ -16,6 +16,7 @@ class UnidadAprendizaje {
     private $idAprendizaje;
     private $Titulo;
     private $idSeccion;
+    
     private $con;
     
     public function __construct() {
@@ -26,7 +27,7 @@ class UnidadAprendizaje {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into UnidadAprendizaje values(?,?,?)");
+      $sentencia=$c->prepare("insert into unidadaprendizaje values(?,?,?)");
       
       $sentencia->bind_param("iss", $this->idAprendizaje, $this->Titulo, $this->idSeccion);
       

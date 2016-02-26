@@ -23,4 +23,27 @@ class Criterio {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into criterio values(?,?)");
+      
+      $sentencia->bind_param("is", $this->idAlumnosGrupo, $this->idAlumno);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setidCriterio($idCriterio)
+    {
+        $this->idCriterio=$idCriterio;
+    }
+    
+    public function setNombre($Nombre)
+    {
+        $this->Nombre=$Nombre;
+    }
 }

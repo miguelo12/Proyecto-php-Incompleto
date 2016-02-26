@@ -23,4 +23,25 @@ class Grupo {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into grupo values(?,?)");
+      
+      $sentencia->bind_param("ii", $this->idGrupo, $this->idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setIdGrupo($idGrupo) {
+        $this->idGrupo = $idGrupo;
+    }
+
+    public function setIdUnidadAprendizaje($idUnidadAprendizaje) {
+        $this->idUnidadAprendizaje = $idUnidadAprendizaje;
+    }
 }

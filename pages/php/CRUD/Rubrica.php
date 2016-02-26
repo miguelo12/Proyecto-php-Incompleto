@@ -24,4 +24,29 @@ class Rubrica {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into rubrica values(?,?,?)");
+      
+      $sentencia->bind_param("iii", $this->idRubrica, $this->idUnidadAprendizaje, $this->tipo);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setIdRubrica($idRubrica) {
+        $this->idRubrica = $idRubrica;
+    }
+
+    public function setIdUnidadAprendizaje($idUnidadAprendizaje) {
+        $this->idUnidadAprendizaje = $idUnidadAprendizaje;
+    }
+
+    public function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
 }

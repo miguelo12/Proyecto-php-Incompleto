@@ -24,4 +24,29 @@ class NivelCompetencia {
     public function __construct() {
         $this->con = new Conexion();
     }
+    
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into nivelcompetencia values(?,?,?)");
+      
+      $sentencia->bind_param("isi", $this->idNivelCompetencia, $this->Descripcion, $this->Puntaje);
+      
+      $sentencia->execute();
+      
+      return true;
+    }
+    
+    public function setIdNivelCompetencia($idNivelCompetencia) {
+        $this->idNivelCompetencia = $idNivelCompetencia;
+    }
+
+    public function setDescripcion($Descripcion) {
+        $this->Descripcion = $Descripcion;
+    }
+
+    public function setPuntaje($Puntaje) {
+        $this->Puntaje = $Puntaje;
+    }
 }
