@@ -40,6 +40,25 @@ class RecursosDidacticos {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from recursosdidacticos where idRecursosDidacticos=?");
+      
+      $sentencia->bind_param("i", $this->idRecursosDidacticos);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setIdRecursosDidacticos($idRecursosDidacticos) {
         $this->idRecursosDidacticos = $idRecursosDidacticos;
     }

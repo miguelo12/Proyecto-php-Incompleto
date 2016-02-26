@@ -38,6 +38,25 @@ class NivelCompetencia {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from nivelcompetencia where idNivelCompetencia=?");
+      
+      $sentencia->bind_param("i", $this->idNivelCompetencia);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setIdNivelCompetencia($idNivelCompetencia) {
         $this->idNivelCompetencia = $idNivelCompetencia;
     }

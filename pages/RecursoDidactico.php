@@ -185,41 +185,105 @@
                                         </div>
                                 </div>
                                 <!--navbar ends -->
-
-
+                                
                                 <!-- form wizard content starts -->
                                 <div class="tab-content">
                                         <!-- wizard step 1 starts-->
                                         <div class="tab-pane" id="tab1">
                                             <div class="form-group">
-                                                <form method="POST" action="upload.php?tipo=1">
+                                                <form method="POST" name="myform1" action="upload.php?tipo=1">
                                                 <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                <input type="file" id="resume1"  style="visibility: hidden">
                                                 <label for="exampleInputFile">Sube tu archivo.</label>
-                                                <input type="file" id="exampleInputFile">
+                                                <p id="archivo1" class="well"></p>
                                                 <p class="help-block">Solamente se aceptan .txt</p>
-                                                <button type="submit" class="btn btn-default">Submit</button>
+                                                <button type="button" id="resume_link1" class="btn btn-default">Subir archivo</button>
                                                 </form>
                                             </div>
                                         </div>
                                         <!-- wizard step 1 ends-->					
                                         <div class="tab-pane" id="tab2">
                                             <div class="form-group">
-                                                            
-
+                                                <form method="POST" name="myform2" action="upload.php?tipo=1">
+                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                <input type="file" id="resume2"  style="visibility: hidden">
+                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                <p id="archivo2" class="well"></p>
+                                                <p class="help-block">Solamente se aceptan .doc o .docx</p>
+                                                <button type="button" id="resume_link2" class="btn btn-default">Subir archivo</button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab3">
                                             <div class="form-group">
-
+                                                <form method="POST" name="myform3" action="upload.php?tipo=1">
+                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                <input type="file" id="resume3"  style="visibility: hidden">
+                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                <p id="archivo3" class="well"></p>
+                                                <p class="help-block">Solamente se aceptan .powerpoint</p>
+                                                <button type="button" id="resume_link3" class="btn btn-default">Subir archivo</button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab4">
                                             <div class="form-group">
-
+                                                <form method="POST" name="myform4" action="upload.php?tipo=1">
+                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                <input type="file" id="resume4"  style="visibility: hidden">
+                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                <p id="archivo4" class="well"></p>
+                                                <p class="help-block">Solamente se aceptan .jpg o .png</p>
+                                                <button type="button" id="resume_link4" class="btn btn-default">Subir archivo</button>
+                                                </form>
                                             </div>
                                         </div>
                                 </div>	
                             </div>
+                                
+                            <div id="pills">
+                                <ul class="nav nav-pills">
+                                        <li class="active"><a href="#pills-tab1" data-toggle="tab">First</a></li>
+                                        <li><a href="#pills-tab2" data-toggle="tab">Second</a></li>
+                                        <li><a href="#pills-tab3" data-toggle="tab">Third</a></li>
+                                        <li><a href="#pills-tab4" data-toggle="tab">Forth</a></li>
+                                        <li><a href="#pills-tab5" data-toggle="tab">Fifth</a></li>
+                                        <li><a href="#pills-tab6" data-toggle="tab">Sixth</a></li>
+                                        <li><a href="#pills-tab7" data-toggle="tab">Seventh</a></li>
+                                </ul>
+                                <div class="progress progress-danger progress-striped active">
+                                  <div class="bar" style="width: 14.28%;"></div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="pills-tab1">
+                                      <p>I'm in Section 1.</p>
+                                    </div>
+                                    <div class="tab-pane" id="pills-tab2">
+                                      <p>Howdy, I'm in Section 2.</p>
+                                    </div>
+                                        <div class="tab-pane" id="pills-tab3">
+                                                3
+                                    </div>
+                                        <div class="tab-pane" id="pills-tab4">
+                                                4
+                                    </div>
+                                        <div class="tab-pane" id="pills-tab5">
+                                                5
+                                    </div>
+                                        <div class="tab-pane" id="pills-tab6">
+                                                6
+                                    </div>
+                                        <div class="tab-pane" id="pills-tab7">
+                                                7
+                                    </div>
+                                        <ul class="pager wizard">
+                                                <li class="previous first disabled" style="display:none;"><a>First</a></li>
+                                                <li class="previous disabled"><a>Previous</a></li>
+                                                <li class="next last" style="display:none;"><a>Last</a></li>
+                                                <li class="next"><a>Next</a></li>
+                                        </ul>
+                                </div>	
+		            </div>
                     </div>
                 </div>
             </div>
@@ -227,6 +291,29 @@
     </div>
     </div>
     </div>
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" autocomplete="off" action="php/UsuarioAction.php?user=2&action=1">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Acaba de ingresar un archivo de extension erronea.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
         
 
     <!-- jQuery -->
@@ -250,17 +337,95 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
+    var myfile="";
+    $('#resume_link1').click(function( e ) {
+        e.preventDefault();
+        $('#resume1').trigger('click');
+    });
+    $('#resume1').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="txt")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo1").innerHTML = myfile;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link2').click(function( e ) {
+        e.preventDefault();
+        $('#resume2').trigger('click');
+    });
+    $('#resume2').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="docx" || ext==="doc")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo2").innerHTML = myfile;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link3').click(function( e ) {
+        e.preventDefault();
+        $('#resume3').trigger('click');
+    });
+    $('#resume3').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="ppt" || ext==="pptx")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo3").innerHTML = myfile;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link4').click(function( e ) {
+        e.preventDefault();
+        $('#resume4').trigger('click');
+    });
+    $('#resume4').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="png"|| ext==="jpg")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo4").innerHTML = myfile;
+       }
+    });
+    </script>
+    
+    <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
     </script>
     
-    <script type="text/javascript">
-	$(document).ready(function() {
-		$('#rootwizard').bootstrapWizard();
-	});
+<script>
+    $(document).ready(function() {
+            $('#rootwizard').bootstrapWizard();
+            $('#pills').bootstrapWizard({'nextSelector': '.button-next', 'previousSelector': '.button-previous'});
+    });
 </script>
+
 </body>
 
 </html>

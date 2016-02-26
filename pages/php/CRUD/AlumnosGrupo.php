@@ -38,6 +38,25 @@ class AlumnosGrupo {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumnogrupo where idAlumnosGrupo=?");
+      
+      $sentencia->bind_param("i", $this->idAlumnosGrupo);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setidAlumnosGrupo($idAlumnosGrupo)
     {
         $this->idAlumnosGrupo=$idAlumnosGrupo;

@@ -39,6 +39,25 @@ class CriterioNivelRubrica {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from criterionivelrubrica where idCriterioNivelRubrica=?");
+      
+      $sentencia->bind_param("i", $this->idCriterioNivelRubrica);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setidCriterioNivelRubrica($idCriterioNivelRubrica)
     {
         $this->idCriterioNivelRubrica=$idCriterioNivelRubrica;

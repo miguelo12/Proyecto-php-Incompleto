@@ -38,6 +38,25 @@ class Rubrica {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from rubrica where idRubrica=?");
+      
+      $sentencia->bind_param("i", $this->idRubrica);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setIdRubrica($idRubrica) {
         $this->idRubrica = $idRubrica;
     }

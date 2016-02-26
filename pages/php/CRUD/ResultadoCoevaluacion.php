@@ -39,6 +39,25 @@ class ResultadoCoevaluacion {
       return true;
     }
     
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from resultadocoevaluacion where idResultadoCoevaluacion=?");
+      
+      $sentencia->bind_param("i", $this->idResultadoCoevaluacion);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
     public function setIdResultadoCoevaluacion($idResultadoCoevaluacion) {
         $this->idResultadoCoevaluacion = $idResultadoCoevaluacion;
     }
