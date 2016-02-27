@@ -71,19 +71,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Heuristica Movil</a>
+              <a class="navbar-brand" data-toggle="modal" data-target="#myModal1">Heuristica Movil</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio</a></li>
+                <li><a data-toggle="modal" data-target="#myModal1">Inicio</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="CrearUnidad.php">Crear una actividad</a></li>
-                    <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
+                    <li><a  href='#' data-toggle="modal" data-target="#myModal1">Crear una actividad</a></li>
+                    <li><a href='#' data-toggle="modal" data-target="#myModal1">Ir a biblioteca</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><a href="#">Crear Asignatura o Sección</a></li>
+                    <li><a href='#' data-toggle="modal" data-target="#myModal1">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact">Contáctenos</a></li>
@@ -92,11 +92,11 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
+                      <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
                     <?php if($docente["admin"]==1){
-                    echo "<li><a href='indexAdmin.php'><i class='fa fa-gear fa-fw'></i> Cambiar a Administrador</a></li>";} ?>
+                    echo "<li><a href='#' data-toggle='modal' data-target='#myModal1'><i class='fa fa-gear fa-fw'></i> Cambiar a Administrador</a></li>";} ?>
                     <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal1"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
                   </ul>
                 </li>
               </ul>
@@ -119,35 +119,35 @@
                     </a>
                 </li>
                 <li class="active"> 
-                      <a href="#">Inicio</a>
+                      <a data-toggle="modal" data-target="#myModal1">Inicio</a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="CrearUnidad.php">Crear una actividad</a></li>
-                    <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal1">Crear una actividad</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal1">Ir a biblioteca</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><a href="#">Crear Asignatura o Sección</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal1">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
                 <li> 
-                      <a href="Evaluar.php">Evaluar Proyectos</a>
+                      <a data-toggle="modal" data-target="#myModal1">Evaluar Proyectos</a>
                 </li>
                 <li> 
-                      <a href="Biblioteca.php">Rúbrica</a>
+                      <a data-toggle="modal" data-target="#myModal1">Rúbrica</a>
                 </li>
                 <li> 
-                      <a href="Biblioteca.php">Biblioteca</a>
+                      <a data-toggle="modal" data-target="#myModal1">Biblioteca</a>
                 </li>
                 <li class="dropdown hidden-lg hidden-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal1"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
                     <?php if($docente["admin"]==1){
-                    echo "<li><a href='indexAdmin.php'><i class='fa fa-gear fa-fw'></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>";} ?>
+                    echo "<li><a data-toggle='modal' data-target='#myModal1'><i class='fa fa-gear fa-fw'></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>";} ?>
                     <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal1"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
                 </li>
             </ul>
@@ -176,7 +176,7 @@
                                             <li><a href="#tabi3" data-toggle="tab">Subir!</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane" id="tabi1">
+                                        <div class="tab-pane well" id="tabi1">
                                             <br/>
                                             <br/>
                                               <div id="rootwizard">        
@@ -206,7 +206,8 @@
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .txt</p>
-                                                                <button type="button" id="resume_link1" class="btn btn-default">Subir archivo</button>
+                                                                <button type="button" id="resume_link1" class="btn btn-default">Agregar Archivo</button>
+                                                                <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -219,7 +220,8 @@
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .doc o .docx</p>
-                                                                <button type="button" id="resume_link2" class="btn btn-default">Subir archivo</button>
+                                                                <button type="button" id="resume_link2" class="btn btn-default">Agregar Archivo</button>
+                                                                <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -231,7 +233,8 @@
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .powerpoint</p>
-                                                                <button type="button" id="resume_link3" class="btn btn-default">Subir archivo</button>
+                                                                <button type="button" id="resume_link3" class="btn btn-default">Agregar Archivo</button>
+                                                                <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -243,20 +246,27 @@
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .jpg o .png</p>
-                                                                <button type="button" id="resume_link4" class="btn btn-default">Subir archivo</button>
+                                                                <button type="button" id="resume_link4" class="btn btn-default">Agregar Archivo</button>
+                                                                <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                 </div>	
                                             </div>
+                                            <br/>
+                                            <br/>
                                         </div>
-                                        <div class="tab-pane" id="tabi2">
+                                        <div class="tab-pane well" id="tabi2">
                                             <br/>
                                             <label for="moreinput">Estos son tus archivos subidos.</label>
+                                            <br/>
+                                            <br/>
                                         </div>
-                                        <div class="tab-pane" id="tabi3">
+                                        <div class="tab-pane well" id="tabi3">
                                             <br/>
                                             <label for="moreinput">Datos generales a subir.</label>
+                                            <br/>
+                                            <br/>
                                         </div>
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="#">First</a></li>
@@ -280,7 +290,7 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" autocomplete="off" action="php/UsuarioAction.php?user=2&action=1">
+                <form method="POST" autocomplete="off" action="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Error</h4>
@@ -290,6 +300,30 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" autocomplete="off" action="php/creacionUnidad.php">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Esta saliendo de la pagina.</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Aun no ha terminado de crear la Unidad, Quiere salir ?, sera enviado a la pagina de inicio.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                    <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Si, seguro</button>
                 </div>
                 </form>
             </div>
@@ -331,6 +365,7 @@
        else
        {
            document.getElementById("archivo1").innerHTML = myfile;
+           document.myform1.subirarchivo.disabled=false;
        }
     });
     </script>
@@ -350,6 +385,7 @@
        else
        {
            document.getElementById("archivo2").innerHTML = myfile;
+           document.myform2.subirarchivo.disabled=false;
        }
     });
     </script>
@@ -369,6 +405,7 @@
        else
        {
            document.getElementById("archivo3").innerHTML = myfile;
+           document.myform3.subirarchivo.disabled=false;
        }
     });
     </script>
@@ -388,6 +425,7 @@
        else
        {
            document.getElementById("archivo4").innerHTML = myfile;
+           document.myform4.subirarchivo.disabled=false;
        }
     });
     </script>
