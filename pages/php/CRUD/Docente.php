@@ -125,6 +125,8 @@ class Docente {
       
       $c=$this->con->getConexion();
       
+      date_default_timezone_set('Chile/Continental');
+      
       $dates1 = date("yd");
       
       $subemail = substr($this->email, 0, 2);

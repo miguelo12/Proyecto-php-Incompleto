@@ -124,6 +124,8 @@ class Alumno {
       
       $c=$this->con->getConexion();
       
+      date_default_timezone_set('Chile/Continental');
+      
       $dates1 = date("d");
       
       $dates2 = date("s");
