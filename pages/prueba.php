@@ -1,39 +1,65 @@
-<!DOCTYPE html>
-<!-- saved from url=(0043)http://www.inserthtml.com/demo/file-upload/ -->
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        
-        <title>File Upload!</title>
-    </head>
-    <body>
-
-        <form action="" method="POST">
-        <p>
-          E-mail:
-          <input data-validation="email" data-validation-error-msg="You did not enter a valid e-mail">
-        </p>
-        <p>
-          Password:
-          <input type="password" data-validation="required" 
-                     data-validation-error-msg="You did not enter a password">
-        </p>
-        <p>
-          <input type="submit" value="Login">
-        </p>
-        </form>
-
-        <!-- jQuery -->
+  <head>
+    <title>Basic Pills Example</title>
+    <!-- Bootstrap -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class='container'>
+            <section id="wizard">
+                <div class="page-header">
+                <h1>Basic Pills Wizard</h1>
+                </div>
+                <div id="rootwizard">
+                    <ul>
+                            <li><a href="#tab1" data-toggle="tab">First</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Second</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Third</a></li>
+                            <li><a href="#tab4" data-toggle="tab">Fourth</a></li>
+                            <li><a href="#tab5" data-toggle="tab">Fifth</a></li>
+                            <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
+                            <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tab1">
+                          1
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                          2
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                                    3
+                        </div>
+                        <div class="tab-pane" id="tab4">
+                                    4
+                        </div>
+                        <div class="tab-pane" id="tab5">
+                                    5
+                        </div>
+                        <div class="tab-pane" id="tab6">
+                                    6
+                        </div>
+                        <div class="tab-pane" id="tab7">
+                                    7
+                        </div>
+                        <ul class="pager wizard">
+                                <li class="previous first" style="display:none;"><a href="#">First</a></li>
+                                <li class="previous"><a href="#">Previous</a></li>
+                                <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                                <li class="next"><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+	</div>
         <script src="../component/jquery/dist/jquery.min.js"></script>
-        <script src="../js/jquery.form-validator.min.js"></script>
-        <script>
-          $.validate({
-            validateOnBlur : false, // disable validation when input looses focus
-            errorMessagePosition : 'top' // Instead of 'element' which is default
-            scrollToTopOnError : false // Set this property to true if you have a long form
-          });
-        </script>
-
-    </body>
+        <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+	<script>
+	$(document).ready(function() {
+	  	$('#rootwizard').bootstrapWizard({'tabClass': 'nav nav-pills'});
+		window.prettyPrint && prettyPrint()
+	});
+	</script>
+  </body>
 </html>

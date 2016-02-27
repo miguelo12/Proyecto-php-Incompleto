@@ -164,126 +164,110 @@
                 <div class="col-xs-12">
                     <div class="well well-lg">
                         <div class="row">
-                            <div class="col-xs-12 text-center">
-                                <br/>
-                                <label class="lead">Recursos para crear conflicto cognitivo</label>
-                                <br/>
-                            </div>
-                            <div class="col-xs-12">
-                                <div id="rootwizard">        
-                                <!--navbar starts -->
-                                <div class="navbar">
-                                        <div class="navbar-inner">
-                                            <div class="row">
-                                                <ul class="nav nav-pills">
-                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab1" data-toggle="tab" style="text-align: center"><img src="img/text.png" width="64" height="64" alt="Text"/><br/>Texto</a></li>
-                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab2" data-toggle="tab" style="text-align: center"><img src="img/word.png" width="64" height="64" alt="word"/><br/>Word</a></li>
-                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab3" data-toggle="tab" style="text-align: center"><img src="img/ppt.png" width="64" height="64" alt="ppt"/><br/>PowerPoint</a></li>
-                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab4" data-toggle="tab" style="text-align: center"><img src="img/camera.png" width="64" height="64" alt="camera"/><br/>Imagen</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                            <div class="col-xs-12"> 
+                            <section id="wizard">
+                                <div class="page-header">
+                                <h1>Crea Tu unidad de aprendizaje con 3 pasos</h1>
                                 </div>
-                                <!--navbar ends -->
-                                
-                                <!-- form wizard content starts -->
-                                <div class="tab-content">
-                                        <!-- wizard step 1 starts-->
-                                        <div class="tab-pane" id="tab1">
-                                            <div class="form-group">
-                                                <form method="POST" name="myform1" action="upload.php?tipo=1">
-                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                <input type="file" id="resume1"  style="visibility: hidden">
-                                                <label for="exampleInputFile">Sube tu archivo.</label>
-                                                <p id="archivo1" class="well"></p>
-                                                <p class="help-block">Solamente se aceptan .txt</p>
-                                                <button type="button" id="resume_link1" class="btn btn-default">Subir archivo</button>
-                                                </form>
+                                <div id="pills">
+                                    <ul>
+                                            <li><a href="#tabi1" data-toggle="tab">Agregar Archivos</a></li>
+                                            <li><a href="#tabi2" data-toggle="tab">Verificar</a></li>
+                                            <li><a href="#tabi3" data-toggle="tab">Subir!</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="tabi1">
+                                            <br/>
+                                            <br/>
+                                              <div id="rootwizard">        
+                                                <!--navbar starts -->
+                                                <div class="navbar">
+                                                        <div class="navbar-inner">
+                                                            <div class="row">
+                                                                <ul class="nav nav-pills">
+                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab1" data-toggle="tab" style="text-align: center"><img src="img/text.png" width="64" height="64" alt="Text"/><br/>Texto</a></li>
+                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab2" data-toggle="tab" style="text-align: center"><img src="img/word.png" width="64" height="64" alt="word"/><br/>Word</a></li>
+                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab3" data-toggle="tab" style="text-align: center"><img src="img/ppt.png" width="64" height="64" alt="ppt"/><br/>PowerPoint</a></li>
+                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab4" data-toggle="tab" style="text-align: center"><img src="img/camera.png" width="64" height="64" alt="camera"/><br/>Imagen</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <!--navbar ends -->
+
+                                                <!-- form wizard content starts -->
+                                                <div class="tab-content">
+                                                        <!-- wizard step 1 starts-->
+                                                        <div class="tab-pane" id="tab1">
+                                                            <div class="form-group">
+                                                                <form method="POST" name="myform1" action="upload.php?tipo=1">
+                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="file" id="resume1"  style="visibility: hidden">
+                                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                                <p id="archivo1" class="well"></p>
+                                                                <p class="help-block">Solamente se aceptan .txt</p>
+                                                                <button type="button" id="resume_link1" class="btn btn-default">Subir archivo</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <!-- wizard step 1 ends-->					
+                                                        <div class="tab-pane" id="tab2">
+                                                            <div class="form-group">
+                                                                <form method="POST" name="myform2" action="upload.php?tipo=1">
+                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="file" id="resume2"  style="visibility: hidden">
+                                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                                <p id="archivo2" class="well"></p>
+                                                                <p class="help-block">Solamente se aceptan .doc o .docx</p>
+                                                                <button type="button" id="resume_link2" class="btn btn-default">Subir archivo</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab3">
+                                                            <div class="form-group">
+                                                                <form method="POST" name="myform3" action="upload.php?tipo=1">
+                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="file" id="resume3"  style="visibility: hidden">
+                                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                                <p id="archivo3" class="well"></p>
+                                                                <p class="help-block">Solamente se aceptan .powerpoint</p>
+                                                                <button type="button" id="resume_link3" class="btn btn-default">Subir archivo</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab4">
+                                                            <div class="form-group">
+                                                                <form method="POST" name="myform4" action="upload.php?tipo=1">
+                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="file" id="resume4"  style="visibility: hidden">
+                                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                                <p id="archivo4" class="well"></p>
+                                                                <p class="help-block">Solamente se aceptan .jpg o .png</p>
+                                                                <button type="button" id="resume_link4" class="btn btn-default">Subir archivo</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                </div>	
                                             </div>
                                         </div>
-                                        <!-- wizard step 1 ends-->					
-                                        <div class="tab-pane" id="tab2">
-                                            <div class="form-group">
-                                                <form method="POST" name="myform2" action="upload.php?tipo=1">
-                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                <input type="file" id="resume2"  style="visibility: hidden">
-                                                <label for="exampleInputFile">Sube tu archivo.</label>
-                                                <p id="archivo2" class="well"></p>
-                                                <p class="help-block">Solamente se aceptan .doc o .docx</p>
-                                                <button type="button" id="resume_link2" class="btn btn-default">Subir archivo</button>
-                                                </form>
-                                            </div>
+                                        <div class="tab-pane" id="tabi2">
+                                            <br/>
+                                            <label for="moreinput">Estos son tus archivos subidos.</label>
                                         </div>
-                                        <div class="tab-pane" id="tab3">
-                                            <div class="form-group">
-                                                <form method="POST" name="myform3" action="upload.php?tipo=1">
-                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                <input type="file" id="resume3"  style="visibility: hidden">
-                                                <label for="exampleInputFile">Sube tu archivo.</label>
-                                                <p id="archivo3" class="well"></p>
-                                                <p class="help-block">Solamente se aceptan .powerpoint</p>
-                                                <button type="button" id="resume_link3" class="btn btn-default">Subir archivo</button>
-                                                </form>
-                                            </div>
+                                        <div class="tab-pane" id="tabi3">
+                                            <br/>
+                                            <label for="moreinput">Datos generales a subir.</label>
                                         </div>
-                                        <div class="tab-pane" id="tab4">
-                                            <div class="form-group">
-                                                <form method="POST" name="myform4" action="upload.php?tipo=1">
-                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                <input type="file" id="resume4"  style="visibility: hidden">
-                                                <label for="exampleInputFile">Sube tu archivo.</label>
-                                                <p id="archivo4" class="well"></p>
-                                                <p class="help-block">Solamente se aceptan .jpg o .png</p>
-                                                <button type="button" id="resume_link4" class="btn btn-default">Subir archivo</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                </div>	
-                            </div>
-                                
-                            <div id="pills">
-                                <ul class="nav nav-pills">
-                                        <li class="active"><a href="#pills-tab1" data-toggle="tab">First</a></li>
-                                        <li><a href="#pills-tab2" data-toggle="tab">Second</a></li>
-                                        <li><a href="#pills-tab3" data-toggle="tab">Third</a></li>
-                                        <li><a href="#pills-tab4" data-toggle="tab">Forth</a></li>
-                                        <li><a href="#pills-tab5" data-toggle="tab">Fifth</a></li>
-                                        <li><a href="#pills-tab6" data-toggle="tab">Sixth</a></li>
-                                        <li><a href="#pills-tab7" data-toggle="tab">Seventh</a></li>
-                                </ul>
-                                <div class="progress progress-danger progress-striped active">
-                                  <div class="bar" style="width: 14.28%;"></div>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="pills-tab1">
-                                      <p>I'm in Section 1.</p>
-                                    </div>
-                                    <div class="tab-pane" id="pills-tab2">
-                                      <p>Howdy, I'm in Section 2.</p>
-                                    </div>
-                                        <div class="tab-pane" id="pills-tab3">
-                                                3
-                                    </div>
-                                        <div class="tab-pane" id="pills-tab4">
-                                                4
-                                    </div>
-                                        <div class="tab-pane" id="pills-tab5">
-                                                5
-                                    </div>
-                                        <div class="tab-pane" id="pills-tab6">
-                                                6
-                                    </div>
-                                        <div class="tab-pane" id="pills-tab7">
-                                                7
-                                    </div>
                                         <ul class="pager wizard">
-                                                <li class="previous first disabled" style="display:none;"><a>First</a></li>
-                                                <li class="previous disabled"><a>Previous</a></li>
-                                                <li class="next last" style="display:none;"><a>Last</a></li>
-                                                <li class="next"><a>Next</a></li>
+                                                <li class="previous first" style="display:none;"><a href="#">First</a></li>
+                                                <li class="previous"><a href="javascript:;">Previous</a></li>
+                                                <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                                                <li class="next"><a href="javascript:;">Next</a></li>
+                                                <li class="finish" style="float:right;"><a href="javascript:;">Finish</a></li>
                                         </ul>
-                                </div>	
-		            </div>
+                                    </div>
+                                </div>
+                            </section>
                     </div>
                 </div>
             </div>
@@ -314,24 +298,20 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-        
-
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-   
-    <!-- Bootstrap wizard -->
-    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
     
-    <!-- Bootstrap Core JavaScript -->
+    <!-- JavaScript -->
+    <?php //Este es el orden siempre... ?>
+    <script src="../component/jquery/dist/jquery.min.js"></script>
     <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../component/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
+    <!-- Morris Charts JavaScript CONFLICTO!-->
+    <!--<script src="../component/morrisjs/morris.min.js"></script>-->
+    <!--<script src="../js/morris-data.js"></script>-->
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
@@ -422,7 +402,19 @@
 <script>
     $(document).ready(function() {
             $('#rootwizard').bootstrapWizard();
-            $('#pills').bootstrapWizard({'nextSelector': '.button-next', 'previousSelector': '.button-previous'});
+           
+            $('#pills').bootstrapWizard({
+                 //bloquear los tabs de arriba.
+                onTabClick: function(tab, navigation, index) {return false;},
+                'tabClass': 'nav nav-tabs'
+            });
+		window.prettyPrint && prettyPrint()
+            //que hace el boton finish
+            $('#pills .finish').click(function() {
+		alert('Finished!, Starting over!');
+		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+	    });
+            
     });
 </script>
 
