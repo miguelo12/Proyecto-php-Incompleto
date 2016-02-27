@@ -200,9 +200,9 @@
                                                         <!-- wizard step 1 starts-->
                                                         <div class="tab-pane" id="tab1">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform1" action="upload.php?tipo=1">
+                                                                <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data">
                                                                 <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                                <input type="file" id="resume1"  style="visibility: hidden">
+                                                                <input type="file" name="resume1" id="resume1"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .txt</p>
@@ -214,9 +214,9 @@
                                                         <!-- wizard step 1 ends-->					
                                                         <div class="tab-pane" id="tab2">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform2" action="upload.php?tipo=1">
+                                                                <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data">
                                                                 <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                                <input type="file" id="resume2"  style="visibility: hidden">
+                                                                <input type="file" name="resume2" id="resume2"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .doc o .docx</p>
@@ -227,9 +227,9 @@
                                                         </div>
                                                         <div class="tab-pane" id="tab3">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform3" action="upload.php?tipo=1">
+                                                                <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data">
                                                                 <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                                <input type="file" id="resume3"  style="visibility: hidden">
+                                                                <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .powerpoint</p>
@@ -240,9 +240,9 @@
                                                         </div>
                                                         <div class="tab-pane" id="tab4">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform4" action="upload.php?tipo=1">
+                                                                <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data">
                                                                 <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
-                                                                <input type="file" id="resume4"  style="visibility: hidden">
+                                                                <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .jpg o .png</p>
