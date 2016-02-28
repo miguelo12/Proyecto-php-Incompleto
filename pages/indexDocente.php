@@ -14,6 +14,11 @@
   else
       {
        $docente = $_SESSION["docente"];
+       $problem = FALSE;
+       if(isset($_SESSION["titulocreacion"]))
+       {
+          $problem = true;
+       }
       }
 ?>
 <!DOCTYPE html>
@@ -297,6 +302,31 @@
             </div>
         </div>
         </div>
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Hemos detectado un problema.</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Tienes creado una unidad sin guardar, deseas seguir o eliminarlo ?.</p>
+                    
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" href="CrearUnidad.php">Quiero seguir.</a>
+                    <a class="btn btn-primary" href="php/creacionUnidad.php?action=0">Eliminalo.</a>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+        
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 
@@ -309,6 +339,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <!--//nueva forma de llamar phptag-->
+    <?php if($problem):?>
+    <script> $('#myModal1').modal('show');</script>
+    <?php endif;?>
+  
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

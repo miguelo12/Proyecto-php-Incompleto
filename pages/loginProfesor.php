@@ -5,7 +5,7 @@
         {
           header("location: ../pages/indexAlumno.php");
           die();
-        }
+        }    
       }
   else
       {

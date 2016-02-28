@@ -38,12 +38,16 @@ else
       $docente = $_SESSION["docente"];
       date_default_timezone_set('Chile/Continental');
       $date = date("mY");
+      //elimina los archivos.
       foreach($sec as $do)
       {
           unlink($do["url"]);
       }
-      //          rmdir()
+      //elimina la carpeta.
       if(rmdir("uploads/".$docente["nombre"]."/".$_SESSION["titulocreacion"]."-".$date))
+      {
+          unset($_SESSION["titulocreacion"]);
+      }else
       {
           unset($_SESSION["titulocreacion"]);
       }
