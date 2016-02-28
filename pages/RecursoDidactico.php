@@ -201,7 +201,7 @@
                                                         <div class="tab-pane" id="tab1">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data">
-                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume1" id="resume1"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
@@ -215,7 +215,7 @@
                                                         <div class="tab-pane" id="tab2">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data">
-                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume2" id="resume2"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
@@ -228,7 +228,7 @@
                                                         <div class="tab-pane" id="tab3">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data">
-                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
@@ -241,7 +241,7 @@
                                                         <div class="tab-pane" id="tab4">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data">
-                                                                <input type="text" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
@@ -259,6 +259,17 @@
                                         <div class="tab-pane well" id="tabi2">
                                             <br/>
                                             <label for="moreinput">Estos son tus archivos subidos.</label>
+                                            <br/>
+                                            <?php if(isset($_SESSION["recursosdidacticos"]))
+                                                {
+                                                  echo "<ul>";
+                                                  $recursos = $_SESSION["recursosdidacticos"];
+                                                  foreach($recursos as $do)
+                                                  {
+                                                     echo "<li>[Nombre del archivo]: ".$do["nombre"]." [Tipo]: ".$do["tipo"]." [Descripción]: ".$do["descripcion"]." url: ".$do["url"]."</li>";
+                                                  }
+                                                  echo "</ul>";
+                                                }?>
                                             <br/>
                                             <br/>
                                         </div>

@@ -41,15 +41,32 @@ if(isset($_SESSION["titulocreacion"])){
             if (file_exists($target_file)) {
                 $uploadOk = 0;
             }
+            
             if ($uploadOk == 0) {
-            // echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
+                header("location: ../RecursoDidactico.php?errorSubir=1");
+                die;
                 
             } else {
                 if (move_uploaded_file($_FILES["resume1"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["resume1"]["name"]). " has been uploaded.";
+                    if(isset($_SESSION["recursosdidacticos"])){
+                    $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
+                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
+                    else
+                    {
+                    $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("location: ../RecursoDidactico.php?errorSubir=2");
+                    die;
                 }
             }
         } elseif ($_GET["tipo"]==2) {
@@ -92,14 +109,30 @@ if(isset($_SESSION["titulocreacion"])){
                 $uploadOk = 0;
             }
             if ($uploadOk == 0) {
-            // echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
+            header("location: ../RecursoDidactico.php?errorSubir=3");
+            die;
                 
             } else {
                 if (move_uploaded_file($_FILES["resume2"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["resume2"]["name"]). " has been uploaded.";
+                    if(isset($_SESSION["recursosdidacticos"])){
+                    $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
+                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
+                    else
+                    {
+                    $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("location: ../RecursoDidactico.php?errorSubir=4");
+                    die;
                 }
             }
         } elseif ($_GET["tipo"]==3) {
@@ -142,14 +175,30 @@ if(isset($_SESSION["titulocreacion"])){
                 $uploadOk = 0;
             }
             if ($uploadOk == 0) {
-            // echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
+                header("location: ../RecursoDidactico.php?errorSubir=5");
+                die;
                 
             } else {
                 if (move_uploaded_file($_FILES["resume3"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["resume3"]["name"]). " has been uploaded.";
+                    if(isset($_SESSION["recursosdidacticos"])){
+                    $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
+                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
+                    else
+                    {
+                    $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("location: ../RecursoDidactico.php?errorSubir=6");
+                    die;
                 }
             }
         } elseif ($_GET["tipo"]==4) {
@@ -191,14 +240,30 @@ if(isset($_SESSION["titulocreacion"])){
                 $uploadOk = 0;
             }
             if ($uploadOk == 0) {
-            // echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
+                header("location: ../RecursoDidactico.php?errorSubir=7");
+                die;
                 
             } else {
                 if (move_uploaded_file($_FILES["resume4"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["resume14"]["name"]). " has been uploaded.";
+                    if(isset($_SESSION["recursosdidacticos"])){
+                    $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
+                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
+                    else
+                    {
+                    $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
+                    $recu[] = $Recursos;
+                    $_SESSION["recursosdidacticos"] = $recu;
+                    header("location: ../RecursoDidactico.php?success=1");
+                    die;
+                    }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("location: ../RecursoDidactico.php?errorSubir=8");
+                    die;
                 }
             }
         }
