@@ -167,13 +167,17 @@
                             <div class="col-xs-12"> 
                             <section id="wizard">
                                 <div class="page-header">
-                                <h1>Crea Tu unidad de aprendizaje con 3 pasos</h1>
+                                <h1>Crea tu unidad de aprendizaje</h1>
                                 </div>
                                 <div id="pills">
                                     <ul>
                                             <li><a href="#tabi1" data-toggle="tab">Agregar Archivos</a></li>
                                             <li><a href="#tabi2" data-toggle="tab">Verificar</a></li>
-                                            <li><a href="#tabi3" data-toggle="tab">Subir!</a></li>
+                                            <li><a href="#tabi3" data-toggle="tab">Agregar preguntas</a></li>
+                                            <li><a href="#tabi4" data-toggle="tab">Ayudas</a></li>
+                                            <li><a href="#tabi5" data-toggle="tab">Editar Autoevaluación</a></li>
+                                            <li><a href="#tabi6" data-toggle="tab">Editar Coevaluación</a></li>
+                                            <li><a href="#tabi7" data-toggle="tab">Finalizar</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" id="tabi1">
@@ -257,6 +261,7 @@
                                             <br/>
                                         </div>
                                         <div class="tab-pane well" id="tabi2">
+                                            <form method="POST" action="">
                                             <br/>
                                             <label for="moreinput">Estos son tus archivos subidos.</label>
                                             <br/>
@@ -266,19 +271,73 @@
                                                   $recursos = $_SESSION["recursosdidacticos"];
                                                   foreach($recursos as $do)
                                                   {
-                                                     echo "<li>[Nombre del archivo]: ".$do["nombre"]." [Tipo]: ".$do["tipo"]." [Descripción]: ".$do["descripcion"]." url: ".$do["url"]."</li>";
+                                                     echo "<li><img alt='im' src='img/desconocido.png'/><br/>";
+                                                     echo "[Nombre]: ".$do["nombre"]." [Descripción]: ".$do["descripcion"]."</li>";
                                                   }
                                                   echo "</ul>";
                                                 }?>
                                             <br/>
                                             <br/>
+                                            </form>
                                         </div>
                                         <div class="tab-pane well" id="tabi3">
+                                            <br/>
+                                            <label for="moreinput">Agrega preguntas de investigación.</label>
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi4">
+                                            
+                                            <table class="editinplace table table-hover">
+                                                <tr>
+                                                    <th>Sugerencias de Preguntas de Investigación</th>
+                                                </tr>
+                                                <?php if(isset($_SESSION["preguntas"])){
+                                                    $preg = $_SESSION["preguntas"];
+                                                    foreach($preg as $de)
+                                                    {
+                                                       echo '<tr>';
+                                                       echo '<td>';
+                                                       echo "¿{$de}?";
+                                                       echo '</td>';
+                                                       echo '</tr>';
+                                                    }
+                                                    }?>
+                                                <tr>
+                                                    <td>
+                                                        <form method="POST" action="php/AvanceDidactico.php?pre=1" autocomplete="off">
+                                                            <div class="form-group">
+                                                                <input class="form-control" type="text" name="preguntas">
+                                                                <button type="submit" class="btn btn-default" style="float:right;">Agregar Pregunta</button>
+                                                                <p class="help-block">No agregue signo de interrogación.</p>
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi5">
+                                            <br/>
+                                            <label for="moreinput">criterios. Editar Autoevaluación.</label>
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi6">
+                                            <br/>
+                                            <label for="moreinput">criterios. Editar Coevaluación.</label>
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi7">
                                             <br/>
                                             <label for="moreinput">Datos generales a subir.</label>
                                             <br/>
                                             <br/>
                                         </div>
+                                        
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="#">First</a></li>
                                                 <li class="previous"><a href="javascript:;">Previous</a></li>
@@ -288,7 +347,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </section>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -333,7 +392,7 @@
                     <p>Aun no ha terminado de crear la Unidad, Quiere salir ?, sera enviado a la pagina de inicio.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Si, seguro</button>
                 </div>
                 </form>
@@ -361,6 +420,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    
+    
     <script>
     var myfile="";
     $('#resume_link1').click(function( e ) {
@@ -461,9 +522,15 @@
             //que hace el boton finish
             $('#pills .finish').click(function() {
 		alert('Finished!, Starting over!');
-		$('#rootwizard').find("a[href*='tab1']").trigger('click');
 	    });
             
+            <?php if(isset($_GET["jump"]))
+            {
+             //permite mostrar que parte del tab cuando genere el post.
+             $num = $_GET["jump"];
+             echo "$('#pills').bootstrapWizard('show',{$num});";
+            }
+            ?>
     });
 </script>
 

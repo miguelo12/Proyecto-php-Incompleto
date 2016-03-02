@@ -6,8 +6,8 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
-            $target_username = "uploads/{$docente["nombre"]}";
-            $target_dir = "uploads/{$docente["nombre"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+            $target_username = "uploads/{$docente["id"]}";
+            $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume1"]["name"]);
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -73,8 +73,8 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
-            $target_username = "uploads/{$docente["nombre"]}";
-            $target_dir = "uploads/{$docente["nombre"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+            $target_username = "uploads/{$docente["id"]}";
+            $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume2"]["name"]);
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -139,8 +139,8 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
-            $target_username = "uploads/{$docente["nombre"]}";
-            $target_dir = "uploads/{$docente["nombre"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+            $target_username = "uploads/{$docente["id"]}";
+            $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume3"]["name"]);
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -205,8 +205,8 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
-            $target_username = "uploads/{$docente["nombre"]}";
-            $target_dir = "uploads/{$docente["nombre"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+            $target_username = "uploads/{$docente["id"]}";
+            $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume4"]["name"]);
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);

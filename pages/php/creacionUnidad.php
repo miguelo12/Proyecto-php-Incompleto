@@ -44,13 +44,14 @@ else
           unlink($do["url"]);
       }
       //elimina la carpeta.
-      if(rmdir("uploads/".$docente["nombre"]."/".$_SESSION["titulocreacion"]."-".$date))
+      if(rmdir("uploads/".$docente["id"]."/".$_SESSION["titulocreacion"]."-".$date))
       {
           unset($_SESSION["titulocreacion"]);
       }else
       {
           unset($_SESSION["titulocreacion"]);
       }
+      unset($_SESSION["recursosdidacticos"]);
       header("location: ../indexDocente.php");
       die();
       
