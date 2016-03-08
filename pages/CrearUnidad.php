@@ -166,7 +166,7 @@
                         <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
                     </div>
                     <div class="row">
-                        <form action="php/creacionUnidad.php" method="POST">
+                        <form action="php/creacionUnidad.php" method="POST" autocomplete="off">
                         <div class="col-xs-12">
                             <br/>
                             <br/>

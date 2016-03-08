@@ -280,56 +280,231 @@
                                             <br/>
                                             </form>
                                         </div>
-                                        <div class="tab-pane well" id="tabi3">
-                                            <br/>
-                                            <label for="moreinput">Agrega preguntas de investigación.</label>
-                                            <br/>
-                                            <br/>
-                                        </div>
-                                        <div class="tab-pane well" id="tabi4">
-                                            
+                                        <div class="tab-pane well" id="tabi3"> 
                                             <table class="editinplace table table-hover">
                                                 <tr>
-                                                    <th>Sugerencias de Preguntas de Investigación</th>
+                                                    <th colspan="3">Sugerencias de Preguntas de Investigación</th>
                                                 </tr>
-                                                <?php if(isset($_SESSION["preguntas"])){
+                                                <form method="POST" action="php/AvanceDidactico.php" autocomplete="off">
+                                                <?php if(isset($_SESSION["preguntas"])):
                                                     $preg = $_SESSION["preguntas"];
-                                                    foreach($preg as $de)
-                                                    {
-                                                       echo '<tr>';
-                                                       echo '<td>';
-                                                       echo "¿{$de}?";
-                                                       echo '</td>';
-                                                       echo '</tr>';
-                                                    }
-                                                    }?>
+                                                    foreach($preg as $de):?>
                                                 <tr>
-                                                    <td>
-                                                        <form method="POST" action="php/AvanceDidactico.php?pre=1" autocomplete="off">
-                                                            <div class="form-group">
-                                                                <input class="form-control" type="text" name="preguntas">
-                                                                <button type="submit" class="btn btn-default" style="float:right;">Agregar Pregunta</button>
-                                                                <p class="help-block">No agregue signo de interrogación.</p>
-                                                            </div>
-                                                        </form>
+                                                    <td style="width: 90%">
+                                                        <input class="form-control" type="text" value="<?= $de["pre"]?>" name="preguntas<?= $de["id"] ?>">
+                                                    </td>
+                                                    <td style="width: 5%">
+                                                        <button class="btn btn-warning" type="submit" formaction="php/AvanceDidactico.php?pre=1&a=2&id=<?= $de["id"]?>">Editar</button>
+                                                    </td>
+                                                    <td style="width: 5%">
+                                                        <button class="btn btn-danger" type="submit" formaction="php/AvanceDidactico.php?pre=1&a=3&id=<?= $de["id"]?>">Eliminar</button>
                                                     </td>
                                                 </tr>
+                                                <?php
+                                                endforeach; endif;?>
+                                                </form>
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=1&a=1" autocomplete="off">
+                                                <tr>                                                 
+                                                    <td colspan="3">
+                                                            <input class="form-control" type="text" name="preguntas">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">
+                                                            <button type="submit" class="btn btn-success" style="float:right;">Agregar Pregunta</button>
+                                                            <p class="help-block">No agregue signo de interrogación.</p>
+                                                    </td>
+                                                </tr>
+                                                </form>
                                             </table>
-                                            
-                                            <br/>
-                                            <br/>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi4">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th colspan="2" class="text-center">Ayuda(Recomendado)</th>
+                                                </tr>
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=2" autocomplete="off">
+                                                    <?php if(isset($_SESSION["Ayuda"])): 
+                                                    $yo = $_SESSION["Ayuda"];?>
+                                                    <?php endif;?>
+                                                    <tr>
+                                                        <td style="width: 15%;">
+                                                            <p>Procedimiento</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["procedimiento"])){echo $yo["procedimiento"];}?>" name="procedimiento">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 15%">
+                                                            <p>Aplicaciones</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["aplicaciones"])){echo $yo["aplicaciones"];}?>" name="aplicaciones">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 15%">
+                                                            <p>Procesamiento</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["procesamiento"])){echo $yo["procesamiento"];}?>" name="procesamiento">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Lenguaje</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["lenguaje"])){echo $yo["lenguaje"];}?>" name="lenguaje">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Modelos</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["modelos"])){echo $yo["modelos"];}?>" name="modelos">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Conclusiones</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["conclusiones"])){echo $yo["conclusiones"];}?>" name="conclusiones">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-success" style="float:right;">Guardar</button>
+                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                            </table>
                                         </div>
                                         <div class="tab-pane well" id="tabi5">
-                                            <br/>
-                                            <label for="moreinput">criterios. Editar Autoevaluación.</label>
-                                            <br/>
-                                            <br/>
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th class="text-center">Seleccionar:</th>
+                                                    <th class="text-center">Criterios</th>
+                                                    <th class="text-center">Nota</th>
+                                                </tr>
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" autocomplete="off">
+                                                    <tr>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="true" name="procedimiento">
+                                                        </td>
+                                                        <td style="width: 78%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 15%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <label for="moreinput">Agregar Comentario</label>
+                                                            <br/>
+                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <th colspan="3" class="text-center">Crear Nuevos Criterios</th>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="3">
+                                                            <input class="form-control" type="text" name="preguntas">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="3">
+                                                            <div class="form-group">                                                             
+                                                                <button type="submit" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                            </table>
                                         </div>
                                         <div class="tab-pane well" id="tabi6">
-                                            <br/>
-                                            <label for="moreinput">criterios. Editar Coevaluación.</label>
-                                            <br/>
-                                            <br/>
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th colspan="2" class="text-center">Criterios</th>
+                                                    <th colspan="3" class="text-center">integrantes</th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center">Selecciona:</th>
+                                                    <th class="text-center"></th>
+                                                    <th class="text-center">1</th>
+                                                    <th class="text-center">2</th>
+                                                    <th class="text-center">3</th>
+                                                </tr>
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=4" autocomplete="off">
+                                                    <tr>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 72%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                            <label for="moreinput">Agregar Comentario</label>
+                                                            <br/>
+                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <th colspan="5" class="text-center">Crear Nuevos Criterios</th>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="5">
+                                                            <input class="form-control" type="text" name="preguntas">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="5">
+                                                            <div class="form-group">                                                             
+                                                                <button type="submit" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                            </table>
                                         </div>
                                         <div class="tab-pane well" id="tabi7">
                                             <br/>
