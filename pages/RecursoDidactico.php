@@ -204,8 +204,8 @@
                                                         <!-- wizard step 1 starts-->
                                                         <div class="tab-pane" id="tab1">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data" id="f1">
+                                                                <input type="text" name="descripcion1" id="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume1" id="resume1"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
@@ -219,7 +219,7 @@
                                                         <div class="tab-pane" id="tab2">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion2" id="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume2" id="resume2"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
@@ -232,7 +232,7 @@
                                                         <div class="tab-pane" id="tab3">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion3" id="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
@@ -245,7 +245,7 @@
                                                         <div class="tab-pane" id="tab4">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="text" name="descripcion4" id="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
@@ -596,12 +596,16 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     
-    
-    <script>
-    var myfile="";
+    <script>    
     $('#resume_link1').click(function( e ) {
-        e.preventDefault();
-        $('#resume1').trigger('click');
+        if ($('#descripcion1').val() == "") {
+             $('#myModal').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume1').trigger('click');
+        }
     });
     $('#resume1').on( 'change', function() {
        myfile= $( this ).val();
@@ -620,8 +624,14 @@
     <script>
     var myfile="";
     $('#resume_link2').click(function( e ) {
-        e.preventDefault();
-        $('#resume2').trigger('click');
+        if ($('#descripcion2').val() == "") {
+             $('#myModal').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume2').trigger('click');
+        }
     });
     $('#resume2').on( 'change', function() {
        myfile= $( this ).val();
@@ -640,8 +650,14 @@
     <script>
     var myfile="";
     $('#resume_link3').click(function( e ) {
-        e.preventDefault();
-        $('#resume3').trigger('click');
+        if ($('#descripcion3').val() == "") {
+             $('#myModal').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume3').trigger('click');
+        }
     });
     $('#resume3').on( 'change', function() {
        myfile= $( this ).val();
@@ -660,8 +676,14 @@
     <script>
     var myfile="";
     $('#resume_link4').click(function( e ) {
-        e.preventDefault();
-        $('#resume4').trigger('click');
+        if ($('#descripcion4').val() == "") {
+             $('#myModal').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume4').trigger('click');
+        }
     });
     $('#resume4').on( 'change', function() {
        myfile= $( this ).val();
