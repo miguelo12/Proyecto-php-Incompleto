@@ -36,7 +36,7 @@ if( isset($_POST["email"]) && isset($_POST["password"]) )
        }
        else 
        {
-           header("location:../loginProfesor.php");
+           header("location:../loginProfesor.php?accion=error");
            die();
        }
        

@@ -37,7 +37,7 @@ if( isset($_POST["email"]) && isset($_POST["password"]) )
        }
        else 
        {
-           header("location:../loginAlumno.php");
+           header("location:../loginAlumno.php?accion=error");
            die();
        }
     } catch (Exception $ex) {

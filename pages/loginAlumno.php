@@ -83,6 +83,18 @@
                                 <input type="button" class="btn btn-lg btn-success btn-block" value="Crear Cuenta" onclick=" window.location='../pages/crearAlumno.php'">
                                 <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/inicio.php'  ">
                                 </fieldset>
+                            
+                                <?php	
+                                if(isset($_GET['accion'])){
+                                    if($_GET['accion']=="error"){
+                                        echo "<div class='alert alert-warning'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "<strong>Error, </strong> ingrese nuevamente su correo y su contraseña.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
+                            
                         </form>
                     </div>
                 </div>

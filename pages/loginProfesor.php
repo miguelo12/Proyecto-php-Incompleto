@@ -67,10 +67,10 @@
                         <form role="form" method="POST" action="php/loginDocente.php">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -82,6 +82,17 @@
                                 <input type="submit" class="btn btn-lg btn-success btn-block" value="Ingresar">
                                 <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/inicio.php'  ">
                                 </fieldset>
+
+                                <?php	
+                                if(isset($_GET['accion'])){
+                                    if($_GET['accion']=="error"){
+                                        echo "<div class='alert alert-warning'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "<strong>Error, </strong> ingrese nuevamente su correo y su contraseña.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
                         </form>
                     </div>
                 </div>
