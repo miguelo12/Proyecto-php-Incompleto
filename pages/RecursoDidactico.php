@@ -454,6 +454,7 @@
                                                     <th class="text-center">3</th>
                                                 </tr>
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=4" autocomplete="off">
+                                                    
                                                     <tr>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
@@ -461,6 +462,7 @@
                                                         <td style="width: 72%">
                                                             <p>Cumplí con mis compromisos.</p>
                                                         </td>
+                                                        
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
@@ -470,7 +472,9 @@
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
+                                                        
                                                     </tr>
+                                                    
                                                     <tr>
                                                         <td colspan="5">
                                                             <label for="moreinput">Agregar Comentario</label>
@@ -505,6 +509,19 @@
                                                     </tr>
                                                 </form>
                                             </table>
+                                            <br/>
+                                            
+                                            <!--a lo mejor usaremos php y no javascript-->
+                                            <button type="submit" class="btn btn-primary" style="float:right; margin-top: 44px">Modificar</button>
+                                            <div class="row">
+                                                <div class="col-xs-2" style="float:right;">
+                                                    <label>Cantidad de alumnos por evaluar</label>
+                                                    <input type="text" class="form-control">
+                                                    <p class="help-block">Modificara la tabla. (Minimo 1 | Maximo 5 )</p>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            
                                         </div>
                                         <div class="tab-pane well" id="tabi7">
                                             <br/>
@@ -594,7 +611,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
     
     <script>    
     $('#resume_link1').click(function( e ) {
