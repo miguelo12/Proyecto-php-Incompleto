@@ -17,7 +17,7 @@ if(isset($_GET["pre"]))
                   $pre = $_POST["preguntas"];
                   $array = $_SESSION["preguntas"];
                   $index = count($array);
-                  $array[] = array("id"=>$index,"pre"=>$pre);
+                  $array[] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
                   $_SESSION["preguntas"] =  $array;
                   }
               }
@@ -26,7 +26,7 @@ if(isset($_GET["pre"]))
                   if(!empty($_POST["preguntas"])){
                   $pre = $_POST["preguntas"];
                   $index = 0;
-                  $array[$index] = array("id"=>$index,"pre"=>$pre);
+                  $array[$index] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
                   $_SESSION["preguntas"] =  $array;
                   }
               }
@@ -204,9 +204,63 @@ if(isset($_GET["pre"]))
         }
         
     } elseif ($_GET["pre"] == 3) {
-    
+      if(isset($_POST["preguntas"]))
+      {
+        //autoevaluacion.
+        if(isset($_SESSION["autoevaluacion"])){
+        $preauto = $_POST["preguntas"];
+        $arrey = $_SESSION["autoevaluacion"];
+        $index = count($arrey);
+        $arrey[$index] = array("pregunta"=>$preauto, "index"=>$index, "unico"=>null);
+        $_SESSION["autoevaluacion"] = $arrey;
+        
+        }
+        else
+        {
+            
+         $preauto = $_POST["preguntas"];
+         $index = 0;
+         $arrey[$index] = array("pregunta"=>$preauto, "index"=>$index, "unico"=>null);
+         $_SESSION["autoevaluacion"] = $arrey;
+         
+        }
+        header("location: ../RecursoDidactico.php?jump=5");
+        die();
+      }
+      else
+      {
+          header("location: ../RecursoDidactico.php?jump=4");
+          die();
+      }
     } elseif ($_GET["pre"] == 4) {
-    
+      if(isset($_POST["preguntas"]))
+      {
+        //coevaluacion.
+        if(isset($_SESSION["autoevaluacion"])){
+        $precoe = $_POST["preguntas"];
+        $arrey = $_SESSION["autoevaluacion"];
+        $index = count($arrey);
+        $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+        $_SESSION["autoevaluacion"] =  $arrey;
+        
+        }
+        else
+        {
+            
+        $precoe = $_POST["preguntas"];
+        $index = 0;
+        $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+        $_SESSION["autoevaluacion"] = $arrey;
+        
+        }
+        header("location: ../RecursoDidactico.php?jump=5");
+        die();
+      }
+      else
+      {
+          header("location: ../RecursoDidactico.php?jump=5");
+          die();
+      }
     } elseif ($_GET["pre"] == 5) {
       if(isset($_POST["cantidad"]))
       {

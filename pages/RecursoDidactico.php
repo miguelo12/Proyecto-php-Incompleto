@@ -14,6 +14,9 @@
   else
       {
        $docente = $_SESSION["docente"];
+       
+       $arrey[] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
+       $_SESSION["autoevaluacion"] = $arrey;
       }
 ?>
 <!DOCTYPE html>
@@ -479,34 +482,46 @@
                                                     <?php endif;?>
                                                 </tr>
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=4" autocomplete="off">
-                                                    
-                                                    <tr>
                                                         <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
                                                               if(isset($_SESSION["tabla"])):
-                                                              if($_SESSION["tabla"]==1):?>
+                                                              if($_SESSION["tabla"]==1):
+                                                              if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        <tr>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
                                                         </td>
                                                         <td style="width: 86%">
-                                                            <p>Cumplí con mis compromisos.</p>
+                                                            <p><?= $pu["pregunta"]?></p>
                                                         </td>
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
-                                                        <?php elseif($_SESSION["tabla"]==2):?>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
-                                                        </td>
-                                                        <td style="width: 79%">
-                                                            <p>Cumplí con mis compromisos.</p>
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <?php elseif($_SESSION["tabla"]==4):?>
+                                                        </tr>
+                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==2):
+                                                              if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        <tr>
+                                                            <td style="width: 7%">
+                                                                <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            </td>
+                                                            <td style="width: 79%">
+                                                                <p>Cumplí con mis compromisos.</p>
+                                                            </td>
+                                                            <td style="width: 7%">
+                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                            </td>
+                                                            <td style="width: 7%">
+                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                            </td>
+                                                        </tr>
+                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==4):
+                                                              if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        <tr>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
                                                         </td>
@@ -525,7 +540,12 @@
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
-                                                        <?php elseif($_SESSION["tabla"]==5):?>
+                                                        </tr>
+                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==5):
+                                                              if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        <tr>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
                                                         </td>
@@ -547,7 +567,12 @@
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
-                                                        <?php  elseif($_SESSION["tabla"]==3):?>
+                                                        </tr>
+                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==3):
+                                                               if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        <tr>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
                                                         </td>
@@ -563,25 +588,32 @@
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
-                                                        <?php endif; 
-                                                              else:?>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
-                                                        </td>
-                                                        <td style="width: 72%">
-                                                            <p>Cumplí con mis compromisos.</p>
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <?php endif;?>
-                                                    </tr>
+                                                        </tr>
+                                                        <?php endforeach; endif; endif; 
+                                                              else:
+                                                              if(isset($_SESSION["autoevaluacion"])):
+                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              foreach($autoeval as $pu):?>
+                                                        
+                                                        <tr>
+                                                            <td style="width: 7%">
+                                                                <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            </td>
+                                                            <td style="width: 72%">
+                                                                <p><?= $pu["pregunta"]?></p>
+                                                            </td>
+                                                            <td style="width: 7%">
+                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                            </td>
+                                                            <td style="width: 7%">
+                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                            </td>
+                                                            <td style="width: 7%">
+                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <?php endforeach; endif; endif;?>
                                                     
                                                     <tr>
                                                         <td colspan="7">
