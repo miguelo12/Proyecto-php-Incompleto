@@ -444,25 +444,116 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <th colspan="2" class="text-center">Criterios</th>
-                                                    <th colspan="3" class="text-center">integrantes</th>
+                                                    <th colspan="5" class="text-center">integrantes</th>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-center">Selecciona:</th>
                                                     <th class="text-center"></th>
-                                                    <th class="text-center">1</th>
-                                                    <th class="text-center">2</th>
-                                                    <th class="text-center">3</th>
+                                                    
+                                                    <?php // Detecta la cantidad de alumnos estan en la tabla.
+                                                          if(isset($_SESSION["tabla"])):
+                                                          if($_SESSION["tabla"]==1):?>
+                                                        <th class="text-center">1</th>
+                                                    <?php elseif($_SESSION["tabla"]==2):?>
+                                                        <th class="text-center">1</th>
+                                                        <th class="text-center">2</th>
+                                                    <?php elseif($_SESSION["tabla"]==3):?>
+                                                        <th class="text-center">1</th>
+                                                        <th class="text-center">2</th>
+                                                        <th class="text-center">3</th>
+                                                    <?php elseif($_SESSION["tabla"]==4):?>
+                                                        <th class="text-center">1</th>
+                                                        <th class="text-center">2</th>
+                                                        <th class="text-center">3</th>
+                                                        <th class="text-center">4</th>
+                                                    <?php elseif($_SESSION["tabla"]==5):?>
+                                                        <th class="text-center">1</th>
+                                                        <th class="text-center">2</th>
+                                                        <th class="text-center">3</th>
+                                                        <th class="text-center">4</th>
+                                                        <th class="text-center">5</th>
+                                                    <?php endif; else:?>
+                                                        <th class="text-center">1</th>
+                                                        <th class="text-center">2</th>
+                                                        <th class="text-center">3</th>
+                                                    <?php endif;?>
                                                 </tr>
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=4" autocomplete="off">
                                                     
                                                     <tr>
+                                                        <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
+                                                              if(isset($_SESSION["tabla"])):
+                                                              if($_SESSION["tabla"]==1):?>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 86%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <?php elseif($_SESSION["tabla"]==2):?>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 79%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <?php elseif($_SESSION["tabla"]==4):?>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 65%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <?php elseif($_SESSION["tabla"]==5):?>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 58%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <?php  elseif($_SESSION["tabla"]==3):?>
                                                         <td style="width: 7%">
                                                             <input class="checkbox" type="checkbox" value="1" name="1">
                                                         </td>
                                                         <td style="width: 72%">
                                                             <p>Cumplí con mis compromisos.</p>
                                                         </td>
-                                                        
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
@@ -472,18 +563,35 @@
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
-                                                        
+                                                        <?php endif; 
+                                                              else:?>
+                                                        <td style="width: 7%">
+                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                        </td>
+                                                        <td style="width: 72%">
+                                                            <p>Cumplí con mis compromisos.</p>
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <?php endif;?>
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td colspan="5">
+                                                        <td colspan="7">
                                                             <label for="moreinput">Agregar Comentario</label>
                                                             <br/>
                                                             <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="5">
+                                                        <td colspan="7">
                                                             <div class="form-group">
                                                                 <button type="submit" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
                                                                 <button type="submit" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
@@ -492,15 +600,15 @@
                                                         </td>
                                                     </tr>
                                                     <tr>                                                 
-                                                        <th colspan="5" class="text-center">Crear Nuevos Criterios</th>
+                                                        <th colspan="7" class="text-center">Crear Nuevos Criterios</th>
                                                     </tr>
                                                     <tr>                                                 
-                                                        <td colspan="5">
+                                                        <td colspan="7">
                                                             <input class="form-control" type="text" name="preguntas">
                                                         </td>
                                                     </tr>
                                                     <tr>                                                 
-                                                        <td colspan="5">
+                                                        <td colspan="7">
                                                             <div class="form-group">                                                             
                                                                 <button type="submit" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
@@ -512,15 +620,17 @@
                                             <br/>
                                             
                                             <!--a lo mejor usaremos php y no javascript-->
+                                            <form method="post" action="php/AvanceDidactico.php?pre=5">
                                             <button type="submit" class="btn btn-primary" style="float:right; margin-top: 44px">Modificar</button>
                                             <div class="row">
                                                 <div class="col-xs-2" style="float:right;">
                                                     <label>Cantidad de alumnos por evaluar</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="cantidad" maxlength="1" onkeypress="return event.charCode >= 49 && event.charCode <= 53" class="form-control">
                                                     <p class="help-block">Modificara la tabla. (Minimo 1 | Maximo 5 )</p>
                                                 </div>
                                             </div>
                                             <br/>
+                                            </form>
                                             
                                         </div>
                                         <div class="tab-pane well" id="tabi7">

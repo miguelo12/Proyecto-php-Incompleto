@@ -207,5 +207,26 @@ if(isset($_GET["pre"]))
     
     } elseif ($_GET["pre"] == 4) {
     
+    } elseif ($_GET["pre"] == 5) {
+      if(isset($_POST["cantidad"]))
+      {
+          if(!empty($_POST["cantidad"]))
+          {
+              $dw = $_POST["cantidad"];
+              $_SESSION["tabla"] = $dw;
+              header("location: ../RecursoDidactico.php?jump=5");
+              die();
+          }
+          else
+          {
+              header("location: ../RecursoDidactico.php?jump=5");
+              die();
+          }
+      }
+      else
+      {
+        header("location: ../RecursoDidactico.php?jump=5");
+        die();
+      }
     }
 }
