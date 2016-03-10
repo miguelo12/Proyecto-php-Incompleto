@@ -198,6 +198,18 @@
                             <br/>
                             <?php //meter contenido de grilla :D?>
                             <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-default"/>
+                            
+                            <?php	
+                                if(isset($_GET['error'])){
+                                    if($_GET['error']=="1"){
+                                        echo "<div class='alert alert-warning'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "<strong>Error, </strong> debe ingresar un nombre al recurso didáctico.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
+                            
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
