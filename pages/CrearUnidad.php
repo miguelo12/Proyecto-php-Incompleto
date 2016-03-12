@@ -282,7 +282,8 @@
                             <br/>
                             <?php //meter contenido de grilla :D?>
                             <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-default"/>
-                            
+                            <br/>
+                            <br/>
                             <?php	
                                 if(isset($_GET['error'])){
                                     if($_GET['error']=="1"){

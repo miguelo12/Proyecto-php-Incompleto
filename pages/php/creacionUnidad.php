@@ -25,7 +25,8 @@ if(!isset($_GET["action"])){
     }
     else
     {
-      echo "error";    
+        header("location: ../indexDocente.php");
+        die();
     }
 }
 else
@@ -58,9 +59,67 @@ else
     }
     elseif ($new2 ==1) 
     {
-      if(isset($_SESSION["permitido"]))
+      if(isset($_SESSION["NuevaUnidad"]))
       {
+         //creacion a finalizar;
+         $unidad = $_SESSION["NuevaUnidad"];
+         
+         
+         
+         header("location: ../Biblioteca.php?creado=1");
+         die();
+      }
+      else
+      {
+          header("location: ../CrearUnidad.php?SinTerminar=1");
+          die();
+      }
+    }
+    elseif ($new2 ==2) 
+    {
+      if(isset($_SESSION["autoevaluacion"]) && isset($_SESSION["coevaluacion"]) && isset($_SESSION["recursosdidacticos"]))
+      {
+          $autoevaluacion = $_SESSION["autoevaluacion"];
+          $coevaluacion = $_SESSION["coevaluacion"];
+          $recursosdidacticos = $_SESSION["recursosdidacticos"];
           
+          if(isset($_SESSION["Ayuda"]))
+          {
+             $ayuda = $_SESSION["Ayuda"]; 
+          }
+          
+          if(isset($_SESSION["preguntas"]))
+          {
+             $preguntas = $_SESSION["preguntas"];
+          }
+          
+          if(isset($ayuda))
+          {
+              if(isset($preguntas))
+              {
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "ayuda"=>$ayuda, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+              }
+              else
+              {
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "ayuda"=>$ayuda, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+              }
+          }
+          else
+          {
+              if(isset($preguntas))
+              {
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+              }
+              else
+              {
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+              }
+          }
+          
+          $_SESSION["NuevaUnidad"] = $unidadnueva;
+          
+          header("location: ../CrearUnidad.php");
+          die();
       }
       else
       {

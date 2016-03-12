@@ -83,7 +83,11 @@
 		window.prettyPrint && prettyPrint()
             //que hace el boton finish
             $('#pills .finish').click(function() {
-		alert('Finished!, Starting over!');
+                <?php if(isset($_SESSION["autoevaluacion"]) && isset($_SESSION["coevaluacion"]) && isset($_SESSION["recursosdidacticos"])): ?>
+                    document.getElementById("finalform").submit();
+                <?php else: ?>
+                    alert('No puedes terminar la unidad lea los requisitos.');
+                <?php endif; ?>
 	    });
             
             <?php if(isset($_GET["jump"]))
@@ -244,13 +248,17 @@
                                                         <div class="tab-pane" id="tab1">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data" id="f1">
-                                                                <input type="text" name="descripcion1" id="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <label for="descripcion1">Descripcion:</label>
+                                                                <input type="text" id="descripcion1" name="descripcion1" id="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume1" id="resume1"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .txt</p>
                                                                 <button type="button" id="resume_link1" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                <br/>
+                                                                <br/>
+                                                                <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -258,39 +266,51 @@
                                                         <div class="tab-pane" id="tab2">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion2" id="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <label for="descripcion2">Descripcion:</label>
+                                                                <input type="text" id="descripcion2" name="descripcion2" id="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume2" id="resume2"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .doc o .docx</p>
                                                                 <button type="button" id="resume_link2" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                <br/>
+                                                                <br/>
+                                                                <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab3">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion3" id="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <label for="descripcion3">Descripcion:</label>
+                                                                <input type="text" id="descripcion3" name="descripcion3" id="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .powerpoint</p>
                                                                 <button type="button" id="resume_link3" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                <br/>
+                                                                <br/>
+                                                                <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="tab4">
                                                             <div class="form-group">
                                                                 <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data">
-                                                                <input type="text" name="descripcion4" id="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <label for="descripcion4">Descripcion:</label>
+                                                                <input type="text" id="descripcion4" name="descripcion4" id="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .jpg o .png</p>
                                                                 <button type="button" id="resume_link4" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                <br/>
+                                                                <br/>
+                                                                <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -698,8 +718,8 @@
                                             <button type="submit" class="btn btn-primary" style="float:right; margin-top: 44px">Modificar</button>
                                             <div class="row">
                                                 <div class="col-xs-2" style="float:right;">
-                                                    <label>Cantidad de alumnos por evaluar</label>
-                                                    <input type="text" name="cantidad" maxlength="1" onkeypress="return event.charCode >= 49 && event.charCode <= 53" class="form-control">
+                                                    <label for="textocantidadalumno">Cantidad de alumnos por evaluar</label>
+                                                    <input type="text" id="textocantidadalumno" name="cantidad" maxlength="1" onkeypress="return event.charCode >= 49 && event.charCode <= 53" class="form-control">
                                                     <p class="help-block">Modificara la tabla. (Minimo 1 | Maximo 5 )</p>
                                                 </div>
                                             </div>
@@ -709,7 +729,19 @@
                                         </div>
                                         <div class="tab-pane well" id="tabi7">
                                             <br/>
-                                            <label for="moreinput">Datos generales a subir.</label>
+                                            <label for="contenido">Esta es la ultima parte para crear tu unidad.</label>
+                                            <div class="panel panel-info" id="contenido">
+                                              <div class="panel-heading">
+                                                <h3>Para poder finalizar tienes que tener al menos estos puntos:</h3>
+                                                <ol>
+                                                    <li>Tener un recurso didactico.</li>
+                                                    <li>Tener un criterio en autoevaluacion.</li>
+                                                    <li>Tener un criterio en coeevaluacion.</li>
+                                                </ol>
+                                            </div>
+                                            </div>
+                                            <p class="lead text-center">Recuerda que al finalizar, guardar tu unidad.</p>
+                                            <form method="post" action="php/creacionUnidad.php?action=2" id="finalform" name="finalform" hidden="true"></form>
                                             <br/>
                                             <br/>
                                         </div>
@@ -811,7 +843,7 @@
     
     <script>    
     $('#resume_link1').click(function( e ) {
-        if ($('#descripcion1').val() == "") {
+        if ($('#descripcion1').val().trim() === "") {
              $('#myModal2').modal('show');           
         }
         else
@@ -837,7 +869,7 @@
     <script>
     var myfile="";
     $('#resume_link2').click(function( e ) {
-        if ($('#descripcion2').val() == "") {
+        if ($('#descripcion2').val().trim() === "") {
              $('#myModal2').modal('show');           
         }
         else
@@ -863,7 +895,7 @@
     <script>
     var myfile="";
     $('#resume_link3').click(function( e ) {
-        if ($('#descripcion3').val() == "") {
+        if ($('#descripcion3').val().trim() === "") {
              $('#myModal2').modal('show');           
         }
         else
@@ -889,7 +921,7 @@
     <script>
     var myfile="";
     $('#resume_link4').click(function( e ) {
-        if ($('#descripcion4').val() == "") {
+        if ($('#descripcion4').val().trim() === "") {
              $('#myModal2').modal('show');           
         }
         else
