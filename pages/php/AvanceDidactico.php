@@ -59,7 +59,7 @@ if(isset($_GET["pre"]))
               $_SESSION["preguntas"] = $arroy;
             }
         }
-        header("location: ../RecursoDidactico.php?jump=2");
+        header("location: ../RecursoDidactico.php?jump=2#submit1");
         die();
       }
       
@@ -114,7 +114,7 @@ if(isset($_GET["pre"]))
                $_SESSION["Ayuda"] = $arruy;
             }
             
-             header("location: ../RecursoDidactico.php?jump=3");
+             header("location: ../RecursoDidactico.php?jump=3#submit2");
              die();
         }
         else
@@ -199,67 +199,162 @@ if(isset($_GET["pre"]))
             {
                unset($_SESSION["Ayuda"]);
             }
-             header("location: ../RecursoDidactico.php?jump=3");
+             header("location: ../RecursoDidactico.php?jump=3#submit2");
              die();
         }
         
-    } elseif ($_GET["pre"] == 3) {
-      if(isset($_POST["preguntas"]))
-      {
-        //autoevaluacion.
-        if(isset($_SESSION["autoevaluacion"])){
-        $preauto = $_POST["preguntas"];
-        $arrey = $_SESSION["autoevaluacion"];
-        $index = count($arrey);
-        $arrey[$index] = array("pregunta"=>$preauto, "index"=>$index, "unico"=>null);
-        $_SESSION["autoevaluacion"] = $arrey;
-        
+    } elseif($_GET["pre"] == 3){
+      if(isset($_GET["a"])){
+        if($_GET["a"] == 1){
+            if(isset($_POST["preguntas"])){
+                //agregar
+                //autoevaluacion.
+                if(!empty($_POST["preguntas"])){
+                    
+                    if(isset($_SESSION["autoevaluacion"])){
+                    $preauto = $_POST["preguntas"];
+                    $arrey = $_SESSION["autoevaluacion"];
+                    $index = count($arrey);
+                    $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>null);
+                    $_SESSION["autoevaluacion"] = $arrey;
+                    
+                    }else{
+                        
+                     $preauto = $_POST["preguntas"];
+                     $index = 0;
+                     $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>null);
+                     $_SESSION["autoevaluacion"] = $arrey;
+                     
+                    }
+                }
+            }
+        } elseif($_GET["a"] == 2){
+            //editar
+            if(isset($_POST["preg"])){ 
+             if(isset($_SESSION["autoevaluacion"])){
+                $arrey = $_POST["preg"];
+                $arrayPreg = $_SESSION["autoevaluacion"];
+                
+                $index = 0;
+                foreach ($arrey as $key => $n)
+                {
+                  $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
+                  $index = $index + 1;
+                }
+              
+                $_SESSION["autoevaluacion"] = $arroy;
+             }
+            }
+        } elseif($_GET["a"] == 3){
+            //eliminar
+            if(isset($_POST["checklist1"])){ 
+              $id = $_POST["checklist1"];
+              
+              $array = $_SESSION["autoevaluacion"];
+              
+              foreach ($id as $to)
+              {
+                 if(isset($to[0]))
+                 {
+                    unset($array[$to[0]]);
+                 } 
+              }
+              
+              $index = 0;
+              $arroy;
+              foreach ($array as $ta)
+              {
+                 if(isset($ta))
+                 {
+                    $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
+                    $index = $index + 1;
+                 } 
+              }
+              
+              $_SESSION["autoevaluacion"] = $arroy;
+            }
         }
-        else
-        {
-            
-         $preauto = $_POST["preguntas"];
-         $index = 0;
-         $arrey[$index] = array("pregunta"=>$preauto, "index"=>$index, "unico"=>null);
-         $_SESSION["autoevaluacion"] = $arrey;
-         
-        }
-        header("location: ../RecursoDidactico.php?jump=5");
+      }
+        header("location: ../RecursoDidactico.php?jump=4#submit3");
         die();
-      }
-      else
-      {
-          header("location: ../RecursoDidactico.php?jump=4");
-          die();
-      }
     } elseif ($_GET["pre"] == 4) {
-      if(isset($_POST["preguntas"]))
-      {
-        //coevaluacion.
-        if(isset($_SESSION["autoevaluacion"])){
-        $precoe = $_POST["preguntas"];
-        $arrey = $_SESSION["autoevaluacion"];
-        $index = count($arrey);
-        $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
-        $_SESSION["autoevaluacion"] =  $arrey;
-        
-        }
-        else
-        {
+      if(isset($_GET["a"])){
+        if($_GET["a"] == 1){
+          if(isset($_POST["preguntas"]))
+          {//agregar
+            //coevaluacion.
+            if(!empty($_POST["preguntas"])){
+                if(isset($_SESSION["coevaluacion"])){
+                $precoe = $_POST["preguntas"];
+                $arrey = $_SESSION["coevaluacion"];
+                $index = count($arrey);
+                $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+                $_SESSION["coevaluacion"] =  $arrey;
+
+                }
+                else
+                {
+
+                $precoe = $_POST["preguntas"];
+                $index = 0;
+                $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+                $_SESSION["coevaluacion"] = $arrey;
+
+                }
+            }
+          }
+        } elseif ($_GET["a"] == 2) {
+            //editar
+            if(isset($_POST["preg"])){ 
+             if(isset($_SESSION["coevaluacion"])){
+                $arrey = $_POST["preg"];
+                $arrayPreg = $_SESSION["coevaluacion"];
+                
+                $index = 0;
+                foreach ($arrey as $key => $n)
+                {
+                  $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
+                  $index = $index + 1;
+                }
+              
+                $_SESSION["coevaluacion"] = $arroy;
+             }
+            }
+            header("location: ../RecursoDidactico.php?jump=5&#submit4");
+            die();
             
-        $precoe = $_POST["preguntas"];
-        $index = 0;
-        $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
-        $_SESSION["autoevaluacion"] = $arrey;
-        
+        } elseif ($_GET["a"] == 3) {
+            //eliminar
+            if(isset($_POST["checklist"])){ 
+              $id = $_POST["checklist"];
+              
+              $array = $_SESSION["coevaluacion"];
+              
+              foreach ($id as $to)
+              {
+                 if(isset($to[0]))
+                 {
+                    unset($array[$to[0]]);
+                 }
+              }
+              
+              $index = 0;
+              $arroy;
+              foreach ($array as $ta)
+              {
+                 if(isset($ta))
+                 {
+                    $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
+                    $index = $index + 1;
+                 } 
+              }
+              
+              $_SESSION["coevaluacion"] = $arroy;
+            }
         }
-        header("location: ../RecursoDidactico.php?jump=5");
+        
+        header("location: ../RecursoDidactico.php?jump=5&#submit4");
         die();
-      }
-      else
-      {
-          header("location: ../RecursoDidactico.php?jump=5");
-          die();
       }
     } elseif ($_GET["pre"] == 5) {
       if(isset($_POST["cantidad"]))
@@ -268,19 +363,9 @@ if(isset($_GET["pre"]))
           {
               $dw = $_POST["cantidad"];
               $_SESSION["tabla"] = $dw;
-              header("location: ../RecursoDidactico.php?jump=5");
-              die();
-          }
-          else
-          {
-              header("location: ../RecursoDidactico.php?jump=5");
-              die();
           }
       }
-      else
-      {
-        header("location: ../RecursoDidactico.php?jump=5");
-        die();
-      }
+      header("location: ../RecursoDidactico.php?jump=5#submit4");
+      die();
     }
 }

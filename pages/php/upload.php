@@ -6,6 +6,7 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
+            $target_upload = "uploads";
             $target_username = "uploads/{$docente["id"]}";
             $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume1"]["name"]);
@@ -16,21 +17,42 @@ if(isset($_SESSION["titulocreacion"])){
                 if($imageFileType == "txt"){
                     $uploadOk = 1;
                     
-                    if (!(file_exists($target_username)))
-                    {
-                        mkdir($target_username);
-                        if (!(file_exists($target_dir)))
+                    if (!(file_exists($target_upload))){
+                        mkdir($target_upload);
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        } 
                     }
                     else
                     {
-                        if (!(file_exists($target_dir)))
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
-                    } 
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        }  
+                    }
                 }
                 else
                 {
@@ -73,6 +95,7 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
+            $target_upload = "uploads";
             $target_username = "uploads/{$docente["id"]}";
             $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume2"]["name"]);
@@ -83,21 +106,42 @@ if(isset($_SESSION["titulocreacion"])){
                 if($imageFileType == "doc" || $imageFileType == "docx"){
                     $uploadOk = 1;
                     
-                    if (!(file_exists($target_username)))
-                    {
-                        mkdir($target_username);
-                        if (!(file_exists($target_dir)))
+                    if (!(file_exists($target_upload))){
+                         mkdir($target_upload);
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        } 
                     }
                     else
                     {
-                        if (!(file_exists($target_dir)))
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
-                    } 
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        }  
+                    }
                 }
                 else
                 {
@@ -139,6 +183,7 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
+            $target_upload = "uploads";
             $target_username = "uploads/{$docente["id"]}";
             $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume3"]["name"]);
@@ -149,21 +194,42 @@ if(isset($_SESSION["titulocreacion"])){
                 if($imageFileType == "ppt" || $imageFileType == "pptx"){
                     $uploadOk = 1;
                     
-                    if (!(file_exists($target_username)))
-                    {
-                        mkdir($target_username);
-                        if (!(file_exists($target_dir)))
+                    if (!(file_exists($target_upload))){
+                         mkdir($target_upload);
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        } 
                     }
                     else
                     {
-                        if (!(file_exists($target_dir)))
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
-                    } 
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        }  
+                    }
                 }
                 else
                 {
@@ -205,6 +271,7 @@ if(isset($_SESSION["titulocreacion"])){
             date_default_timezone_set('Chile/Continental');
             $date = date("mY");
             $docente = $_SESSION["docente"];
+            $target_upload = "uploads";
             $target_username = "uploads/{$docente["id"]}";
             $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
             $target_file = $target_dir . basename($_FILES["resume4"]["name"]);
@@ -214,21 +281,42 @@ if(isset($_SESSION["titulocreacion"])){
             if(isset($_POST["subirarchivo"])) {
                 $check = getimagesize($_FILES["resume4"]["tmp_name"]);
                 if($check !== false) {
-                    if (!(file_exists($target_username)))
-                    {
-                        mkdir($target_username);
-                        if (!(file_exists($target_dir)))
+                    if (!(file_exists($target_upload))){
+                         mkdir($target_upload);
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        } 
                     }
                     else
                     {
-                        if (!(file_exists($target_dir)))
+                        if (!(file_exists($target_username)))
                         {
-                            mkdir($target_dir);
+                            mkdir($target_username);
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
                         }
-                    } 
+                        else
+                        {
+                            if (!(file_exists($target_dir)))
+                            {
+                                mkdir($target_dir);
+                            }
+                        }  
+                    }
                 }
                 else
                 {

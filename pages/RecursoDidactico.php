@@ -15,8 +15,13 @@
       {
        $docente = $_SESSION["docente"];
        
-       $arrey[] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
-       $_SESSION["autoevaluacion"] = $arrey;
+       if(!isset($_SESSION["autoevaluacion"])){
+       $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
+       $_SESSION["autoevaluacion"] = $arrey;}
+       
+       if(!isset($_SESSION["coevaluacion"])){
+       $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
+       $_SESSION["coevaluacion"] = $arrey;}
       }
 ?>
 <!DOCTYPE html>
@@ -59,6 +64,37 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- JavaScript -->
+    <?php //Este es el orden siempre... ?>
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+            $('#rootwizard').bootstrapWizard();
+           
+            $('#pills').bootstrapWizard({
+                 //bloquear los tabs de arriba.
+                onTabClick: function(tab, navigation, index) {return false;},
+                'tabClass': 'nav nav-tabs'
+            });
+		window.prettyPrint && prettyPrint()
+            //que hace el boton finish
+            $('#pills .finish').click(function() {
+		alert('Finished!, Starting over!');
+	    });
+            
+            <?php if(isset($_GET["jump"]))
+            {
+             //permite mostrar que parte del tab cuando genere el post.
+             $num = $_GET["jump"];
+             echo "$('#pills').bootstrapWizard('show',{$num});";
+            }
+            ?>
+    });
+</script>
     
 </head>
 
@@ -316,6 +352,7 @@
                                                     <td colspan="3">
                                                             <button type="submit" class="btn btn-success" style="float:right;">Agregar Pregunta</button>
                                                             <p class="help-block">No agregue signo de interrogación.</p>
+                                                            <a name="submit1"></a>
                                                     </td>
                                                 </tr>
                                                 </form>
@@ -381,8 +418,9 @@
                                                     <tr>
                                                         <td colspan="2">
                                                             <div class="form-group">
-                                                                <button type="submit" class="btn btn-success" style="float:right;">Guardar</button>
+                                                                <button type="submit" name="submit" class="btn btn-success" style="float:right;">Guardar</button>
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                                <a name="submit2"></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -397,17 +435,21 @@
                                                     <th class="text-center">Nota</th>
                                                 </tr>
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=3" autocomplete="off">
+                                                    <?php if(isset($_SESSION["autoevaluacion"])):
+                                                          $autoeval = $_SESSION["autoevaluacion"];
+                                                          foreach($autoeval as $pu):?>
                                                     <tr>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="true" name="procedimiento">
-                                                        </td>
-                                                        <td style="width: 78%">
-                                                            <p>Cumplí con mis compromisos.</p>
-                                                        </td>
-                                                        <td style="width: 15%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
+                                                    <td style="width: 7%">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 78%">
+                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                    </td>
+                                                    <td style="width: 15%">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
                                                     </tr>
+                                                    <?php endforeach; endif;?>
                                                     <tr>
                                                         <td colspan="3">
                                                             <label for="moreinput">Agregar Comentario</label>
@@ -418,8 +460,8 @@
                                                     <tr>
                                                         <td colspan="3">
                                                             <div class="form-group">
-                                                                <button type="submit" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -435,8 +477,9 @@
                                                     <tr>                                                 
                                                         <td colspan="3">
                                                             <div class="form-group">                                                             
-                                                                <button type="submit" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                                <a name="submit3"></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -485,30 +528,30 @@
                                                         <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
                                                               if(isset($_SESSION["tabla"])):
                                                               if($_SESSION["tabla"]==1):
-                                                              if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         <tr>
                                                         <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                         </td>
                                                         <td style="width: 86%">
-                                                            <p><?= $pu["pregunta"]?></p>
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                         </td>
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                         </td>
                                                         </tr>
                                                         <?php endforeach; endif; elseif($_SESSION["tabla"]==2):
-                                                              if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         <tr>
                                                             <td style="width: 7%">
-                                                                <input class="checkbox" type="checkbox" value="1" name="1">
+                                                                <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                             </td>
                                                             <td style="width: 79%">
-                                                                <p>Cumplí con mis compromisos.</p>
+                                                                <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                             </td>
                                                             <td style="width: 7%">
                                                                 <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
@@ -518,15 +561,15 @@
                                                             </td>
                                                         </tr>
                                                         <?php endforeach; endif; elseif($_SESSION["tabla"]==4):
-                                                              if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         <tr>
                                                         <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                         </td>
                                                         <td style="width: 65%">
-                                                            <p>Cumplí con mis compromisos.</p>
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                         </td>
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
@@ -542,15 +585,15 @@
                                                         </td>
                                                         </tr>
                                                         <?php endforeach; endif; elseif($_SESSION["tabla"]==5):
-                                                              if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         <tr>
                                                         <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                         </td>
                                                         <td style="width: 58%">
-                                                            <p>Cumplí con mis compromisos.</p>
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                         </td>
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
@@ -569,15 +612,15 @@
                                                         </td>
                                                         </tr>
                                                         <?php endforeach; endif; elseif($_SESSION["tabla"]==3):
-                                                               if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                               if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         <tr>
                                                         <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="1" name="1">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                         </td>
                                                         <td style="width: 72%">
-                                                            <p>Cumplí con mis compromisos.</p>
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                         </td>
                                                         <td style="width: 7%">
                                                             <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
@@ -591,16 +634,16 @@
                                                         </tr>
                                                         <?php endforeach; endif; endif; 
                                                               else:
-                                                              if(isset($_SESSION["autoevaluacion"])):
-                                                              $autoeval = $_SESSION["autoevaluacion"];
+                                                              if(isset($_SESSION["coevaluacion"])):
+                                                              $autoeval = $_SESSION["coevaluacion"];
                                                               foreach($autoeval as $pu):?>
                                                         
                                                         <tr>
                                                             <td style="width: 7%">
-                                                                <input class="checkbox" type="checkbox" value="1" name="1">
+                                                                <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
                                                             </td>
                                                             <td style="width: 72%">
-                                                                <p><?= $pu["pregunta"]?></p>
+                                                                <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                             </td>
                                                             <td style="width: 7%">
                                                                 <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
@@ -612,11 +655,10 @@
                                                                 <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                             </td>
                                                         </tr>
-                                                        
                                                         <?php endforeach; endif; endif;?>
-                                                    
                                                     <tr>
                                                         <td colspan="7">
+                                                            <a name="submit4"></a>
                                                             <label for="moreinput">Agregar Comentario</label>
                                                             <br/>
                                                             <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
@@ -625,13 +667,13 @@
                                                     <tr>
                                                         <td colspan="7">
                                                             <div class="form-group">
-                                                                <button type="submit" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=2" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr>                                                 
+                                                    <tr>
                                                         <th colspan="7" class="text-center">Crear Nuevos Criterios</th>
                                                     </tr>
                                                     <tr>                                                 
@@ -642,7 +684,7 @@
                                                     <tr>                                                 
                                                         <td colspan="7">
                                                             <div class="form-group">                                                             
-                                                                <button type="submit" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -697,10 +739,33 @@
                 <form method="POST" autocomplete="off" action="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Error</h4>
+                    <h4 class="modal-title" id="myModalLabel">Error documento erroneo</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Acaba de ingresar un archivo de extension erronea.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" autocomplete="off" action="">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Error no se encuentra descripcion del archivo</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Acaba de ingresar un archivo de extension erronea.</p>
+                    <p class="text-center">No has agregado niuna descripción.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
@@ -736,20 +801,10 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    
-    <!-- JavaScript -->
-    <?php //Este es el orden siempre... ?>
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
 
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript CONFLICTO!-->
-    <!--<script src="../component/morrisjs/morris.min.js"></script>-->
-    <!--<script src="../js/morris-data.js"></script>-->
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
@@ -757,7 +812,7 @@
     <script>    
     $('#resume_link1').click(function( e ) {
         if ($('#descripcion1').val() == "") {
-             $('#myModal').modal('show');           
+             $('#myModal2').modal('show');           
         }
         else
         {
@@ -783,7 +838,7 @@
     var myfile="";
     $('#resume_link2').click(function( e ) {
         if ($('#descripcion2').val() == "") {
-             $('#myModal').modal('show');           
+             $('#myModal2').modal('show');           
         }
         else
         {
@@ -809,7 +864,7 @@
     var myfile="";
     $('#resume_link3').click(function( e ) {
         if ($('#descripcion3').val() == "") {
-             $('#myModal').modal('show');           
+             $('#myModal2').modal('show');           
         }
         else
         {
@@ -835,7 +890,7 @@
     var myfile="";
     $('#resume_link4').click(function( e ) {
         if ($('#descripcion4').val() == "") {
-             $('#myModal').modal('show');           
+             $('#myModal2').modal('show');           
         }
         else
         {
@@ -863,31 +918,6 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-    
-<script>
-    $(document).ready(function() {
-            $('#rootwizard').bootstrapWizard();
-           
-            $('#pills').bootstrapWizard({
-                 //bloquear los tabs de arriba.
-                onTabClick: function(tab, navigation, index) {return false;},
-                'tabClass': 'nav nav-tabs'
-            });
-		window.prettyPrint && prettyPrint()
-            //que hace el boton finish
-            $('#pills .finish').click(function() {
-		alert('Finished!, Starting over!');
-	    });
-            
-            <?php if(isset($_GET["jump"]))
-            {
-             //permite mostrar que parte del tab cuando genere el post.
-             $num = $_GET["jump"];
-             echo "$('#pills').bootstrapWizard('show',{$num});";
-            }
-            ?>
-    });
-</script>
 
 </body>
 
