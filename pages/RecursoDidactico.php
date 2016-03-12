@@ -736,11 +736,11 @@
                                                 <ol>
                                                     <li>Tener un recurso didactico.</li>
                                                     <li>Tener un criterio en autoevaluacion.</li>
-                                                    <li>Tener un criterio en coeevaluacion.</li>
+                                                    <li>Tener un criterio en coevaluacion.</li>
                                                 </ol>
                                             </div>
                                             </div>
-                                            <p class="lead text-center">Recuerda que al finalizar, guardar tu unidad.</p>
+                                            <p class="lead text-center">Recuerda que al finalizar, debes guardar tu unidad.</p>
                                             <form method="post" action="php/creacionUnidad.php?action=2" id="finalform" name="finalform" hidden="true"></form>
                                             <br/>
                                             <br/>

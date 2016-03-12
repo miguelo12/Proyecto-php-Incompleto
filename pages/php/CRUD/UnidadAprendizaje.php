@@ -15,7 +15,7 @@ include("../php/Conexion/Conexion.php");
 class UnidadAprendizaje {
     private $idAprendizaje;
     private $Titulo;
-    private $idSeccion;
+    private $Rubrica_idRubrica;
     
     private $con;
     
@@ -29,7 +29,7 @@ class UnidadAprendizaje {
       
       $sentencia=$c->prepare("insert into unidadaprendizaje values(?,?,?)");
       
-      $sentencia->bind_param("iss", $this->idAprendizaje, $this->Titulo, $this->idSeccion);
+      $sentencia->bind_param("iss", $this->idAprendizaje, $this->Titulo, $this->Rubrica_idRubrica);
       
       $sentencia->execute();
       
@@ -46,8 +46,8 @@ class UnidadAprendizaje {
         $this->Titulo=$Titulo;
     }
     
-    public function setidSeccion($idSeccion)
+    public function setRubrica_idRubrica($Rubrica_idRubrica)
     {
-        $this->idSeccion=$idSeccion;
+        $this->Rubrica_idRubrica=$Rubrica_idRubrica;
     }
 }
