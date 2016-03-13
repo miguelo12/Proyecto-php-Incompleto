@@ -19,6 +19,9 @@ if(isset($_GET["pre"]))
                   $index = count($array);
                   $array[] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
                   $_SESSION["preguntas"] =  $array;
+                  }else{
+                      header("location:../RecursoDidactico.php?jump=2&pre=100");
+                      die();
                   }
               }
               else
@@ -28,6 +31,9 @@ if(isset($_GET["pre"]))
                   $index = 0;
                   $array[$index] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
                   $_SESSION["preguntas"] =  $array;
+                  }else{
+                      header("location:../RecursoDidactico.php?jump=2&pre=100");
+                      die();
                   }
               }
           }
@@ -128,7 +134,8 @@ if(isset($_GET["pre"]))
                 }
                 else
                 {
-                   unset($arruy["procedimiento"]);
+                   header("location:../RecursoDidactico.php?jump=3&pre=101");
+                   die();
                 }
             }
 
@@ -139,7 +146,8 @@ if(isset($_GET["pre"]))
                 }
                 else 
                 {
-                    unset($arruy["aplicaciones"]);
+                    header("location:../RecursoDidactico.php?jump=3&pre=101");
+                    die();
                 }
             }
             
@@ -151,7 +159,8 @@ if(isset($_GET["pre"]))
                 }
                 else 
                 {
-                    unset($arruy["procesamiento"]);
+                    header("location:../RecursoDidactico.php?jump=3&pre=101");
+                    die();
                 }
             }
             
@@ -163,7 +172,8 @@ if(isset($_GET["pre"]))
                 }
                 else 
                 {
-                    unset($arruy["lenguaje"]);
+                    header("location:../RecursoDidactico.php?jump=3&pre=101");
+                    die();
                 }
             }
             
@@ -175,7 +185,8 @@ if(isset($_GET["pre"]))
                 }
                 else 
                 {
-                    unset($arruy["modelos"]);
+                    header("location:../RecursoDidactico.php?jump=3&pre=101");
+                    die();
                 }
             }
             
@@ -187,7 +198,8 @@ if(isset($_GET["pre"]))
                 }
                 else 
                 {
-                    unset($arruy["conclusiones"]);
+                    header("location:../RecursoDidactico.php?jump=3&pre=101");
+                    die();
                 }
             }
             
@@ -197,7 +209,8 @@ if(isset($_GET["pre"]))
             }
             else
             {
-               unset($_SESSION["Ayuda"]);
+               header("location:../RecursoDidactico.php?jump=3&pre=101");
+               die();
             }
              header("location: ../RecursoDidactico.php?jump=3#submit2");
              die();
@@ -224,8 +237,10 @@ if(isset($_GET["pre"]))
                      $index = 0;
                      $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>null);
                      $_SESSION["autoevaluacion"] = $arrey;
-                     
                     }
+                }else{
+                    header("location:../RecursoDidactico.php?jump=4&pre=102");
+                    die();
                 }
             }
         } elseif($_GET["a"] == 2){
@@ -299,8 +314,11 @@ if(isset($_GET["pre"]))
                 $index = 0;
                 $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
                 $_SESSION["coevaluacion"] = $arrey;
-
+                
                 }
+            }else{
+                header("location:../RecursoDidactico.php?jump=5&pre=103");
+                die();
             }
           }
         } elseif ($_GET["a"] == 2) {

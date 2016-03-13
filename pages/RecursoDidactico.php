@@ -374,6 +374,16 @@
                                                             <p class="help-block">No agregue signo de interrogación.</p>
                                                             <a name="submit1"></a>
                                                     </td>
+                                                    <?php	
+                                                        if(isset($_GET['pre'])){
+                                                            if($_GET['pre']=="100"){
+                                                                echo "<div class='alert alert-warning'>";
+                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                                                echo "<strong>Error, </strong> debe ingresar una pregunta.";
+                                                                echo "</div>"; 
+                                                            }
+                                                        }
+                                                    ?>
                                                 </tr>
                                                 </form>
                                             </table>
@@ -443,6 +453,16 @@
                                                                 <a name="submit2"></a>
                                                             </div>
                                                         </td>
+                                                        <?php	
+                                                        if(isset($_GET['pre'])){
+                                                            if($_GET['pre']=="101"){
+                                                                echo "<div class='alert alert-warning'>";
+                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                                                echo "<strong>Error, </strong> debe rellenar todos los espacios en blanco.";
+                                                                echo "</div>"; 
+                                                            }
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </form>
                                             </table>
@@ -502,6 +522,16 @@
                                                                 <a name="submit3"></a>
                                                             </div>
                                                         </td>
+                                                        <?php	
+                                                        if(isset($_GET['pre'])){
+                                                            if($_GET['pre']=="102"){
+                                                                echo "<div class='alert alert-warning'>";
+                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                                                echo "<strong>Error, </strong> el nuevo criterio no puede estar en blanco.";
+                                                                echo "</div>"; 
+                                                            }
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </form>
                                             </table>
@@ -708,6 +738,16 @@
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
+                                                        <?php	
+                                                        if(isset($_GET['pre'])){
+                                                            if($_GET['pre']=="103"){
+                                                                echo "<div class='alert alert-warning'>";
+                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                                                echo "<strong>Error, </strong> el nuevo criterio no puede estar en blanco.";
+                                                                echo "</div>"; 
+                                                            }
+                                                        }
+                                                        ?>
                                                     </tr>
                                                 </form>
                                             </table>
