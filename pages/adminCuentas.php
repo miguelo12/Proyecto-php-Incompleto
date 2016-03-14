@@ -187,7 +187,7 @@
                 <div class="col-xs-12">
                     <div class="well well-lg">
                     <div class="row">
-                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <br/>
                             <h2 class="text-center"><ins>Cuentas de profesores</ins></h2>
                             <br/>
@@ -236,59 +236,59 @@
                                 </div>
                                 <div class="row">
                                     <form action="php/UsuarioAction.php?user=1&action=1" method="POST" id="formulario">
-                                    <fieldset> 
-                                    <div class="col-xs-12">
-                                        <br/>
-                                        <br/>
-                                        <label>nombre</label>
-                                        <input class="form-control validate[required] text-input" type="text" name="nombre1" value="" placeholder="Ingrese aquí el nombre"/>
-                                        <br/>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        
-                                        <label>email</label>
-                                        <input class="form-control validate[required,custom[email]] text-input" type="text" name="email2" value="" placeholder="Ingrese aquí el email"/>
-                                        <br/>
-                                    </div>                            
-                                    <div class="col-xs-12">
-                                        
-                                        <label>password</label>
-                                        <input class="form-control validate[required] text-input" type="password" name="password3" value="" placeholder="Ingrese aquí la contraseña"/>
-                                        <br/>
-                                    </div>                            
-                                    <div class="col-xs-12">
-                                        
-                                        <label>Es administrador?</label>
-                                        </br>
-                                        <label>Si</label>
-                                        <input type="radio" name="admin4" id="si" value="1" class="validate[required] radio">
-                                        <label>No</label>
-                                        <input type="radio" name="admin4" id="no" value="0" class="validate[required] radio">
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                    </div>
-                                </fieldset>
-                            <div class="clearfix visible-xs"></div>
+                                        <fieldset> 
+                                        <div class="col-xs-12">
+                                            <br/>
+                                            <br/>
+                                            <label>nombre</label>
+                                            <input class="form-control validate[required] text-input" type="text" name="nombre1" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12">
 
-                            <div class="clearfix visible-xs"></div>
-                           
-                        <div class="modal-footer">
-                            <input value="Guardar nuevo docente" name="boton2" type="submit" class="submit btn btn-default btn-lg btn-block"/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <label>email</label>
+                                            <input class="form-control validate[required,custom[email]] text-input" type="text" name="email2" value="" placeholder="Ingrese aquí el email"/>
+                                            <br/>
+                                        </div>                            
+                                        <div class="col-xs-12">
+
+                                            <label>password</label>
+                                            <input class="form-control validate[required] text-input" type="password" name="password3" value="" placeholder="Ingrese aquí la contraseña"/>
+                                            <br/>
+                                        </div>                            
+                                        <div class="col-xs-12">
+                                            <fieldset>
+                                            <label>Es administrador?</label>
+                                            <br/>
+                                            <label><input type="radio" name="admin4" id="si" value="1" class="validate[required] radio">Si</label>&nbsp;
+                                            <label><input type="radio" name="admin4" id="no" value="0" class="validate[required] radio">No</label>
+                                            <br/>
+                                            </fieldset>
+                                        </div>
+                                        </fieldset>
+                                        <div class="clearfix visible-xs"></div>
+
+                                        <div class="clearfix visible-xs"></div>
+
+                                        <div class="modal-footer">
+                                        <button type="submit" style="float: right;" class="btn btn-success">Ingresar Docente</button>
+                                        <button type="button" style="float: left;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                    </form> 
+                                </div>
+                            </div>
+                            </div>                     
+                            </div>
+                            </div>
                         </div>
-                        </form> 
                     </div>
                     </div>
                     </div>
-                        
-                    </div>
-                </div>
             </div>
+            </div>
+          </div>
         </div>
         </div>
-        </div>
-        
         
         
         

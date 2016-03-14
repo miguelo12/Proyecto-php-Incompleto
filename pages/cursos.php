@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php session_start();
+      error_reporting(E_ALL ^ E_WARNING);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -13,20 +14,21 @@
       }
   else
       {
-       $docente = $_SESSION["docente"];
+        $docente = $_SESSION["docente"];
       }
 ?>
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Administrar cuentas</title>
+    <title>Cursos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +41,9 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../component/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -63,9 +68,10 @@
             });
     </script>
     
-    </head>
-    <body>
-               <!-- Navigation -->
+</head>
+
+<body>
+        <!-- Navigation -->
         
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
@@ -161,30 +167,136 @@
             
         <br/>
         <br/>
-        <br/> 
-    
+        <br/>
         
         
-   </div>
-       
+        <div id="page-content-wrapper content" >
+          <div class="container separate-rows tall-rows">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <br/>
+                            
+                            <br/>
+                            <br/>
+                            <?php //Agregar for... ?>
+                            <div class="well">
+                                <table class="table table-bordered" style=" margin: 0 auto;">
+                                    <caption><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
+                                    <tr>
+                                        <th class="text-center">Nombre Asignatura</th>
+                                        <th class="text-center">curso o sección</th>
+                                        <th class="text-center">PIN</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div> 
+                        
+                    </div>
+                        <!--boton activador del modal-->
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">Crear asignatura</button>
+                        
+                        <!-- Modal -->
+                    <div id="myModal1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Crear Asignatura</h4>
+                            </div>
+                            <div class="modal-body">
+                            <!-- Inicio Formulario-->     
+                            <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="well well-lg">
+                                <div class="text-center">
+                                    <br/>
+                                    <h2><ins>Creacion de asignatura</ins></h2>
+                                </div>
+                                <div class="row">
+                                    <form action="" method="POST" id="formulario">
+                                        <fieldset> 
+                                        <div class="col-xs-12">
+                                            <br/>
+                                            <br/>
+                                            <label>Nombre Asignatura:</label>
+                                            <input class="form-control validate[required] text-input" type="text" name="nombre" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12">
+
+                                            <label>Codigo de Seccion o Curso:</label>
+                                            <input class="form-control validate[required] text-input" type="text" name="codigo" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <br/>
+                                        </div>                             
+                                        </fieldset>
+                                        <div class="clearfix visible-xs"></div>
+
+                                        <div class="clearfix visible-xs"></div>
+
+                                        <div class="modal-footer">
+                                        <button type="submit" style="float: right;" class="btn btn-success">Guardar Sección</button>
+                                        <button type="button" style="float: left;" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                    </form> 
+                                </div>
+                            </div>
+                            </div>                     
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
         
         
         
-        
+    <!-- jQuery -->
+
     <!-- Bootstrap Core JavaScript -->
     <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
 
+    <!-- Morris Charts JavaScript -->
+    <script src="../bower_components/raphael/raphael-min.js"></script>
+    <script src="../component/morrisjs/morris.min.js"></script>
+    <script src="../js/morris-data.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
     </script>
-    </body>
+</body>
+
 </html>
