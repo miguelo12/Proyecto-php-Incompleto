@@ -236,14 +236,12 @@
                                             <br/>
                                             <label>Nombre Asignatura:</label>
                                             <input class="form-control validate[required] text-input" type="text" name="nombre" value="" placeholder="Ingrese aquí el nombre"/>
-                                            <p class="help-block text-center">Sin mayúsculas ni acentos. Si, no existe se agregará la nueva asignatura</p>
                                             <br/>
                                         </div>
                                         <div class="col-xs-12">
 
                                             <label>Codigo de la Seccion o Curso:</label>
                                             <input class="form-control validate[required] text-input" type="text" name="codigo" value="" placeholder="Ingrese aquí el nombre"/>
-                                            <p class="help-block text-center">No ingresar: "Seccion 803", solamente el digito: "803".</p>
                                             <br/>
                                         </div>                             
                                         </fieldset>
@@ -280,6 +278,69 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre': {
+                    required: true,
+                    maxlength: 20,
+                    lettersonly: true
+                },
+                'codigo': {
+                    required: true,
+                    maxlength: 10,
+                    number: true
+                }
+//                'confirm_pass': {
+//                    required: true,
+//                    maxlength: 20,
+//                    equalTo: "#pass"
+//                }
+            },
+           messages: {
+               'nombre': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'codigo': {
+                    required: "Ingrese un codigo.",
+                    maxlength: "A superado el numero de caracter..",
+                    number: "Se permite numero..."
+                }
+                
+//                'confirm_pass': {
+//                    required: "Esta casilla se requiere.",
+//                    maxlength: "A superado el numero de caracter..",
+//                    equalTo: "No coincide con la password."
+//                }
+            }
+        });
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
     
     <script>
     $('#myLink').addClass('disabled');

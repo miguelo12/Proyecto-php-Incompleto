@@ -217,7 +217,6 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Crear Docente</h4>
                             </div>
                             <div class="modal-body">
                             <!-- Inicio Formulario-->     
@@ -254,11 +253,11 @@
                                             <fieldset>
                                             <label>Es administrador?</label>
                                             <br/>
-                                            &nbsp;&nbsp;&nbsp;<label><input type="radio" name="admin4" id="si" value="1" class="">Si</label>&nbsp;&nbsp;&nbsp;<b>o</b>&nbsp;&nbsp;
-                                            <label><input type="radio" name="admin4" id="no" value="0" class="" checked="">No</label>
-                                            
+                                            &nbsp;&nbsp;&nbsp;<label><input type="radio" name="admin4" id="si" value="1" class="radio-inline">Si</label>&nbsp;&nbsp;&nbsp;<b>o</b>&nbsp;&nbsp;
+                                            <label><input type="radio" name="admin4" id="no" value="0" class="radio-inline" checked="">No</label>
                                             <br/>
                                             </fieldset>
+                                            <br/>
                                         </div>
                                         </fieldset>
                                         <div class="clearfix visible-xs"></div>
@@ -324,11 +323,12 @@
             rules: {
                 'nombre1': {
                     required: true,
-                    maxlength: 15
+                    maxlength: 15,
+                    lettersonly: true
                 },
                 'email2': {
                     required: true,
-                    email: true
+                    emailnew: true
                 },
                 'password3': {
                     required: true,
@@ -342,12 +342,11 @@
             },
            messages: {
                'nombre1': {
-                    required: "Ingrese una nombre.",
+                    required: "Ingrese un nombre.",
                     maxlength: "A superado el numero de caracter.."
                 },
                 'email2': {
-                    required: "Ingrese una email.",
-                    email: "Debe cumplir el formato de un email. Ej: user@dominio.com"
+                    required: "Ingrese un email.",
                 },
                 'password3': {
                     required: "Ingrese una password.",
@@ -361,18 +360,14 @@
 //                }
             }
         });
-    </script>
-    
-    <script>
-        $(document).ready(function(){
-            $("#nombre1").keypress(function(event){
-                var inputValue = event.which;
-                // allow letters and whitespaces only.
-                if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
-                    event.preventDefault();
-                }
-            });
-        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
     </script>
     
     <script>

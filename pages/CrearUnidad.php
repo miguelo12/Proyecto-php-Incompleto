@@ -244,17 +244,17 @@
                         <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
                     </div>
                     <div class="row">
-                        <form action="php/creacionUnidad.php" method="POST" autocomplete="off">
-                        <div class="col-xs-12">
+                        <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
+                        <div class="col-xs-12 text-center">
                             <br/>
                             <br/>
                             <label>Titulo</label>
                             <?php if(isset($_SESSION["recursosdidacticos"])):?>
                             <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                            <p class="help-block text-center">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
+                            <p class="">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                             <?php else:?>
                             <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
-                            <p class="help-block text-center">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
+                            <p class="">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                             <?php endif;?>
                             <br/>
                         </div>
@@ -344,14 +344,53 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../component/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <script src="../js/jquery.validate.min.js"></script>
+    <?php if(!isset($_SESSION["recursosdidacticos"])):?>
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nameActivity': {
+                    required: true,
+                    maxlength: 20
+                }
+            },
+           messages: {
+                'nameActivity': {
+                    required: "Ingrese un Titulo.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+            }
+        });
+    </script>
+    <?php endif;?>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

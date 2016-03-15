@@ -119,10 +119,10 @@ if(isset($_GET["user"])){
                 include_once("./CRUD/Alumno.php");
                 $idAlumno = "";
                 $email = "";
-                if(isset($_POST["email"]))
+                if(isset($_POST["email1"]))
                 {
                   $alumno = new Alumno();
-                  $alumno->setEmail($_POST["email"]);
+                  $alumno->setEmail($_POST["email1"]);
                   $alumno->setNombre("Sin nombre");
                   $alumno->setPassword("1A*2b#3C9R*");   
                   
@@ -146,12 +146,12 @@ if(isset($_GET["user"])){
                $email = "";
                $nombre = "";
                $password = "";
-               if(isset($_POST["codigo"]) && isset($_POST["email"]) && isset($_POST["nombre"]) && isset($_POST["password"]))
+               if(isset($_POST["codigo"]) && isset($_POST["email1"]) && isset($_POST["nombre"]) && isset($_POST["password"]))
                {
                  $alumno = new Alumno();
                  $alumno->setidAlumno($_POST["codigo"]);
                  $alumno->setNombre($_POST["nombre"]);
-                 $alumno->setEmail($_POST["email"]);
+                 $alumno->setEmail($_POST["email1"]);
                  $alumno->setPassword($_POST["password"]);
 
                  if($alumno->ExisteonoPorID())

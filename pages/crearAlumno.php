@@ -64,7 +64,7 @@
                         <h3 class="panel-title">Crear cuenta</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" action="php/UsuarioAction.php?user=2&action=2">
+                        <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
@@ -73,10 +73,10 @@
                                     <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email1" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" autofocus required>
+                                    <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Confirma password" name="confiPassword" type="password" autofocus required>
@@ -104,6 +104,86 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'codigo': {
+                    required: true,
+                    maxlength: 15
+                },
+                'nombre': {
+                    required: true,
+                    maxlength: 15,
+                    lettersonly: true
+                },
+                'email1': {
+                    required: true,
+                    emailnew: true,
+                    email: false
+                },
+                'password': {
+                    required: true,
+                    maxlength: 15
+                },
+                'confiPassword': {
+                    required: true,
+                    maxlength: 20,
+                    equalTo: "#confiPassword"
+                }
+            },
+           messages: {
+               'codigo': {
+                    required: "Ingrese un codigo de creación.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+               'nombre': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'email1': {
+                    required: "Ingrese un email.",
+                },
+                'password': {
+                    required: "Ingrese una password.",
+                    maxlength: "A superado el numero de caracter.."
+                },             
+                'confiPassword': {
+                    required: "Vuelva a ingresar la password.",
+                    maxlength: "A superado el numero de caracter..",
+                    equalTo: "No coincide con la password."
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
 
 </body>
 

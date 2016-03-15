@@ -220,8 +220,7 @@
                             </div>    
                                 
                             <div   class="clearfix visible-xs"></div>
-
-                          
+                            
                         </div>
                         </div>
                     </div>
@@ -242,13 +241,13 @@
                                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form method="POST" autocomplete="off" action="php/UsuarioAction.php?user=2&action=1">
+                                                <form method="POST" autocomplete="off" id="formulario" action="php/UsuarioAction.php?user=2&action=1">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                     <h4 class="modal-title" id="myModalLabel">Para invitar ingrese un correo.</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <input class="form-control" type="email" name="email" value="" placeholder="Ingrese aquí el correo."/>
+                                                    <input class="form-control" type="text" name="email1" id="email1" value="" placeholder="Ingrese aquí el correo."/>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
@@ -344,6 +343,47 @@
     <script> $('#myModal1').modal('show');</script>
     <?php endif;?>
   
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'email1': {
+                    required: true,
+                    emailnew: true,
+                    email: false
+                }
+            },
+           messages: {
+                'email1': {
+                    required: "Ingrese un email.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
