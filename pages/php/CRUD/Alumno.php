@@ -75,9 +75,9 @@ class Alumno {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from alumno where email=?");
+      $sentencia=$c->prepare("select * from alumno where idAlumno=?");
       
-      $sentencia->bind_param("s", $this->email);
+      $sentencia->bind_param("s", $this->idAlumno);
       
       $sentencia->execute();
       
@@ -189,7 +189,7 @@ class Alumno {
       
       $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=?, habilitado=? where idAlumno=?");
       
-      $sentencia->bind_param("sssss", $this->email, $this->nombre, $this->password, $this->idAlumno, $this->habilitado);
+      $sentencia->bind_param("ssssi", $this->email, $this->nombre, $this->password, $this->habilitado, $this->idAlumno);
       
       $sentencia->execute();
       

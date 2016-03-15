@@ -117,8 +117,6 @@ if(isset($_GET["user"])){
             if($_GET["action"]==1){
                 //Agregar alumno por Docente
                 include_once("./CRUD/Alumno.php");
-                $idAlumno = "";
-                $email = "";
                 if(isset($_POST["email1"]))
                 {
                   $alumno = new Alumno();
@@ -142,18 +140,17 @@ if(isset($_GET["user"])){
             }elseif($_GET["action"]==2){
                //Modificar Alumno
                include_once("./CRUD/Alumno.php");
-               $idAlumno = "";
-               $email = "";
-               $nombre = "";
-               $password = "";
                if(isset($_POST["codigo"]) && isset($_POST["email1"]) && isset($_POST["nombre"]) && isset($_POST["password"]))
                {
+                 $codigo = $_POST["codigo"];  
+                   
                  $alumno = new Alumno();
-                 $alumno->setidAlumno($_POST["codigo"]);
+                 $alumno->setidAlumno($codigo.trim());
                  $alumno->setNombre($_POST["nombre"]);
                  $alumno->setEmail($_POST["email1"]);
                  $alumno->setPassword($_POST["password"]);
-
+                 $alumno->sethabilitado(1);
+                         
                  if($alumno->ExisteonoPorID())
                  {  
                     //modificar

@@ -73,7 +73,7 @@
                                     <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email1" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email1" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
