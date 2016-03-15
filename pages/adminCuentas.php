@@ -66,19 +66,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<!--jquery code -->
-    <link rel="stylesheet" href="../pages/css/validationEngine.jquery.css" type="text/css">
-    <link rel="stylesheet" href="../pages/css/template.css" type="text/css">
-    <script src="../component/jquery/dist/jquery.min.js"></script>   
-    <script src="../js/languages/jquery.validationEngine-es.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-		jQuery(document).ready(function(){
-			// binds form submission and fields to the validation engine
-			jQuery("#formulario").validationEngine('attach', {promptPosition : "bottomLeft", autoPositionUpdate : true});
-            });
-    </script>
-    
 </head>
 
 <body>
@@ -188,31 +175,38 @@
                     <div class="well well-lg">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <br/>
-                            <h2 class="text-center"><ins>Cuentas de profesores</ins></h2>
-                            <br/>
-                            <br/>
                             <?php //Agregar for... ?>
-                            <div class="well">
-                                <ul class="list-unstyled">
-                                <br/>
-                                <?php foreach($docentetodos as $do){
-                                    if(!($do["idDocente"]==$docente["id"])){
-                                        if($do["habilitado"]==1){
-                                            echo "<li>[Nombre]: ".$do["nombre"]." [Email]: ".$do["email"]." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=2&id=".$do["idDocente"]."'>Deshabilitar</a>"." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=3&id=".$do["idDocente"]."'>Actualizar</a></li>";
-                                        }
-                                        else{
-                                            echo "<li>[Nombre]: ".$do["nombre"]." [Email]: ".$do["email"]." <a class='btn btn' href='php/UsuarioAction.php?user=1&action=2&id=".$do["idDocente"]."'>Habilitar</a>"." <a class='btn btn' id='myLink' href='php/UsuarioAction.php?user=1&action=3&id=".$do["idDocente"]."'>Actualizar</a></li>";
-                                        }
-                                    }
-                                    }
-                                ?>
-                                </ul>
+                            <div>
+                                <table class="table table-bordered text-center" style=" margin: 0 auto;">
+                                    <caption><h2 class="text-center"><ins>Cuentas Docentes</ins></h2></caption>
+                                    <tr>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Habilitar/Desahibiltar</th>
+                                        <th class="text-center">Actualizar</th>
+                                    </tr>
+                                    <tr>
+                                    <?php foreach($docentetodos as $do):
+                                    if(!($do["idDocente"]==$docente["id"])):
+                                        if($do["habilitado"]==1):?>
+                                            <td><?= $do["nombre"] ?></td> 
+                                            <td><?= $do["email"]?></td> 
+                                            <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=2&id=<?=$do["idDocente"]?>">Deshabilitar</a></td>
+                                            <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=3&id=<?=$do["idDocente"]?>">Actualizar</a></td>
+                                        <?php else: ?>
+                                            <td><?=$do["nombre"]?></td>
+                                            <td><?=$do["email"]?></td>
+                                            <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=2&id=<?=$do["idDocente"]?>">Habilitar</a></td>
+                                            <td><a class="btn btn" id="myLink" href="php/UsuarioAction.php?user=1&action=3&id=<?=$do["idDocente"]?>">Actualizar</a></td>
+                                        <?php endif; endif; endforeach;?>
+                                    </tr>
+                                </table>
                             </div>
                         </div> 
                         
                     </div>
                         <!--boton activador del modal-->
+                        <br/>
                         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Crear nueva cuenta</button>
                         
                         <!-- Modal -->
@@ -241,27 +235,28 @@
                                             <br/>
                                             <br/>
                                             <label>nombre</label>
-                                            <input class="form-control validate[required] text-input" type="text" name="nombre1" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <input class="form-control" type="text" name="nombre1" value="" id="nombre1" placeholder="Ingrese aquí el nombre"/>
                                             <br/>
                                         </div>
                                         <div class="col-xs-12">
 
                                             <label>email</label>
-                                            <input class="form-control validate[required,custom[email]] text-input" type="text" name="email2" value="" placeholder="Ingrese aquí el email"/>
+                                            <input class="form-control" type="text" name="email2" value="" placeholder="Ingrese aquí el email"/>
                                             <br/>
                                         </div>                            
                                         <div class="col-xs-12">
 
                                             <label>password</label>
-                                            <input class="form-control validate[required] text-input" type="password" name="password3" value="" placeholder="Ingrese aquí la contraseña"/>
+                                            <input class="form-control" type="password" name="password3" value="" placeholder="Ingrese aquí la contraseña"/>
                                             <br/>
                                         </div>                            
                                         <div class="col-xs-12">
                                             <fieldset>
                                             <label>Es administrador?</label>
                                             <br/>
-                                            <label><input type="radio" name="admin4" id="si" value="1" class="validate[required] radio">Si</label>&nbsp;
-                                            <label><input type="radio" name="admin4" id="no" value="0" class="validate[required] radio">No</label>
+                                            &nbsp;&nbsp;&nbsp;<label><input type="radio" name="admin4" id="si" value="1" class="">Si</label>&nbsp;&nbsp;&nbsp;<b>o</b>&nbsp;&nbsp;
+                                            <label><input type="radio" name="admin4" id="no" value="0" class="" checked="">No</label>
+                                            
                                             <br/>
                                             </fieldset>
                                         </div>
@@ -293,20 +288,92 @@
         
         
     <!-- jQuery -->
-
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../component/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre1': {
+                    required: true,
+                    maxlength: 15
+                },
+                'email2': {
+                    required: true,
+                    email: true
+                },
+                'password3': {
+                    required: true,
+                    maxlength: 15
+                }
+//                'confirm_pass': {
+//                    required: true,
+//                    maxlength: 20,
+//                    equalTo: "#pass"
+//                }
+            },
+           messages: {
+               'nombre1': {
+                    required: "Ingrese una nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'email2': {
+                    required: "Ingrese una email.",
+                    email: "Debe cumplir el formato de un email. Ej: user@dominio.com"
+                },
+                'password3': {
+                    required: "Ingrese una password.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+                
+//                'confirm_pass': {
+//                    required: "Esta casilla se requiere.",
+//                    maxlength: "A superado el numero de caracter..",
+//                    equalTo: "No coincide con la password."
+//                }
+            }
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function(){
+            $("#nombre1").keypress(function(event){
+                var inputValue = event.which;
+                // allow letters and whitespaces only.
+                if((inputValue > 47 && inputValue < 58) && (inputValue != 32)){
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
     
     <script>
     $('#myLink').addClass('disabled');

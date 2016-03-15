@@ -226,22 +226,24 @@
                             <div class="well well-lg">
                                 <div class="text-center">
                                     <br/>
-                                    <h2><ins>Creacion de asignatura</ins></h2>
+                                    <h2><ins>Creacion de Seccion</ins></h2>
                                 </div>
                                 <div class="row">
-                                    <form action="" method="POST" id="formulario">
+                                    <form action="" method="POST" id="formulario" autocomplete="off">
                                         <fieldset> 
                                         <div class="col-xs-12">
                                             <br/>
                                             <br/>
                                             <label>Nombre Asignatura:</label>
                                             <input class="form-control validate[required] text-input" type="text" name="nombre" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <p class="help-block text-center">Sin mayúsculas ni acentos. Si, no existe se agregará la nueva asignatura</p>
                                             <br/>
                                         </div>
                                         <div class="col-xs-12">
 
-                                            <label>Codigo de Seccion o Curso:</label>
+                                            <label>Codigo de la Seccion o Curso:</label>
                                             <input class="form-control validate[required] text-input" type="text" name="codigo" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <p class="help-block text-center">No ingresar: "Seccion 803", solamente el digito: "803".</p>
                                             <br/>
                                         </div>                             
                                         </fieldset>
