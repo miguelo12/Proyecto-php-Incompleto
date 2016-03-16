@@ -471,7 +471,7 @@
                                                     <th class="text-center">Criterios</th>
                                                     <th class="text-center">Nota</th>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" autocomplete="off">
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
                                                     <?php if(isset($_SESSION["autoevaluacion"])):
                                                           $autoeval = $_SESSION["autoevaluacion"];
                                                           foreach($autoeval as $pu):?>
@@ -520,15 +520,13 @@
                                                             </div>
                                                         </td>
                                                         <?php	
-                                                        if(isset($_GET['pre'])){
-                                                            if($_GET['pre']=="102"){
-                                                                echo "<div class='alert alert-warning'>";
-                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                                                echo "<strong>Error, </strong> el nuevo criterio no puede estar en blanco.";
-                                                                echo "</div>"; 
-                                                            }
-                                                        }
-                                                        ?>
+                                                        if(isset($_GET['pre'])):
+                                                            if($_GET['pre']=="102"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
+                                                                </div>
+                                                        <?php endif; endif;?>
                                                     </tr>
                                                 </form>
                                             </table>
@@ -571,7 +569,7 @@
                                                         <th class="text-center">3</th>
                                                     <?php endif;?>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=4" autocomplete="off">
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=4" id="formulario2" autocomplete="off">
                                                         <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
                                                               if(isset($_SESSION["tabla"])):
                                                               if($_SESSION["tabla"]==1):
@@ -735,16 +733,13 @@
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
-                                                        <?php	
-                                                        if(isset($_GET['pre'])){
-                                                            if($_GET['pre']=="103"){
-                                                                echo "<div class='alert alert-warning'>";
-                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                                                echo "<strong>Error, </strong> el nuevo criterio no puede estar en blanco.";
-                                                                echo "</div>"; 
-                                                            }
-                                                        }
-                                                        ?>
+                                                        <?php if(isset($_GET['pre'])):
+                                                            if($_GET['pre']=="103"):?>  
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
+                                                                </div> 
+                                                        <?php endif;endif;?>        
                                                     </tr>
                                                 </form>
                                             </table>
@@ -988,6 +983,60 @@
     });
     </script>
 
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario1").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+            
+            $("#formulario2").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
+    
 </body>
 
 </html>

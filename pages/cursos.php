@@ -42,9 +42,6 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../component/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -86,7 +83,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio</a></li>
+                  <li><a href="indexDocente.php">Inicio</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -94,7 +91,7 @@
                     <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><a href="#">Crear Asignatura o Sección</a></li>
+                    <li class="active"><a href="#">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact">Contáctenos</a></li>
@@ -104,8 +101,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
-                    <?php if($docente["admin"]==1){
-                    echo "<li><a href='indexAdmin.php'><i class='fa fa-gear fa-fw'></i> Cambiar a Administrador</a></li>";} ?>
+                    <?php if($docente["admin"]==1):?>
+                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
+                    <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
                   </ul>
@@ -129,8 +127,8 @@
                         Menu Docente
                     </a>
                 </li>
-                <li class="active"> 
-                      <a href="#">Inicio</a>
+                <li> 
+                    <a href="indexDocente.php">Inicio</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
@@ -139,14 +137,11 @@
                     <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><a href="#">Crear Asignatura o Sección</a></li>
+                    <li class="active"><a href="#">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
                 <li> 
                       <a href="Evaluar.php">Evaluar Proyectos</a>
-                </li>
-                <li> 
-                      <a href="Biblioteca.php">Rúbrica</a>
                 </li>
                 <li> 
                       <a href="Biblioteca.php">Biblioteca</a>
@@ -155,8 +150,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
-                    <?php if($docente["admin"]==1){
-                    echo "<li><a href='indexAdmin.php'><i class='fa fa-gear fa-fw'></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>";} ?>
+                    <?php if($docente["admin"]==1):?>
+                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
+                    <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
@@ -312,11 +308,6 @@
                     maxlength: 10,
                     number: true
                 }
-//                'confirm_pass': {
-//                    required: true,
-//                    maxlength: 20,
-//                    equalTo: "#pass"
-//                }
             },
            messages: {
                'nombre': {
@@ -328,12 +319,6 @@
                     maxlength: "A superado el numero de caracter..",
                     number: "Se permite numero..."
                 }
-                
-//                'confirm_pass': {
-//                    required: "Esta casilla se requiere.",
-//                    maxlength: "A superado el numero de caracter..",
-//                    equalTo: "No coincide con la password."
-//                }
             }
         });
         

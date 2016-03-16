@@ -41,9 +41,6 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../component/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -81,7 +78,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><?php if(!isset($_SESSION["recursosdidacticos"])):?>
+                    <li class="active"><?php if(!isset($_SESSION["recursosdidacticos"])):?>
                       <a href="CrearUnidad.php">Crear una actividad</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a>
@@ -94,7 +91,7 @@
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
                     <li><?php if(!isset($_SESSION["recursosdidacticos"])):?>
-                      <a href="#">Crear Asignatura o Sección</a>
+                        <a href="cursos.php">Crear Asignatura o Sección</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a>
                     <?php endif;?></li>
@@ -118,9 +115,9 @@
                     <?php if($docente["admin"]==1): ?>
                     <li>
                     <?php if(!isset($_SESSION["recursosdidacticos"])):?>
-                      <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
+                      <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a>
                     <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
+                      <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a>
                     <?php endif;?>
                      </li>
                     <?php endif; ?>
@@ -161,7 +158,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><?php if(!isset($_SESSION["recursosdidacticos"])):?>
+                    <li class="active"><?php if(!isset($_SESSION["recursosdidacticos"])):?>
                           <a href="CrearUnidad.php">Crear una actividad</a>
                         <?php else:?>
                           <a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a>
@@ -174,7 +171,7 @@
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
                     <li><?php if(!isset($_SESSION["recursosdidacticos"])):?>
-                      <a href="#">Crear Asignatura o Sección</a>
+                        <a href="cursos.php">Crear Asignatura o Sección</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a>
                     <?php endif;?></li>
@@ -185,13 +182,6 @@
                       <a href="Evaluar.php">Evaluar Proyectos</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Evaluar Proyectos</a>
-                    <?php endif;?>
-                </li>
-                <li> 
-                    <?php if(!isset($_SESSION["recursosdidacticos"])):?>
-                      <a href="Biblioteca.php">Rúbrica</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Rúbrica</a>
                     <?php endif;?>
                 </li>
                 <li> 
@@ -294,8 +284,11 @@
                                     }
                                 }
                                 ?>
-                            
-                            <!-- Modal -->
+                            <br/>
+                        </div>
+                        </form>
+                        <form action="php/creacionUnidad.php" method="POST" autocomplete="off">
+                         <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -316,8 +309,6 @@
                                 <!-- /.modal-dialog -->
                             </div>
                             <!-- /.modal -->
-                            <br/>
-                        </div>
                         </form>
                         <div class="clearfix visible-xs"></div>
                     </div>

@@ -64,7 +64,7 @@
                         <h3 class="panel-title">Crear cuenta</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2">
+                        <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2" autocomplete="off">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
