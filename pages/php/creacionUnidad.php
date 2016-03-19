@@ -7,11 +7,10 @@
  */
 
 session_start();
-
 if(!isset($_GET["action"])){
     if(isset($_POST["nameActivity"])){
         $new = $_POST["nameActivity"];
-        if(!$new == "")
+        if(!$new.trim() == "")
         {
         $_SESSION["titulocreacion"] = $new;
         header("location: ../RecursoDidactico.php");
@@ -63,8 +62,48 @@ else
       {
          //creacion a finalizar;
          $unidad = $_SESSION["NuevaUnidad"];
+         include_once("./CRUD/RecursosDidacticos.php");
+         include_once("./CRUD/UnidadAprendizaje.php");
+         include_once("./CRUD/CriterioNivelRubrica.php");
+         include_once("./CRUD/Criterio.php");
+         include_once("./CRUD/NivelCompetencia.php");
+         
+         $recursosdidactico = new RecursosDidacticos();
+         $unidadaprendizaje = new UnidadAprendizaje();
+         $criterionivelrubrica = new CriterioNivelRubrica();
+         $nivelcompetencia = new NivelCompetencia();
+         $criterio = new Criterio();
+         $rubrica = new Rubrica();
          
          
+         try
+         {      
+         $rubrica->setIdRubrica($idRubrica);
+         $rubrica->setIdUnidadAprendizaje($idUnidadAprendizaje);
+         $rubrica->setTipo(0);
+         
+         //$rubrica->Ingresar();
+         
+         $criterionivelrubrica->setidCriterio($idCriterio);
+         $criterionivelrubrica->setidCriterioNivelRubrica($idCriterioNivelRubrica);
+         $criterionivelrubrica->setidNivelCompetencia($idNivelCompetencia);
+         $criterionivelrubrica->setidRubrica($idRubrica);
+         
+         //$criterionivelrubrica->Ingresar();
+         
+         $
+         
+         $titulo = $_SESSION["titulocreacion"];
+         
+         $unidadaprendizaje->setRubrica_idRubrica();
+         $unidadaprendizaje->setTitulo($titulo);
+         $unidadaprendizaje->setidAprendizaje($idAprendizaje);
+         }
+         catch (Exception $e)
+         {
+             header("location: ../Biblioteca.php?error=1");
+             die();
+         }
          
          header("location: ../Biblioteca.php?creado=1");
          die();
