@@ -16,7 +16,7 @@ include_once ("..\php\Conexion\Conexion.php");
 include_once ("../../php/Conexion/Conexion.php");
 class Rubrica {
     private $idRubrica;
-    private $Predeterminado;
+    private $nombre;
     private $Docente_idDocente;
     
     private $con;
@@ -29,9 +29,9 @@ class Rubrica {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into rubrica (Predeterminado,Docente_idDocente) values(?,?)");
+      $sentencia=$c->prepare("insert into rubrica (nombre,Docente_idDocente) values(?,?)");
       
-      $sentencia->bind_param("is",$this->Predeterminado, $this->Docente_idDocente);
+      $sentencia->bind_param("ss",$this->nombre, $this->Docente_idDocente);
       
       $sentencia->execute();
       
@@ -64,12 +64,37 @@ class Rubrica {
       return false;
     }
     
+    public function DevolverRubrica()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from rubrica where Docente_idDocente=?");
+      
+      $sentencia->bind_param("s", $this->Docente_idDocente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setIdRubrica($idRubrica) {
         $this->idRubrica = $idRubrica;
     }
 
-    public function setPredeterminado($Predeterminado) {
-        $this->Predeterminado = $Predeterminado;
+    public function setnombre($nombre) {
+        $this->nombre = $nombre;
     }
 
     public function setDocente_idDocente($Docente_idDocente) {

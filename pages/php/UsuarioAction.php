@@ -42,7 +42,7 @@ if(isset($_GET["user"])){
                                 $rubrica = new Rubrica();
                                 $idDocente = $docente->id();
                                 $rubrica->setDocente_idDocente($idDocente);
-                                $rubrica->setPredeterminado(1);
+                                $rubrica->setnombre("Predeterminado");
                                 $idrubrica = $rubrica->Ingresar();
                                 
                                 $idtipocriteriorubrica;

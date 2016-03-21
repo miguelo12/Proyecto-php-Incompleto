@@ -62,6 +62,7 @@ else
       {
          //creacion a finalizar;
          $unidad = $_SESSION["NuevaUnidad"];
+         $rubrica = POST["RubricaSelect"]; 
          include_once("./CRUD/RecursosDidacticos.php");
          include_once("./CRUD/UnidadAprendizaje.php");
          include_once("./CRUD/Criterio.php");
@@ -71,23 +72,12 @@ else
          $unidadaprendizaje = new UnidadAprendizaje();
          $nivelcompetencia = new NivelCompetencia();
          $criterio = new Criterio();
-         $rubrica = new Rubrica();
-         
-         
+                  
          try
-         {      
-         $rubrica->setIdRubrica($idRubrica);
-         $rubrica->setIdUnidadAprendizaje($idUnidadAprendizaje);
-         $rubrica->setTipo(0);
-         
-         //$rubrica->Ingresar();
-         
+         {         
          
          $titulo = $_SESSION["titulocreacion"];
          
-         $unidadaprendizaje->setRubrica_idRubrica();
-         $unidadaprendizaje->setTitulo($titulo);
-         $unidadaprendizaje->setidAprendizaje($idAprendizaje);
          }
          catch (Exception $e)
          {

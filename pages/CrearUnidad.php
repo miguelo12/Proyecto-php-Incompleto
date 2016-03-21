@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php session_start();
+error_reporting(E_ALL ^ E_WARNING);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -13,7 +14,13 @@
       }
   else
       {
+       include '../pages/php/CRUD/Rubrica.php';
+       
        $docente = $_SESSION["docente"];
+
+       $result = new Rubrica();
+       $result->setDocente_idDocente($docente["id"]);
+       $rubricaresult = $result->DevolverRubrica();
       }
 ?>
 <!DOCTYPE html>
@@ -227,97 +234,123 @@
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <div class="well well-lg">
-                    <div class="text-center">
-                        <br/>
-                        <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
-                    </div>
-                    <div class="row">
-                        <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
-                        <div class="col-xs-12 text-center">
-                            <br/>
-                            <br/>
-                            <label>Titulo</label>
-                            <?php if(isset($_SESSION["recursosdidacticos"])):?>
-                            <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                            <p class="">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
-                            <?php else:?>
-                            <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
-                            <p class="">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
-                            <?php endif;?>
-                            <br/>
-                        </div>
-                        
-                        <div class="clearfix visible-xs"></div>
-
-                        <div class="col-xs-12 text-center">
-
-                            <input value="&nbsp; Agregar Recursos Didácticos  &nbsp;" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
-                            <br/>
-                        </div>
-                        
-                        <div class="clearfix visible-xs"></div>
-                        
-                        <div class="col-xs-12 text-center">
-                            
-                            <?php //meter contenido de grilla :D?>
-                            <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-default btn-lg btn-block"/>
-
-                        </div>
-
-                        <div class="clearfix visible-xs"></div>
-                        
-                        <div class="col-xs-12 text-center">
-                            <br/>
-                            <?php //meter contenido de grilla :D?>
-                            <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-default"/>
-                            <br/>
-                            <br/>
-                            <?php	
-                                if(isset($_GET['error'])){
-                                    if($_GET['error']=="1"){
-                                        echo "<div class='alert alert-warning'>";
-                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                        echo "<strong>Error, </strong> debe ingresar un nombre al recurso didáctico.";
-                                        echo "</div>"; 
-                                    }
-                                }
-                                ?>
-                            <br/>
-                        </div>
-                        </form>
-                        <form action="php/creacionUnidad.php" method="POST" autocomplete="off">
-                         <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">Advertencia aun no guarda el contenido</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Esta seguro en salir, sin guardar?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">No, quiero volver</button>
-                                            <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Si, seguro</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row well well-lg">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="">
+                            <div class="text-center">
+                                <br/>
+                                <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
                             </div>
-                            <!-- /.modal -->
-                        </form>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    </div>
-                </div>
-                <div class="hidden-xs col-sm-6 col-md-6 col-lg-6 text-center well well-lg">
-                    <div class="text-center">
-                        <br/>
-                        <h2><ins>Vista Previa</ins></h2>
+                            <div class="row">
+                                <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <br/>
+                                    <br/>
+                                    <label>Titulo</label>
+                                    <div class="text-center">
+                                    <?php if(isset($_SESSION["recursosdidacticos"])):?>
+                                    <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
+                                    <?php else:?>
+                                    <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
+                                    <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
+                                    <?php endif;?>
+                                    <br/>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix visible-xs"></div>
+                                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 text-center">
+                                    <div class="panel panel-warning" id="contenido">
+                                      <div class="panel-heading">
+                                        <h3><ins>Rubrica Evaluativa</ins></h3>
+                                        <br/>
+
+                                        <?php if(isset($rubricaresult)):?>
+                                        <select name="RubricaSelect">
+                                        <?php foreach ($rubricaresult as $dw):
+                                              $di= 0?>
+
+                                            <?php if($di == 0):?>
+                                            <option value="<?= $dw["idRubrica"] ?>" selected="si"><?= $dw["nombre"] ?></option>
+                                            <?php $di = $di+1; else:?>
+                                            <option value="<?= $dw["idRubrica"] ?>"><?= $dw["nombre"] ?></option>
+                                            <?php endif;?>
+
+                                        <?php endforeach;?> 
+                                        </select>
+                                        <?php endif; ?>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix visible-xs"></div>
+                                <div class="col-xs-12 text-center">
+
+                                    <input value="&nbsp; Agregar Recursos Didácticos  &nbsp;" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                    <br/>
+                                </div>
+
+                                <div class="clearfix visible-xs"></div>
+
+                                <div class="col-xs-12 text-center">
+
+                                    <?php //meter contenido de grilla :D?>
+                                    <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
+
+                                </div>
+
+                                <div class="clearfix visible-xs"></div>
+
+                                <div class="col-xs-12 text-center">
+                                    <br/>
+                                    <?php //meter contenido de grilla :D?>
+                                    <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-primary"/>
+                                    <br/>
+                                    <br/>
+                                    <?php	
+                                        if(isset($_GET['error'])){
+                                            if($_GET['error']=="1"){
+                                                echo "<div class='alert alert-warning'>";
+                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                                echo "<strong>Error, </strong> debe ingresar un nombre al recurso didáctico.";
+                                                echo "</div>"; 
+                                            }
+                                        }
+                                        ?>
+                                    <br/>
+                                </div>
+                                </form>
+                                <form action="php/creacionUnidad.php" method="POST" autocomplete="off">
+                                 <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Advertencia aun no guarda el contenido</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro en salir, sin guardar?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No, quiero volver</button>
+                                                    <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Si, seguro</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                </form>
+                                <div class="clearfix visible-xs"></div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

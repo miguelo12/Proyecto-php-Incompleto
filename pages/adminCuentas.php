@@ -14,7 +14,7 @@
       }
   else
       {
-          include '../pages/php/CRUD/Docente.php';
+        include '../pages/php/CRUD/Docente.php';
         $docente = $_SESSION["docente"];
         if($docente["admin"]==0)
         {
