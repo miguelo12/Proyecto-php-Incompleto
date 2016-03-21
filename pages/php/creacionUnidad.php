@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+ob_start();
 session_start();
 if(!isset($_GET["action"])){
     if(isset($_POST["nameActivity"])){
@@ -74,9 +74,15 @@ else
          $criterio = new Criterio();
                   
          try
-         {         
-         
+         {                      
+         $docente = $_SESSION["docente"];
          $titulo = $_SESSION["titulocreacion"];
+         $unidadaprendizaje->setRubrica_idRubrica($rubrica);
+         $unidadaprendizaje->setTitulo($titulo);
+         $unidadaprendizaje->setDocente_idDocente($docente["id"]);
+         $idunidad = $unidadaprendizaje->Ingresar();
+         
+         
          
          }
          catch (Exception $e)
@@ -147,3 +153,4 @@ else
       }
     }
 }
+ob_end_flush();

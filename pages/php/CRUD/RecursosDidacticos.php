@@ -16,7 +16,7 @@ include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class RecursosDidacticos {
     private $idRecursosDidacticos;
-    private $idUnidadAprendizaje;
+    private $UnidadAprendizaje_idUnidadAprendizaje;
     private $nombre;
     private $descripcion;
     private $tipo;
@@ -31,14 +31,22 @@ class RecursosDidacticos {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into recursosdidacticos values(?,?,?,?,?,?)");
+      $sentencia=$c->prepare("insert into recursosdidacticos (UnidadAprendizaje_idUnidadAprendizaje,nombre,descripcion,tipo) values(?,?,?,?)");
       
-      $sentencia->bind_param("iissss", $this->idRecursosDidacticos, $this->idUnidadAprendizaje, $this->nombre, $this->descripcion, $this->tipo);
+      $sentencia->bind_param("isss", $this->UnidadAprendizaje_idUnidadAprendizaje, $this->nombre, $this->descripcion, $this->tipo);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
+    
     
     public function ExisteonoPorID()
     {
@@ -63,8 +71,8 @@ class RecursosDidacticos {
         $this->idRecursosDidacticos = $idRecursosDidacticos;
     }
 
-    public function setIdUnidadAprendizaje($idUnidadAprendizaje) {
-        $this->idUnidadAprendizaje = $idUnidadAprendizaje;
+    public function setIdUnidadAprendizaje_idUnidadAprendizaje($UnidadAprendizaje_idUnidadAprendizaje) {
+        $this->UnidadAprendizaje_idUnidadAprendizaje = $UnidadAprendizaje_idUnidadAprendizaje;
     }
 
     public function setNombre($nombre) {

@@ -18,6 +18,7 @@ class UnidadAprendizaje {
     private $idAprendizaje;
     private $Titulo;
     private $Rubrica_idRubrica;
+    private $Docente_idDocente;
     
     private $con;
     
@@ -29,13 +30,20 @@ class UnidadAprendizaje {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into unidadaprendizaje values(?,?,?)");
+      $sentencia=$c->prepare("insert into unidadaprendizaje (Titulo,Rubrica_idRubrica,Docente_idDocente) values(?,?,?)");
       
-      $sentencia->bind_param("iss", $this->idAprendizaje, $this->Titulo, $this->Rubrica_idRubrica);
+      $sentencia->bind_param("sis", $this->Titulo, $this->Rubrica_idRubrica, $this->Docente_idDocente);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function setidAprendizaje($idAprendizaje)
@@ -51,5 +59,10 @@ class UnidadAprendizaje {
     public function setRubrica_idRubrica($Rubrica_idRubrica)
     {
         $this->Rubrica_idRubrica=$Rubrica_idRubrica;
+    }
+    
+    public function setDocente_idDocente($Docente_idDocente)
+    {
+        $this->Docente_idDocente=$Docente_idDocente;
     }
 }

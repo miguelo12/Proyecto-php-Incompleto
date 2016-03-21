@@ -25,6 +25,26 @@ class Preguntas {
         $this->con = new Conexion();
     }
     
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into preguntas (preguntas,UnidadAprendizaje_idUnidadAprendizaje) values(?,?)");
+      
+      $sentencia->bind_param("si", $this->preguntas, $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
+    }
+    
     public function setidPreguntas($idPreguntas)
     {
         $this->idPreguntas=$idPreguntas;
