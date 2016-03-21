@@ -11,13 +11,13 @@
  *
  * @author darkg
  */
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once("..\pages\php\Conexion\Conexion.php");
+include_once("..\php\Conexion\Conexion.php");
+include_once("../../php/Conexion/Conexion.php");
 class AlumnosGrupo {
     private $idAlumnosGrupo;
-    private $idAlumno;
-    private $idGrupo;
+    private $Alumno_idAlumno;
+    private $Grupo_idGrupo;
     
     private $con;
     
@@ -31,7 +31,7 @@ class AlumnosGrupo {
       
       $sentencia=$c->prepare("insert into alumnogrupo values(?,?,?)");
       
-      $sentencia->bind_param("iii", $this->idAlumnosGrupo, $this->idAlumno, $this->idGrupo);
+      $sentencia->bind_param("iii", $this->idAlumnosGrupo, $this->Alumno_idAlumno, $this->Grupo_idGrupo);
       
       $sentencia->execute();
       
@@ -64,11 +64,11 @@ class AlumnosGrupo {
     
     public function setidAlumno($idAlumno)
     {
-        $this->idAlumno=$idAlumno;
+        $this->Alumno_idAlumno=$idAlumno;
     }
     
     public function setidGrupo($idGrupo)
     {
-        $this->idGrupo=$idGrupo;
+        $this->Grupo_idGrupo=$idGrupo;
     }
 }

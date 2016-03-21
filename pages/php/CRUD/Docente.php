@@ -12,9 +12,9 @@
  * @author darkg
  */
 
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once("..\pages\php\Conexion\Conexion.php");
+include_once("..\php\Conexion\Conexion.php");
+include_once("../../php/Conexion/Conexion.php");
 class Docente {
     private $idDocente;
     private $email;
@@ -54,8 +54,34 @@ class Docente {
       return $res;
     }
     
+    public function id()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from docente where email=?");
+      
+      $sentencia->bind_param("s", $this->email);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row["idDocente"];
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function Habilitarono()
     {
+      try{
       $c=$this->con->getConexion();
       
       $sentencia=$c->prepare("update docente set habilitado=? where idDocente=?");
@@ -64,7 +90,19 @@ class Docente {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+        return true;    
+      }
+      else
+      {
+        return false;
+      }
+      }
+      catch (Exception $e)
+      {
+        return false;
+      }
     }
     
     public function Existeono()
@@ -115,9 +153,13 @@ class Docente {
       
       $sentencia->execute();
       
-      $resu = $sentencia->get_result();
-      
+      if($sentencia->affected_rows)
+      {
       return true;
+      }
+      else {
+          return FALSE;   
+      }
     }
     
     public function Ingresar()
@@ -145,7 +187,13 @@ class Docente {
       
       $sentencia->execute();
       
+      if($sentencia->affected_rows)
+      {
       return true;
+      }
+      else {
+      return FALSE;    
+      }
     }
     
     public function DevolverDocentes()

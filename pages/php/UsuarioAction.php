@@ -1,13 +1,18 @@
 <?php
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+ob_start();
+include_once("./CRUD/Docente.php");
+include_once("./CRUD/Rubrica.php");
+include_once("./CRUD/TipoCriterioRubrica.php");  
+include_once("./CRUD/Criterio.php");
+include_once("./CRUD/NivelCompetencias.php");
+
 if(isset($_GET["user"])){
     if($_GET["user"]==1){
-        include_once("./CRUD/Docente.php");
         if(isset($_GET["action"])){
             if($_GET["action"]==1){
                 $nombre = "";
@@ -30,13 +35,72 @@ if(isset($_GET["user"])){
                         $docente->setPassword($password);
                         $docente->setAdmin($admin);
                         
-
-
                         if(!$docente->Existeono())
                         {
                             if($docente->Ingresar())
                             {
+                                $rubrica = new Rubrica();
+                                $idDocente = $docente->id();
+                                $rubrica->setDocente_idDocente($idDocente);
+                                $rubrica->setPredeterminado(1);
+                                $idrubrica = $rubrica->Ingresar();
+                                
+                                $idtipocriteriorubrica;
+                                for ($i = 1; $i <= 3; $i++){
+                                  $tipocriteriorubrica = new TipoCriterioRubrica();
+                                  $tipocriteriorubrica->setRubrica_idRubrica($idrubrica);
+                                  $tipocriteriorubrica->settipos($i);
+                                  $idtipocriteriorubrica[$i] = $tipocriteriorubrica->Ingresar();
+                                  unset($tipocriteriorubrica);
+                                }
+                                
+                                $array_criterios = array("Hechos","Pregunta","Conceptos","Metodologia", "Conclusion y/o respuesta");
+                                
+                                $H3 = "Se identifican hechos, algunos conceptos y algunos aspectos metodologicos.";
+                                $H2 = "Se identifican hechos y algunos conceptos.";
+                                $H1 = "Se identifican hechos.";
+                                $H0 = "No hay hechos.";
+                                $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$H3),array("puntos"=>2,"text"=>$H2),array("puntos"=>1,"text"=>$H1),array("puntos"=>0,"text"=>$H0));
+                                $P3 = "Hay una pregunta basada en los hechos, que incluye conceptos y que sugiere aspectos metodologicos.";
+                                $P2 = "Hay una pregunta basada en los hechos y que incluye conceptos.";
+                                $P1 = "Hay una pregunta basada en los hechos.";
+                                $P0 = "No hay pregunta.";
+                                $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$P3),array("puntos"=>2,"text"=>$P2),array("puntos"=>1,"text"=>$P1),array("puntos"=>0,"text"=>$P0));
+                                $C3 = "Se identifican aplicaciones, el lenguaje y el modelo o modelos";
+                                $C2 = "Se identifican aplicaciones y el lenguaje.";
+                                $C1 = "Se identifican aplicaciones.";
+                                $C0 = "No hay conceptos.";
+                                $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$C3),array("puntos"=>2,"text"=>$C2),array("puntos"=>1,"text"=>$C1),array("puntos"=>0,"text"=>$C0)); 
+                                $M3 = "Con los datos procesados se obtiene un resultado.";
+                                $M2 = "Los datos son procesados, ya sea a traves de tablas y/o graficas.";
+                                $M1 = "Hay una recoleccion de datos.";
+                                $M0 = "No hay metodologia.";
+                                $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$M3),array("puntos"=>2,"text"=>$M2),array("puntos"=>1,"text"=>$M1),array("puntos"=>0,"text"=>$M0)); 
+                                $R3 = "La conclusion incorpora además del resultado de la parte metodologica, los hechos y los conceptos.";
+                                $R2 = "La conclusion incorpora además del resultado de la parte metodologica y los hechos.";
+                                $R1 = "La conclusion es muy semejante al resultado de la parte metodologica.";
+                                $R0 = "No hay conclusion.";
+                                $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$R3),array("puntos"=>2,"text"=>$R2),array("puntos"=>1,"text"=>$R1),array("puntos"=>0,"text"=>$R0)); 
+                                
+                                $conteo=0;
+                                foreach ($array_criterios as $da){
+                                 $criterio = new Criterio();
+                                 $criterio->setNombre($da);
+                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[1]);
+                                 $idCriterio = $criterio->Ingresar();
+                                 
+                                 for($i = 0; $i <= 3; $i++){
+                                 $nivelcompetencia = new NivelCompetencias();
+                                 $nivelcompetencia->setCriterio_idCriterio($idCriterio);
+                                 $nivelcompetencia->setDescripcion($array_descripuntaje[$conteo][$i]["text"]);
+                                 $nivelcompetencia->setPuntaje($array_descripuntaje[$conteo][$i]["puntos"]);
+                                 $nivelcompetencia->Ingresar();
+                                 unset($nivelcompetencia);
+                                 }
+                                 $conteo = $conteo + 1;
+                                }                            
                                 //no existe y se crea.
+                                 
                                 header("location: ../adminCuentas.php?exito=1");
                                 die();
                             }
@@ -76,13 +140,13 @@ if(isset($_GET["user"])){
                        {   
                            if($docente->isHabilitado()==0){
                                $docente->sethabilitado(1);
-                               $docente->Habilitarono();
-                               header("location: ../adminCuentas.php?exito=2");
+                               $da = $docente->Habilitarono();
+                               header("location: ../adminCuentas.php?exito={$da}");
                                die();
                            }elseif ($docente->isHabilitado()==1) {
                                $docente->sethabilitado(0);
-                               $docente->Habilitarono();
-                               header("location: ../adminCuentas.php?exito=2");
+                               $da = $docente->Habilitarono();
+                               header("location: ../adminCuentas.php?exito={$da}");
                                die();
                            }
                        }
@@ -91,7 +155,7 @@ if(isset($_GET["user"])){
                            //hubo modificacion
                        }
                    }
-                   catch (Exception $ex)
+                   catch (mysqli_sql_exception $ex)
                    {
                        header("location: ../error404.php");
                         die();
@@ -195,4 +259,4 @@ if(isset($_GET["user"])){
        die();  
     }
 }
-    
+ob_end_flush();

@@ -64,7 +64,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
         <!-- Navigation -->
         
@@ -153,21 +152,24 @@
                                         <th class="text-center">Habilitar/Desahibiltar</th>
                                         <th class="text-center">Actualizar</th>
                                     </tr>
-                                    <tr>
+                                    
                                     <?php foreach($docentetodos as $do):
                                     if(!($do["idDocente"]==$docente["id"])):
                                         if($do["habilitado"]==1):?>
+                                    <tr>
                                             <td><?= $do["nombre"] ?></td> 
                                             <td><?= $do["email"]?></td> 
                                             <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=2&id=<?=$do["idDocente"]?>">Deshabilitar</a></td>
                                             <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=3&id=<?=$do["idDocente"]?>">Actualizar</a></td>
+                                            </tr>
                                         <?php else: ?>
+                                            <tr>
                                             <td><?=$do["nombre"]?></td>
                                             <td><?=$do["email"]?></td>
                                             <td><a class="btn btn" href="php/UsuarioAction.php?user=1&action=2&id=<?=$do["idDocente"]?>">Habilitar</a></td>
                                             <td><a class="btn btn" id="myLink" href="php/UsuarioAction.php?user=1&action=3&id=<?=$do["idDocente"]?>">Actualizar</a></td>
+                                            </tr>
                                         <?php endif; endif; endforeach;?>
-                                    </tr>
                                 </table>
                             </div>
                         </div> 
@@ -349,5 +351,4 @@
     });
     </script>
 </body>
-
 </html>

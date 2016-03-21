@@ -11,13 +11,13 @@
  *
  * @author darkg
  */
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once ("..\pages\php\Conexion\Conexion.php");
+include_once ("..\php\Conexion\Conexion.php");
+include_once ("../../php/Conexion/Conexion.php");
 class Rubrica {
     private $idRubrica;
-    private $idUnidadAprendizaje;
-    private $tipo;
+    private $Predeterminado;
+    private $Docente_idDocente;
     
     private $con;
     
@@ -29,13 +29,20 @@ class Rubrica {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into rubrica values(?,?,?)");
+      $sentencia=$c->prepare("insert into rubrica (Predeterminado,Docente_idDocente) values(?,?)");
       
-      $sentencia->bind_param("iii", $this->idRubrica, $this->idUnidadAprendizaje, $this->tipo);
+      $sentencia->bind_param("is",$this->Predeterminado, $this->Docente_idDocente);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()
@@ -61,11 +68,11 @@ class Rubrica {
         $this->idRubrica = $idRubrica;
     }
 
-    public function setIdUnidadAprendizaje($idUnidadAprendizaje) {
-        $this->idUnidadAprendizaje = $idUnidadAprendizaje;
+    public function setPredeterminado($Predeterminado) {
+        $this->Predeterminado = $Predeterminado;
     }
 
-    public function setTipo($tipo) {
-        $this->tipo = $tipo;
+    public function setDocente_idDocente($Docente_idDocente) {
+        $this->Docente_idDocente = $Docente_idDocente;
     }
 }

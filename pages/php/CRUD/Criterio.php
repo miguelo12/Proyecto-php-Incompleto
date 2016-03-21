@@ -11,12 +11,13 @@
  *
  * @author darkg
  */
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once ("..\pages\php\Conexion\Conexion.php");
+include_once ("..\php\Conexion\Conexion.php");
+include_once ("../../php/Conexion/Conexion.php");
 class Criterio {
     private $idCriterio;
     private $Nombre;
+    private $TipoCriterioRubrica_TipoCriterioRubrica;
     
     private $con;
     
@@ -28,13 +29,20 @@ class Criterio {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into criterio values(?,?)");
+      $sentencia=$c->prepare("insert into criterio values(?,?,?)");
       
-      $sentencia->bind_param("is", $this->idCriterio, $this->Nombre);
+      $sentencia->bind_param("isi", $a=0 ,$this->Nombre, $this->TipoCriterioRubrica_TipoCriterioRubrica);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()
@@ -59,6 +67,11 @@ class Criterio {
     public function setidCriterio($idCriterio)
     {
         $this->idCriterio=$idCriterio;
+    }
+    
+    public function setTipoCriterioRubrica_TipoCriterioRubrica($TipoCriterioRubrica_TipoCriterioRubrica)
+    {
+        $this->TipoCriterioRubrica_TipoCriterioRubrica=$TipoCriterioRubrica_TipoCriterioRubrica;
     }
     
     public function setNombre($Nombre)

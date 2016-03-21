@@ -64,13 +64,11 @@ else
          $unidad = $_SESSION["NuevaUnidad"];
          include_once("./CRUD/RecursosDidacticos.php");
          include_once("./CRUD/UnidadAprendizaje.php");
-         include_once("./CRUD/CriterioNivelRubrica.php");
          include_once("./CRUD/Criterio.php");
          include_once("./CRUD/NivelCompetencia.php");
          
          $recursosdidactico = new RecursosDidacticos();
          $unidadaprendizaje = new UnidadAprendizaje();
-         $criterionivelrubrica = new CriterioNivelRubrica();
          $nivelcompetencia = new NivelCompetencia();
          $criterio = new Criterio();
          $rubrica = new Rubrica();
@@ -84,14 +82,6 @@ else
          
          //$rubrica->Ingresar();
          
-         $criterionivelrubrica->setidCriterio($idCriterio);
-         $criterionivelrubrica->setidCriterioNivelRubrica($idCriterioNivelRubrica);
-         $criterionivelrubrica->setidNivelCompetencia($idNivelCompetencia);
-         $criterionivelrubrica->setidRubrica($idRubrica);
-         
-         //$criterionivelrubrica->Ingresar();
-         
-         $
          
          $titulo = $_SESSION["titulocreacion"];
          

@@ -11,13 +11,13 @@
  *
  * @author darkg
  */
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once("..\pages\php\Conexion\Conexion.php");
+include_once("..\php\Conexion\Conexion.php");
+include_once("../../php/Conexion/Conexion.php");
 class AlumnoSeccion {
     private $idAlumnoSeccion;
-    private $idSeccion;
-    private $idAlumno;
+    private $Seccion_idSeccion;
+    private $Alumno_idAlumno;
     
     private $con;
     
@@ -31,7 +31,7 @@ class AlumnoSeccion {
       
       $sentencia=$c->prepare("insert into alumnoseccion values(?,?,?)");
       
-      $sentencia->bind_param("iss", $this->idAlumnoSeccion, $this->idSeccion, $this->idAlumno);
+      $sentencia->bind_param("iss", $this->idAlumnoSeccion, $this->Seccion_idSeccion, $this->Alumno_idAlumno);
       
       $sentencia->execute();
       
@@ -62,13 +62,13 @@ class AlumnoSeccion {
         $this->idAlumnoSeccion=$idAlumnoSeccion;
     }
     
-    public function setidSeccion($idSeccion)
+    public function setSeccion_idSeccion($idSeccion)
     {
-        $this->idSeccion=$idSeccion;
+        $this->Seccion_idSeccion=$idSeccion;
     }
     
-    public function setidAlumno($idAlumno)
+    public function setAlumno_idAlumno($idAlumno)
     {
-        $this->idAlumno=$idAlumno;
+        $this->Alumno_idAlumno=$idAlumno;
     }
 }

@@ -11,9 +11,9 @@
  *
  * @author darkg
  */
-include("..\pages\php\Conexion\Conexion.php");
-include("..\php\Conexion\Conexion.php");
-include("../../php/Conexion/Conexion.php");
+include_once("..\pages\php\Conexion\Conexion.php");
+include_once("..\php\Conexion\Conexion.php");
+include_once("../../php/Conexion/Conexion.php");
 class ResultadoCoevaluacion {
     private $idResultadoCoevaluacion;
     private $idAlumnosGrupo;
