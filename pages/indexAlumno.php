@@ -145,71 +145,69 @@
         <div id="page-content-wrapper content" >
         <div class="container separate-rows tall-rows">
             <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                    <div class="well well-lg">
-                    <div class="text-center">
-                        <h2><ins>Sugerencias que púedes<br/> elegir</ins></h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6 text-right">
-                            <br/>
-                            <br/>
-                            <?php //meter contenido de grilla :D?>
-                            <a class="lead" href="CrearUnidad.php">Crear Actividad<br> Heuristica Movil</a>
-                            <br/>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="well well-lg">
+                        <div class="text-center">
+                            </br>
+                            <h2><ins>Sugerencias que púedes<br/> elegir</ins></h2>
+                            </br>
                         </div>
-                        <div class="col-xs-6">
-                            <br/>
-                            <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
-                        </div>
-                        
-                        <div class="clearfix visible-xs"></div>
+                        <div class="row">
+                         
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
+                                        <br/>                             
+                                        <a class="lead" href="actividad.php">Revisar Unidad de Aprendizaje</a>
+                                
+                                        <br/>
+                                        <p>SOON</p>
+                                    </div>     
+                                </div>
+                            </div>
+                            
 
-                        <div class="col-xs-6 text-right">
-                            <br/>
-                            <?php //meter contenido de grilla :D?>
-                            <a class="lead" href="Biblioteca.php">Biblioteca de<br/> Actividades</a>
-                            <br/>
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        </br>
+                                        <p><img src="img/biblioteca.png" alt="lista" width="76" height="80"></p>
+                                        <br/>
+                                        <a class="lead" href="Biblioteca.php">Biblioteca y Rúbricas</a>
+                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
+                                        <br/>
+                                    </div>
+                                    
+                                </div>        
+                            </div>
+                            
+                            <div class="clearfix visible-xs"></div>
+                            
+                            <div class="col-xs-12 col-md-4 col-lg-4">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        </br>
+                                        <p><img src="img/lista.png" alt="lista" width="76" height="80"></p>
+                                        <br/>
+                                        <a class="lead" href="Evaluar.php">Evalua</a>
+                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
+                                        <br/>
+                                    </div>
+                                    
+                                </div>    
+                            </div>    
+                                
+                            <div   class="clearfix visible-xs"></div>
+                            
                         </div>
-                        <div class="col-xs-6">
-                            <br/>
-                            <p><img src="img/biblioteca.png" alt="lista" width="76" height="80"></p>
                         </div>
-                        
-                        <div class="clearfix visible-xs"></div>
-                        
-                        <div class="col-xs-6 text-right">
-                            <br/>
-                            <?php //meter contenido de grilla :D?>
-                            <a class="lead" href="Evaluar.php">Evaluar<br> Proyectos</a>
-                            <br/>
-                        </div>
-                        <div class="col-xs-6">
-                            <br/>
-                            <p><img src="img/lista.png" alt="lista" width="76" height="80"></p>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                        
-                        <div class="col-xs-6 text-right">
-                            <br/>
-                            <br/>
-                            <?php //meter contenido de grilla :D?>
-                            <a class="lead">Rúbrica</a>
-                            <br/>
-                        </div>
-                        <div class="col-xs-6">
-                            <p><img src="img/evaluacion.png" alt="lista" width="100" height="100"></p>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
                     </div>
-                    </div>
+        
                 </div>
-                <div class="hidden-xs col-sm-5 col-md-5 col-lg-5 text-center well well-lg">
-                    <div class="text-center">
-                        <h2><ins>Portal Alumno</ins></h2>
-                    </div>
-                </div>
-            </div>
         </div>
         </div>
             <div class="col-lg-12">
