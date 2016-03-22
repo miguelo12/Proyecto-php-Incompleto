@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php session_start();
+error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -217,7 +218,8 @@
                                             <li><a href="#tabi4" data-toggle="tab">Ayudas</a></li>
                                             <li><a href="#tabi5" data-toggle="tab">Editar Autoevaluación</a></li>
                                             <li><a href="#tabi6" data-toggle="tab">Editar Coevaluación</a></li>
-                                            <li><a href="#tabi7" data-toggle="tab">Finalizar</a></li>
+                                            <li><a href="#tabi7" data-toggle="tab">Editar Evaluación</a></li>
+                                            <li><a href="#tabi8" data-toggle="tab">Finalizar</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" id="tabi1">
@@ -759,7 +761,72 @@
                                             </form>
                                             
                                         </div>
+                                        
                                         <div class="tab-pane well" id="tabi7">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th class="text-center">Seleccionar:</th>
+                                                    <th class="text-center">Criterios</th>
+                                                    <th class="text-center">Nota</th>
+                                                </tr>
+                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
+                                                    <tr>
+                                                    <td style="width: 7%">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 78%">
+                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                    </td>
+                                                    <td style="width: 15%">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <label for="moreinput">Agregar Comentario</label>
+                                                            <br/>
+                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <div class="form-group">
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <th colspan="3" class="text-center">Crear Nuevos Criterios</th>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="3">
+                                                            <input class="form-control" type="text" name="preguntas">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>                                                 
+                                                        <td colspan="3">
+                                                            <div class="form-group">                                                             
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                                <a name="submit3"></a>
+                                                            </div>
+                                                        </td>
+                                                        <?php	
+                                                        if(isset($_GET['pre'])):
+                                                            if($_GET['pre']=="102"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
+                                                                </div>
+                                                        <?php endif; endif;?>
+                                                    </tr>
+                                                </form>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="tab-pane well" id="tabi8">
                                             <br/>
                                             <label for="contenido">Esta es la ultima parte para crear tu unidad.</label>
                                             <div class="panel panel-info" id="contenido">

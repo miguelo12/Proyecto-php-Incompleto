@@ -1,5 +1,5 @@
 <?php session_start();
-error_reporting(E_ALL ^ E_WARNING);
+error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -245,7 +245,8 @@ error_reporting(E_ALL ^ E_WARNING);
                             <div class="row">
                                 <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                    <br/>
+                                    <div class="panel panel-default" id="contenido">
+                                      <div class="panel-heading">
                                     <br/>
                                     <label>Titulo</label>
                                     <div class="text-center">
@@ -256,12 +257,13 @@ error_reporting(E_ALL ^ E_WARNING);
                                     <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
                                     <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
-                                    <br/>
+                                    </div>
+                                    </div>
                                     </div>
                                 </div>
 
                                 <div class="clearfix visible-xs"></div>
-                                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 text-center">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
                                     <div class="panel panel-warning" id="contenido">
                                       <div class="panel-heading">
                                         <h3><ins>Rubrica Evaluativa</ins></h3>
@@ -408,12 +410,6 @@ error_reporting(E_ALL ^ E_WARNING);
         });
     </script>
     <?php endif;?>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
     
     <script>
     $("#menu-toggle").click(function(e) {

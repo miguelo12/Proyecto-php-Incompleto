@@ -1,5 +1,5 @@
 <?php session_start();
-      error_reporting(E_ALL ^ E_WARNING);
+  error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
