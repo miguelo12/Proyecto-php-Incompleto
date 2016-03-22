@@ -24,6 +24,26 @@ class Ayuda {
     private $conclusiones;
     private $UnidadAprendizaje_idUnidadAprendizaje;
     
+    public function Ingresar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into preguntas (procedimiento,aplicaciones,procesamiento,lenguaje,modelos,conclusiones,UnidadAprendizaje_idUnidadAprendizaje) values(?,?,?,?,?,?,?)");
+      
+      $sentencia->bind_param("ssssssi", $this->procedimiento, $this->aplicaciones, $this->procesamiento, $this->lenguaje, $this->modelos, $this->conclusiones, $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
+    }
+    
     public function setidAyuda($idAyuda)
     {
         $this->idAyuda=$idAyuda;
