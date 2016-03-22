@@ -38,6 +38,7 @@
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,13 +49,43 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Heuristica Movil</a>
-                </div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" id="menu-toggle" href="#menu-toggle" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Heuristica Movil</a>
             </div>
-</nav>
+          </div>
+        </nav>
+        
+        
+        <div id="wrapper">
+         <nav class="navbar-inverse" role="navigation">
+         <div id="sidebar-wrapper">
+            <ul class="sidebar-nav navbar-nav">
+                <br/> 
+                <br/> 
+                <br/> 
+                <br/> 
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Menu
+                    </a>
+                </li>
+                <li> 
+                    <a href="#">Login Docente</a>
+                </li>
+                <li> 
+                    <a href="loginAlumno.php">Login Alumno</a>
+                </li>
+            </ul>
+        </div>
+        </nav> 
     
     <div class="container">
         <div class="row">
@@ -99,7 +130,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 
@@ -111,6 +142,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 
 </body>
 
