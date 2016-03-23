@@ -98,9 +98,25 @@ if(isset($_GET["user"])){
                                  unset($nivelcompetencia);
                                  }
                                  $conteo = $conteo + 1;
-                                }                            
+                                }             
+                                
+                                $array_criterios1 = array("Cumplí con mis compromisos","Participé de forma activa","Me esforcé para alcanzar los objetivos","Demostré mis habilidades durante el trabajo", "Ingresar Comentarios");
+                                foreach ($array_criterios1 as $da){
+                                 $criterio = new Criterio();
+                                 $criterio->setNombre($da);
+                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[2]);
+                                 $idCriterio = $criterio->Ingresar();
+                                }
+                                
+                                $array_criterios2 = array("Participa de forma activa","Realiza aportes al trabajo grupal","Es responsable en sus compromisos","Dedica el tiempo suficiente al trabajo grupal", "Comparte sus conocimientos", "Agregar Comentarios");
+                                foreach ($$array_criterios2 as $da){
+                                 $criterio = new Criterio();
+                                 $criterio->setNombre($da);
+                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[3]);
+                                 $idCriterio = $criterio->Ingresar();
+                                }
+                                
                                 //no existe y se crea.
-                                 
                                 header("location: ../adminCuentas.php?exito=1");
                                 die();
                             }

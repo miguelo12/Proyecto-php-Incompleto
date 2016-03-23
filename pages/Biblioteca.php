@@ -1,4 +1,5 @@
 <?php session_start(); 
+  error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -14,6 +15,11 @@
   else
       {
        $docente = $_SESSION["docente"];
+       
+       include '../pages/php/CRUD/Rubrica.php';
+       $result = new Rubrica();
+       $result->setDocente_idDocente($docente["id"]);
+       $rubricaresult = $result->DevolverRubrica();
       }
 ?>
 <!DOCTYPE html>
@@ -165,8 +171,14 @@
                             <br/>
                             <p class="lead">Presenta on-line o edita tus Unidades de Aprendizaje.</p>
                             <br/>
-                            <?php //Agregar for... ?>
-                            <pre><a>Editar</a>   <a>Publicar</a>   <a>Exportar</a>  ({Colocar tamaño}MB) {Nombre de la Contenido}</pre>
+                            <div class="panel panel-primary">
+                              <div class="panel-body">
+                                  <?php ?>
+                                  <a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="#">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;{Nombre del Contenido}
+                                  <?php ?>
+                              </div>
+                            </div> 
+                            
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
                             <br/>
@@ -178,11 +190,40 @@
                     </div>
                     </div>
                 </div>
+                <br/>
+                <div class="col-xs-12">
+                    <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+                            <br/>
+                            <h2><ins>Rubricas</ins></h2>
+                            <br/>
+                            <br/>
+                            <p class="lead">Selecciona la rubrica, que quieras utilizar para tu nueva unidad de aprendizaje.</p>
+                            <br/>
+                            <div class="panel panel-primary">
+                              <div class="panel-body">
+                                  <?php if(isset($rubricaresult)):foreach ($rubricaresult as $da):?>
+                                    <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="#">Seleccionar</a>
+                                  <?php endforeach; endif; ?>
+                              </div>
+                            </div>                         
+                        </div>
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <img src="../pages/img/libros.png" alt="libros" class="img-rounded">
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
         </div>
         </div>
-        
+        <br/>
+        <br/>
 
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>

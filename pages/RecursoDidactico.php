@@ -765,54 +765,36 @@ error_reporting(0);
                                         <div class="tab-pane well" id="tabi7">
                                             <table class="table table-bordered">
                                                 <tr>
-                                                    <th class="text-center">Seleccionar:</th>
                                                     <th class="text-center">Criterios</th>
-                                                    <th class="text-center">Nota</th>
+                                                    <?php //puntaje ?>
+                                                    <th class="text-center"><input class="form-control" type="text" value="" name="procedimiento"></th>
+                                                    <?php ?>
                                                 </tr>
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
                                                     <tr>
-                                                    <td style="width: 7%">
-                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
-                                                    </td>
-                                                    <td style="width: 78%">
-                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                    </td>
-                                                    <td style="width: 15%">
-                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                    </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3">
-                                                            <label for="moreinput">Agregar Comentario</label>
-                                                            <br/>
-                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
+                                                        <td style="width: 35%">
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                        </td>
+                                                        <td>
+                                                            <textarea class="form-control" rows="4" name="procedimiento"></textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3">
-                                                            <div class="form-group">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
+                                                            <div class="form-group text-center" style="margin: 0px auto">
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" >Agregar Criterio</button>&nbsp;&nbsp;&nbsp;
+                                                                <br/>
+                                                                <br/>
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-danger" >Eliminar Competencia</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-warning" >Agregar Competencia</button>&nbsp;&nbsp;&nbsp;
+                                                                <br/>
+                                                                <br/>
+                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" >Guardar</button>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>                                                 
-                                                        <th colspan="3" class="text-center">Crear Nuevos Criterios</th>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="3">
-                                                            <input class="form-control" type="text" name="preguntas">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="3">
-                                                            <div class="form-group">                                                             
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
-                                                                <a name="submit3"></a>
-                                                            </div>
-                                                        </td>
                                                         <?php	
                                                         if(isset($_GET['pre'])):
                                                             if($_GET['pre']=="102"):?>

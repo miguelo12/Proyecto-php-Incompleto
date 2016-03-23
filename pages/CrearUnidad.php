@@ -14,13 +14,7 @@ error_reporting(0);
       }
   else
       {
-       include '../pages/php/CRUD/Rubrica.php';
-       
        $docente = $_SESSION["docente"];
-
-       $result = new Rubrica();
-       $result->setDocente_idDocente($docente["id"]);
-       $rubricaresult = $result->DevolverRubrica();
       }
 ?>
 <!DOCTYPE html>
@@ -244,7 +238,7 @@ error_reporting(0);
                             </div>
                             <div class="row">
                                 <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="panel panel-default" id="contenido">
                                       <div class="panel-heading">
                                     <br/>
@@ -258,34 +252,6 @@ error_reporting(0);
                                     <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
                                     </div>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="clearfix visible-xs"></div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
-                                    <div class="panel panel-warning" id="contenido">
-                                      <div class="panel-heading">
-                                        <h3><ins>Rubrica Evaluativa</ins></h3>
-                                        <br/>
-
-                                        <?php if(isset($rubricaresult)):?>
-                                        <select name="RubricaSelect">
-                                        <?php foreach ($rubricaresult as $dw):
-                                              $di= 0?>
-
-                                            <?php if($di == 0):?>
-                                            <option value="<?= $dw["idRubrica"] ?>" selected="si"><?= $dw["nombre"] ?></option>
-                                            <?php $di = $di+1; else:?>
-                                            <option value="<?= $dw["idRubrica"] ?>"><?= $dw["nombre"] ?></option>
-                                            <?php endif;?>
-
-                                        <?php endforeach;?> 
-                                        </select>
-                                        <?php endif; ?>
-                                        <br/>
-                                        <br/>
-                                        <br/>
                                     </div>
                                     </div>
                                 </div>

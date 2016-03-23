@@ -62,7 +62,6 @@ else
       {
          //creacion a finalizar;
          $unidad = $_SESSION["NuevaUnidad"];
-         $rubrica = POST["RubricaSelect"]; 
          include_once("./CRUD/RecursosDidacticos.php");
          include_once("./CRUD/UnidadAprendizaje.php");
          include_once("./CRUD/Criterio.php");
