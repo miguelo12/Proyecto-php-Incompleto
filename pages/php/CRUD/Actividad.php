@@ -15,10 +15,11 @@ include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Actividad {
-    private $idActividad;
-    private $fecha_inicio;
-    private $fecha_termino;
-    private $UnidadAprendizaje_idUnidadAprendizaje;
+    private $idActividad; #i
+    private $fecha_inicio; #s
+    private $fecha_termino; #s
+    private $UnidadAprendizaje_idUnidadAprendizaje; #i
+    private $Seccion_idSeccion; #s
     
     private $con;
     
