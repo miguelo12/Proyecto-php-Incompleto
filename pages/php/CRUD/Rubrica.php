@@ -9,7 +9,7 @@
 /**
  * Description of Rubrica
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once ("..\pages\php\Conexion\Conexion.php");
 include_once ("..\php\Conexion\Conexion.php");
@@ -71,6 +71,58 @@ class Rubrica {
       $sentencia=$c->prepare("select * from rubrica where Docente_idDocente=?");
       
       $sentencia->bind_param("s", $this->Docente_idDocente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
+    public function DevolverRubricaPredeterminada()
+    {
+      $c=$this->con->getConexion();
+      
+      $this->setnombre("Predeterminado");
+      
+      $sentencia=$c->prepare("select * from rubrica where Docente_idDocente=? and nombre=?");
+      
+      $sentencia->bind_param("ss", $this->Docente_idDocente, $this->nombre);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
+    public function DevolverRubricaid()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from rubrica where Docente_idDocente=? and idRubrica=?");
+      
+      $sentencia->bind_param("si", $this->Docente_idDocente, $this->idRubrica);
       
       $sentencia->execute();
       

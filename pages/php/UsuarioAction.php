@@ -9,7 +9,7 @@ include_once("./CRUD/Docente.php");
 include_once("./CRUD/Rubrica.php");
 include_once("./CRUD/TipoCriterioRubrica.php");  
 include_once("./CRUD/Criterio.php");
-include_once("./CRUD/NivelCompetencias.php");
+include_once("./CRUD/NivelCompetencia.php");
 
 if(isset($_GET["user"])){
     if($_GET["user"]==1){
@@ -90,7 +90,7 @@ if(isset($_GET["user"])){
                                  $idCriterio = $criterio->Ingresar();
                                  
                                  for($i = 0; $i <= 3; $i++){
-                                 $nivelcompetencia = new NivelCompetencias();
+                                 $nivelcompetencia = new NivelCompetencia();
                                  $nivelcompetencia->setCriterio_idCriterio($idCriterio);
                                  $nivelcompetencia->setDescripcion($array_descripuntaje[$conteo][$i]["text"]);
                                  $nivelcompetencia->setPuntaje($array_descripuntaje[$conteo][$i]["puntos"]);
@@ -100,7 +100,7 @@ if(isset($_GET["user"])){
                                  $conteo = $conteo + 1;
                                 }             
                                 
-                                $array_criterios1 = array("Cumplí con mis compromisos","Participé de forma activa","Me esforcé para alcanzar los objetivos","Demostré mis habilidades durante el trabajo", "Ingresar Comentarios");
+                                $array_criterios1 = array("Cumpli con mis compromisos","Participe de forma activa","Me esforce para alcanzar los objetivos","Demostre mis habilidades durante el trabajo", "Ingresar Comentarios");
                                 foreach ($array_criterios1 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
@@ -109,7 +109,7 @@ if(isset($_GET["user"])){
                                 }
                                 
                                 $array_criterios2 = array("Participa de forma activa","Realiza aportes al trabajo grupal","Es responsable en sus compromisos","Dedica el tiempo suficiente al trabajo grupal", "Comparte sus conocimientos", "Agregar Comentarios");
-                                foreach ($$array_criterios2 as $da){
+                                foreach ($array_criterios2 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
                                  $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[3]);

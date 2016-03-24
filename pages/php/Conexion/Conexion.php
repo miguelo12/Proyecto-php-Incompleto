@@ -9,7 +9,7 @@
 /**
  * Description of Conexion
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 class Conexion {
     private $conn=null;

@@ -9,7 +9,7 @@
 /**
  * Description of Usuario
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 
 include_once("..\pages\php\Conexion\Conexion.php");

@@ -9,16 +9,16 @@
 /**
  * Description of ResultadoRubricaEvaluacion
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
-class ResultadoRubricaEvaluacion {
-    private $idResultadoRubricaEvaluacion;
-    private $idCriterioNivelRubrica;
+class ResultadoEvaluacion {
+    private $idResultadoEvaluacion;
     private $idGrupo;
     private $PuntajeObtenido;
+    private $ResolverActividad_idResolverActividad; #i
     
     private $con;
     
@@ -30,13 +30,20 @@ class ResultadoRubricaEvaluacion {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into resultadorubricaevaluacion values(?,?,?,?)");
+      $sentencia=$c->prepare("insert into resultadoevaluacion (idGrupo,PuntajeObtenido,ResolverActividad_idResolverActividad) values(?,?,?)");
       
-      $sentencia->bind_param("iiii", $this->idResultadoRubricaEvaluacion, $this->idCriterioNivelRubrica, $this->idGrupo, $this->PuntajeObtenido);
+      $sentencia->bind_param("iii", $this->idGrupo, $this->PuntajeObtenido, $this->ResolverActividad_idResolverActividad);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()
@@ -58,12 +65,12 @@ class ResultadoRubricaEvaluacion {
       return false;
     }
     
-    public function setIdResultadoRubricaEvaluacion($idResultadoRubricaEvaluacion) {
-        $this->idResultadoRubricaEvaluacion = $idResultadoRubricaEvaluacion;
+    public function setIdResultadoEvaluacion($idResultadoEvaluacion) {
+        $this->idResultadoEvaluacion = $idResultadoEvaluacion;
     }
 
-    public function setIdCriterioNivelRubrica($idCriterioNivelRubrica) {
-        $this->idCriterioNivelRubrica = $idCriterioNivelRubrica;
+    public function setResolverActividad_idResolverActividad($ResolverActividad_idResolverActividad) {
+        $this->ResolverActividad_idResolverActividad = $ResolverActividad_idResolverActividad;
     }
 
     public function setIdGrupo($idGrupo) {

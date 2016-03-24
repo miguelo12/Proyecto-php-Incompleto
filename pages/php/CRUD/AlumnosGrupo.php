@@ -9,15 +9,15 @@
 /**
  * Description of AlumnoGrupo
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class AlumnosGrupo {
-    private $idAlumnosGrupo;
-    private $Alumno_idAlumno;
-    private $Grupo_idGrupo;
+    private $idAlumnosGrupo; #i
+    private $Alumno_idAlumno; #s
+    private $Grupo_idGrupo; #i
     
     private $con;
     
@@ -35,7 +35,14 @@ class AlumnosGrupo {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()

@@ -7,19 +7,106 @@
  */
 ob_start();
 session_start();
+include_once("./CRUD/RecursosDidacticos.php");
+include_once("./CRUD/UnidadAprendizaje.php");
+include_once("./CRUD/TipoCriterioRubrica.php");
+include_once("./CRUD/Criterio.php");
+include_once("./CRUD/Rubrica.php");
+include_once("./CRUD/NivelCompetencia.php");
+
 if(!isset($_GET["action"])){
     if(isset($_POST["nameActivity"])){
         $new = $_POST["nameActivity"];
         if(!$new.trim() == "")
         {
+          if(!isset($_SESSION["rubrica"]))
+          {
+             unset($tipocriteriorubrica);
+             unset($nivelcompetencia);
+             unset($criterio);
+             unset($rubrica);
+             $tipocriteriorubrica = new TipoCriterioRubrica();
+             $nivelcompetencia = new NivelCompetencia();
+             $criterio = new Criterio();
+             $rubrica = new Rubrica();
+             
+             $docente = $_SESSION["docente"];
+             
+             $rubrica->setDocente_idDocente($docente["id"]);
+             $rubricadocente = $rubrica->DevolverRubricaPredeterminada();
+             
+             $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
+             $tipocriteriorubricaarray = $tipocriteriorubrica->DevolverTipoCriterioRubrica();
+             
+             foreach ($tipocriteriorubricaarray as $ti){
+             $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($ti["idTipoCriterioRubrica"]);
+             $arraycriterio[] = $criterio->DevolverCriterio(); 
+             }
+             
+             foreach ($arraycriterio as $ti){
+             $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
+             $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
+             }
+             
+             $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
+             $_SESSION["rubrica"] = $RubricaCompleta;
+             
+          }
+            
         $_SESSION["titulocreacion"] = $new;
         header("location: ../RecursoDidactico.php");
         die();
+        
         } 
         else
         {
+            
          header("location: ../CrearUnidad.php?error=1");
          die();
+         
+        }
+    }
+    elseif (isset($_GET["idRubrica"])) {
+        
+        unset($tipocriteriorubrica);
+        unset($nivelcompetencia);
+        unset($criterio);
+        unset($rubrica);
+        $tipocriteriorubrica = new NivelCompetencia();
+        $nivelcompetencia = new NivelCompetencia();
+        $criterio = new Criterio();
+        $rubrica = new Rubrica();
+
+        $docente = $_SESSION["docente"];
+
+        $rubrica->setDocente_idDocente($docente["id"]);
+        $rubrica->setIdRubrica($_SESSION["idRubrica"]);
+        $rubricadocente = $rubrica->DevolverRubricaid();
+
+        $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
+        $tipocriteriorubricaarray = $tipocriteriorubrica->DevolverTipoCriterioRubrica();
+
+        foreach ($tipocriteriorubricaarray as $ti){
+        $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($ti["idTipoCriterioRubrica"]);
+        $arraycriterio[] = $criterio->DevolverCriterio(); 
+        }
+
+        foreach ($arraycriterio as $ti){
+        $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
+        $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
+        }
+
+        $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
+        $_SESSION["rubrica"] = $RubricaCompleta;
+        
+        if(isset($_SESSION["rubrica"])){
+        header("location: ../CrearUnidad.php");
+        die();
+        }
+        else
+        {
+        header("location: ../indexDocente.php");
+        die();
         }
     }
     else
@@ -62,16 +149,16 @@ else
       {
          //creacion a finalizar;
          $unidad = $_SESSION["NuevaUnidad"];
-         include_once("./CRUD/RecursosDidacticos.php");
-         include_once("./CRUD/UnidadAprendizaje.php");
-         include_once("./CRUD/Criterio.php");
-         include_once("./CRUD/NivelCompetencia.php");
-         
+         unset($tipocriteriorubrica);
+         unset($nivelcompetencia);
+         unset($criterio);
+         unset($rubrica);
          $recursosdidactico = new RecursosDidacticos();
          $unidadaprendizaje = new UnidadAprendizaje();
          $nivelcompetencia = new NivelCompetencia();
          $criterio = new Criterio();
-                  
+         $rubrica = new Rubrica();
+         
          try
          {                      
          $docente = $_SESSION["docente"];

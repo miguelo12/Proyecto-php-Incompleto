@@ -9,15 +9,15 @@
 /**
  * Description of Alumnounidadaprendizaje
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class AlumnoUnidadAprendizaje {
-    private $idAlumnoUnidadAprendizaje;
-    private $Alumno_idAlumno;
-    private $Actividad_idActividad;
+    private $idAlumnoUnidadAprendizaje; //i
+    private $Alumno_idAlumno; //s
+    private $Actividad_idActividad; //i
     
     private $con;
     

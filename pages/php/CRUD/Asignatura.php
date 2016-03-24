@@ -9,14 +9,15 @@
 /**
  * Description of Asignatura
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Asignatura {
-    private $idAsignatura;
-    private $nombre;
+    private $idAsignatura; #s
+    private $nombre; #s
+    
     private $con;
     
     public function __construct() {
@@ -61,7 +62,7 @@ class Asignatura {
       
       $newid = "{$rand1}{$rand}{$rand2}";
       
-      $this->setNombre($newid);
+      $this->setidAsignatura($newid);
       
       $sentencia=$c->prepare("insert into asignatura values(?,?)");
       
@@ -69,7 +70,14 @@ class Asignatura {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $this->idAsignatura;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function DevolverAsignaturas()
@@ -98,6 +106,11 @@ class Asignatura {
     public function setNombre($nom)
     {
         $this->nombre=$nom;
+    }
+    
+    public function setidAsignatura($idAsignatura)
+    {
+        $this->idAsignatura=$idAsignatura;
     }
     
 }

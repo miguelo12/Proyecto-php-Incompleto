@@ -203,9 +203,11 @@
                             <br/>
                             <div class="panel panel-primary">
                               <div class="panel-body">
-                                  <?php if(isset($rubricaresult)):foreach ($rubricaresult as $da):?>
-                                    <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="#">Seleccionar</a>
-                                  <?php endforeach; endif; ?>
+                                  <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a>
+                                  <?php else: ?>
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
+                                  <?php endif; endforeach; endif; ?>
                               </div>
                             </div>                         
                         </div>

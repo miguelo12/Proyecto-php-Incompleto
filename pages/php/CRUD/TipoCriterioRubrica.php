@@ -9,7 +9,7 @@
 /**
  * Description of TipoCriterioRubrica
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
@@ -17,7 +17,7 @@ include_once("../../php/Conexion/Conexion.php");
 class TipoCriterioRubrica {
     private $Rubrica_idRubrica;
     private $tipos;
-    private $TipoCriterioRubrica;
+    private $idTipoCriterioRubrica;
     
     private $con;
     
@@ -45,6 +45,31 @@ class TipoCriterioRubrica {
       }
     }
     
+    public function DevolverTipoCriterioRubrica()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from tipocriteriorubrica where Rubrica_idRubrica=?");
+      
+      $sentencia->bind_param("i", $this->Rubrica_idRubrica);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setRubrica_idRubrica($Rubrica_idRubrica)
     {
         $this->Rubrica_idRubrica=$Rubrica_idRubrica;
@@ -55,8 +80,8 @@ class TipoCriterioRubrica {
         $this->tipos=$tipos;
     }
     
-    public function setTipoCriterioRubrica($TipoCriterioRubrica)
+    public function setidTipoCriterioRubrica($idTipoCriterioRubrica)
     {
-        $this->TipoCriterioRubrica=$TipoCriterioRubrica;
+        $this->idTipoCriterioRubrica=$idTipoCriterioRubrica;
     }
 }

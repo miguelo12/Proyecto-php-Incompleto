@@ -9,7 +9,7 @@
 /**
  * Description of Alumno
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
@@ -148,7 +148,14 @@ class Alumno {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()

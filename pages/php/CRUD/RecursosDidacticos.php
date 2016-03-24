@@ -9,7 +9,7 @@
 /**
  * Description of RecursosDidacticos
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
@@ -20,6 +20,7 @@ class RecursosDidacticos {
     private $nombre;
     private $descripcion;
     private $tipo;
+    private $url;
     
     private $con;
     
@@ -31,9 +32,9 @@ class RecursosDidacticos {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into recursosdidacticos (UnidadAprendizaje_idUnidadAprendizaje,nombre,descripcion,tipo) values(?,?,?,?)");
+      $sentencia=$c->prepare("insert into recursosdidacticos (UnidadAprendizaje_idUnidadAprendizaje,nombre,descripcion,tipo,url) values(?,?,?,?,?)");
       
-      $sentencia->bind_param("isss", $this->UnidadAprendizaje_idUnidadAprendizaje, $this->nombre, $this->descripcion, $this->tipo);
+      $sentencia->bind_param("issss", $this->UnidadAprendizaje_idUnidadAprendizaje, $this->nombre, $this->descripcion, $this->tipo, $this->url);
       
       $sentencia->execute();
       
@@ -85,5 +86,9 @@ class RecursosDidacticos {
 
     public function setTipo($tipo) {
         $this->tipo = $tipo;
+    }
+    
+    public function seturl($url) {
+        $this->url = $url;
     }
 }

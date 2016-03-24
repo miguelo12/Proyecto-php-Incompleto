@@ -9,20 +9,20 @@
 /**
  * Description of Ayuda
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Ayuda {
-    private $idAyuda;
-    private $procedimiento;
-    private $aplicaciones;
-    private $procesamiento;
-    private $lenguaje;
-    private $modelos;
-    private $conclusiones;
-    private $UnidadAprendizaje_idUnidadAprendizaje;
+    private $idAyuda; #i
+    private $procedimiento; #s
+    private $aplicaciones; #s
+    private $procesamiento; #s
+    private $lenguaje; #s
+    private $modelos; #s
+    private $conclusiones; #s
+    private $UnidadAprendizaje_idUnidadAprendizaje; #i
     
     public function Ingresar()
     {

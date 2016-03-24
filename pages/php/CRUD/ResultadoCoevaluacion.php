@@ -9,16 +9,17 @@
 /**
  * Description of ResultadoCoevaluacion
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class ResultadoCoevaluacion {
-    private $idResultadoCoevaluacion;
-    private $idAlumnosGrupo;
-    private $idCriterioNivelRubrica;
-    private $PuntajeObtenido;
+    private $idResultadoCoevaluacion; #i
+    private $PuntajeObtenido; #i
+    private $ComentarioCoe; #s
+    private $AlumnosGrupo_idAlumnosGrupo; #i
+    private $ResolverActividad_idResolverActividad; #i
     
     private $con;
     
@@ -30,47 +31,39 @@ class ResultadoCoevaluacion {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into resultadocoevaluacion values(?,?,?,?)");
+      $sentencia=$c->prepare("insert into resultadocoevaluacion (PuntajeObtenido,ComentarioCoe,AlumnosGrupo_idAlumnosGrupo,ResolverActividad_idResolverActividad) values(?,?,?,?)");
       
-      $sentencia->bind_param("iiii", $this->idResultadoCoevaluacion, $this->idAlumnosGrupo, $this->idCriterioNivelRubrica, $this->PuntajeObtenido);
-      
-      $sentencia->execute();
-      
-      return true;
-    }
-    
-    public function ExisteonoPorID()
-    {
-      $c=$this->con->getConexion();
-      
-      $sentencia=$c->prepare("select * from resultadocoevaluacion where idResultadoCoevaluacion=?");
-      
-      $sentencia->bind_param("i", $this->idResultadoCoevaluacion);
+      $sentencia->bind_param("isii", $this->PuntajeObtenido, $this->ComentarioCoe, $this->AlumnosGrupo_idAlumnosGrupo, $this->ResolverActividad_idResolverActividad);
       
       $sentencia->execute();
       
-      $resu = $sentencia->get_result();
-      
-      if($resu -> num_rows > 0)
+      if($sentencia->affected_rows)
       {
-        return true;
+          //devuelve la id.
+       return $sentencia->insert_id;
       }
-      return false;
+      else {
+       return null;    
+      }
     }
     
     public function setIdResultadoCoevaluacion($idResultadoCoevaluacion) {
         $this->idResultadoCoevaluacion = $idResultadoCoevaluacion;
     }
 
-    public function setIdAlumnosGrupo($idAlumnosGrupo) {
-        $this->idAlumnosGrupo = $idAlumnosGrupo;
+    public function setAlumnosGrupo_idAlumnosGrupo($AlumnosGrupo_idAlumnosGrupo) {
+        $this->AlumnosGrupo_idAlumnosGrupo = $AlumnosGrupo_idAlumnosGrupo;
     }
 
-    public function setIdCriterioNivelRubrica($idCriterioNivelRubrica) {
-        $this->idCriterioNivelRubrica = $idCriterioNivelRubrica;
+    public function setComentarioCoe($ComentarioCoe) {
+        $this->ComentarioCoe = $ComentarioCoe;
     }
 
     public function setPuntajeObtenido($PuntajeObtenido) {
         $this->PuntajeObtenido = $PuntajeObtenido;
+    }
+    
+    public function setResolverActividad_idResolverActividad($ResolverActividad_idResolverActividad) {
+        $this->ResolverActividad_idResolverActividad = $ResolverActividad_idResolverActividad;
     }
 }

@@ -9,7 +9,7 @@
 /**
  * Description of Seccion
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 
 include_once("..\pages\php\Conexion\Conexion.php");
@@ -17,8 +17,9 @@ include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Seccion {
     private $idSeccion; 
-    private $idDocente;
-    private $idAsignatura;
+    private $Docente_idDocente;
+    private $Asignatura_idAsignatura;
+    private $Codigo;
     private $con;
     
     public function __construct() {
@@ -40,15 +41,22 @@ class Seccion {
 //      
 //      $newid = "{$rand1}{$rand}{$rand2}{$rand3}";
 //      
-//      $this->setNombre($newid);
+//      $this->setidSeccion($newid);
       
-      $sentencia=$c->prepare("insert into seccion values(?,?,?)");
+      $sentencia=$c->prepare("insert into seccion values(?,?,?,?)");
       
-      $sentencia->bind_param("sss", $this->idSeccion, $this->idDocente, $this->idAsignatura);
+      $sentencia->bind_param("sssi", $this->idSeccion, $this->Docente_idDocente, $this->Asignatura_idAsignatura, $this->Codigo);
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
     }
     
     public function ExisteonoPorID()
@@ -98,13 +106,18 @@ class Seccion {
         $this->idSeccion=$idSeccion;
     }
     
-    public function setidDocente($idDocente)
+    public function setDocente_idDocente($Docente_idDocente)
     {
-        $this->idDocente=$idDocente;
+        $this->Docente_idDocente=$Docente_idDocente;
     }
     
-    public function setidAsignatura($idAsignatura)
+    public function setAsignatura_idAsignatura($Asignatura_idAsignatura)
     {
-        $this->idAsignatura=$idAsignatura;
+        $this->Asignatura_idAsignatura=$Asignatura_idAsignatura;
+    }
+    
+public function setCodigo($Codigo)
+    {
+        $this->Codigo=$Codigo;
     }
 }

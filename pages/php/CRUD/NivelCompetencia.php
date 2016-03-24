@@ -9,17 +9,16 @@
 /**
  * Description of NivelCompetencias
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once ("..\pages\php\Conexion\Conexion.php");
 include_once ("..\php\Conexion\Conexion.php");
 include_once ("../../php/Conexion/Conexion.php");
-class NivelCompetencias {
-    private $idRecursosDidacticos;
-    private $idUnidadAprendizaje;
-    private $nombre;
-    private $descripcion;
-    private $tipo;
+class NivelCompetencia {
+    private $idNivelCompetencia; #i
+    private $Descripcion; #s
+    private $Puntaje; #i
+    private $Criterio_idCriterio; #i
     
     private $con;
     
@@ -45,6 +44,31 @@ class NivelCompetencias {
       else {
        return null;    
       }
+    }
+    
+    public function DevolverCriterio()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from nivelcompetencia where Criterio_idCriterio=?");
+      
+      $sentencia->bind_param("i", $this->Criterio_idCriterio);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
     }
     
     public function setIdNivelCompetencia($idNivelCompetencia) {

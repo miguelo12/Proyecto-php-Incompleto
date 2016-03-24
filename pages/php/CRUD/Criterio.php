@@ -9,15 +9,15 @@
 /**
  * Description of Criterio
  *
- * @author darkg
+ * @author Miguel Sanchez
  */
 include_once ("..\pages\php\Conexion\Conexion.php");
 include_once ("..\php\Conexion\Conexion.php");
 include_once ("../../php/Conexion/Conexion.php");
 class Criterio {
-    private $idCriterio;
-    private $Nombre;
-    private $TipoCriterioRubrica_TipoCriterioRubrica;
+    private $idCriterio; #i
+    private $Nombre; #s
+    private $TipoCriterioRubrica_TipoCriterioRubrica; #i
     
     private $con;
     
@@ -62,6 +62,31 @@ class Criterio {
         return true;
       }
       return false;
+    }
+    
+    public function DevolverCriterio()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from criterio where TipoCriterioRubrica_TipoCriterioRubrica=?");
+      
+      $sentencia->bind_param("i", $this->TipoCriterioRubrica_TipoCriterioRubrica);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
     }
     
     public function setidCriterio($idCriterio)
