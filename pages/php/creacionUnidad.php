@@ -76,11 +76,11 @@ if(!isset($_GET["action"])){
         $nivelcompetencia = new NivelCompetencia();
         $criterio = new Criterio();
         $rubrica = new Rubrica();
-
+        
         $docente = $_SESSION["docente"];
 
         $rubrica->setDocente_idDocente($docente["id"]);
-        $rubrica->setIdRubrica($_SESSION["idRubrica"]);
+        $rubrica->setIdRubrica($_GET["idRubrica"]);
         $rubricadocente = $rubrica->DevolverRubricaid();
 
         $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
