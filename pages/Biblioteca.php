@@ -20,6 +20,11 @@
        $result = new Rubrica();
        $result->setDocente_idDocente($docente["id"]);
        $rubricaresult = $result->DevolverRubrica();
+       
+       include '../pages/php/CRUD/UnidadAprendizaje.php';
+       $resultunidad = new UnidadAprendizaje();
+       $resultunidad->setDocente_idDocente($docente["id"]);
+       $Unidadresult = $resultunidad->DevolverUnidadDocente();
       }
 ?>
 <!DOCTYPE html>
@@ -167,6 +172,13 @@
         <br/>
         <br/>
         
+        <?php if(isset($_GET["creado"])):
+                if($_GET["creado"]=="1"):?>
+                    <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Listo, </strong> se ha creado una unidad de aprendizaje.
+                    </div>
+        <?php endif; endif; ?>
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
@@ -182,9 +194,11 @@
                             <br/>
                             <div class="panel panel-primary">
                               <div class="panel-body">
-                                  <?php ?>
-                                  <a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="#">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;{Nombre del Contenido}
-                                  <?php ?>
+                                  <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
+                                  <i class="fa fa-chevron-circle-right">&nbsp;</i><a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="#">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;<?= $de["Titulo"] ?><br/>
+                                  <?php endforeach; else: ?>
+                                  <p>No tienes aún una unidad de aprendizaje</p>
+                                  <?php endif; ?>
                               </div>
                             </div> 
                             <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
@@ -215,7 +229,7 @@
                                   <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
                                   <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a>
                                   <?php else: ?>
-                              <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
                                   <?php endif; endforeach; endif; ?>
                               </div>
                             </div>  

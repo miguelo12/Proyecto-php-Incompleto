@@ -17,7 +17,7 @@ if(isset($_GET["pre"]))
                   $pre = $_POST["preguntas"];
                   $array = $_SESSION["preguntas"];
                   $index = count($array);
-                  $array[] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
+                  $array[] = array("id"=>$index,"pre"=>$pre, "key"=>0);
                   $_SESSION["preguntas"] =  $array;
                   }else{
                       header("location:../RecursoDidactico.php?jump=2&pre=100");
@@ -29,7 +29,7 @@ if(isset($_GET["pre"]))
                   if(!empty($_POST["preguntas"])){
                   $pre = $_POST["preguntas"];
                   $index = 0;
-                  $array[$index] = array("id"=>$index,"pre"=>$pre, "unico"=>null);
+                  $array[$index] = array("id"=>$index,"pre"=>$pre, "key"=>0);
                   $_SESSION["preguntas"] =  $array;
                   }else{
                       header("location:../RecursoDidactico.php?jump=2&pre=100");
@@ -43,7 +43,7 @@ if(isset($_GET["pre"]))
               if(!empty($_POST["preguntas{$id}"])){
               $pre = $_POST["preguntas{$id}"];
               $array = $_SESSION["preguntas"];
-              $array[$id] = array("id"=>$id,"pre"=>$pre);
+              $array[$id] = array("id"=>$id,"pre"=>$pre, "key"=>0);
               $_SESSION["preguntas"] = $array;
               header("location: ../RecursoDidactico.php?jump=2&modify=1#submit1");
               die();
@@ -59,7 +59,7 @@ if(isset($_GET["pre"]))
               {
                  if(isset($ta))
                  {
-                    $arroy[$index] = array("id"=>$index,"pre"=>$ta["pre"]);
+                    $arroy[$index] = array("id"=>$index,"pre"=>$ta["pre"], "key"=>$ta["key"]);
                     $index = $index + 1;
                  } 
               }

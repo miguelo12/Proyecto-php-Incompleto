@@ -27,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inicio Docente</title>
+    <title>Actividad Alumno</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

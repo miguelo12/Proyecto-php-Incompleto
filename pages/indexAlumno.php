@@ -160,7 +160,7 @@
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
                                         <br/>                             
-                                        <a class="lead" href="actividad.php">Revisar Unidad de Aprendizaje</a>
+                                        <a class="lead" href="actividadAlumno.php">Revisar Unidad de Aprendizaje</a>
                                 
                                         <br/>
                                         <p>SOON</p>

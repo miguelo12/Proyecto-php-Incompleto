@@ -166,7 +166,7 @@
         <br/>
         <br/>
         <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
-        <div class="alert alert-warning">
+        <div class="alert alert-danger">
            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
            <p class="text-center"><strong>Error, </strong> el email introducido ya existe.</p>
         </div>
@@ -243,11 +243,9 @@
                     </div>
         
                 </div>
-                
-                
-                <div class="row panel panel-default">
-                    <div class="col-sm-12 col-md-12 col-lg-12 panel-heading">
-                        <div class="row">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row panel panel-info panel-footer">
                             <div class="col-sm-12 col-md-6 col-lg-6 text-center">
                                 <div class="row">
                                     <div class="col-sm-8 col-md-8 col-lg-8 text-center ">
@@ -332,7 +330,7 @@
                     <h4 class="modal-title" id="myModalLabel">Hemos detectado un problema.</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Tienes creado una unidad sin guardar, deseas seguir o eliminarlo ?.</p>
+                    <p>Tienes creado una unidad sin guardar, ¿Deseas volver o eliminar?.</p>
                     
                 </div>
                 <div class="modal-footer">

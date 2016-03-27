@@ -84,7 +84,7 @@ error_reporting(0);
 		window.prettyPrint && prettyPrint()
             //que hace el boton finish
             $('#pills .finish').click(function() {
-                <?php if(isset($_SESSION["autoevaluacion"])): ?>
+                <?php if(isset($_SESSION["recursosdidacticos"])): ?>
                     document.getElementById("finalform").submit();
                 <?php else: ?>
                     alert('No puedes terminar la unidad lea los requisitos.');
@@ -246,7 +246,7 @@ error_reporting(0);
                                                         <!-- wizard step 1 starts-->
                                                         <div class="tab-pane" id="tab1">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data" id="f1">
+                                                                <form method="POST" name="myform1" action="php/upload.php?tipo=1" enctype="multipart/form-data" autocomplete="off">
                                                                 <label for="descripcion1">Descripcion:</label>
                                                                 <input type="text" id="descripcion1" name="descripcion1" id="descripcion1" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume1" id="resume1"  style="visibility: hidden">
@@ -264,7 +264,7 @@ error_reporting(0);
                                                         <!-- wizard step 1 ends-->					
                                                         <div class="tab-pane" id="tab2">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data">
+                                                                <form method="POST" name="myform2" action="php/upload.php?tipo=2" enctype="multipart/form-data" autocomplete="off">
                                                                 <label for="descripcion2">Descripcion:</label>
                                                                 <input type="text" id="descripcion2" name="descripcion2" id="descripcion2" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume2" id="resume2"  style="visibility: hidden">
@@ -281,7 +281,7 @@ error_reporting(0);
                                                         </div>
                                                         <div class="tab-pane" id="tab3">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data">
+                                                                <form method="POST" name="myform3" action="php/upload.php?tipo=3" enctype="multipart/form-data" autocomplete="off">
                                                                 <label for="descripcion3">Descripcion:</label>
                                                                 <input type="text" id="descripcion3" name="descripcion3" id="descripcion3" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
@@ -298,7 +298,7 @@ error_reporting(0);
                                                         </div>
                                                         <div class="tab-pane" id="tab4">
                                                             <div class="form-group">
-                                                                <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data">
+                                                                <form method="POST" name="myform4" action="php/upload.php?tipo=4" enctype="multipart/form-data" autocomplete="off">
                                                                 <label for="descripcion4">Descripcion:</label>
                                                                 <input type="text" id="descripcion4" name="descripcion4" id="descripcion4" class="form-control" placeholder="Ingrese una Descripción.">
                                                                 <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
@@ -382,14 +382,14 @@ error_reporting(0);
                                                     <?php endif; endif; ?>
                                                     <?php if(isset($_GET["pre"])):
                                                             if($_GET["pre"]=="100"):?>
-                                                                <div class="alert alert-warning">
+                                                                <div class="alert alert-danger">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Error, </strong> Está vacio al intentar agregar una pregunta.
                                                                 </div>
                                                     <?php endif; endif; ?>
                                                 <?php if(isset($_GET["delete"])):
                                                             if($_GET["delete"]=="1"):?>
-                                                                <div class="alert alert-danger">
+                                                                <div class="alert alert-warning">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Listo, </strong> se ha eliminado una pregunta.
                                                                 </div>
@@ -479,7 +479,7 @@ error_reporting(0);
                                                     <?php endif; endif; ?>
                                                     <?php if(isset($_GET["vacio"])):
                                                             if($_GET["vacio"]=="1"):?>
-                                                                <div class="alert alert-warning">
+                                                                <div class="alert alert-danger">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 Está <strong>vacío</strong>, no se guardara Ayudas.
                                                                 </div>
@@ -508,10 +508,10 @@ error_reporting(0);
                                         
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="#">First</a></li>
-                                                <li class="previous"><a href="javascript:;">Previous</a></li>
+                                                <li class="previous"><a href="javascript:;">Anterior</a></li>
                                                 <li class="next last" style="display:none;"><a href="#">Last</a></li>
-                                                <li class="next"><a href="javascript:;">Next</a></li>
-                                                <li class="finish" style="float:right;"><a href="javascript:;">Finish</a></li>
+                                                <li class="next"><a href="javascript:;">Siguiente</a></li>
+                                                <li class="finish" style="float:right;"><a href="javascript:;">Finalizar</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -24,11 +24,17 @@ class Ayuda {
     private $conclusiones; #s
     private $UnidadAprendizaje_idUnidadAprendizaje; #i
     
+    private $con;
+    
+    public function __construct() {
+        $this->con = new Conexion();
+    }
+    
     public function Ingresar()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into preguntas (procedimiento,aplicaciones,procesamiento,lenguaje,modelos,conclusiones,UnidadAprendizaje_idUnidadAprendizaje) values(?,?,?,?,?,?,?)");
+      $sentencia=$c->prepare("insert into ayuda (procedimiento,aplicaciones,procesamiento,lenguaje,modelos,conclusiones,UnidadAprendizaje_idUnidadAprendizaje) values(?,?,?,?,?,?,?)");
       
       $sentencia->bind_param("ssssssi", $this->procedimiento, $this->aplicaciones, $this->procesamiento, $this->lenguaje, $this->modelos, $this->conclusiones, $this->UnidadAprendizaje_idUnidadAprendizaje);
       

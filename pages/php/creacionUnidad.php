@@ -7,13 +7,12 @@
  */
 ob_start();
 session_start();
-error_reporting(0);
+
 include_once("./CRUD/RecursosDidacticos.php");
 include_once("./CRUD/UnidadAprendizaje.php");
-include_once("./CRUD/TipoCriterioRubrica.php");
-include_once("./CRUD/Criterio.php");
+include_once("./CRUD/Ayuda.php");
+include_once("./CRUD/Preguntas.php");
 include_once("./CRUD/Rubrica.php");
-include_once("./CRUD/NivelCompetencia.php");
 
 if(!isset($_GET["action"])){
     if(isset($_POST["nameActivity"])){
@@ -22,9 +21,6 @@ if(!isset($_GET["action"])){
         {
           if(!isset($_SESSION["rubrica"]))
           {
-             $tipocriteriorubrica = new TipoCriterioRubrica();
-             $nivelcompetencia = new NivelCompetencia();
-             $criterio = new Criterio();
              $rubrica = new Rubrica();
 
              $docente = $_SESSION["docente"];
@@ -41,10 +37,8 @@ if(!isset($_GET["action"])){
         } 
         else
         {
-            
          header("location: ../CrearUnidad.php?error=1");
          die();
-         
         }
     }
     elseif (isset($_GET["idRubrica"])) {
@@ -98,10 +92,15 @@ else
       {
           unset($_SESSION["titulocreacion"]);
       }
+      
+      unset($_SESSION["Ayuda"]);
+      unset($_SESSION["preguntas"]);
+      unset($_SESSION["titulocreacion"]);
+      unset($_SESSION["rubrica"]);
+      unset($_SESSION["NuevaUnidad"]);
       unset($_SESSION["recursosdidacticos"]);
       header("location: ../indexDocente.php");
       die();
-      
     }
     elseif ($new2 ==1) 
     {
@@ -112,21 +111,83 @@ else
          $unidad = $_SESSION["NuevaUnidad"];
          unset($tipocriteriorubrica);
          unset($nivelcompetencia);
+         unset($ayuda);
+         unset($preguntas);
          $recursosdidactico = new RecursosDidacticos();
          $unidadaprendizaje = new UnidadAprendizaje();
+         $ayuda = new Ayuda();
+         $preguntas = new Preguntas();
          $rubrica = $_SESSION["rubrica"];
          
          try
          {                      
-         $docente = $_SESSION["docente"];
-         $titulo = $_SESSION["titulocreacion"];
-         $unidadaprendizaje->setRubrica_idRubrica($rubrica["idRubrica"]);
-         $unidadaprendizaje->setTitulo($titulo);
-         $unidadaprendizaje->setDocente_idDocente($docente["id"]);
-         $idunidad = $unidadaprendizaje->Ingresar();
-         
-         
-         
+             $docente = $_SESSION["docente"];
+             $titulo = $_SESSION["titulocreacion"];
+             $unidadaprendizaje->setRubrica_idRubrica($rubrica["idRubrica"]);
+             $unidadaprendizaje->setTitulo($titulo);
+             $unidadaprendizaje->setDocente_idDocente($docente["id"]);
+             $idunidad = $unidadaprendizaje->Ingresar();
+
+             if(isset($unidad["ayuda"])){
+                 $ayuda->setUnidadAprendizaje_idUnidadAprendizaje($idunidad);
+                 if(isset($unidad["ayuda"]["aplicaciones"])){
+                 $ayuda->setaplicaciones($unidad["ayuda"]["aplicaciones"]);
+                 }
+                 else{
+                 $ayuda->setaplicaciones(null);
+                 }
+                 if(isset($unidad["ayuda"]["conclusiones"])){
+                 $ayuda->setconclusiones($unidad["ayuda"]["conclusiones"]);
+                 }
+                 else{
+                 $ayuda->setconclusiones(null);
+                 }
+                 if(isset($unidad["ayuda"]["lenguaje"])){
+                 $ayuda->setlenguaje($unidad["ayuda"]["lenguaje"]);
+                 }
+                 else{
+                 $ayuda->setlenguaje(null);
+                 }
+                 if(isset($unidad["ayuda"]["modelos"])){
+                 $ayuda->setmodelos($unidad["ayuda"]["modelos"]);
+                 }
+                 else{
+                 $ayuda->setmodelos(null); 
+                 }
+                 if(isset($unidad["ayuda"]["procedimiento"])){
+                 $ayuda->setprocedimiento($unidad["ayuda"]["procedimiento"]);
+                 }
+                 else{
+                 $ayuda->setprocedimiento(null); 
+                 }
+                 if(isset($unidad["ayuda"]["procesamiento"])){
+                 $ayuda->setprocesamiento($unidad["ayuda"]["procesamiento"]);
+                 }
+                 else{
+                 $ayuda->setprocesamiento(null); 
+                 }
+                 
+                 $ayuda->Ingresar();
+             }
+            
+             if(isset($unidad["preguntas"])){
+                 $pregun = $unidad["preguntas"];
+                 foreach ($pregun as $dy){
+                 $preguntas->setUnidadAprendizaje_idUnidadAprendizaje($idunidad);
+                 $preguntas->setpreguntas($dy["pre"]);
+                 }
+                 
+                 $preguntas->Ingresar();
+             }
+             
+             $recurso = $unidad["recursosdidacticos"];
+             foreach ($recurso as $dy){
+                 $recursosdidactico->setIdUnidadAprendizaje_idUnidadAprendizaje($idunidad);
+                 $recursosdidactico->setNombre($dy["nombre"]);
+                 $recursosdidactico->setTipo($dy["tipo"]);
+                 $recursosdidactico->setDescripcion($dy["descripcion"]);
+                 $recursosdidactico->seturl($dy["url"]);
+             }
          }
          catch (Exception $e)
          {
@@ -134,6 +195,9 @@ else
              die();
          }
          
+         unset($_SESSION["titulocreacion"]);
+         unset($_SESSION["rubrica"]);
+         unset($_SESSION["NuevaUnidad"]);
          header("location: ../Biblioteca.php?creado=1");
          die();
       }
@@ -145,7 +209,7 @@ else
     }
     elseif ($new2 ==2) 
     {
-      if(isset($_SESSION["autoevaluacion"]) && isset($_SESSION["coevaluacion"]) && isset($_SESSION["recursosdidacticos"]))
+      if(isset($_SESSION["recursosdidacticos"]))
       {
           $recursosdidacticos = $_SESSION["recursosdidacticos"];
           
@@ -183,7 +247,9 @@ else
           }
           
           $_SESSION["NuevaUnidad"] = $unidadnueva;
-          
+          unset($_SESSION["Ayuda"]);
+          unset($_SESSION["preguntas"]);
+          unset($_SESSION["recursosdidacticos"]);
           header("location: ../CrearUnidad.php");
           die();
       }

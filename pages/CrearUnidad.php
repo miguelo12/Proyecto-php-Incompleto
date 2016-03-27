@@ -232,7 +232,7 @@ error_reporting(0);
         <br/>
         <br/>
         
-        <div id="page-content-wrapper content" >
+        <div id="page-content-wrapper content">
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -252,10 +252,10 @@ error_reporting(0);
                                     <label>Titulo</label>
                                     <div class="text-center">
                                     <?php if(isset($_SESSION["recursosdidacticos"])):?>
-                                    <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
                                     <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>
-                                    <input class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
+                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
                                     <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
                                     </div>
@@ -264,18 +264,27 @@ error_reporting(0);
                                 </div>
                                 <div class="clearfix visible-xs"></div>
                                 <div class="col-xs-12 text-center">
-
-                                    <input value="&nbsp; Agregar Recursos Didácticos  &nbsp;" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                    <div class="hidden-lg hidden-md hidden-sm ">
+                                    <input value="Agregar Recursos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"/>
                                     <br/>
+                                    </div>
+                                    <div class="hidden-xs">
+                                        <input value="Agregar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                    <br/>
+                                    </div>
                                 </div>
 
                                 <div class="clearfix visible-xs"></div>
 
                                 <div class="col-xs-12 text-center">
-
-                                    <?php //meter contenido de grilla :D?>
-                                    <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
-
+                                    <div class="hidden-lg hidden-md hidden-sm">
+                                    <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
+                                    <br/>
+                                    </div>
+                                    <div class="hidden-xs">
+                                        <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
+                                    <br/>
+                                    </div>
                                 </div>
 
                                 <div class="clearfix visible-xs"></div>
@@ -303,14 +312,14 @@ error_reporting(0);
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel">Advertencia aun no guarda el contenido</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">Advertencia aún no guarda el contenido</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    ¿Esta seguro en salir, sin guardar?
+                                                    ¿Está seguro en salir, sin guardar?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No, quiero volver</button>
-                                                    <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Si, seguro</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No, quiero volver.</button>
+                                                    <button type="submit" class="btn btn-primary" formaction="php/creacionUnidad.php?action=0">Sí, seguro.</button>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->
