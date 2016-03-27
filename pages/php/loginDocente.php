@@ -1,5 +1,4 @@
 <?php
-
 include_once("../php/CRUD/Docente.php");
 error_reporting(E_ALL ^ E_WARNING);
 $email = "";

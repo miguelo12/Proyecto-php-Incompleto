@@ -51,6 +51,15 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/book.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-color: hsl(114, 87%, 90%);
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -164,7 +173,7 @@
                 <div class="col-xs-12">
                     <div class="well well-lg">
                     <div class="row">
-                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
                             <br/>
                             <h2><ins>Biblioteca</ins></h2>
                             <br/>
@@ -178,13 +187,13 @@
                                   <?php ?>
                               </div>
                             </div> 
-                            
+                            <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
                         </div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
+                        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 text-left">
                             <br/>
                             <br/>
                             <br/>
-                            <img src="../pages/img/libros.png" alt="libros" class="img-rounded">
+                            <img src="../pages/img/libro.png" alt="libros" class="img-rounded">
                         </div>
                         
                     </div>
@@ -194,7 +203,7 @@
                 <div class="col-xs-12">
                     <div class="well well-lg">
                     <div class="row">
-                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
                             <br/>
                             <h2><ins>Rubricas</ins></h2>
                             <br/>
@@ -206,16 +215,17 @@
                                   <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
                                   <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a>
                                   <?php else: ?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
+                              <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
                                   <?php endif; endforeach; endif; ?>
                               </div>
-                            </div>                         
+                            </div>  
+                            <a href="php/rubricas.php?new=1" class="btn btn-info btn-lg">Nueva rubrica</a>
                         </div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
+                        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 text-left">
                             <br/>
                             <br/>
                             <br/>
-                            <img src="../pages/img/libros.png" alt="libros" class="img-rounded">
+                            <img src="../pages/img/rubri.png" alt="libros" class="img-rounded">
                         </div>
                     </div>
                     </div>

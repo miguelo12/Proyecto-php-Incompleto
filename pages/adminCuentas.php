@@ -144,7 +144,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <?php //Agregar for... ?>
                             <div>
-                                <table class="table table-bordered text-center" style=" margin: 0 auto;">
+                                <table class="table table-bordered table-condensed table-responsive text-center" style=" margin: 0 auto; margin-left: auto; margin-right: auto;">
                                     <caption><h2 class="text-center"><ins>Cuentas Docentes</ins></h2></caption>
                                     <tr>
                                         <th class="text-center">Nombre</th>

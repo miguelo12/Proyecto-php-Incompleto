@@ -26,36 +26,53 @@ class Seccion {
         $this->con = new Conexion();
     }
     
+    function Codigo()
+    {
+    $uc=TRUE;
+    $n=TRUE;
+    $sc=TRUE;
+    $source = 'abcdefghijklmnopqrstuvwxyz';
+    if($uc==1){ $source .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';}
+    if($n==1){ $source .= '1234567890';}
+    if($sc==1){ $source .= '@#*';}
+    $max_chars = 5;
+    if($max_chars>0){
+        $rstr = "";
+        $source = str_split($source,1);
+        for($i=1; $i<=$max_chars; $i++){
+            mt_srand((double)microtime() * 1000000);
+            $num = mt_rand(1,count($source));
+            $rstr .= $source[$num-1];
+        }
+ 
+    }
+      $this->setidSeccion($rstr);
+    }
+    
     public function Ingresar()
     {
-      
       $c=$this->con->getConexion();
       
-//      $rand = rand(0,10);
-//      
-//      $rand2 = substr($this->idAsignatura, 0, 2);
-//      
-//      $rand3 = substr($this->idDocente, 0, 2);
-//      
-//      $rand1 = chr(rand(65,90));
-//      
-//      $newid = "{$rand1}{$rand}{$rand2}{$rand3}";
-//      
-//      $this->setidSeccion($newid);
+      $this->codigo();
       
-      $sentencia=$c->prepare("insert into seccion values(?,?,?,?)");
+      while($this->ExisteonoPorID())
+      {
+        $this->codigo();
+      }
       
-      $sentencia->bind_param("sssi", $this->idSeccion, $this->Docente_idDocente, $this->Asignatura_idAsignatura, $this->Codigo);
+      $sentencia=$c->prepare("insert into seccion (idSeccion,Docente_idDocente,Asignatura_idAsignatura,Codigo) values(?,?,?,?)");
+      
+      $sentencia->bind_param("ssii", $this->idSeccion, $this->Docente_idDocente, $this->Asignatura_idAsignatura, $this->Codigo);
       
       $sentencia->execute();
       
       if($sentencia->affected_rows)
       {
           //devuelve la id.
-       return $sentencia->insert_id;
+       return true;
       }
       else {
-       return null;    
+       return false;    
       }
     }
     
@@ -63,9 +80,9 @@ class Seccion {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from seccion where idSeccion=?");
+      $sentencia=$c->prepare("select * from seccion where idSeccion=? and Docente_idDocente=?");
       
-      $sentencia->bind_param("s", $this->idSeccion);
+      $sentencia->bind_param("ss", $this->idSeccion, $this->Docente_idDocente);
       
       $sentencia->execute();
       
@@ -78,11 +95,32 @@ class Seccion {
       return false;
     }
     
-    public function DevolverSeccion()
+    public function ExisteonoPorCodigo()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from seccion");
+      $sentencia=$c->prepare("select * from seccion where Codigo=? and Docente_idDocente=?");
+      
+      $sentencia->bind_param("is", $this->Codigo, $this->Docente_idDocente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
+    public function DevolverSeccionDocente()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from seccion where Docente_idDocente=?");
+      
+      $sentencia->bind_param("s", $this->Docente_idDocente);
       
       $sentencia->execute();
       
@@ -116,8 +154,8 @@ class Seccion {
         $this->Asignatura_idAsignatura=$Asignatura_idAsignatura;
     }
     
-public function setCodigo($Codigo)
+    public function setCodigo($Codigo)
     {
-        $this->Codigo=$Codigo;
+        $this->Codigo=$Codigo.trim();
     }
 }

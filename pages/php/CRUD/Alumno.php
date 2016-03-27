@@ -151,7 +151,7 @@ class Alumno {
       if($sentencia->affected_rows)
       {
           //devuelve la id.
-       return $sentencia->insert_id;
+       return TRUE;
       }
       else {
        return null;    

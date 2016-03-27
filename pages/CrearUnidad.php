@@ -45,6 +45,15 @@ error_reporting(0);
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/pens-pencils.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-color: hsl(117, 0%, 100%);
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -277,16 +286,13 @@ error_reporting(0);
                                     <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-primary"/>
                                     <br/>
                                     <br/>
-                                    <?php	
-                                        if(isset($_GET['error'])){
-                                            if($_GET['error']=="1"){
-                                                echo "<div class='alert alert-warning'>";
-                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                                echo "<strong>Error, </strong> debe ingresar un nombre al recurso didáctico.";
-                                                echo "</div>"; 
-                                            }
-                                        }
-                                        ?>
+                                    <?php if(isset($_GET['error'])):
+                                            if($_GET['error']=="1"):?>
+                                               <div class="alert alert-warning">";
+                                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                               <strong>Error, </strong> debe ingresar un nombre al recurso didáctico.
+                                               </div>
+                                    <?php endif;endif;?>
                                     <br/>
                                 </div>
                                 </form>

@@ -46,7 +46,7 @@ class NivelCompetencia {
       }
     }
     
-    public function DevolverCriterio()
+    public function DevolverNivelCompetencia()
     {
       $c=$this->con->getConexion();
       

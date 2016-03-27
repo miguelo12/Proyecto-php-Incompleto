@@ -5,14 +5,15 @@
  * and open the template in the editor.
  */
 ob_start();
-include_once("./CRUD/Docente.php");
-include_once("./CRUD/Rubrica.php");
-include_once("./CRUD/TipoCriterioRubrica.php");  
-include_once("./CRUD/Criterio.php");
-include_once("./CRUD/NivelCompetencia.php");
-
+session_start();
 if(isset($_GET["user"])){
+
     if($_GET["user"]==1){
+        include_once("./CRUD/Docente.php");
+        include_once("./CRUD/Rubrica.php");
+        include_once("./CRUD/TipoCriterioRubrica.php");  
+        include_once("./CRUD/Criterio.php");
+        include_once("./CRUD/NivelCompetencia.php");
         if(isset($_GET["action"])){
             if($_GET["action"]==1){
                 $nombre = "";
@@ -213,7 +214,7 @@ if(isset($_GET["user"])){
                   }
                   else
                   {
-                      header("location: ../loginDocente.php?errorenvio=1");
+                      header("location: ../indexDocente.php?errorenvio=1");
                       die();
                   }
                 }

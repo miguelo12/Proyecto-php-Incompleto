@@ -7,6 +7,7 @@
  */
 ob_start();
 session_start();
+error_reporting(0);
 include_once("./CRUD/RecursosDidacticos.php");
 include_once("./CRUD/UnidadAprendizaje.php");
 include_once("./CRUD/TipoCriterioRubrica.php");
@@ -21,42 +22,22 @@ if(!isset($_GET["action"])){
         {
           if(!isset($_SESSION["rubrica"]))
           {
-             unset($tipocriteriorubrica);
-             unset($nivelcompetencia);
-             unset($criterio);
-             unset($rubrica);
              $tipocriteriorubrica = new TipoCriterioRubrica();
              $nivelcompetencia = new NivelCompetencia();
              $criterio = new Criterio();
              $rubrica = new Rubrica();
-             
+
              $docente = $_SESSION["docente"];
              
              $rubrica->setDocente_idDocente($docente["id"]);
              $rubricadocente = $rubrica->DevolverRubricaPredeterminada();
              
-             $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
-             $tipocriteriorubricaarray = $tipocriteriorubrica->DevolverTipoCriterioRubrica();
-             
-             foreach ($tipocriteriorubricaarray as $ti){
-             $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($ti["idTipoCriterioRubrica"]);
-             $arraycriterio[] = $criterio->DevolverCriterio(); 
-             }
-             
-             foreach ($arraycriterio as $ti){
-             $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
-             $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
-             }
-             
-             $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
-             $_SESSION["rubrica"] = $RubricaCompleta;
-             
+             $_SESSION["rubrica"] = $rubricadocente;
           }
-            
+        
         $_SESSION["titulocreacion"] = $new;
         header("location: ../RecursoDidactico.php");
         die();
-        
         } 
         else
         {
@@ -67,14 +48,7 @@ if(!isset($_GET["action"])){
         }
     }
     elseif (isset($_GET["idRubrica"])) {
-        
-        unset($tipocriteriorubrica);
-        unset($nivelcompetencia);
-        unset($criterio);
         unset($rubrica);
-        $tipocriteriorubrica = new NivelCompetencia();
-        $nivelcompetencia = new NivelCompetencia();
-        $criterio = new Criterio();
         $rubrica = new Rubrica();
         
         $docente = $_SESSION["docente"];
@@ -82,22 +56,8 @@ if(!isset($_GET["action"])){
         $rubrica->setDocente_idDocente($docente["id"]);
         $rubrica->setIdRubrica($_GET["idRubrica"]);
         $rubricadocente = $rubrica->DevolverRubricaid();
-
-        $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
-        $tipocriteriorubricaarray = $tipocriteriorubrica->DevolverTipoCriterioRubrica();
-
-        foreach ($tipocriteriorubricaarray as $ti){
-        $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($ti["idTipoCriterioRubrica"]);
-        $arraycriterio[] = $criterio->DevolverCriterio(); 
-        }
-
-        foreach ($arraycriterio as $ti){
-        $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
-        $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
-        }
-
-        $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
-        $_SESSION["rubrica"] = $RubricaCompleta;
+        
+        $_SESSION["rubrica"] = $rubricadocente;
         
         if(isset($_SESSION["rubrica"])){
         header("location: ../CrearUnidad.php");
@@ -148,22 +108,19 @@ else
       if(isset($_SESSION["NuevaUnidad"]))
       {
          //creacion a finalizar;
+         //unidad es un array que contiene 
          $unidad = $_SESSION["NuevaUnidad"];
          unset($tipocriteriorubrica);
          unset($nivelcompetencia);
-         unset($criterio);
-         unset($rubrica);
          $recursosdidactico = new RecursosDidacticos();
          $unidadaprendizaje = new UnidadAprendizaje();
-         $nivelcompetencia = new NivelCompetencia();
-         $criterio = new Criterio();
-         $rubrica = new Rubrica();
+         $rubrica = $_SESSION["rubrica"];
          
          try
          {                      
          $docente = $_SESSION["docente"];
          $titulo = $_SESSION["titulocreacion"];
-         $unidadaprendizaje->setRubrica_idRubrica($rubrica);
+         $unidadaprendizaje->setRubrica_idRubrica($rubrica["idRubrica"]);
          $unidadaprendizaje->setTitulo($titulo);
          $unidadaprendizaje->setDocente_idDocente($docente["id"]);
          $idunidad = $unidadaprendizaje->Ingresar();
@@ -190,8 +147,6 @@ else
     {
       if(isset($_SESSION["autoevaluacion"]) && isset($_SESSION["coevaluacion"]) && isset($_SESSION["recursosdidacticos"]))
       {
-          $autoevaluacion = $_SESSION["autoevaluacion"];
-          $coevaluacion = $_SESSION["coevaluacion"];
           $recursosdidacticos = $_SESSION["recursosdidacticos"];
           
           if(isset($_SESSION["Ayuda"]))
@@ -208,22 +163,22 @@ else
           {
               if(isset($preguntas))
               {
-                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "ayuda"=>$ayuda, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "ayuda"=>$ayuda);
               }
               else
               {
-                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "ayuda"=>$ayuda, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "ayuda"=>$ayuda);
               }
           }
           else
           {
               if(isset($preguntas))
               {
-                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas);
               }
               else
               {
-                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "autoevaluacion"=>$autoevaluacion, "coevaluacion"=>$coevaluacion);
+                  $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos);
               }
           }
           
@@ -239,4 +194,5 @@ else
       }
     }
 }
+
 ob_end_flush();

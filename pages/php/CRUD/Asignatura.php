@@ -15,8 +15,9 @@ include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Asignatura {
-    private $idAsignatura; #s
+    private $idAsignatura; #i
     private $nombre; #s
+    private $Docente_idDocente; #s
     
     private $con;
     
@@ -24,13 +25,53 @@ class Asignatura {
         $this->con = new Conexion();
     }
     
-    public function TraerporID()
+    public function Ingresar()
+    {
+      
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("insert into asignatura (Nombre,Docente_idDocente) values(?,?)");
+      
+      $sentencia->bind_param("ss", $this->nombre, $this->Docente_idDocente);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return $sentencia->insert_id;
+      }
+      else {
+       return null;    
+      }
+    }
+    
+    public function ExisteonoPorNombre()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from asignatura where idAsignatura=?");
+      $sentencia=$c->prepare("select * from asignatura where nombre=? and Docente_idDocente=?");
       
-      $sentencia->bind_param("s", $this->idAsignatura);
+      $sentencia->bind_param("ss", $this->nombre, $this->Docente_idDocente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
+    }
+    
+    public function DevolverAsignaturasNombre()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from asignatura where nombre=? and Docente_idDocente=?");
+      
+      $sentencia->bind_param("ss", $this->nombre, $this->Docente_idDocente);
       
       $sentencia->execute();
       
@@ -39,7 +80,7 @@ class Asignatura {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res = array("id" => $row["idAsignatura"],"nombre" => $row["nombre"],);
+              $res = $row;
           }
       }
       else {
@@ -49,42 +90,13 @@ class Asignatura {
       return $res;
     }
     
-    public function Ingresar()
-    {
-      
-      $c=$this->con->getConexion();
-      
-      $rand = rand(0,10);
-      
-      $rand2 = substr($this->nombre, 0, 2);
-      
-      $rand1 = chr(rand(65,90));
-      
-      $newid = "{$rand1}{$rand}{$rand2}";
-      
-      $this->setidAsignatura($newid);
-      
-      $sentencia=$c->prepare("insert into asignatura values(?,?)");
-      
-      $sentencia->bind_param("ss", $this->idAsignatura, $this->nombre);
-      
-      $sentencia->execute();
-      
-      if($sentencia->affected_rows)
-      {
-          //devuelve la id.
-       return $this->idAsignatura;
-      }
-      else {
-       return null;    
-      }
-    }
-    
-    public function DevolverAsignaturas()
+    public function DevolverAsignaturasDocente()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from asignatura");
+      $sentencia=$c->prepare("select * from asignatura where Docente_idDocente=?");
+      
+      $sentencia->bind_param("s", $this->Docente_idDocente);
       
       $sentencia->execute();
       
@@ -113,4 +125,8 @@ class Asignatura {
         $this->idAsignatura=$idAsignatura;
     }
     
+    public function setDocente_idDocente($Docente_idDocente)
+    {
+        $this->Docente_idDocente=$Docente_idDocente;
+    }
 }

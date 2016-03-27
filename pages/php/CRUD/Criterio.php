@@ -17,7 +17,7 @@ include_once ("../../php/Conexion/Conexion.php");
 class Criterio {
     private $idCriterio; #i
     private $Nombre; #s
-    private $TipoCriterioRubrica_TipoCriterioRubrica; #i
+    private $TipoCriterioRubrica_idTipoCriterioRubrica; #i
     
     private $con;
     
@@ -68,9 +68,9 @@ class Criterio {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from criterio where TipoCriterioRubrica_TipoCriterioRubrica=?");
+      $sentencia=$c->prepare("select * from criterio where TipoCriterioRubrica_idTipoCriterioRubrica=?");
       
-      $sentencia->bind_param("i", $this->TipoCriterioRubrica_TipoCriterioRubrica);
+      $sentencia->bind_param("i", $this->TipoCriterioRubrica_idTipoCriterioRubrica);
       
       $sentencia->execute();
       
@@ -94,9 +94,9 @@ class Criterio {
         $this->idCriterio=$idCriterio;
     }
     
-    public function setTipoCriterioRubrica_TipoCriterioRubrica($TipoCriterioRubrica_TipoCriterioRubrica)
+    public function setTipoCriterioRubrica_idTipoCriterioRubrica($TipoCriterioRubrica_idTipoCriterioRubrica)
     {
-        $this->TipoCriterioRubrica_TipoCriterioRubrica=$TipoCriterioRubrica_TipoCriterioRubrica;
+        $this->TipoCriterioRubrica_idTipoCriterioRubrica=$TipoCriterioRubrica_idTipoCriterioRubrica;
     }
     
     public function setNombre($Nombre)

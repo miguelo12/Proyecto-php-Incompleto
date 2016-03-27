@@ -1,5 +1,5 @@
 <?php session_start();
-      error_reporting(E_ALL ^ E_WARNING);
+      error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -15,6 +15,35 @@
   else
       {
         $docente = $_SESSION["docente"];
+        
+        include '../pages/php/CRUD/Seccion.php';
+        include '../pages/php/CRUD/Asignatura.php';
+        
+        $seccion = new Seccion();
+        $asignatura = new Asignatura();
+        
+        $seccion->setDocente_idDocente($docente["id"]);
+        $arraySeccion = $seccion->DevolverSeccionDocente();
+        
+        $asignatura->setDocente_idDocente($docente["id"]);
+        $arrayAsignatura = $asignatura->DevolverAsignaturasDocente();  
+        
+        unset($conteo);
+        $du = 0;
+        $conteo;
+        foreach ($arrayAsignatura as $tq)
+        {
+           foreach ($arraySeccion as $tk)
+           {
+              if($tq["idAsignatura"] == $tk["Asignatura_idAsignatura"])
+              {
+                $du = $du + 1;
+              }
+           }
+           $conteo[] = $du;
+           $du = 0;
+        } 
+        
       }
 ?>
 <!DOCTYPE html>
@@ -46,6 +75,14 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/laptop.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,20 +90,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!--jquery code -->
-    <link rel="stylesheet" href="../pages/css/validationEngine.jquery.css" type="text/css">
-    <link rel="stylesheet" href="../pages/css/template.css" type="text/css">
-    <script src="../component/jquery/dist/jquery.min.js"></script>   
-    <script src="../js/languages/jquery.validationEngine-es.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-		jQuery(document).ready(function(){
-			// binds form submission and fields to the validation engine
-			jQuery("#formulario").validationEngine('attach', {promptPosition : "bottomLeft", autoPositionUpdate : true});
-            });
-    </script>
-    
+  <script src="../component/jquery/dist/jquery.min.js"></script>
 </head>
-
 <body>
         <!-- Navigation -->
         
@@ -165,7 +190,23 @@
         <br/>
         <br/>
         
-        
+        <?php  if(isset($_GET["error"])): if($_GET["error"]==2):?>
+        <div class="alert alert-warning">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> ocurrio un algo inesperado.</p>
+        </div>
+        <?php elseif ($_GET["error"]==3):?>
+        <div class="alert alert-warning">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el codigo de seccion ya existe.</p>
+        </div>
+        <?php endif; endif;?>
+        <?php if(isset($_GET["succes"])): if($_GET["succes"]==1):?>
+        <div class="alert alert-success">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Listo, </strong> se agrego una seccion y/o asignatura.</p>
+        </div>
+        <?php endif; endif;?>
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
@@ -173,30 +214,52 @@
                     <div class="well well-lg">
                     <div class="row">
                         <div class="col-xs-12">
-                            <br/>
                             
-                            <br/>
-                            <br/>
-                            <?php //Agregar for... ?>
-                            <div class="well">
-                                <table class="table table-bordered" style=" margin: 0 auto;">
+                            <div class="well" style="text-align: center; overflow-x: auto">
+                                <table class="table table-bordered table-condensed">
                                     <caption><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
                                     <tr>
                                         <th class="text-center">Nombre Asignatura</th>
                                         <th class="text-center">curso o sección</th>
                                         <th class="text-center">PIN</th>
                                     </tr>
+                                    <?php if(isset($arrayAsignatura)): $tp = 0?>
+                                    <?php foreach ($arrayAsignatura as $du):?>
                                     <tr>
+                                        <td rowspan="<?= $conteo[$tp] ?>">
+                                            <p><?= $du["Nombre"] ?></p>
+                                        </td>
+                                    <?php if(isset($arraySeccion)): ?> 
+                                    <?php $do = true; foreach ($arraySeccion as $de):
+                                          if($du["idAsignatura"] == $de["Asignatura_idAsignatura"]):?>
+                                    <?php if($do): ?>     
                                         <td>
-                                            
+                                            <?= $de["Codigo"]?>
                                         </td>
                                         <td>
-                                            
-                                        </td>
-                                        <td>
-                                            
+                                            <?= $de["idSeccion"]?>
                                         </td>
                                     </tr>
+                                    <?php $do=false; else: ?>
+                                    <tr>
+                                        <td>
+                                            <?= $de["Codigo"]?>
+                                        </td>
+                                        <td>
+                                            <?= $de["idSeccion"]?>
+                                        </td>
+                                    </tr>
+                                    <?php endif;
+                                          endif;
+                                          endforeach;  
+                                          else: ?>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <?php endif; ?>
+                                    <?php $tp = $tp +1; endforeach; endif; ?>
                                 </table>
                             </div>
                         </div> 
@@ -225,19 +288,19 @@
                                     <h2><ins>Creacion de Seccion</ins></h2>
                                 </div>
                                 <div class="row">
-                                    <form action="" method="POST" id="formulario" autocomplete="off">
+                                    <form action="php/creacionAS.php" method="POST" id="formulario" autocomplete="off">
                                         <fieldset> 
                                         <div class="col-xs-12">
                                             <br/>
                                             <br/>
                                             <label>Nombre Asignatura:</label>
-                                            <input class="form-control validate[required] text-input" type="text" name="nombre" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <input class="form-control" type="text" name="nombre" value="" placeholder="Ingrese aquí el nombre"/>
                                             <br/>
                                         </div>
                                         <div class="col-xs-12">
 
                                             <label>Codigo de la Seccion o Curso:</label>
-                                            <input class="form-control validate[required] text-input" type="text" name="codigo" value="" placeholder="Ingrese aquí el nombre"/>
+                                            <input class="form-control" type="text" name="codigo" value="" placeholder="Ingrese aquí el nombre"/>
                                             <br/>
                                         </div>                             
                                         </fieldset>

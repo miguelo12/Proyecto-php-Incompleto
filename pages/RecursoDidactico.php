@@ -16,13 +16,7 @@ error_reporting(0);
       {
        $docente = $_SESSION["docente"];
        
-       if(!isset($_SESSION["autoevaluacion"])){
-       $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
-       $_SESSION["autoevaluacion"] = $arrey;}
        
-       if(!isset($_SESSION["coevaluacion"])){
-       $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
-       $_SESSION["coevaluacion"] = $arrey;}
       }
 ?>
 <!DOCTYPE html>
@@ -56,6 +50,15 @@ error_reporting(0);
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
     <link href="css/tab.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/lab-flask.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-color: hsl(227, 97%, 90%);
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -81,7 +84,7 @@ error_reporting(0);
 		window.prettyPrint && prettyPrint()
             //que hace el boton finish
             $('#pills .finish').click(function() {
-                <?php if(isset($_SESSION["autoevaluacion"]) && isset($_SESSION["coevaluacion"]) && isset($_SESSION["recursosdidacticos"])): ?>
+                <?php if(isset($_SESSION["autoevaluacion"])): ?>
                     document.getElementById("finalform").submit();
                 <?php else: ?>
                     alert('No puedes terminar la unidad lea los requisitos.');
@@ -199,12 +202,12 @@ error_reporting(0);
         <br/>
         <br/>
 
-        <div id="page-content-wrapper content" >
+        <div id="page-content-wrapper" >
           <div class="container separate-rows tall-rows">
-            <div class="row">
+            <div class="row content">
                 <div class="col-xs-12">
                     <div class="well well-lg">
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-xs-12"> 
                             <section id="wizard">
                                 <div class="page-header">
@@ -216,10 +219,7 @@ error_reporting(0);
                                             <li><a href="#tabi2" data-toggle="tab">Verificar</a></li>
                                             <li><a href="#tabi3" data-toggle="tab">Agregar preguntas</a></li>
                                             <li><a href="#tabi4" data-toggle="tab">Ayudas</a></li>
-                                            <li><a href="#tabi5" data-toggle="tab">Editar Autoevaluación</a></li>
-                                            <li><a href="#tabi6" data-toggle="tab">Editar Coevaluación</a></li>
-                                            <li><a href="#tabi7" data-toggle="tab">Editar Evaluación</a></li>
-                                            <li><a href="#tabi8" data-toggle="tab">Finalizar</a></li>
+                                            <li><a href="#tabi5" data-toggle="tab">Finalizar</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" id="tabi1">
@@ -373,16 +373,34 @@ error_reporting(0);
                                                             <p class="help-block">No agregue signo de interrogación.</p>
                                                             <a name="submit1"></a>
                                                     </td>
-                                                    <?php	
-                                                        if(isset($_GET['pre'])){
-                                                            if($_GET['pre']=="100"){
-                                                                echo "<div class='alert alert-warning'>";
-                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                                                echo "<strong>Error, </strong> debe ingresar una pregunta.";
-                                                                echo "</div>"; 
-                                                            }
-                                                        }
-                                                    ?>
+                                                    <?php if(isset($_GET["submit"])):
+                                                            if($_GET["submit"]=="1"):?>
+                                                                <div class="alert alert-success">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Listo, </strong> pregunta agregada.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                    <?php if(isset($_GET["pre"])):
+                                                            if($_GET["pre"]=="100"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Error, </strong> Está vacio al intentar agregar una pregunta.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["delete"])):
+                                                            if($_GET["delete"]=="1"):?>
+                                                                <div class="alert alert-danger">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Listo, </strong> se ha eliminado una pregunta.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["modify"])):
+                                                            if($_GET["modify"]=="1"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Listo, </strong> se modifico una pregunta.
+                                                                </div>
+                                                    <?php endif; endif; ?>
                                                 </tr>
                                                 </form>
                                             </table>
@@ -452,376 +470,37 @@ error_reporting(0);
                                                                 <a name="submit2"></a>
                                                             </div>
                                                         </td>
-                                                        <?php	
-                                                        if(isset($_GET['pre'])){
-                                                            if($_GET['pre']=="101"){
-                                                                echo "<div class='alert alert-warning'>";
-                                                                echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-                                                                echo "<strong>Error, </strong> debe rellenar todos los espacios en blanco.";
-                                                                echo "</div>"; 
-                                                            }
-                                                        }
-                                                        ?>
+                                                        <?php if(isset($_GET["submit"])):
+                                                            if($_GET["submit"]=="1"):?>
+                                                                <div class="alert alert-success">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                               <strong>Listo</strong>, se modifico y/o agrego una ayuda.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                    <?php if(isset($_GET["vacio"])):
+                                                            if($_GET["vacio"]=="1"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                Está <strong>vacío</strong>, no se guardara Ayudas.
+                                                                </div>
+                                                    <?php endif; endif; ?>
                                                     </tr>
                                                 </form>
                                             </table>
-                                        </div>
+                                        </div>                                      
                                         <div class="tab-pane well" id="tabi5">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <th class="text-center">Seleccionar:</th>
-                                                    <th class="text-center">Criterios</th>
-                                                    <th class="text-center">Nota</th>
-                                                </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
-                                                    <?php if(isset($_SESSION["autoevaluacion"])):
-                                                          $autoeval = $_SESSION["autoevaluacion"];
-                                                          foreach($autoeval as $pu):?>
-                                                    <tr>
-                                                    <td style="width: 7%">
-                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
-                                                    </td>
-                                                    <td style="width: 78%">
-                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                    </td>
-                                                    <td style="width: 15%">
-                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                    </td>
-                                                    </tr>
-                                                    <?php endforeach; endif;?>
-                                                    <tr>
-                                                        <td colspan="3">
-                                                            <label for="moreinput">Agregar Comentario</label>
-                                                            <br/>
-                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3">
-                                                            <div class="form-group">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <th colspan="3" class="text-center">Crear Nuevos Criterios</th>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="3">
-                                                            <input class="form-control" type="text" name="preguntas">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="3">
-                                                            <div class="form-group">                                                             
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
-                                                                <a name="submit3"></a>
-                                                            </div>
-                                                        </td>
-                                                        <?php	
-                                                        if(isset($_GET['pre'])):
-                                                            if($_GET['pre']=="102"):?>
-                                                                <div class="alert alert-warning">
-                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
-                                                                </div>
-                                                        <?php endif; endif;?>
-                                                    </tr>
-                                                </form>
-                                            </table>
-                                        </div>
-                                        <div class="tab-pane well" id="tabi6">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <th colspan="2" class="text-center">Criterios</th>
-                                                    <th colspan="5" class="text-center">integrantes</th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center">Selecciona:</th>
-                                                    <th class="text-center"></th>
-                                                    
-                                                    <?php // Detecta la cantidad de alumnos estan en la tabla.
-                                                          if(isset($_SESSION["tabla"])):
-                                                          if($_SESSION["tabla"]==1):?>
-                                                        <th class="text-center">1</th>
-                                                    <?php elseif($_SESSION["tabla"]==2):?>
-                                                        <th class="text-center">1</th>
-                                                        <th class="text-center">2</th>
-                                                    <?php elseif($_SESSION["tabla"]==3):?>
-                                                        <th class="text-center">1</th>
-                                                        <th class="text-center">2</th>
-                                                        <th class="text-center">3</th>
-                                                    <?php elseif($_SESSION["tabla"]==4):?>
-                                                        <th class="text-center">1</th>
-                                                        <th class="text-center">2</th>
-                                                        <th class="text-center">3</th>
-                                                        <th class="text-center">4</th>
-                                                    <?php elseif($_SESSION["tabla"]==5):?>
-                                                        <th class="text-center">1</th>
-                                                        <th class="text-center">2</th>
-                                                        <th class="text-center">3</th>
-                                                        <th class="text-center">4</th>
-                                                        <th class="text-center">5</th>
-                                                    <?php endif; else:?>
-                                                        <th class="text-center">1</th>
-                                                        <th class="text-center">2</th>
-                                                        <th class="text-center">3</th>
-                                                    <?php endif;?>
-                                                </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=4" id="formulario2" autocomplete="off">
-                                                        <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
-                                                              if(isset($_SESSION["tabla"])):
-                                                              if($_SESSION["tabla"]==1):
-                                                              if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        <tr>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                        </td>
-                                                        <td style="width: 86%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==2):
-                                                              if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        <tr>
-                                                            <td style="width: 7%">
-                                                                <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                            </td>
-                                                            <td style="width: 79%">
-                                                                <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                            </td>
-                                                            <td style="width: 7%">
-                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                            </td>
-                                                            <td style="width: 7%">
-                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==4):
-                                                              if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        <tr>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                        </td>
-                                                        <td style="width: 65%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==5):
-                                                              if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        <tr>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                        </td>
-                                                        <td style="width: 58%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; elseif($_SESSION["tabla"]==3):
-                                                               if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        <tr>
-                                                        <td style="width: 7%">
-                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                        </td>
-                                                        <td style="width: 72%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        <td style="width: 7%">
-                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                        </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; endif; 
-                                                              else:
-                                                              if(isset($_SESSION["coevaluacion"])):
-                                                              $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        
-                                                        <tr>
-                                                            <td style="width: 7%">
-                                                                <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
-                                                            </td>
-                                                            <td style="width: 72%">
-                                                                <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                            </td>
-                                                            <td style="width: 7%">
-                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                            </td>
-                                                            <td style="width: 7%">
-                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                            </td>
-                                                            <td style="width: 7%">
-                                                                <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                            </td>
-                                                        </tr>
-                                                        <?php endforeach; endif; endif;?>
-                                                    <tr>
-                                                        <td colspan="7">
-                                                            <a name="submit4"></a>
-                                                            <label for="moreinput">Agregar Comentario</label>
-                                                            <br/>
-                                                            <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="7">
-                                                            <div class="form-group">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=2" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="7" class="text-center">Crear Nuevos Criterios</th>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="7">
-                                                            <input class="form-control" type="text" name="preguntas">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <td colspan="7">
-                                                            <div class="form-group">                                                             
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
-                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
-                                                            </div>
-                                                        </td>
-                                                        <?php if(isset($_GET['pre'])):
-                                                            if($_GET['pre']=="103"):?>  
-                                                                <div class="alert alert-warning">
-                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
-                                                                </div> 
-                                                        <?php endif;endif;?>        
-                                                    </tr>
-                                                </form>
-                                            </table>
-                                            <br/>
-                                            
-                                            <!--a lo mejor usaremos php y no javascript-->
-                                            <form method="post" action="php/AvanceDidactico.php?pre=5">
-                                            <button type="submit" class="btn btn-primary" style="float:right; margin-top: 44px">Modificar</button>
-                                            <div class="row">
-                                                <div class="col-xs-2" style="float:right;">
-                                                    <label for="textocantidadalumno">Cantidad de alumnos por evaluar</label>
-                                                    <input type="text" id="textocantidadalumno" name="cantidad" maxlength="1" onkeypress="return event.charCode >= 49 && event.charCode <= 53" class="form-control">
-                                                    <p class="help-block">Modificara la tabla. (Minimo 1 | Maximo 5 )</p>
-                                                </div>
-                                            </div>
-                                            <br/>
-                                            </form>
-                                            
-                                        </div>
-                                        
-                                        <div class="tab-pane well" id="tabi7">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <th class="text-center">Criterios</th>
-                                                    <?php //puntaje ?>
-                                                    <th class="text-center"><input class="form-control" type="text" value="" name="procedimiento"></th>
-                                                    <?php ?>
-                                                </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
-                                                    <tr>
-                                                        <td style="width: 35%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                        </td>
-                                                        <td>
-                                                            <textarea class="form-control" rows="4" name="procedimiento"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3">
-                                                            <div class="form-group text-center" style="margin: 0px auto">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" >Agregar Criterio</button>&nbsp;&nbsp;&nbsp;
-                                                                <br/>
-                                                                <br/>
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-danger" >Eliminar Competencia</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-warning" >Agregar Competencia</button>&nbsp;&nbsp;&nbsp;
-                                                                <br/>
-                                                                <br/>
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" >Guardar</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>                                                 
-                                                        <?php	
-                                                        if(isset($_GET['pre'])):
-                                                            if($_GET['pre']=="102"):?>
-                                                                <div class="alert alert-warning">
-                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                                <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
-                                                                </div>
-                                                        <?php endif; endif;?>
-                                                    </tr>
-                                                </form>
-                                            </table>
-                                        </div>
-                                        
-                                        <div class="tab-pane well" id="tabi8">
                                             <br/>
                                             <label for="contenido">Esta es la ultima parte para crear tu unidad.</label>
                                             <div class="panel panel-info" id="contenido">
                                               <div class="panel-heading">
-                                                <h3>Para poder finalizar tienes que tener al menos estos puntos:</h3>
+                                                <h3>Para poder finalizar tienes que tener al menos este paso:</h3>
                                                 <ol>
                                                     <li>Tener un recurso didactico.</li>
-                                                    <li>Tener un criterio en autoevaluacion.</li>
-                                                    <li>Tener un criterio en coevaluacion.</li>
                                                 </ol>
+                                                <p class="help-block text-center">Recuerda que si no seleccionaste rubrica, se colocara la predeterminada y no se podra cambiar.</p>
                                             </div>
                                             </div>
-                                            <p class="lead text-center">Recuerda que al finalizar, debes guardar tu unidad.</p>
+                                            <p class="lead text-center">Recuerda guardar tu unidad.</p>
                                             <form method="post" action="php/creacionUnidad.php?action=2" id="finalform" name="finalform" hidden="true"></form>
                                             <br/>
                                             <br/>
