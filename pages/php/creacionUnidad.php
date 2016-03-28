@@ -68,9 +68,11 @@ if(!isset($_SESSION["editar"])){
             //EDITAR UNIDAD DE APRENDIZAJE
             $recursosdidactico = new RecursosDidacticos();
             $unidadaprendizaje = new UnidadAprendizaje();
+            $ayuda = new Ayuda();
+            $preguntas = new Preguntas();
             $unidadid = $_GET["editar"];
             
-            
+            $recu = $recursosdidactico->DevolverRecurso();
             
             
             
