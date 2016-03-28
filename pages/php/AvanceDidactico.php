@@ -129,7 +129,7 @@ if(isset($_GET["pre"]))
                die(); 
             }
             
-             header("location: ../RecursoDidactico.php?jump=3&submit=1#submit2");
+             header("location: ../RecursoDidactico.php?jump=3&submit=100#submit2");
              die();
         }
         else
@@ -217,7 +217,7 @@ if(isset($_GET["pre"]))
                die();
             }
             
-            header("location: ../RecursoDidactico.php?jump=3&submit=1#submit2");
+            header("location: ../RecursoDidactico.php?jump=3&submit=100#submit2");
             die();
         }
         

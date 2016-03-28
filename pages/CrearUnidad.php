@@ -251,7 +251,7 @@ error_reporting(0);
                                     <br/>
                                     <label>Titulo</label>
                                     <div class="text-center">
-                                    <?php if(isset($_SESSION["recursosdidacticos"])):?>
+                                    <?php if(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"])):?>
                                     <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
                                     <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>

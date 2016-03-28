@@ -87,7 +87,7 @@ if(isset($_GET["user"])){
                                 foreach ($array_criterios as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
-                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[1]);
+                                 $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($idtipocriteriorubrica[1]);
                                  $idCriterio = $criterio->Ingresar();
                                  
                                  for($i = 0; $i <= 3; $i++){
@@ -105,7 +105,7 @@ if(isset($_GET["user"])){
                                 foreach ($array_criterios1 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
-                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[2]);
+                                 $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($idtipocriteriorubrica[2]);
                                  $idCriterio = $criterio->Ingresar();
                                 }
                                 
@@ -113,7 +113,7 @@ if(isset($_GET["user"])){
                                 foreach ($array_criterios2 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
-                                 $criterio->setTipoCriterioRubrica_TipoCriterioRubrica($idtipocriteriorubrica[3]);
+                                 $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($idtipocriteriorubrica[3]);
                                  $idCriterio = $criterio->Ingresar();
                                 }
                                 

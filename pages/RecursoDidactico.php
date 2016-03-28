@@ -471,7 +471,7 @@ error_reporting(0);
                                                             </div>
                                                         </td>
                                                         <?php if(isset($_GET["submit"])):
-                                                            if($_GET["submit"]=="1"):?>
+                                                            if($_GET["submit"]=="100"):?>
                                                                 <div class="alert alert-success">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                <strong>Listo</strong>, se modifico y/o agrego una ayuda.

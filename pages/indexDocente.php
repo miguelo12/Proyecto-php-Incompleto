@@ -56,7 +56,7 @@
             background-image: url("./img/scientist.png");
             background-repeat: repeat;
             background-attachment: fixed;
-            background-color: hsl(50, 99%, 93%);
+            background-color: hsl(349, 25%, 90%);
         }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

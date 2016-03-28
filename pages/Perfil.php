@@ -44,6 +44,15 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/spaceman.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-color: hsl(171, 30%, 90%);
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
