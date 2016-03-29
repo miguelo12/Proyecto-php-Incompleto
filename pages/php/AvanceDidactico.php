@@ -8,17 +8,19 @@ session_start();
 if(isset($_GET["pre"]))
 {
     if($_GET["pre"]== 1)
-{
+    {
       if(isset($_GET["a"])){ 
         if($_GET["a"]==1){
+          if(!isset($_GET["editar"])){
           if(isset($_POST["preguntas"])){
               if(isset($_SESSION["preguntas"])){
                   if(!empty($_POST["preguntas"])){
                   $pre = $_POST["preguntas"];
                   $array = $_SESSION["preguntas"];
                   $index = count($array);
-                  $array[] = array("id"=>$index,"pre"=>$pre, "key"=>0);
+                  $array[] = array("id"=>$index,"pre"=>$pre, "key"=>null);
                   $_SESSION["preguntas"] =  $array;
+                  
                   }else{
                       header("location:../RecursoDidactico.php?jump=2&pre=100");
                       die();
@@ -29,13 +31,41 @@ if(isset($_GET["pre"]))
                   if(!empty($_POST["preguntas"])){
                   $pre = $_POST["preguntas"];
                   $index = 0;
-                  $array[$index] = array("id"=>$index,"pre"=>$pre, "key"=>0);
+                  $array[$index] = array("id"=>$index,"pre"=>$pre, "key"=>null);
                   $_SESSION["preguntas"] =  $array;
                   }else{
                       header("location:../RecursoDidactico.php?jump=2&pre=100");
                       die();
                   }
               }
+          }
+          }else{
+          //MODO EDITABLE
+//            if(isset($_SESSION["new"])){
+//                if(!empty($_POST["preguntas"])){
+//                $pre = $_POST["preguntas"];
+//                $array = $_SESSION["new"];
+//                $index = count($array);
+//                $array[] = array("id"=>$index,"pre"=>$pre, "key"=>null);
+//                $_SESSION["new"] =  $array;
+//
+//                }else{
+//                    header("location:../RecursoDidactico.php?jump=2&pre=100");
+//                    die();
+//                }
+//            }
+//            else
+//            {
+//                if(!empty($_POST["preguntas"])){
+//                $pre = $_POST["preguntas"];
+//                $index = 0;
+//                $array[$index] = array("id"=>$index,"pre"=>$pre, "key"=>null);
+//                $_SESSION["new"] =  $array;
+//                }else{
+//                    header("location:../RecursoDidactico.php?jump=2&pre=100");
+//                    die();
+//                }
+//            }
           }
         }elseif ($_GET["a"] == 2) {
           if(isset($_GET["id"])){ 

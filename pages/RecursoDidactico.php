@@ -16,7 +16,9 @@ error_reporting(0);
       {
        $docente = $_SESSION["docente"];
        
-       
+       if(isset($_SESSION["editar"])){
+       $titu = $_SESSION["editar"];
+      }
       }
 ?>
 <!DOCTYPE html>
@@ -211,7 +213,11 @@ error_reporting(0);
                             <div class="col-xs-12"> 
                             <section id="wizard">
                                 <div class="page-header">
+                                <?php if(!isset($_SESSION["editar"])):?>
                                 <h1>Crea tu unidad de aprendizaje</h1>
+                                <?php else:?>
+                                <h1>Editar unidad de aprendizaje</h1>
+                                <?php endif;?>
                                 </div>
                                 <div id="pills">
                                     <ul>
@@ -323,17 +329,16 @@ error_reporting(0);
                                             <br/>
                                             <label for="moreinput">Estos son tus archivos subidos.</label>
                                             <br/>
-                                            <?php if(isset($_SESSION["recursosdidacticos"]))
-                                                {
-                                                  echo "<ul>";
-                                                  $recursos = $_SESSION["recursosdidacticos"];
-                                                  foreach($recursos as $do)
-                                                  {
-                                                     echo "<li><img alt='im' src='img/desconocido.png'/><br/>";
-                                                     echo "[Nombre]: ".$do["nombre"]." [Descripción]: ".$do["descripcion"]."</li>";
-                                                  }
-                                                  echo "</ul>";
-                                                }?>
+                                            <?php if(isset($_SESSION["recursosdidacticos"])): ?>
+                                                  <ul>
+                                                  <?php $recursos = $_SESSION["recursosdidacticos"];
+                                                        foreach($recursos as $do):?>
+                                                     <li><img alt="imagen" src="img/desconocido.png"/>
+                                                     <br/>
+                                                     [Nombre]: <?= $do["nombre"]?> [Descripción]: <?= $do["descripcion"]?></li>                                                  
+                                                  <?php endforeach; ?>
+                                                  </ul>
+                                            <?php endif;?>
                                             <br/>
                                             <br/>
                                             </form>

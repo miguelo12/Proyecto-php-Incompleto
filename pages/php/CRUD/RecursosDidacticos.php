@@ -52,9 +52,9 @@ class RecursosDidacticos {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from recursosdidacticos where idRecursosDidacticos=?");
+      $sentencia=$c->prepare("select * from recursosdidacticos where UnidadAprendizaje_idUnidadAprendizaje=?");
       
-      $sentencia->bind_param("i", $this->idRecursosDidacticos);
+      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
       
       $sentencia->execute();
       

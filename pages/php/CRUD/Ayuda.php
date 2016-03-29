@@ -50,6 +50,31 @@ class Ayuda {
       }
     }
     
+    public function DevolverAyuda()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from ayuda where UnidadAprendizaje_idUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setidAyuda($idAyuda)
     {
         $this->idAyuda=$idAyuda;

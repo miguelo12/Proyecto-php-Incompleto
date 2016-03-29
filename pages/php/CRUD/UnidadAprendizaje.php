@@ -71,6 +71,31 @@ class UnidadAprendizaje {
       return $res;
     }
     
+    public function DevolverUnidadid()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from unidadaprendizaje where idUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->idAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setidAprendizaje($idAprendizaje)
     {
         $this->idAprendizaje=$idAprendizaje;

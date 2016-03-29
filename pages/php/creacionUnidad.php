@@ -72,36 +72,52 @@ if(!isset($_SESSION["editar"])){
             $preguntas = new Preguntas();
             $unidadid = $_GET["editar"];
             
+            $unidadaprendizaje->setidAprendizaje($unidadid);
+            $unite = $unidadaprendizaje->DevolverUnidadid();
+            
+            $recursosdidactico->setIdUnidadAprendizaje_idUnidadAprendizaje($unidadid);
             $recu = $recursosdidactico->DevolverRecurso();
             
+            $preguntas->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
+            $pregun = $preguntas->DevolverPreguntas();
+            
+            $ayuda->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
+            $ayu = $ayuda->DevolverAyuda();
             
             
             if(isset($ayuda))
               {
                   if(isset($preguntas))
                   {
-                      $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas, "ayuda"=>$ayuda);
+                      $unidadnueva = array("unidad"=>$unite,"recursosdidacticos"=>$recu, "preguntas"=>$pregun, "ayuda"=>$ayu);
                   }
                   else
                   {
-                      $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "ayuda"=>$ayuda);
+                      $unidadnueva = array("unidad"=>$unite,"recursosdidacticos"=>$recu, "ayuda"=>$ayu);
                   }
               }
               else
               {
                   if(isset($preguntas))
                   {
-                      $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos, "preguntas"=>$preguntas);
+                      $unidadnueva = array("unidad"=>$unite,"recursosdidacticos"=>$recu, "preguntas"=>$pregun);
                   }
                   else
                   {
-                      $unidadnueva = array("recursosdidacticos"=>$recursosdidacticos);
+                      $unidadnueva = array("unidad"=>$unite,"recursosdidacticos"=>$recu);
                   }
               }
-            
-            $_SESSION["editar"];
+            if(isset($unidadnueva))
+            {
+            $_SESSION["editar"] = $unidadnueva;
             header("location: ../CrearUnidad.php");
             die();
+            }
+            else
+            {
+            header("location: ../error404.php");
+            die();  
+            }
         }
         else
         {
@@ -303,9 +319,16 @@ if(!isset($_SESSION["editar"])){
 }
 else
 {
-    if(!isset($_GET["action"])){
-        
+    if(isset($_GET["action"])){
+        if($_GET["action"]==0){
+            unset($_SESSION["editar"]);
+            header("location: ../indexDocente.php");
+            die();
+        }
     }
+    
+    header("location: ../CrearUnidad.php");
+    die();
 }
 
 ob_end_flush();
