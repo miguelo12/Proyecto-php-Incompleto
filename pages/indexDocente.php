@@ -184,7 +184,7 @@
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
                             </br>
-                            <h1><ins>Sugerencias que púedes elegir</ins></h1>
+                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
                             </br>
                         </div>
                         <div class="row">

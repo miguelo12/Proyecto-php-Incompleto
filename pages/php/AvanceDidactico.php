@@ -127,8 +127,9 @@ if(!isset($_GET["edit"])){
                 }
                 else
                 {
+                   unset($_SESSION["Ayuda"]);
                    header("location: ../RecursoDidactico.php?jump=3&vacio=1#submit2");
-                   die(); 
+                   die();
                 }
 
                  header("location: ../RecursoDidactico.php?jump=3&submit=100#submit2");
@@ -504,12 +505,92 @@ else
     } elseif ($_GET["edit"] == 2) {
         if(isset($_GET["a"])){ 
             if($_GET["a"] == 1){ 
-                
-                
-            } elseif ($_GET["a"] == 2) {
-            
-                
+                $edit3 = $_SESSION["editar"];
+                if(isset($_POST["procedimiento"])){
+                    if(!empty($_POST["procedimiento"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["procedimiento"] = $_POST["procedimiento"];          
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["procedimiento"]); 
+                    }
+                }
+
+                if(isset($_POST["aplicaciones"])){
+                    if(!empty($_POST["aplicaciones"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["aplicaciones"] = $_POST["aplicaciones"];
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["aplicaciones"]);
+                    }
+                }
+
+                if(isset($_POST["procesamiento"])){
+                    if(!empty($_POST["procesamiento"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["procesamiento"] = $_POST["procesamiento"];
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["procesamiento"]);
+                    }
+                }
+
+                if(isset($_POST["lenguaje"])){
+                    if(!empty($_POST["lenguaje"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["lenguaje"] = $_POST["lenguaje"];
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["lenguaje"]);
+                    }
+                }
+
+                if(isset($_POST["modelos"])){
+                    if(!empty($_POST["modelos"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["modelos"] = $_POST["modelos"];
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["modelos"]); 
+                    }
+                }
+
+                if(isset($_POST["conclusiones"])){
+                    if(!empty($_POST["conclusiones"]))
+                    {
+                       $edit3["ayuda"]["modificar"]["conclusiones"] = $_POST["conclusiones"];
+                    }
+                    else
+                    {
+                       unset($edit3["ayuda"]["modificar"]["conclusiones"]);
+                    }
+
+                }
+
+                if(current($edit3["ayuda"]["modificar"])){
+                   $_SESSION["editar"] = $edit3;
+                }
+                else
+                {
+                   header("location: ../RecursoDidactico.php?jump=3&vacio=1#submit2");
+                   die(); 
+                }
+
+                 header("location: ../RecursoDidactico.php?jump=3&submit=100#submit2");
+                 die();
             }
+            else
+            {
+                header("location: ../RecursoDidactico.php?jump=2");
+                die();
+            }
+            
         }
         else{
             header("location: ../RecursoDidactico.php?jump=2");

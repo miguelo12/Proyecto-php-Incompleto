@@ -362,7 +362,7 @@ error_reporting(0);
                                                 </tr>
                                             <form method="POST" action="php/AvanceDidactico.php?edit=1&a=1" autocomplete="off">
                                                      <?php $preg1 = $_SESSION["editar"];
-                                                      foreach($preg1["preguntas"] as $de1):?>
+                                                      foreach($titu["preguntas"] as $de1):?>
                                                 <?php if($de1["editar"] != null): ?>
                                                 <tr>
                                                     <td style="width: 90%" class="warning">
@@ -519,6 +519,87 @@ error_reporting(0);
                                             </table>
                                         </div>
                                         <div class="tab-pane well" id="tabi4">
+                                            <?php if(isset($titu)):?> 
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th colspan="2" class="text-center">Ayuda(Recomendado)</th>
+                                                </tr>
+                                                <form method="POST" action="php/AvanceDidactico.php?edit=2&a=1" autocomplete="off">
+                                                    <?php $yo = $titu["ayuda"];?>
+                                                    <tr>
+                                                        <td style="width: 15%;">
+                                                            <p>Procedimiento</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if($titu["ayuda"]["modificar"] == null){if(isset($yo["procedimiento"])){echo $yo["procedimiento"];}} ?>" name="procedimiento">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 15%">
+                                                            <p>Aplicaciones</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["aplicaciones"])){echo $yo["aplicaciones"];}?>" name="aplicaciones">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 15%">
+                                                            <p>Procesamiento</p>
+                                                        </td>
+                                                        <td style="width: 85%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["procesamiento"])){echo $yo["procesamiento"];}?>" name="procesamiento">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Lenguaje</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["lenguaje"])){echo $yo["lenguaje"];}?>" name="lenguaje">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Modelos</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["modelos"])){echo $yo["modelos"];}?>" name="modelos">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 10%">
+                                                            <p>Conclusiones</p>
+                                                        </td>
+                                                        <td style="width: 90%">
+                                                            <input class="form-control" type="text" value="<?php if(isset($yo["conclusiones"])){echo $yo["conclusiones"];}?>" name="conclusiones">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <div class="form-group">
+                                                                <button type="submit" name="submit" class="btn btn-success" style="float:right;">Guardar</button>
+                                                                <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
+                                                                <a name="submit2"></a>
+                                                            </div>
+                                                        </td>
+                                                        <?php if(isset($_GET["submit"])):
+                                                            if($_GET["submit"]=="100"):?>
+                                                                <div class="alert alert-success">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                               <strong>Listo</strong>, se modifico y/o agrego una ayuda.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                    <?php if(isset($_GET["vacio"])):
+                                                            if($_GET["vacio"]=="1"):?>
+                                                                <div class="alert alert-danger">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                Está <strong>vacío</strong>, no se guardara Ayudas.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                    </tr>
+                                                </form>
+                                            </table>
+                                            <?php else:?>
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <th colspan="2" class="text-center">Ayuda(Recomendado)</th>
@@ -600,6 +681,7 @@ error_reporting(0);
                                                     </tr>
                                                 </form>
                                             </table>
+                                            <?php endif?>
                                         </div>                                      
                                         <div class="tab-pane well" id="tabi5">
                                             <br/>

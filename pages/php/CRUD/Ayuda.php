@@ -75,6 +75,31 @@ class Ayuda {
       return $res;
     }
     
+    public function DevolverAyudaEdit()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from ayuda where UnidadAprendizaje_idUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = array("idAsignatura" => $row["idAsignatura"], "procedimiento" => $row["procedimiento"], "aplicaciones" => $row["aplicaciones"], "procesamiento" => $row["procesamiento"], "lenguaje" => $row["lenguaje"], "modelos" => $row["modelos"], "conclusiones" => $row["conclusiones"], "modificar" => null);
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setidAyuda($idAyuda)
     {
         $this->idAyuda=$idAyuda;

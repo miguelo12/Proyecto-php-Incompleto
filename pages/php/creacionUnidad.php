@@ -89,7 +89,7 @@ if(!isset($_SESSION["editar"])){
             $pregun = $preguntas->DevolverPreguntasEdit();
             
             $ayuda->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
-            $ayu = $ayuda->DevolverAyuda();
+            $ayu = $ayuda->DevolverAyudaEdit();
             
             
             if(isset($ayuda))
