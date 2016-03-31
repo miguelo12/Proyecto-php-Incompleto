@@ -70,6 +70,31 @@ class Preguntas {
       return $res;
     }
     
+    public function DevolverPreguntasEdit()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from preguntas where UnidadAprendizaje_idUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = array("idPreguntas" => $row["idPreguntas"], "preguntas" => $row["preguntas"], "UnidadAprendizaje_idUnidadAprendizaje" => $row["UnidadAprendizaje_idUnidadAprendizaje"], "editar" => null, "eliminar" => null);
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setidPreguntas($idPreguntas)
     {
         $this->idPreguntas=$idPreguntas;

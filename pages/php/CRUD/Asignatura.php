@@ -50,7 +50,7 @@ class Asignatura {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from asignatura where nombre=? and Docente_idDocente=?");
+      $sentencia=$c->prepare("select * from asignatura where Nombre=? and Docente_idDocente=?");
       
       $sentencia->bind_param("ss", $this->nombre, $this->Docente_idDocente);
       
@@ -69,7 +69,7 @@ class Asignatura {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from asignatura where nombre=? and Docente_idDocente=?");
+      $sentencia=$c->prepare("select * from asignatura where Nombre=? and Docente_idDocente=?");
       
       $sentencia->bind_param("ss", $this->nombre, $this->Docente_idDocente);
       
@@ -105,7 +105,7 @@ class Asignatura {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res[] = $row;
+              $res[] = array("idAsignatura" => $row["idAsignatura"], "Nombre" => $row["Nombre"], "Docente_idDocente" => $row["Docente_idDocente"]);
           }
       }
       else {

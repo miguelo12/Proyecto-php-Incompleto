@@ -86,11 +86,16 @@ error_reporting(0);
 		window.prettyPrint && prettyPrint()
             //que hace el boton finish
             $('#pills .finish').click(function() {
+                <?php if(isset($_SESSION["editar"])):?>
+                    document.getElementById("finalform").submit();
+                <?php else:?>
                 <?php if(isset($_SESSION["recursosdidacticos"])): ?>
                     document.getElementById("finalform").submit();
                 <?php else: ?>
                     alert('No puedes terminar la unidad lea los requisitos.');
                 <?php endif; ?>
+                <?php endif;?>
+                
 	    });
             
             <?php if(isset($_GET["jump"]))
@@ -327,6 +332,12 @@ error_reporting(0);
                                         <div class="tab-pane well" id="tabi2">
                                             <form method="POST" action="">
                                             <br/>
+                                            <?php if(isset($_SESSION["editar"])):?>
+                                            <label for="moreinput">Estos son tus archivos guardados.</label>
+                                            <br/>
+                                            
+                                            
+                                            <?php endif;?>
                                             <label for="moreinput">Estos son tus archivos subidos.</label>
                                             <br/>
                                             <?php if(isset($_SESSION["recursosdidacticos"])): ?>
@@ -344,11 +355,104 @@ error_reporting(0);
                                             </form>
                                         </div>
                                         <div class="tab-pane well" id="tabi3"> 
+                                            <?php if(isset($_SESSION["editar"])):?>
+                                            <table class="editinplace table table-bordered">
+                                                <tr>
+                                                    <th colspan="3" style="background-color: #66b3ff">Preguntas Guardadas.</th>
+                                                </tr>
+                                            <form method="POST" action="php/AvanceDidactico.php?edit=1&a=1" autocomplete="off">
+                                                     <?php $preg1 = $_SESSION["editar"];
+                                                      foreach($preg1["preguntas"] as $de1):?>
+                                                <?php if($de1["editar"] != null): ?>
+                                                <tr>
+                                                    <td style="width: 90%" class="warning">
+                                                        <input class="form-control" type="text" value="<?= $de1["editar"]?>" name="preguntas<?= $de1["idPreguntas"] ?>">
+                                                    </td>
+                                                    <td style="width: 5%" class="warning">
+                                                        <button class="btn btn-warning" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=1&id=<?= $de1["idPreguntas"]?>">Cancelar</button>
+                                                    </td>
+                                                    <td style="width: 5%" class="warning">
+                                                        <button class="btn btn-danger" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=2&id=<?= $de1["idPreguntas"]?>" disabled="">Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                                <?php elseif ($de1["eliminar"] != null):?>
+                                                <tr>
+                                                    <td style="width: 90%" class="danger">
+                                                        <input class="form-control" type="text" value="<?= $de1["preguntas"]?>" name="preguntas<?= $de1["idPreguntas"] ?>">
+                                                    </td>
+                                                    <td style="width: 5%" class="danger">
+                                                        <button class="btn btn-warning" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=1&id=<?= $de1["idPreguntas"]?>" disabled="">Editar</button>
+                                                    </td>
+                                                    <td style="width: 5%" class="danger">
+                                                        <button class="btn btn-danger" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=2&id=<?= $de1["idPreguntas"]?>">Cancelar</button>
+                                                    </td>
+                                                </tr>
+                                                <?php else:?>
+                                                <tr>
+                                                    <td style="width: 90%" class="info">
+                                                        <input class="form-control" type="text" value="<?= $de1["preguntas"]?>" name="preguntas<?= $de1["idPreguntas"] ?>">
+                                                    </td>
+                                                    <td style="width: 5%" class="info">
+                                                        <button class="btn btn-warning" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=1&id=<?= $de1["idPreguntas"]?>">Editar</button>
+                                                    </td>
+                                                    <td style="width: 5%" class="info">
+                                                        <button class="btn btn-danger" type="submit" formaction="php/AvanceDidactico.php?edit=1&a=2&id=<?= $de1["idPreguntas"]?>">Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                                <?php endif;?>               
+                                                <?php endforeach;?>
+                                            </form>
+                                                <tr>
+                                                    <?php if(isset($_GET["pre"])):
+                                                            if($_GET["pre"]=="e100"):?>
+                                                                <div class="alert alert-danger">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Error, </strong> Está vacio al intentar agregar una pregunta.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["delete"])):
+                                                            if($_GET["delete"]=="e1"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Listo, </strong> se eliminara cuando termine la edición.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["delete"])):
+                                                            if($_GET["delete"]=="e2"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Se ha cancelado</strong>.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["modify"])):
+                                                            if($_GET["modify"]=="e1"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Listo, </strong> al guardar la modificación se efectuara.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                 <?php if(isset($_GET["modify"])):
+                                                            if($_GET["modify"]=="e2"):?>
+                                                                <div class="alert alert-warning">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Se ha cancelado</strong>.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                <?php if(isset($_GET["invalid"])):
+                                                            if($_GET["invalid"]=="e1"):?>
+                                                                <div class="alert alert-danger">
+                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                <strong>Incorrecto, </strong> ocurrio algo inesperado.
+                                                                </div>
+                                                    <?php endif; endif; ?>
+                                                </tr>
+                                            </table>
+                                            <?php endif;?>
                                             <table class="editinplace table table-hover">
                                                 <tr>
                                                     <th colspan="3">Sugerencias de Preguntas de Investigación</th>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php" autocomplete="off">
+                                                <form method="POST" action="php/AvanceDidactico.php" autocomplete="off">                                          
                                                 <?php if(isset($_SESSION["preguntas"])):
                                                     $preg = $_SESSION["preguntas"];
                                                     foreach($preg as $de):?>
@@ -378,7 +482,10 @@ error_reporting(0);
                                                             <p class="help-block">No agregue signo de interrogación.</p>
                                                             <a name="submit1"></a>
                                                     </td>
-                                                    <?php if(isset($_GET["submit"])):
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <?php if(isset($_GET["submit"])):
                                                             if($_GET["submit"]=="1"):?>
                                                                 <div class="alert alert-success">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -406,6 +513,7 @@ error_reporting(0);
                                                                 <strong>Listo, </strong> se modifico una pregunta.
                                                                 </div>
                                                     <?php endif; endif; ?>
+                                                    </td>
                                                 </tr>
                                                 </form>
                                             </table>

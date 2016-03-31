@@ -276,12 +276,22 @@ error_reporting(0);
                                 <div class="clearfix visible-xs"></div>
                                 <div class="col-xs-12 text-center">
                                     <div class="hidden-lg hidden-md hidden-sm ">
+                                    <?php if(isset($_SESSION["editar"])):?>
+                                    <input value="Editar Recursos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"/>
+                                    <br/>
+                                    <?php else:?>
                                     <input value="Agregar Recursos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"/>
                                     <br/>
+                                    <?php endif;?>
                                     </div>
                                     <div class="hidden-xs">
-                                        <input value="Agregar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                    <?php if(isset($_SESSION["editar"])):?>
+                                    <input value="Editar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
                                     <br/>
+                                    <?php else:?>
+                                    <input value="Agregar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                    <br/>
+                                    <?php endif;?>
                                     </div>
                                 </div>
 

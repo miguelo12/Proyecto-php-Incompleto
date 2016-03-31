@@ -29,7 +29,14 @@ if(!isset($_SESSION["editar"])){
                  $rubrica->setDocente_idDocente($docente["id"]);
                  $rubricadocente = $rubrica->DevolverRubricaPredeterminada();
 
+                 if(isset($rubricadocente)){
                  $_SESSION["rubrica"] = $rubricadocente;
+                 }
+                 else
+                 {
+                    header("location: ../error404.php");
+                    die();
+                 }
               }
 
             $_SESSION["titulocreacion"] = $new;
@@ -79,7 +86,7 @@ if(!isset($_SESSION["editar"])){
             $recu = $recursosdidactico->DevolverRecurso();
             
             $preguntas->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
-            $pregun = $preguntas->DevolverPreguntas();
+            $pregun = $preguntas->DevolverPreguntasEdit();
             
             $ayuda->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
             $ayu = $ayuda->DevolverAyuda();
@@ -325,6 +332,11 @@ else
             header("location: ../indexDocente.php");
             die();
         }
+    }
+    else
+    {
+        header("location: ../RecursoDidactico.php");
+        die();
     }
     
     header("location: ../CrearUnidad.php");
