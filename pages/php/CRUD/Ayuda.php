@@ -90,7 +90,7 @@ class Ayuda {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res = array("idAsignatura" => $row["idAsignatura"], "procedimiento" => $row["procedimiento"], "aplicaciones" => $row["aplicaciones"], "procesamiento" => $row["procesamiento"], "lenguaje" => $row["lenguaje"], "modelos" => $row["modelos"], "conclusiones" => $row["conclusiones"], "modificar" => null);
+              $res = array("idAyuda" => $row["idAyuda"], "procedimiento" => $row["procedimiento"], "aplicaciones" => $row["aplicaciones"], "procesamiento" => $row["procesamiento"], "lenguaje" => $row["lenguaje"], "modelos" => $row["modelos"], "conclusiones" => $row["conclusiones"], "modificar" => null);
           }
       }
       else {
@@ -98,6 +98,26 @@ class Ayuda {
       }
       
       return $res;
+    }
+    
+    public function Actualizar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update ayuda set procedimiento=?,aplicaciones=?,procesamiento=?,lenguaje=?,modelos=?,conclusiones=? where idAyuda=?");
+      
+      $sentencia->bind_param("ssssssi", $this->procedimiento, $this->aplicaciones, $this->procesamiento, $this->lenguaje, $this->modelos, $this->conclusiones, $this->idAyuda);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+       return FALSE;    
+      }
     }
     
     public function setidAyuda($idAyuda)

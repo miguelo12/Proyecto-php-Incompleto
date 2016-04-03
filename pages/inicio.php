@@ -48,35 +48,35 @@
 </head>
 
 <body>
+    
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Heuristica Movil</a>
-                </div>
-            </div>
-</nav>    
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Heuristica Movil</a>
+        </div>
+    </div>
+</nav>
+<div class="wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Bienvenido Ingrese</h3>
                     </div>
                     <div class="panel-body">
-                       
-                            <fieldset>
+                        <fieldset>
 
-                                <!-- Change this to a button or input when using this as a form -->
-                                <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Profesor" onclick=" window.location='../pages/loginProfesor.php'  ">
-                                <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Alumno" onclick=" window.location='../pages/loginAlumno.php'  ">
-                                </fieldset>
-                     
+                            <!-- Botones donde se dirige -->
+                            <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Profesor" onclick=" window.location='../pages/loginProfesor.php'  ">
+                            <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Alumno" onclick=" window.location='../pages/loginAlumno.php'  ">
+                        </fieldset>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 

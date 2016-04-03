@@ -228,7 +228,7 @@
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         </br>
                                         <p><img src="img/lista.png" alt="lista" width="128" height="128"></p>
-                                        <a class="lead" href="Evaluar.php">Evaluar</a>
+                                        <a class="lead" href="#">Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
                                         <br/>
                                     </div>

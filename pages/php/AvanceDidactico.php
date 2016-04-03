@@ -513,7 +513,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["procedimiento"]); 
+                       $edit3["ayuda"]["modificar"]["procedimiento"] = null; 
                     }
                 }
 
@@ -524,7 +524,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["aplicaciones"]);
+                       $edit3["ayuda"]["modificar"]["aplicaciones"] = null;
                     }
                 }
 
@@ -535,7 +535,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["procesamiento"]);
+                       $edit3["ayuda"]["modificar"]["procesamiento"] = null;
                     }
                 }
 
@@ -546,7 +546,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["lenguaje"]);
+                       $edit3["ayuda"]["modificar"]["lenguaje"] = null;
                     }
                 }
 
@@ -557,7 +557,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["modelos"]); 
+                       $edit3["ayuda"]["modificar"]["modelos"] = null; 
                     }
                 }
 
@@ -568,7 +568,7 @@ else
                     }
                     else
                     {
-                       unset($edit3["ayuda"]["modificar"]["conclusiones"]);
+                       $edit3["ayuda"]["modificar"]["conclusiones"] = null;
                     }
 
                 }
@@ -578,6 +578,7 @@ else
                 }
                 else
                 {
+                   $_SESSION["editar"] = $edit3;
                    header("location: ../RecursoDidactico.php?jump=3&vacio=1#submit2");
                    die(); 
                 }
@@ -585,15 +586,22 @@ else
                  header("location: ../RecursoDidactico.php?jump=3&submit=100#submit2");
                  die();
             }
-            else
+            elseif ($_GET["a"] == 2)
             {
-                header("location: ../RecursoDidactico.php?jump=2");
+                $edit3 = $_SESSION["editar"];
+                $edit3["ayuda"]["modificar"] = null;
+                $_SESSION["editar"] = $edit3;
+                header("location: ../RecursoDidactico.php?jump=3&cancel=1");
+                die();
+            } else
+            {
+                header("location: ../RecursoDidactico.php?jump=3");
                 die();
             }
             
         }
         else{
-            header("location: ../RecursoDidactico.php?jump=2");
+            header("location: ../RecursoDidactico.php");
             die();
         }
     }

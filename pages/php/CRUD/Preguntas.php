@@ -95,6 +95,46 @@ class Preguntas {
       return $res;
     }
     
+    public function Actualizar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update preguntas set preguntas=? where idPreguntas=?");
+      
+      $sentencia->bind_param("si", $this->preguntas, $this->idPreguntas);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+       return false;
+      }
+    }
+    
+    public function Eliminar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("delete from preguntas where idPreguntas=?");
+      
+      $sentencia->bind_param("i", $this->idPreguntas);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+       return FALSE;      
+      }
+    }
+    
     public function setidPreguntas($idPreguntas)
     {
         $this->idPreguntas=$idPreguntas;

@@ -83,7 +83,7 @@ if(!isset($_SESSION["editar"])){
             $unite = $unidadaprendizaje->DevolverUnidadid();
             
             $recursosdidactico->setIdUnidadAprendizaje_idUnidadAprendizaje($unidadid);
-            $recu = $recursosdidactico->DevolverRecurso();
+            $recu = $recursosdidactico->DevolverRecursoEdit();
             
             $preguntas->setUnidadAprendizaje_idUnidadAprendizaje($unidadid);
             $pregun = $preguntas->DevolverPreguntasEdit();
@@ -328,9 +328,158 @@ else
 {
     if(isset($_GET["action"])){
         if($_GET["action"]==0){
+            //elimina la sesion y vuelve la normalidad creacion unidad.
             unset($_SESSION["editar"]);
+            unset($_SESSION["NuevaUnidad"]);
+            unset($_SESSION["preguntas"]);
+            $sec = $_SESSION["recursosdidacticos"];
+             //elimina los archivos.
+            foreach($sec as $do)
+            {
+                unlink($do["url"]);
+            }
+            unset($_SESSION["recursosdidacticos"]);
             header("location: ../indexDocente.php");
             die();
+        } elseif ($_GET["action"]==1) {
+            //Verificar primero si hay un recurso, sino devolverlo a la pagina recursosDidactico,
+            //si es asi seguir en crearunidad para guardar
+            
+            $edita = $_SESSION["editar"];
+            $contador1 = 0;
+            $contador2 = 0;
+            foreach($edita["recursosdidacticos"] as $pro){
+              $contador2++;
+              if($pro["eliminar"]!= null){
+                $contador1++;
+              }
+            }
+            
+            if($conteo1 == $contador2){
+                if(isset($_SESSION["recursosdidacticos"])){
+                   header("location: ../CrearUnidad.php");
+                   die();
+                }
+                else{
+                   header("location: ../RecursoDidactico.php?errorRe=1");
+                   die();
+                }
+            }
+            else{           
+                $_SESSION["NuevaUnidad"] = $edita;
+                header("location: ../CrearUnidad.php");
+                die();  
+            }
+        } elseif ($_GET["action"] == 2) {
+           if(isset($_SESSION["NuevaUnidad"]))
+           {
+              //finaliza la unidad.
+              $edita = $_SESSION["editar"];
+              
+              if(isset($_SESSION["recursosdidacticos"])){
+              $newRecursos = $_SESSION["recursosdidacticos"];
+              }
+              if(isset($_SESSION["preguntas"])){
+              $newPreguntas = $_SESSION["preguntas"];
+              }
+              if(isset($edita["ayuda"]["modificar"])){
+              
+              }
+              
+              $recursosdidactico = new RecursosDidacticos();
+              $ayuda = new Ayuda();
+              $preguntas = new Preguntas();
+              
+              if(isset($newRecursos)){
+                 //editar esto deberia estar en upload cuando edit este activado....
+                 //nuevos recursos.
+                 foreach ($newRecursos as $dy){
+                     $recursosdidactico->setIdUnidadAprendizaje_idUnidadAprendizaje($edita["unidad"]["idUnidadAprendizaje"]);
+                     $recursosdidactico->setNombre($dy["nombre"]);
+                     $recursosdidactico->setTipo($dy["tipo"]);
+                     $recursosdidactico->setDescripcion($dy["descripcion"]);
+                     $recursosdidactico->seturl($dy["url"]);
+                     $recursosdidactico->Ingresar();    
+                 }
+              }
+              
+              if(isset($newPreguntas)){
+                  //nuevas preguntas.
+                foreach ($newPreguntas as $dy){
+                  $preguntas->setUnidadAprendizaje_idUnidadAprendizaje($edita["unidad"]["idUnidadAprendizaje"]);
+                  $preguntas->setpreguntas($dy["pre"]);
+                  $preguntas->Ingresar();
+                }
+              }
+              
+              if(isset($edita["ayuda"]["modificar"])){
+                  //editar Ayuda.
+                     $ayuda->setidAyuda($edita["ayuda"]["idAyuda"]);
+                     if(isset($edita["ayuda"]["modificar"]["aplicaciones"])){
+                     $ayuda->setaplicaciones($edita["ayuda"]["modificar"]["aplicaciones"]);
+                     }
+                     else{
+                     $ayuda->setaplicaciones(null);
+                     }
+                     if(isset($edita["ayuda"]["modificar"]["conclusiones"])){
+                     $ayuda->setconclusiones($edita["ayuda"]["modificar"]["conclusiones"]);
+                     }
+                     else{
+                     $ayuda->setconclusiones(null);
+                     }
+                     if(isset($edita["ayuda"]["modificar"]["lenguaje"])){
+                     $ayuda->setlenguaje($edita["ayuda"]["modificar"]["lenguaje"]);
+                     }
+                     else{
+                     $ayuda->setlenguaje(null);
+                     }
+                     if(isset($edita["ayuda"]["modificar"]["modelos"])){
+                     $ayuda->setmodelos($edita["ayuda"]["modificar"]["modelos"]);
+                     }
+                     else{
+                     $ayuda->setmodelos(null); 
+                     }
+                     if(isset($edita["ayuda"]["modificar"]["procedimiento"])){
+                     $ayuda->setprocedimiento($edita["ayuda"]["modificar"]["procedimiento"]);
+                     }
+                     else{
+                     $ayuda->setprocedimiento(null); 
+                     }
+                     if(isset($edita["ayuda"]["modificar"]["procesamiento"])){
+                     $ayuda->setprocesamiento($edita["ayuda"]["modificar"]["procesamiento"]);
+                     }
+                     else{
+                     $ayuda->setprocesamiento(null); 
+                     }
+
+                     $ayuda->Actualizar();
+                  
+              }
+              
+              foreach($edita["preguntas"] as $preg){
+                  if($preg["editar"] != null){
+                    $preguntas->setidPreguntas($preg["idPreguntas"]);
+                    $preguntas->setpreguntas($preg["editar"]);
+                    $preguntas->Actualizar();
+                  }
+                  
+                  if($preg["eliminar"] != null){
+                    $preguntas->setidPreguntas($preg["idPreguntas"]);
+                    $preguntas->Eliminar();
+                  }
+              }
+              
+              unset($_SESSION["recursosdidacticos"]);
+              unset($_SESSION["editar"]);
+              unset($_SESSION["NuevaUnidad"]);
+              unset($_SESSION["preguntas"]);
+              header("location: ../Biblioteca.php");
+              die();
+           }
+           else{
+              header("location: ../CrearUnidad.php?SinTerminar=2");
+              die();
+           }
         }
     }
     else

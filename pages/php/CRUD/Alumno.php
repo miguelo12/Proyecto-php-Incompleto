@@ -187,7 +187,14 @@ class Alumno {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+       return FALSE;      
+      }
     }
     
     public function Actualizar()
@@ -200,7 +207,14 @@ class Alumno {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+       return FALSE;      
+      }
     }
     
     public function Habilitarono()
@@ -213,7 +227,14 @@ class Alumno {
       
       $sentencia->execute();
       
-      return true;
+      if($sentencia->affected_rows)
+      {
+          //devuelve la id.
+       return true;
+      }
+      else {
+      return FALSE;       
+      }
     }
     
     public function DevolverAlumno()

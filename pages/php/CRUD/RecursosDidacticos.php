@@ -73,6 +73,31 @@ class RecursosDidacticos {
       return $res;
     }
     
+    public function DevolverRecursoEdit()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from recursosdidacticos where UnidadAprendizaje_idUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = array("idRecursosDidacticos" => $row["idRecursosDidacticos"],"nombre" => $row["nombre"],"descripcion" => $row["descripcion"],"tipo" => $row["tipo"],"url" => $row["url"], "eliminar" => null);
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function ExisteonoPorID()
     {
       $c=$this->con->getConexion();

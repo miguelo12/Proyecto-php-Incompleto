@@ -20,6 +20,8 @@ class Seccion {
     private $Docente_idDocente;
     private $Asignatura_idAsignatura;
     private $Codigo;
+    private $Habilitar;
+    
     private $con;
     
     public function __construct() {
@@ -60,9 +62,11 @@ class Seccion {
         $this->codigo();
       }
       
-      $sentencia=$c->prepare("insert into seccion (idSeccion,Docente_idDocente,Asignatura_idAsignatura,Codigo) values(?,?,?,?)");
+      $this->setHabilitar(1);
       
-      $sentencia->bind_param("ssii", $this->idSeccion, $this->Docente_idDocente, $this->Asignatura_idAsignatura, $this->Codigo);
+      $sentencia=$c->prepare("insert into seccion (idSeccion,Docente_idDocente,Asignatura_idAsignatura,Codigo,Habilitar) values(?,?,?,?,?)");
+      
+      $sentencia->bind_param("ssiii", $this->idSeccion, $this->Docente_idDocente, $this->Asignatura_idAsignatura, $this->Codigo, $this->Habilitar);
       
       $sentencia->execute();
       
@@ -157,5 +161,10 @@ class Seccion {
     public function setCodigo($Codigo)
     {
         $this->Codigo=$Codigo.trim();
+    }
+    
+    public function setHabilitar($Habilitar)
+    {
+        $this->Habilitar=$Habilitar;
     }
 }

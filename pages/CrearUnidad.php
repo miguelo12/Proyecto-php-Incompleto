@@ -236,6 +236,18 @@ error_reporting(0);
         <br/>
         <br/>
         
+        <?php  if(isset($_GET["SinTerminar"])): if($_GET["SinTerminar"]==1):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> no has guardado o finalizado el proceso.</p>
+        </div>
+        <?php endif; endif;?>
+        <?php  if(isset($_GET["SinTerminar"])): if($_GET["SinTerminar"]==2):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> no has editado o finalizado el proceso.</p>
+        </div>
+        <?php endif; endif;?>
         <div id="page-content-wrapper content">
           <div class="container separate-rows tall-rows">
             <div class="row">
@@ -259,12 +271,13 @@ error_reporting(0);
                                     <br/>
                                     <label>Titulo</label>
                                     <div class="text-center">
-                                    <?php if(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
-                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                                    <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
-                                    <?php elseif(isset($_SESSION["editar"])):?>
+                                        
+                                    <?php if(isset($_SESSION["editar"])):?>
                                     <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
                                     <p>Modo editar no se puede cambiar el nombre solamente su contenido.</p>
+                                    <?php elseif(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
+                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>
                                     <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="" placeholder="Ingrese aquí el titulo"/>
                                     <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
@@ -299,12 +312,23 @@ error_reporting(0);
 
                                 <div class="col-xs-12 text-center">
                                     <div class="hidden-lg hidden-md hidden-sm">
-                                    <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
+                                    
+                                    <?php if(isset($_SESSION["editar"])):?>
+                                        <input formaction="php/creacionUnidad.php?action=2" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
                                     <br/>
+                                    <?php else:?>
+                                        <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
+                                    <br/>
+                                    <?php endif;?>
                                     </div>
                                     <div class="hidden-xs">
+                                    <?php if(isset($_SESSION["editar"])):?>
+                                        <input formaction="php/creacionUnidad.php?action=2" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
+                                    <br/>
+                                    <?php else:?>
                                         <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
                                     <br/>
+                                    <?php endif;?>
                                     </div>
                                 </div>
 
@@ -312,8 +336,11 @@ error_reporting(0);
 
                                 <div class="col-xs-12 text-center">
                                     <br/>
-                                    <?php //meter contenido de grilla :D?>
+                                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?> 
+                                    <a name="btn3" class="btn btn-primary" href="indexDocente.php">Volver al Portal Docente</a>
+                                    <?php else:?>
                                     <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-primary"/>
+                                    <?php endif;?>
                                     <br/>
                                     <br/>
                                     <?php if(isset($_GET['error'])):
