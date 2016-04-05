@@ -18,16 +18,16 @@ and open the template in the editor.
 }
 
 #wrapper.toggled {
-    padding-right: 250px;
+    padding-right: 260px;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    right: -250px;
+    right: -260px;
     width: 0;
     height: 100%;
-    margin-right: -250px;
+    margin-right: -260px;
     overflow-y: auto;
     background: #000;
     -webkit-transition: all 0.5s ease;
@@ -37,8 +37,8 @@ and open the template in the editor.
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-    right: 250px;
+    width: 260px;
+    right: 260px;
 }
 
 #page-content-wrapper {
@@ -49,7 +49,7 @@ and open the template in the editor.
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: -260px;
 }
 
 /* Sidebar Styles */
@@ -57,7 +57,7 @@ and open the template in the editor.
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: 280px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -90,7 +90,7 @@ and open the template in the editor.
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 260px;
     }
 
     #wrapper.toggled #sidebar-wrapper {

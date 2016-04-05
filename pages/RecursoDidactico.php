@@ -204,7 +204,8 @@ error_reporting(0);
             </ul>
         </div>
         </nav>
-            
+        </div>
+        
         <br/>
         <br/>
         <br/>
@@ -904,7 +905,7 @@ error_reporting(0);
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
+        
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../component/metisMenu/dist/metisMenu.min.js"></script>

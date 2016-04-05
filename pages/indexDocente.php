@@ -161,7 +161,8 @@
             </ul>
         </div>
         </nav>
-            
+        </div>
+        
         <br/>
         <br/>
         <br/>
@@ -317,7 +318,6 @@
                 <!--Fin seccion de cursos-->
             </div>
         </div>
-        </div> 
                 <!--Fin seccion de invitacion-->
                 <!--Inicio seccion de cursos-->
         

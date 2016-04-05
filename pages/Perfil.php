@@ -158,7 +158,8 @@
             </ul>
         </div>
         </nav>
-            
+        </div>
+       
         <br/>
         <br/>
         <br/>
@@ -177,7 +178,7 @@
                             <br/>
                             <p class="lead">Correo: <?php echo $docente["email"]; ?></p>
                             <br/>
-                            <p class="lead">Entre otra cosas que nose que colocar :D</p>
+                            <p class="lead">En contruccion...</p>
                             <br/>
                         </div>
                     </div>
@@ -185,7 +186,7 @@
             </div>
         </div>
         </div>
-        </div>
+        
 
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>

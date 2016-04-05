@@ -167,7 +167,7 @@
             </ul>
         </div>
         </nav>
-            
+        </div>
         <br/>
         <br/>
         <br/>
@@ -247,7 +247,7 @@
             </div>
         </div>
         </div>
-        </div>
+        
         <br/>
         <br/>
 

@@ -150,7 +150,8 @@
             </ul>
         </div>
         </nav>
-            
+        </div>
+        
         <br/>
         <br/>
         <br/>
@@ -184,7 +185,7 @@
             </div>
         </div>
         </div>
-        </div>
+        
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 

@@ -137,7 +137,8 @@
             </ul>
         </div>
         </nav>
-            
+        </div>
+        
         <br/>
         <br/>
         <br/>
@@ -273,7 +274,6 @@
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
-        </div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 

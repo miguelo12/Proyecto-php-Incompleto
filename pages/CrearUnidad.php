@@ -231,7 +231,8 @@ error_reporting(0);
             </ul>
         </div>
         </nav>
-            
+        </div>
+        
         <br/>
         <br/>
         <br/>
@@ -385,7 +386,7 @@ error_reporting(0);
             </div>
         </div>
       </div>
-    </div>
+    
         
         
     <!-- jQuery -->

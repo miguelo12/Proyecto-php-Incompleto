@@ -22,7 +22,9 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane" id="tab1">
-                          1
+                            <button onclick="mostrarFecha()" >asdasd</button>
+                            <div id="no">
+                            </div>
                         </div>
                         <div class="tab-pane" id="tab2">
                           2
@@ -55,11 +57,18 @@
         <script src="../component/jquery/dist/jquery.min.js"></script>
         <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+        
 	<script>
 	$(document).ready(function() {
 	  	$('#rootwizard').bootstrapWizard({'tabClass': 'nav nav-pills'});
 		window.prettyPrint && prettyPrint()
 	});
 	</script>
+        
+        <script>
+           function mostrarFecha(){
+             document.getElementById("no").innerHTML = Date();
+           }
+        </script>
   </body>
 </html>

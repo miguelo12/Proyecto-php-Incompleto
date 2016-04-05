@@ -86,10 +86,11 @@
             </ul>
         </div>
         </nav>  
-
+        </div>
+    
     <div class="container">
         <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ingreso Alumno</h3>
@@ -132,7 +133,6 @@
             </div>
         </div>
     </div>
-</div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 
