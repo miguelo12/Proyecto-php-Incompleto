@@ -7,7 +7,7 @@
         }
         else
         {
-          $docente = $_SESSION["alumno"];
+          $alumno = $_SESSION["alumno"];
         }
       }
   else
@@ -64,7 +64,7 @@
 
 <body>
        <!-- Navigation -->
-        
+        <?php if(isset($docente)): ?> 
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -93,12 +93,12 @@
               </ul>
               <ul class="nav navbar-nav navbar-right hidden-xs">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?= $docente["nombre"]?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
                     <?php if($docente["admin"]==1):?>
                       <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
-                    <?php endif;?>  
+                    <?php endif;?>
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
                   </ul>
@@ -148,9 +148,10 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
+                    
                     <?php if($docente["admin"]==1):?>
                       <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
-                    <?php endif;?>  
+                    <?php endif;?> 
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
@@ -159,6 +160,89 @@
         </div>
         </nav>
         </div>
+        <?php elseif(isset($alumno)):?> 
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" id="menu-toggle" href="#menu-toggle" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <a class="navbar-brand" href="indexAlumno.php">Heuristica Movil</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="indexAlumno.php">Inicio</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
+                    <li><a href="#">Ver unidades de aprendizaje</a></li>
+                    <li><a href="#">Responde una Actividad</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Crea un grupo</a></li>
+                  </ul>
+                </li>
+                <li><a href="#contact">Contáctenos</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right hidden-xs">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <ul class="dropdown-menu">
+                    <li class="active"><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+        
+        
+        <div id="wrapper">
+         <nav class="navbar-inverse" role="navigation">
+         <div id="sidebar-wrapper">
+            <ul class="sidebar-nav navbar-nav">
+                <br/> 
+                <br/> 
+                <br/> 
+                <br/> 
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Menu Alumno
+                    </a>
+                </li>
+                <li> 
+                      <a href="#">Inicio</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
+                    <li><a href="#">Ver unidades de aprendizaje</a></li>
+                    <li><a href="#">Responde una Actividad</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Crea un grupo</a></li>
+                  </ul>
+                </li>
+                <li><a href="#contact">Contáctenos</a></li>
+                <li class="dropdown hidden-lg hidden-md">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <ul class="dropdown-menu">
+                    <li class="active"><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li> 
+                    <li role="separator" class="divider"></li>
+                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+        </nav>
+        </div>
+        <?php endif; ?> 
+       
        
         <br/>
         <br/>
@@ -170,15 +254,42 @@
                 <div class="col-xs-12 text-center">
                     <div class="well well-lg">
                         <div class="row">
+                            <table class="table table-responsive">
+                                <caption class="text-center">
+                                <h2><ins>Perfil</ins></h2>
+                                </caption>
+                                <tr>
+                                    <td>
+                                        Nombre:
+                                    </td>
+                                    <td>
+                                        <?php if(isset($docente)): ?>  
+                                        <?= $docente["nombre"] ?>
+                                        <?php elseif (isset($alumno)): ?> 
+                                        <?= $alumno["nombre"]?> 
+                                        <?php endif;?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                         Correo:
+                                    </td>
+                                    <td>
+                                        <?php if(isset($docente)): ?>  
+                                        <?= $docente["email"] ?>
+                                        <?php elseif (isset($alumno)): ?> 
+                                        <?= $alumno["email"]?> 
+                                        <?php endif;?>  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                         <br/>
+                                    </td>
+                                </tr>
+                            </table>
                             <br/>
-                            <h2><ins>Perfil</ins></h2>
-                            <br/>
-                            <br/>
-                            <p class="lead">Nombre: <?php echo $docente["nombre"]; ?></p>
-                            <br/>
-                            <p class="lead">Correo: <?php echo $docente["email"]; ?></p>
-                            <br/>
-                            <p class="lead">En contruccion...</p>
+                            <p class="lead">En contrucción...</p>
                             <br/>
                         </div>
                     </div>

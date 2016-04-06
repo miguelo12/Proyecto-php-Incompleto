@@ -208,6 +208,7 @@ if(isset($_GET["user"])){
                   if(!$alumno->Existeono()){
                       if($alumno->Ingresar())
                       {
+                          $_SESSION["idAlumno"] = $alumno->DevolverIdporEmail();
                           header("location: ../indexDocente.php?exitoenvio=1");
                           die();
                       }
@@ -263,6 +264,10 @@ if(isset($_GET["user"])){
                  }
 
                }
+            } elseif($_GET["action"]==3){
+              unset($_SESSION["idAlumno"]);
+              header("location: ../indexDocente.php");
+              die(); 
             }
        }
        else

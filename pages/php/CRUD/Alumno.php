@@ -237,6 +237,27 @@ class Alumno {
       }
     }
     
+    public function DevolverIdporEmail()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumno where email=?");
+      
+      $sentencia->bind_param("s", $this->email);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              return $row["idAlumno"];
+          }
+      }
+      return false;
+    }
+    
     public function DevolverAlumno()
     {
       $c=$this->con->getConexion();

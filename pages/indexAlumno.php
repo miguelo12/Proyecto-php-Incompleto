@@ -45,6 +45,15 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url("./img/glasses.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-color: hsl(163, 46%, 80%);
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -66,7 +75,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Heuristica Movil</a>
+                <a class="navbar-brand" href="indexAlumno.php">Heuristica Movil</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
@@ -74,11 +83,11 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="CrearUnidad.php">Crear una actividad</a></li>
-                    <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
+                    <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
+                    <li><a href="#">Ver unidades de aprendizaje</a></li>
+                    <li><a href="#">Responde una Actividad</a></li>
                     <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Recuerda</li>
-                    <li><a href="#">Crear Asignatura o Sección</a></li>
+                    <li><a href="#">Crea un grupo</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact">Contáctenos</a></li>
@@ -114,22 +123,21 @@
                 <li class="active"> 
                       <a href="#">Inicio</a>
                 </li>
-                <li> 
-                      <a href="CrearUnidad.php">Construir Unidad</a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
+                    <li><a href="#">Ver unidades de aprendizaje</a></li>
+                    <li><a href="#">Responde una Actividad</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Crea un grupo</a></li>
+                  </ul>
                 </li>
-                <li> 
-                      <a href="Evaluar.php">Evaluar Proyectos</a>
-                </li>
-                <li> 
-                      <a href="Biblioteca.php">Rúbrica</a>
-                </li>
-                <li> 
-                      <a href="Biblioteca.php">Biblioteca</a>
-                </li>
+                <li><a href="#contact">Contáctenos</a></li>
                 <li class="dropdown hidden-lg hidden-md">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuracion</a></li>
+                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li> 
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
@@ -143,28 +151,30 @@
         <br/>
         <br/>
         
-        <div id="page-content-wrapper content" >
-        <div class="container separate-rows tall-rows">
-            <div class="row">
+         <div id="page-content-wrapper content" >
+            <div class="container separate-rows tall-rows">
+                
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="well well-lg">
+                        <div class="panel panel-info panel-footer">
                         <div class="text-center">
-                            </br>
-                            <h2><ins>Sugerencias que púedes<br/> elegir</ins></h2>
-                            </br>
+                            <br/>
+                            <h4 style="float: right; margin-right: 20px">Portal Estudiante</h4>
+                            <br/>
+                            <h1 style="float: top">¿<ins>Qué deseas hacer</ins>?</h1>
+                            <br/>
                         </div>
                         <div class="row">
                          
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
-                                
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <p><img src="img/actividad.png" alt="lista" width="100" height="100"></p>
-                                        <br/>                             
+                                        <p style="margin-top: 20px"><img src="img/saber.png" alt="lista" width="128" height="128"></p>                           
+                                        <div>
                                         <a class="lead" href="actividadAlumno.php">Revisar Unidad de Aprendizaje</a>
-                                
                                         <br/>
-                                        <p>SOON</p>
+                                        <p>Ve todas las unidades de aprendizajes entregadas por tu profesor.</p>
+                                        </div>
                                     </div>     
                                 </div>
                             </div>
@@ -176,11 +186,12 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         </br>
-                                        <p><img src="img/biblioteca.png" alt="lista" width="76" height="80"></p>
+                                        <p><img src="img/pensar.png" alt="lista" width="128" height="128"></p>
+                                        <div style="margin-top: 10px">
+                                        <a class="lead" href="#">Responder Diagrama Heurístico</a>
+                                        <p>Hace la actividad entregada por tu profesor, debes pertenecer a un grupo o tambien puede hacerlo solo.</p>
                                         <br/>
-                                        <a class="lead" href="Biblioteca.php">Biblioteca y Rúbricas</a>
-                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
-                                        <br/>
+                                        </div>
                                     </div>
                                     
                                 </div>        
@@ -192,10 +203,9 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         </br>
-                                        <p><img src="img/lista.png" alt="lista" width="76" height="80"></p>
-                                        <br/>
-                                        <a class="lead" href="Evaluar.php">Evalua</a>
-                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
+                                        <p><img src="img/grupo.png" alt="lista" width="128" height="128"></p>
+                                        <a class="lead" href="#">Crea un Grupo</a>
+                                        <p>Unete con tus otros compañeros y hagan la actividad de manera grupal.</p>
                                         <br/>
                                     </div>
                                     
@@ -206,11 +216,11 @@
                             
                         </div>
                         </div>
-                    </div>
-        
+                    </div>     
                 </div>
+            </div>
         </div>
-        </div>
+        <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -274,6 +284,7 @@
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
+        </div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 

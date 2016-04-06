@@ -56,7 +56,7 @@
             background-image: url("./img/scientist.png");
             background-repeat: repeat;
             background-attachment: fixed;
-            background-color: hsl(349, 25%, 90%);
+            background-color: hsl(349, 25%, 85%);
         }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,7 +65,31 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
+    <?php if(isset($_SESSION["idAlumno"])):?>
+    <script>
+        function countDown(i, callback) {
+            callback = callback || function(){};
+            var int = setInterval(function() {
+                document.getElementById("timer").innerHTML = i;
+                i-- || (clearInterval(int), callback());
+            }, 1000);
+        }
+        countDown(120, function(){
+            window.location="php/UsuarioAction.php?user=2&action=3";
+        });
+        
+        function sacar(){
+            window.location="php/UsuarioAction.php?user=2&action=3";
+        }
+    </script>
+    <?php endif;?>
+    <?php endif; else:?>
+    <?php if(isset($_SESSION["idAlumno"])):
+          header("location: php/UsuarioAction.php?user=2&action=3");
+          die();
+          endif;?>
+    <?php endif;?>
 </head>
 
 <body>
@@ -152,7 +176,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
+                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
                     <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
@@ -173,26 +197,33 @@
         </div>
         <?php endif; endif;?>
         <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
+        <?php if(isset($_SESSION["idAlumno"])):?>
         <div class="alert alert-success">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="sacar()">&times;</a>
            <p class="text-center"><strong>Listo, </strong> se acaba de enviar el email.</p>
+           <p class="text-center">El codigo de tu alumno es <strong><?= $_SESSION["idAlumno"]?></strong></p>
+           <p class="text-center">Este mensaje se eliminara en <span id="timer"></span> segundos. <button onclick="sacar()">Eliminar Mensaje</button></p>
         </div>
+        <?php endif;?>
         <?php endif; endif;?>
+        
         <div id="page-content-wrapper content" >
             <div class="container separate-rows tall-rows">
+                
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
-                            </br>
+                            <br/>
+                            <h4 style="float: right; margin-right: 20px">Portal Docente</h4>
+                            <br/>
                             <h1><ins>Sugerencias que puedes elegir</ins></h1>
-                            </br>
+                            <br/>
                         </div>
                         <div class="row">
                          
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
-                                
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         <p style="margin-top: 20px"><img src="img/actividad.png" alt="lista" width="128" height="128"></p>                           
                                         <div>
@@ -241,21 +272,21 @@
                             
                         </div>
                         </div>
-                    </div>
-        
+                    </div>     
                 </div>
+
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="row panel panel-info panel-footer">
+                        <div class="panel panel-info panel-footer">
+                        <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6 text-center">
                                 <div class="row">
-                                    <div class="col-sm-8 col-md-8 col-lg-8 text-center ">
+                                    <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center ">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
                                             <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
-                                            <br/><br/>
                                             <!-- Modal -->
                                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -279,20 +310,21 @@
                                                 <!-- /.modal-dialog -->
                                             </div>
                                             <!-- /.modal -->
+      
                                         </div>
                                     </div> 
-                                    <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+                                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" width="128" height="128"/>
+                                            <img src="img/mail.png" alt="mail" width="120" height="120"/>
                                         </div>
                                     </div> 
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6 text-center" style="">
                                 <div class="row">
-                                    <div class="col-sm-8 col-md-8 col-lg-8 text-center">
+                                    <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
@@ -300,22 +332,24 @@
                                             <p class="lead">Administración de Cursos o Secciones.</p>
                                             <br/>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
+                                            <br/>
                                         </div>        
                                     </div>
-                                    <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+                                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/folder.png" alt="folder" width="128" height="128"/>
-                                            <p style="height: 45px"></p>
+                                            <img src="img/folder.png" alt="folder" width="120" height="120"/>
                                         </div>
                                     </div> 
                                 </div>
                             </div>
                         </div>
+                        <br/><br/>
                     </div>
                 </div>
                 <!--Fin seccion de cursos-->
+                </div>
             </div>
         </div>
                 <!--Fin seccion de invitacion-->

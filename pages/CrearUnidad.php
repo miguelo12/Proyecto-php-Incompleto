@@ -214,9 +214,9 @@ error_reporting(0);
                     <?php if($docente["admin"]==1): ?>
                     <li>
                     <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                      <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
+                      <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
                     <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
+                      <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
                     <?php endif;?>
                      </li>
                     <?php endif; ?>
