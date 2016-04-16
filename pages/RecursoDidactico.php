@@ -31,8 +31,8 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Inicio Docente</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    <title>Recursos Didacticos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,21 +52,6 @@ error_reporting(0);
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
     <link href="css/tab.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background-image: url("./img/lab-flask.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-color: hsl(227, 97%, 90%);
-        }
-    </style>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     
     <!-- JavaScript -->
     <?php //Este es el orden siempre... ?>
@@ -226,7 +211,7 @@ error_reporting(0);
                             <section id="wizard">
                                 <div class="page-header">
                                 <?php if(!isset($_SESSION["editar"])):?>
-                                <h1>Crea tu unidad de aprendizaje</h1>
+                                <h1 style="color: #476d97">Crea tu unidad de aprendizaje</h1>
                                 <?php else:?>
                                 <h1>Editar unidad de aprendizaje</h1>
                                 <?php endif;?>
@@ -240,7 +225,7 @@ error_reporting(0);
                                             <li><a href="#tabi5" data-toggle="tab">Finalizar</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane well" id="tabi1">
+                                        <div class="tab-pane well" style="background-color: #ffffff" id="tabi1">
                                             <br/>
                                             <br/>
                                               <div id="rootwizard">        
@@ -249,10 +234,12 @@ error_reporting(0);
                                                         <div class="navbar-inner">
                                                             <div class="row">
                                                                 <ul class="nav nav-pills">
-                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab1" data-toggle="tab" style="text-align: center"><img src="img/text.png" width="64" height="64" alt="Text"/><br/>Texto</a></li>
-                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab2" data-toggle="tab" style="text-align: center"><img src="img/word.png" width="64" height="64" alt="word"/><br/>Word</a></li>
-                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab3" data-toggle="tab" style="text-align: center"><img src="img/ppt.png" width="64" height="64" alt="ppt"/><br/>PowerPoint</a></li>
-                                                                    <li class="col-xs-2 col-xs-push-2"><a href="#tab4" data-toggle="tab" style="text-align: center"><img src="img/camera.png" width="64" height="64" alt="camera"/><br/>Imagen</a></li>
+                                                                    <li class="col-xs-1"></li>
+                                                                    <li class="col-xs-2"><a href="#tab1" data-toggle="tab" style="text-align: center"><img src="img/text.png" width="64" height="64" alt="Text"/><br/>Texto</a></li>
+                                                                    <li class="col-xs-2"><a href="#tab2" data-toggle="tab" style="text-align: center"><img src="img/word.png" width="64" height="64" alt="word"/><br/>Word</a></li>
+                                                                    <li class="col-xs-2"><a href="#tab3" data-toggle="tab" style="text-align: center"><img src="img/pdf.png" width="64" height="64" alt="word"/><br/>PDF</a></li>
+                                                                    <li class="col-xs-2"><a href="#tab4" data-toggle="tab" style="text-align: center"><img src="img/ppt.png" width="64" height="64" alt="ppt"/><br/>PowerPoint</a></li>
+                                                                    <li class="col-xs-2"><a href="#tab5" data-toggle="tab" style="text-align: center"><img src="img/camera.png" width="64" height="64" alt="camera"/><br/>Imagen</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -305,7 +292,7 @@ error_reporting(0);
                                                                 <input type="file" name="resume3" id="resume3"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
-                                                                <p class="help-block">Solamente se aceptan .powerpoint</p>
+                                                                <p class="help-block">Solamente se aceptan .pdf</p>
                                                                 <button type="button" id="resume_link3" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 <br/>
@@ -322,8 +309,25 @@ error_reporting(0);
                                                                 <input type="file" name="resume4" id="resume4"  style="visibility: hidden">
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
-                                                                <p class="help-block">Solamente se aceptan .jpg o .png</p>
+                                                                <p class="help-block">Solamente se aceptan .powerpoint</p>
                                                                 <button type="button" id="resume_link4" class="btn btn-default">Agregar Archivo</button>
+                                                                <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                <br/>
+                                                                <br/>
+                                                                <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab5">
+                                                            <div class="form-group">
+                                                                <form method="POST" name="myform5" action="php/upload.php?tipo=5" enctype="multipart/form-data" autocomplete="off">
+                                                                <label for="descripcion5">Descripcion:</label>
+                                                                <input type="text" id="descripcion5" name="descripcion5" id="descripcion5" class="form-control" placeholder="Ingrese una Descripción.">
+                                                                <input type="file" name="resume5" id="resume5"  style="visibility: hidden">
+                                                                <label for="exampleInputFile">Sube tu archivo.</label>
+                                                                <p id="archivo5" class="well"></p>
+                                                                <p class="help-block">Solamente se aceptan .jpg o .png</p>
+                                                                <button type="button" id="resume_link5" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
                                                                 <br/>
                                                                 <br/>
@@ -336,7 +340,7 @@ error_reporting(0);
                                             <br/>
                                             <br/>
                                         </div>
-                                        <div class="tab-pane well" id="tabi2">
+                                        <div class="tab-pane well" style="background-color: #ffffff" id="tabi2">
                                             <form method="POST" action="">
                                             <br/>
                                             <?php if(isset($titu)):?>
@@ -370,7 +374,7 @@ error_reporting(0);
                                             <br/>
                                             </form>
                                         </div>
-                                        <div class="tab-pane well" id="tabi3"> 
+                                        <div class="tab-pane well" style="background-color: #ffffff" id="tabi3"> 
                                             <?php if(isset($titu)):?>
                                             <table class="editinplace table table-bordered">
                                                 <tr>
@@ -533,7 +537,7 @@ error_reporting(0);
                                                 </form>
                                             </table>
                                         </div>
-                                        <div class="tab-pane well" id="tabi4">
+                                        <div class="tab-pane well" style="background-color: #ffffff" id="tabi4">
                                             <?php if($titu["ayuda"]["modificar"] != null):?> 
                                             <table class="table table-bordered">
                                                 <tr>
@@ -783,7 +787,7 @@ error_reporting(0);
                                             </table>
                                             <?php endif?>
                                         </div>                                      
-                                        <div class="tab-pane well" id="tabi5">
+                                        <div class="tab-pane well" style="background-color: #ffffff" id="tabi5">
                                             <br/>
                                             <?php if(isset($_SESSION["editar"])):?>
                                             <label for="contenido">Está es la última parte para Editar tu unidad.</label>
@@ -905,13 +909,6 @@ error_reporting(0);
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-        
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
     
     <script>    
     $('#resume_link1').click(function( e ) {
@@ -979,7 +976,7 @@ error_reporting(0);
     $('#resume3').on( 'change', function() {
        myfile= $( this ).val();
        var ext = myfile.split('.').pop();
-       if(!(ext==="ppt" || ext==="pptx")){
+       if(!(ext==="pdf")){
            $('#myModal').modal('show');
        }
        else
@@ -1005,13 +1002,39 @@ error_reporting(0);
     $('#resume4').on( 'change', function() {
        myfile= $( this ).val();
        var ext = myfile.split('.').pop();
-       if(!(ext==="png"|| ext==="jpg")){
+       if(!(ext==="ppt" || ext==="pptx")){
            $('#myModal').modal('show');
        }
        else
        {
            document.getElementById("archivo4").innerHTML = myfile;
            document.myform4.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link5').click(function( e ) {
+        if ($('#descripcion5').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume5').trigger('click');
+        }
+    });
+    $('#resume5').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="png"|| ext==="jpg"|| ext==="JPG" || ext==="PNG")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo5").innerHTML = myfile;
+           document.myform5.subirarchivo.disabled=false;
        }
     });
     </script>

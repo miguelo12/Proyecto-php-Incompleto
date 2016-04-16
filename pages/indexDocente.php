@@ -31,8 +31,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Inicio Docente</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    <title>Indice Docente</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,15 +50,7 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background-image: url("./img/scientist.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-color: hsl(349, 25%, 85%);
-        }
-    </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -215,22 +207,19 @@
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
                             <br/>
-                            <h4 style="float: right; margin-right: 20px">Portal Docente</h4>
+                            <h4 style="float: right; margin-right: 20px; color: #23527c">Portal Docente</h4>
                             <br/>
-                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
+                            <h1><ins style="color: #23527c">Sugerencias que puedes elegir</ins></h1>
                             <br/>
                         </div>
                         <div class="row">
                          
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <p style="margin-top: 20px"><img src="img/actividad.png" alt="lista" width="128" height="128"></p>                           
-                                        <div>
-                                        <a class="lead" href="CrearUnidad.php">Crear Actividad</a>
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
+                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" alt="lista" width="200" height="200"></p> Crear Actividad</a>
                                         <br/>
                                         <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
-                                        </div>
                                     </div>     
                                 </div>
                             </div>
@@ -240,11 +229,9 @@
 
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        </br>
-                                        <p><img src="img/biblioteca.png" alt="lista" width="128" height="128"></p>
-                                        <div style="margin-top: 10px">
-                                        <a class="lead" href="Biblioteca.php">Biblioteca y Rúbricas</a>
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
+                                        <div>
+                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
                                         <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
                                         <br/>
                                         </div>
@@ -258,9 +245,7 @@
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        </br>
-                                        <p><img src="img/lista.png" alt="lista" width="128" height="128"></p>
-                                        <a class="lead" href="#">Evaluar</a>
+                                        <a class="lead" href="#"><p><img src="img/lista.png" alt="lista" width="200" height="200"></p>Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
                                         <br/>
                                     </div>
@@ -279,57 +264,33 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="panel panel-info panel-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+                            <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center ">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <p class="lead" style="color: #23527c">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <form method="POST" autocomplete="off" id="formulario" action="php/UsuarioAction.php?user=2&action=1">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title" id="myModalLabel">Para invitar ingrese un correo.</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <input class="form-control" type="text" name="email1" id="email1" value="" placeholder="Ingrese aquí el correo."/>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                                                            <button type="submit" class="btn btn-primary">Enviar</button>
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
-      
                                         </div>
                                     </div> 
                                     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" width="120" height="120"/>
+                                            <img src="img/mail.png" alt="mail" width="128" height="128"/>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6 text-center" style="">
+                            <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center">
                                         <div class="text-center">
                                             <br/>
                                             <br/>
                                             <br/>
-                                            <p class="lead">Administración de Cursos o Secciones.</p>
+                                            <p class="lead" style="color: #23527c">Administración de Cursos o Secciones.</p>
                                             <br/>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
                                             <br/>
@@ -339,9 +300,37 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/folder.png" alt="folder" width="120" height="120"/>
+                                            <img src="img/folder.png" alt="folder" width="128" height="128"/>
                                         </div>
                                     </div> 
+                                </div>
+                            </div>
+                            <div class=" hidden-sm hidden-md hidden-lg text-center">
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        <div class="text-center">
+                                            <br/>
+                                            <br/>
+                                            <img src="img/mail.png" alt="mail" width="120" height="120"/>
+                                            <p class="lead" style="color: #23527c">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="hidden-sm hidden-md hidden-lg text-center">
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        <div class="text-center">
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <img src="img/folder.png" alt="folder" width="120" height="120"/>
+                                            <p class="lead" style="color: #23527c">Administración de Cursos o Secciones.</p>
+                                            <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
+                                            <br/>
+                                        </div>        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +343,30 @@
         </div>
                 <!--Fin seccion de invitacion-->
                 <!--Inicio seccion de cursos-->
-        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" autocomplete="off" id="formulario" action="php/UsuarioAction.php?user=2&action=1">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Para invitar ingrese un correo.</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" name="email1" id="email1" value="" placeholder="Ingrese aquí el correo."/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+     
     <!-- Modal -->
     <div class="modal fade" id="myModal1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

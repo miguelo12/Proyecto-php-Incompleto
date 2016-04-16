@@ -30,8 +30,8 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Inicio Docente</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    <title>Unidad de aprendizaje</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,14 +50,6 @@ error_reporting(0);
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
-    <style>
-        body {
-            background-image: url("./img/pens-pencils.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-color: hsl(117, 0%, 100%);
-        }
-    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -253,15 +245,16 @@ error_reporting(0);
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="row well well-lg">
+                    <div class="panel panel-info panel-footer">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="">
                             <div class="text-center">
                                 <br/>
                                 <?php if(isset($_SESSION["editar"])):?>
-                                <h2><ins>Editar Unidad de Aprendizaje</ins></h2>
+                                <h2 style="color: #23527c"><ins>Editar Unidad de Aprendizaje</ins></h2>
                                 <?php else:?>
-                                <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
+                                <h2 style="color: #23527c"><ins>Crear Unidad de Aprendizaje</ins></h2>
                                 <?php endif;?>
                             </div>
                             <div class="row">
@@ -270,18 +263,18 @@ error_reporting(0);
                                     <div class="panel panel-default" id="contenido">
                                       <div class="panel-heading">
                                     <br/>
-                                    <label>Titulo</label>
+                                    <label style="color: #23527c">Titulo</label>
                                     <div class="text-center">
                                         
                                     <?php if(isset($_SESSION["editar"])):?>
-                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                                    <p>Modo editar no se puede cambiar el nombre solamente su contenido.</p>
+                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p style="color: #23527c; font-weight:bold;">Modo editar no se puede cambiar el nombre solamente su contenido.</p>
                                     <?php elseif(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
-                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                                    <p>Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
+                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p style="color: #23527c;font-weight:bold;">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>
-                                    <input style="text-align: center" class="form-control" type="text" name="nameActivity" value="" placeholder="Ingrese aquí el titulo"/>
-                                    <p>Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
+                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="" placeholder="Ingrese aquí el titulo"/>
+                                    <p style="color: #23527c;font-weight:bold;">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
                                     </div>
                                     </div>
@@ -380,6 +373,7 @@ error_reporting(0);
                                 <div class="clearfix visible-xs"></div>
                             </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

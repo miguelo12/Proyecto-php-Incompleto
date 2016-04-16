@@ -23,7 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    
     <title>Heuristica Movil</title>
 
     <!-- Bootstrap Core CSS -->
@@ -59,7 +60,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="login-panel panel panel-default">
+                <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Bienvenido Ingrese</h3>
                     </div>
@@ -70,6 +71,21 @@
                             <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Profesor" onclick=" window.location='../pages/loginProfesor.php'  ">
                             <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Alumno" onclick=" window.location='../pages/loginAlumno.php'  ">
                         </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                <div class="panel panel-info" id="contenido">
+                      <div class="panel-heading">
+                        <h3>Actualización 16/04/2016:</h3>
+                        <ul>
+                            <li>Cambios en las paletas de colores.</li>
+                            <li>Recursos Didacticos ahora acepta PDF.</li>
+                            <li>Correcciones menores.</li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -26,8 +26,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Inicio Docente</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    <title>Evaluar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

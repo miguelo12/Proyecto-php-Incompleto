@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Perfil</title>
 
     <!-- Bootstrap Core CSS -->
@@ -45,14 +45,6 @@
     
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
-    <style>
-        body {
-            background-image: url("./img/spaceman.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-color: hsl(171, 30%, 90%);
-        }
-    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -252,7 +244,7 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <div class="well well-lg">
+                    <div class="panel panel-info panel-footer">
                         <div class="row">
                             <table class="table table-responsive">
                                 <caption class="text-center">

@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Nueva Cuenta</title>
 
     <!-- Bootstrap Core CSS -->
@@ -57,35 +57,39 @@
     </nav>  
     <div class="container">
         <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Crear cuenta</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2" autocomplete="off">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email1" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Confirma password" name="confiPassword" type="password" autofocus required>
-                                </div>
-                                
-                                <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear">
-                                <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/loginAlumno.php'  ">
-                                </fieldset>
-                        </form>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                        <div class="login-panel panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Crear cuenta</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2" autocomplete="off">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="E-mail" name="email1" type="text" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Confirma password" name="confiPassword" type="password" autofocus required>
+                                        </div>
+
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear">
+                                        <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/loginAlumno.php'  ">
+                                        </fieldset>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Error</title>
+        <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     </head>
     <body>
         <h1>Error404</h1>

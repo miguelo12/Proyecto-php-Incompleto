@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Actividad Alumno</title>
 
     <!-- Bootstrap Core CSS -->
@@ -57,7 +57,7 @@
 <body>
         <!-- Navigation -->
         
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" id="menu-toggle" href="#menu-toggle" aria-expanded="false" aria-controls="navbar">
@@ -137,10 +137,6 @@
         </div>
         </nav>
         </div>
-        
-        <br/>
-        <br/>
-        <br/>
         
         <div id="page-content-wrapper content" >
         <div class="container separate-rows tall-rows">

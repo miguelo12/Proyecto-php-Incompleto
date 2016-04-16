@@ -31,7 +31,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Administrador</title>
 
     <!-- Bootstrap Core CSS -->
@@ -133,38 +133,34 @@
         <br/>
         
         <div id="page-content-wrapper content" >
-        <div class="container separate-rows tall-rows">
-            <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                    <div class="well well-lg">
-                    <div class="text-center">
-                        <h2><ins>Sugerencias que púedes<br/> elegir</ins></h2>
-                    </div>
-                    <div class="row">
-                         <div class="col-xs-6 text-right">
+            <div class="container separate-rows tall-rows">
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="panel panel-info panel-footer">
+                        <div class="text-center">
                             <br/>
-                           
-                            <a class="lead" href="adminCuentas.php">Crear Profesor o<br> Administrar cuentas.</a>
+                            <h4 style="float: right; margin-right: 20px; color: #23527c">Portal Admin</h4>
+                            <br/>
+                            <h1><ins style="color: #23527c">Sugerencias que puedes elegir</ins></h1>
                             <br/>
                         </div>
-                        <div class="col-xs-6">
-                            <br/>
-                            <p><img src="img/actividad.png" alt="lista" width="76" height="80"></p>
-                        </div>
+                        <div class="row">
+                         
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
+                                        <a class="lead" href="adminCuentas.php"><p><img src="img/actividad.png" alt="lista" width="200" height="200"></p>Crear Profesor o<br> Administrar cuentas.</a>
+                                    </div>     
+                                </div>
+                            </div>
 
-                        <div class="clearfix visible-xs"></div>
-                        
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    </div>
-                </div>
-                <div class="hidden-xs col-sm-5 col-md-5 col-lg-5 text-center well well-lg">
-                    <div class="text-center">
-                        <h2><ins>Portal Administrador</ins></h2>
-                    </div>
+                            <div class="clearfix visible-xs"></div>
+                        </div>
+                        </div>
+                    </div>     
                 </div>
             </div>
-        </div>
         </div>
     <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>

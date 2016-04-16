@@ -56,7 +56,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Cursos</title>
 
     <!-- Bootstrap Core CSS -->
@@ -76,13 +76,6 @@
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
-    <style>
-        body {
-            background-image: url("./img/laptop.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-        }
-    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -127,7 +120,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
+                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
                     <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
@@ -212,13 +205,13 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="well well-lg">
+                    <div class="panel panel-info panel-footer">
                     <div class="row">
                         <div class="col-xs-12">
                             
-                            <div class="well" style="text-align: center; overflow-x: auto">
+                            <div style="text-align: center; overflow-x: auto">
                                 <table class="table table-bordered table-condensed">
-                                    <caption><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
+                                    <caption><h2 class="text-center" style="color: #23527c"><ins>Secciones o Cursos</ins></h2></caption>
                                     <tr>
                                         <th class="text-center">Nombre Asignatura</th>
                                         <th class="text-center">curso o sección</th>

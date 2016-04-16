@@ -26,8 +26,9 @@ and open the template in the editor.
     position: fixed;
     right: -260px;
     width: 0;
-    height: 100%;
+    height: 120%;
     margin-right: -260px;
+    margin-top: -20px;
     overflow-y: auto;
     background: #000;
     -webkit-transition: all 0.5s ease;
@@ -99,11 +100,11 @@ and open the template in the editor.
 
     #page-content-wrapper {
         padding: 20px;
-        position: relative;
+        position: absolute;
     }
 
     #wrapper.toggled #page-content-wrapper {
-        position: relative;
+        position: absolute;
         margin-right: 0;
     }
 }

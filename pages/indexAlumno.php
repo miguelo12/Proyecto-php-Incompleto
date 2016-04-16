@@ -26,8 +26,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Inicio Docente</title>
+    <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+    <title>Inicio Alumno</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,14 +46,6 @@
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
-    <style>
-        body {
-            background-image: url("./img/glasses.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-color: hsl(163, 46%, 80%);
-        }
-    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
