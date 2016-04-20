@@ -74,7 +74,7 @@ error_reporting(0);
                 <?php if(isset($_SESSION["editar"])):?>
                     document.getElementById("finalformedit").submit();
                 <?php else:?>
-                <?php if(isset($_SESSION["recursosdidacticos"])): ?>
+                <?php if(isset($_COOKIE["recursosdidacticos"])): ?>
                     document.getElementById("finalform").submit();
                 <?php else: ?>
                     alert('No puedes terminar la unidad lea los requisitos.');
@@ -354,11 +354,12 @@ error_reporting(0);
                                             <?php endforeach; ?>
                                             </ul>   
                                             <?php endif;?>
-                                            <?php if(isset($_SESSION["recursosdidacticos"])): ?>
+                                            <?php if(isset($_COOKIE["recursosdidacticos"])):?>
+                                            
                                                   <label for="moreinput">Estos son tus archivos subidos.</label>
                                                   <br/>
                                                   <ul>
-                                                  <?php $recursos = $_SESSION["recursosdidacticos"];
+                                                  <?php $recursos = json_decode($_COOKIE["recursosdidacticos"],true);
                                                      foreach($recursos as $do):?>
                                                      <li><img alt="imagen" src="img/desconocido.png"/>
                                                      <br/>

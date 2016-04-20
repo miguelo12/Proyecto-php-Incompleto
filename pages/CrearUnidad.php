@@ -74,7 +74,7 @@ error_reporting(0);
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                     <a href="indexDocente.php">Inicio</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Inicio</a>
@@ -82,26 +82,26 @@ error_reporting(0);
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="active"><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li class="active"><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="CrearUnidad.php">Crear una actividad</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a>
                     <?php endif;?></li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="Biblioteca.php">Ir a biblioteca</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a>
                     <?php endif;?></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                         <a href="cursos.php">Crear Asignatura o Sección</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a>
                     <?php endif;?></li>
                   </ul>
                 </li>
-                <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="#contact">Contáctenos</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Contáctenos</a>
@@ -111,14 +111,14 @@ error_reporting(0);
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                     <?php endif;?></li>
                     <?php if($docente["admin"]==1): ?>
                     <li>
-                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a>
@@ -126,7 +126,7 @@ error_reporting(0);
                      </li>
                     <?php endif; ?>
                     <li role="separator" class="divider"></li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a>
@@ -153,7 +153,7 @@ error_reporting(0);
                     </a>
                 </li>
                 <li> 
-                      <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                      <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                           <a href="indexDocente.php">Inicio</a>
                       <?php else:?>
                           <a data-toggle="modal" data-target="#myModal" href="#">Inicio</a>
@@ -162,19 +162,19 @@ error_reporting(0);
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="active"><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li class="active"><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                           <a href="CrearUnidad.php">Crear una actividad</a>
                         <?php else:?>
                           <a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a>
                         <?php endif;?></li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                           <a href="Biblioteca.php">Ir a biblioteca</a>
                         <?php else:?>
                           <a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a>
                         <?php endif;?></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                         <a href="cursos.php">Crear Asignatura o Sección</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a>
@@ -182,14 +182,14 @@ error_reporting(0);
                   </ul>
                 </li>
                 <li> 
-                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="Evaluar.php">Evaluar Proyectos</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Evaluar Proyectos</a>
                     <?php endif;?>
                 </li>
                 <li> 
-                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="Biblioteca.php">Biblioteca</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#">Biblioteca</a>
@@ -198,14 +198,14 @@ error_reporting(0);
                 <li class="dropdown hidden-lg hidden-md">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a>
                     <?php endif;?></li>
                     <?php if($docente["admin"]==1): ?>
                     <li>
-                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a>
@@ -213,7 +213,7 @@ error_reporting(0);
                      </li>
                     <?php endif; ?>
                     <li role="separator" class="divider"></li>
-                    <li><?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                       <a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a>
                     <?php else:?>
                       <a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a>
@@ -269,11 +269,11 @@ error_reporting(0);
                                     <?php if(isset($_SESSION["editar"])):?>
                                     <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
                                     <p style="color: #23527c; font-weight:bold;">Modo editar no se puede cambiar el nombre solamente su contenido.</p>
-                                    <?php elseif(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
-                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_SESSION["titulocreacion"])){echo $_SESSION["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <?php elseif(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
+                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
                                     <p style="color: #23527c;font-weight:bold;">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>
-                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="" placeholder="Ingrese aquí el titulo"/>
+                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
                                     <p style="color: #23527c;font-weight:bold;">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
                                     </div>
@@ -330,7 +330,7 @@ error_reporting(0);
 
                                 <div class="col-xs-12 text-center">
                                     <br/>
-                                    <?php if(!(isset($_SESSION["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?> 
+                                    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?> 
                                     <a name="btn3" class="btn btn-primary" href="indexDocente.php">Volver al Portal Docente</a>
                                     <?php else:?>
                                     <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-primary"/>
@@ -396,7 +396,7 @@ error_reporting(0);
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script src="../js/jquery.validate.min.js"></script>
-    <?php if(!isset($_SESSION["recursosdidacticos"])):?>
+    <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
     <script>
           $.validator.setDefaults({
             errorElement: "span",

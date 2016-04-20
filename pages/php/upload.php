@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["editar"])){
-    if(isset($_SESSION["titulocreacion"])){
+    if(isset($_COOKIE["titulocreacion"])){
         if(isset($_GET["tipo"])){
             if($_GET["tipo"]==1){
                 date_default_timezone_set('Chile/Continental');
@@ -9,7 +9,7 @@ if(!isset($_SESSION["editar"])){
                 $docente = $_SESSION["docente"];
                 $target_upload = "uploads";
                 $target_username = "uploads/{$docente["id"]}";
-                $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+                $target_dir = "uploads/{$docente["id"]}/{$_COOKIE["titulocreacion"]}-{$date}/";
                 $target_file = $target_dir . basename($_FILES["resume1"]["name"]);
                 $uploadOk = 1;
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -71,11 +71,11 @@ if(!isset($_SESSION["editar"])){
 
                 } else {
                     if (move_uploaded_file($_FILES["resume1"]["tmp_name"], $target_file)) {
-                        if(isset($_SESSION["recursosdidacticos"])){
+                        if(isset($_COOKIE["recursosdidacticos"])){
                         $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
-                        $recu = $_SESSION["recursosdidacticos"];
+                        $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -83,7 +83,7 @@ if(!isset($_SESSION["editar"])){
                         {
                         $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -98,7 +98,7 @@ if(!isset($_SESSION["editar"])){
                 $docente = $_SESSION["docente"];
                 $target_upload = "uploads";
                 $target_username = "uploads/{$docente["id"]}";
-                $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+                $target_dir = "uploads/{$docente["id"]}/{$_COOKIE["titulocreacion"]}-{$date}/";
                 $target_file = $target_dir . basename($_FILES["resume2"]["name"]);
                 $uploadOk = 1;
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -159,11 +159,11 @@ if(!isset($_SESSION["editar"])){
 
                 } else {
                     if (move_uploaded_file($_FILES["resume2"]["tmp_name"], $target_file)) {
-                        if(isset($_SESSION["recursosdidacticos"])){
+                        if(isset($_COOKIE["recursosdidacticos"])){
                         $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
-                        $recu = $_SESSION["recursosdidacticos"];
+                        $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -171,7 +171,7 @@ if(!isset($_SESSION["editar"])){
                         {
                         $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -186,7 +186,7 @@ if(!isset($_SESSION["editar"])){
                 $docente = $_SESSION["docente"];
                 $target_upload = "uploads";
                 $target_username = "uploads/{$docente["id"]}";
-                $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+                $target_dir = "uploads/{$docente["id"]}/{$_COOKIE["titulocreacion"]}-{$date}/";
                 $target_file = $target_dir . basename($_FILES["resume3"]["name"]);
                 $uploadOk = 1;
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -247,11 +247,11 @@ if(!isset($_SESSION["editar"])){
 
                 } else {
                     if (move_uploaded_file($_FILES["resume3"]["tmp_name"], $target_file)) {
-                        if(isset($_SESSION["recursosdidacticos"])){
+                        if(isset($_COOKIE["recursosdidacticos"])){
                         $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
-                        $recu = $_SESSION["recursosdidacticos"];
+                        $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -259,7 +259,7 @@ if(!isset($_SESSION["editar"])){
                         {
                         $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -274,7 +274,7 @@ if(!isset($_SESSION["editar"])){
                 $docente = $_SESSION["docente"];
                 $target_upload = "uploads";
                 $target_username = "uploads/{$docente["id"]}";
-                $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+                $target_dir = "uploads/{$docente["id"]}/{$_COOKIE["titulocreacion"]}-{$date}/";
                 $target_file = $target_dir . basename($_FILES["resume4"]["name"]);
                 $uploadOk = 1;
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -335,11 +335,11 @@ if(!isset($_SESSION["editar"])){
 
                 } else {
                     if (move_uploaded_file($_FILES["resume4"]["tmp_name"], $target_file)) {
-                        if(isset($_SESSION["recursosdidacticos"])){
+                        if(isset($_COOKIE["recursosdidacticos"])){
                         $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
-                        $recu = $_SESSION["recursosdidacticos"];
+                        $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -347,7 +347,8 @@ if(!isset($_SESSION["editar"])){
                         {
                         $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        echo json_encode($recu);
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -364,7 +365,7 @@ if(!isset($_SESSION["editar"])){
                 $docente = $_SESSION["docente"];
                 $target_upload = "uploads";
                 $target_username = "uploads/{$docente["id"]}";
-                $target_dir = "uploads/{$docente["id"]}/{$_SESSION["titulocreacion"]}-{$date}/";
+                $target_dir = "uploads/{$docente["id"]}/{$_COOKIE["titulocreacion"]}-{$date}/";
                 $target_file = $target_dir . basename($_FILES["resume5"]["name"]);
                 $uploadOk = 1;
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -424,11 +425,11 @@ if(!isset($_SESSION["editar"])){
 
                 } else {
                     if (move_uploaded_file($_FILES["resume5"]["tmp_name"], $target_file)) {
-                        if(isset($_SESSION["recursosdidacticos"])){
+                        if(isset($_COOKIE["recursosdidacticos"])){
                         $Recursos = array("nombre" => $_FILES["resume5"]["name"], "tamaño" => $_FILES["resume5"]["size"],"tipo" => $_FILES["resume5"]["type"], "descripcion" => $_POST["descripcion5"], "url" => $target_file);
-                        $recu = $_SESSION["recursosdidacticos"];
+                        $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -436,7 +437,7 @@ if(!isset($_SESSION["editar"])){
                         {
                         $Recursos = array("nombre" => $_FILES["resume5"]["name"], "tamaño" => $_FILES["resume5"]["size"],"tipo" => $_FILES["resume5"]["type"], "descripcion" => $_POST["descripcion5"], "url" => $target_file);
                         $recu[] = $Recursos;
-                        $_SESSION["recursosdidacticos"] = $recu;
+                        setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                         header("location: ../RecursoDidactico.php?success=1");
                         die;
                         }
@@ -480,11 +481,11 @@ if(!isset($_SESSION["editar"])){
 
             } else {
                 if (move_uploaded_file($_FILES["resume1"]["tmp_name"], $target_file)) {
-                    if(isset($_SESSION["recursosdidacticos"])){
+                    if(isset($_COOKIE["recursosdidacticos"])){
                     $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
-                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -492,7 +493,7 @@ if(!isset($_SESSION["editar"])){
                     {
                     $Recursos = array("nombre" => $_FILES["resume1"]["name"], "tamaño" => $_FILES["resume1"]["size"],"tipo" => $_FILES["resume1"]["type"], "descripcion" => $_POST["descripcion1"], "url" => $target_file);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -528,11 +529,11 @@ if(!isset($_SESSION["editar"])){
 
             } else {
                 if (move_uploaded_file($_FILES["resume2"]["tmp_name"], $target_file)) {
-                    if(isset($_SESSION["recursosdidacticos"])){
+                    if(isset($_COOKIE["recursosdidacticos"])){
                     $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
-                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -540,7 +541,7 @@ if(!isset($_SESSION["editar"])){
                     {
                     $Recursos = array("nombre" => $_FILES["resume2"]["name"], "tamaño" => $_FILES["resume2"]["size"],"tipo" => $_FILES["resume2"]["type"], "descripcion" => $_POST["descripcion2"], "url" => $target_file);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -576,11 +577,11 @@ if(!isset($_SESSION["editar"])){
 
             } else {
                 if (move_uploaded_file($_FILES["resume3"]["tmp_name"], $target_file)) {
-                    if(isset($_SESSION["recursosdidacticos"])){
+                    if(isset($_COOKIE["recursosdidacticos"])){
                     $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
-                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -588,7 +589,7 @@ if(!isset($_SESSION["editar"])){
                     {
                     $Recursos = array("nombre" => $_FILES["resume3"]["name"], "tamaño" => $_FILES["resume3"]["size"],"tipo" => $_FILES["resume3"]["type"], "descripcion" => $_POST["descripcion3"], "url" => $target_file);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -598,7 +599,7 @@ if(!isset($_SESSION["editar"])){
                 }
             }
         } elseif ($_GET["tipo"]==4) {
-             $cadena = $edita["recursosdidacticos"][0]["url"];
+            $cadena = $edita["recursosdidacticos"][0]["url"];
             $num = strlen($edita["recursosdidacticos"][0]["nombre"]);
             $cadena1 = substr($cadena, 0, -$num);
             $docente = $_SESSION["docente"];
@@ -624,11 +625,11 @@ if(!isset($_SESSION["editar"])){
 
             } else {
                 if (move_uploaded_file($_FILES["resume4"]["tmp_name"], $target_file)) {
-                    if(isset($_SESSION["recursosdidacticos"])){
+                    if(isset($_COOKIE["recursosdidacticos"])){
                     $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
-                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -636,7 +637,7 @@ if(!isset($_SESSION["editar"])){
                     {
                     $Recursos = array("nombre" => $_FILES["resume4"]["name"], "tamaño" => $_FILES["resume4"]["size"],"tipo" => $_FILES["resume4"]["type"], "descripcion" => $_POST["descripcion4"], "url" => $target_file);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -673,11 +674,11 @@ if(!isset($_SESSION["editar"])){
 
             } else {
                 if (move_uploaded_file($_FILES["resume5"]["tmp_name"], $target_file)) {
-                    if(isset($_SESSION["recursosdidacticos"])){
+                    if(isset($_COOKIE["recursosdidacticos"])){
                     $Recursos = array("nombre" => $_FILES["resume5"]["name"], "tamaño" => $_FILES["resume5"]["size"],"tipo" => $_FILES["resume5"]["type"], "descripcion" => $_POST["descripcion5"], "url" => $target_file);
-                    $recu = $_SESSION["recursosdidacticos"];
+                    $recu = json_decode($_COOKIE["recursosdidacticos"],true);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }
@@ -685,7 +686,7 @@ if(!isset($_SESSION["editar"])){
                     {
                     $Recursos = array("nombre" => $_FILES["resume5"]["name"], "tamaño" => $_FILES["resume5"]["size"],"tipo" => $_FILES["resume5"]["type"], "descripcion" => $_POST["descripcion5"], "url" => $target_file);
                     $recu[] = $Recursos;
-                    $_SESSION["recursosdidacticos"] = $recu;
+                    setcookie("recursosdidacticos", json_encode($recu), time()+86400, "/", "",  0);
                     header("location: ../RecursoDidactico.php?success=1");
                     die;
                     }

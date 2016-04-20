@@ -38,8 +38,7 @@ if(!isset($_SESSION["editar"])){
                     die();
                  }
               }
-
-            $_SESSION["titulocreacion"] = $new;
+            setcookie("titulocreacion", $new, time()+86400, "/", "",  0);
             header("location: ../RecursoDidactico.php");
             die();
             } 
@@ -138,7 +137,7 @@ if(!isset($_SESSION["editar"])){
         if($new2 == 0)
         {
 
-          $sec = $_SESSION["recursosdidacticos"];
+          $sec = $_COOKIE["recursosdidacticos"];
           $docente = $_SESSION["docente"];
           date_default_timezone_set('Chile/Continental');
           $date = date("mY");
@@ -148,20 +147,20 @@ if(!isset($_SESSION["editar"])){
               unlink($do["url"]);
           }
           //elimina la carpeta.
-          if(rmdir("uploads/".$docente["id"]."/".$_SESSION["titulocreacion"]."-".$date))
+          if(rmdir("uploads/".$docente["id"]."/".$_COOKIE["titulocreacion"]."-".$date))
           {
-              unset($_SESSION["titulocreacion"]);
+              setcookie('titulocreacion', null, -1, '/');
           }else
           {
-              unset($_SESSION["titulocreacion"]);
+              setcookie('titulocreacion', null, -1, '/');
           }
 
           unset($_SESSION["Ayuda"]);
           unset($_SESSION["preguntas"]);
-          unset($_SESSION["titulocreacion"]);
+          setcookie('titulocreacion', null, -1, '/');
           unset($_SESSION["rubrica"]);
           unset($_SESSION["NuevaUnidad"]);
-          unset($_SESSION["recursosdidacticos"]);
+          setcookie('recursosdidacticos', null, -1, '/');
           header("location: ../indexDocente.php");
           die();
         }
@@ -185,7 +184,7 @@ if(!isset($_SESSION["editar"])){
              try
              {                      
                  $docente = $_SESSION["docente"];
-                 $titulo = $_SESSION["titulocreacion"];
+                 $titulo = $_COOKIE["titulocreacion"];
                  $unidadaprendizaje->setRubrica_idRubrica($rubrica["idRubrica"]);
                  $unidadaprendizaje->setTitulo($titulo);
                  $unidadaprendizaje->setDocente_idDocente($docente["id"]);
@@ -258,7 +257,7 @@ if(!isset($_SESSION["editar"])){
                  die();
              }
 
-             unset($_SESSION["titulocreacion"]);
+             setcookie('titulocreacion', null, -1, '/');
              unset($_SESSION["rubrica"]);
              unset($_SESSION["NuevaUnidad"]);
              header("location: ../Biblioteca.php?creado=1");
@@ -272,9 +271,9 @@ if(!isset($_SESSION["editar"])){
         }
         elseif ($new2 ==2) 
         {
-          if(isset($_SESSION["recursosdidacticos"]))
+          if(isset($_COOKIE["recursosdidacticos"]))
           {
-              $recursosdidacticos = $_SESSION["recursosdidacticos"];
+              $recursosdidacticos = $_COOKIE["recursosdidacticos"];
 
               if(isset($_SESSION["Ayuda"]))
               {
@@ -310,7 +309,7 @@ if(!isset($_SESSION["editar"])){
               }
 
               $_SESSION["NuevaUnidad"] = $unidadnueva;
-              unset($_SESSION["recursosdidacticos"]);
+              setcookie('recursosdidacticos', null, -1, '/');
               unset($_SESSION["Ayuda"]);
               unset($_SESSION["preguntas"]);
               header("location: ../CrearUnidad.php");
@@ -332,13 +331,13 @@ else
             unset($_SESSION["editar"]);
             unset($_SESSION["NuevaUnidad"]);
             unset($_SESSION["preguntas"]);
-            $sec = $_SESSION["recursosdidacticos"];
+            $sec = $_COOKIE["recursosdidacticos"];
              //elimina los archivos.
             foreach($sec as $do)
             {
                 unlink($do["url"]);
             }
-            unset($_SESSION["recursosdidacticos"]);
+            setcookie('recursosdidacticos', null, -1, '/');
             header("location: ../indexDocente.php");
             die();
         } elseif ($_GET["action"]==1) {
@@ -356,7 +355,7 @@ else
             }
             
             if($conteo1 == $contador2){
-                if(isset($_SESSION["recursosdidacticos"])){
+                if(isset($_COOKIE["recursosdidacticos"])){
                    header("location: ../CrearUnidad.php");
                    die();
                 }
@@ -376,8 +375,8 @@ else
               //finaliza la unidad.
               $edita = $_SESSION["editar"];
               
-              if(isset($_SESSION["recursosdidacticos"])){
-              $newRecursos = $_SESSION["recursosdidacticos"];
+              if(isset($_COOKIE["recursosdidacticos"])){
+              $newRecursos = $_COOKIE["recursosdidacticos"];
               }
               if(isset($_SESSION["preguntas"])){
               $newPreguntas = $_SESSION["preguntas"];
@@ -469,7 +468,7 @@ else
                   }
               }
               
-              unset($_SESSION["recursosdidacticos"]);
+              setcookie('recursosdidacticos', null, -1, '/');
               unset($_SESSION["editar"]);
               unset($_SESSION["NuevaUnidad"]);
               unset($_SESSION["preguntas"]);
