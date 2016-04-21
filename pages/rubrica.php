@@ -546,7 +546,7 @@
                                             <br/>
                                             
                                             <!--a lo mejor usaremos php y no javascript-->
-                                            <form method="post" action="php/AvanceDidactico.php?pre=5">
+<!--                                            <form method="post" action="php/AvanceDidactico.php?pre=5">
                                             <button type="submit" class="btn btn-primary" style="float:right; margin-top: 44px">Modificar</button>
                                             <div class="row">
                                                 <div class="col-xs-2" style="float:right;">
@@ -556,7 +556,7 @@
                                                 </div>
                                             </div>
                                             <br/>
-                                            </form>
+                                            </form>-->
                                             
                                         </div>
                                         <div class="tab-pane well" id="tabi3">
@@ -570,7 +570,7 @@
                                                 <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
                                                     <tr>
                                                         <td style="width: 35%">
-                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                            <input class="form-control" type="text" value="" name="criterio">
                                                         </td>
                                                         <td>
                                                             <textarea class="form-control" rows="4" name="procedimiento"></textarea>

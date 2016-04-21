@@ -247,7 +247,7 @@ if(!isset($_GET["edit"])){
                          $_SESSION["autoevaluacion"] = $arrey;
                         }
                     }else{
-                        header("location:../RecursoDidactico.php?jump=4&pre=102");
+                        header("location:../rubrica.php?jump=0&pre=102");
                         die();
                     }
                 }
@@ -298,8 +298,8 @@ if(!isset($_GET["edit"])){
                 }
             }
           }
-            header("location: ../RecursoDidactico.php?jump=4#submit3");
-            die();
+          header("location: ../rubrica.php?jump=0#submit3");
+          die();
         } elseif ($_GET["pre"] == 4) {
           if(isset($_GET["a"])){
             if($_GET["a"] == 1){
@@ -325,7 +325,7 @@ if(!isset($_GET["edit"])){
 
                     }
                 }else{
-                    header("location:../RecursoDidactico.php?jump=5&pre=103");
+                    header("location:../rubrica.php?jump=1&pre=103");
                     die();
                 }
               }
@@ -346,7 +346,7 @@ if(!isset($_GET["edit"])){
                     $_SESSION["coevaluacion"] = $arroy;
                  }
                 }
-                header("location: ../RecursoDidactico.php?jump=5&#submit4");
+                header("location: ../rubrica.php?jump=1&#submit4");
                 die();
 
             } elseif ($_GET["a"] == 3) {
@@ -379,7 +379,7 @@ if(!isset($_GET["edit"])){
                 }
             }
 
-            header("location: ../RecursoDidactico.php?jump=5&#submit4");
+            header("location: ../rubrica.php?jump=1&#submit4");
             die();
           }
         } elseif ($_GET["pre"] == 5) {
@@ -391,7 +391,7 @@ if(!isset($_GET["edit"])){
                   $_SESSION["tabla"] = $dw;
               }
           }
-          header("location: ../RecursoDidactico.php?jump=5#submit4");
+          header("location: ../rubrica.php?jump=1#submit4");
           die();
         }
     }
