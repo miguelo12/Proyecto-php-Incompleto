@@ -103,9 +103,9 @@ class Seccion {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from seccion where Codigo=? and Docente_idDocente=?");
+      $sentencia=$c->prepare("select * from seccion where Codigo=? and Docente_idDocente=? and Asignatura_idAsignatura=?");
       
-      $sentencia->bind_param("is", $this->Codigo, $this->Docente_idDocente);
+      $sentencia->bind_param("isi", $this->Codigo, $this->Docente_idDocente, $this->Asignatura_idAsignatura);
       
       $sentencia->execute();
       
@@ -141,6 +141,32 @@ class Seccion {
       }
       
       return $res;
+    }
+    
+    public function Habilitar()
+    {
+      try{
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update seccion set Habilitar=? where idSeccion=?");
+      
+      $sentencia->bind_param("is", $this->Habilitar, $this->idSeccion);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+        return true;    
+      }
+      else
+      {
+        return false;
+      }
+      }
+      catch (Exception $e)
+      {
+        return false;
+      }
     }
     
     public function setidSeccion($idSeccion)

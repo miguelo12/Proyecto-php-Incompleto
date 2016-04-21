@@ -213,9 +213,10 @@
                                 <table class="table table-bordered table-condensed">
                                     <caption><h2 class="text-center" style="color: #23527c"><ins>Secciones o Cursos</ins></h2></caption>
                                     <tr>
-                                        <th class="text-center">Nombre Asignatura</th>
-                                        <th class="text-center">curso o sección</th>
-                                        <th class="text-center">PIN</th>
+                                        <th class="text-center" style="width: 30%">Nombre Asignatura</th>
+                                        <th class="text-center" style="width: 20%">curso o sección</th>
+                                        <th class="text-center" style="width: 30%">PIN</th>
+                                        <th class="text-center" style="width: 20%">Habilitar / Deshabilitar</th>
                                     </tr>
                                     <?php if(isset($arrayAsignatura)): $tp = 0?>
                                     <?php foreach ($arrayAsignatura as $du):?>
@@ -233,6 +234,15 @@
                                         <td>
                                             <?= $de["idSeccion"]?>
                                         </td>
+                                        <?php if($de["Habilitar"] == 1):?>
+                                        <td>
+                                            <a href="php/creacionAS.php?Seccion=<?= $de["idSeccion"]?>&Habilitar=false" class="btn btn-primary" data-original-title="Deshabilitar" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-eye"></i></a>
+                                        </td>
+                                        <?php else:?>
+                                        <td>
+                                            <a href="php/creacionAS.php?Seccion=<?= $de["idSeccion"]?>&Habilitar=true" class="btn btn-primary" data-original-title="Habilitar" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-eye-slash"></i></a>
+                                        </td>
+                                        <?php endif;?>
                                     </tr>
                                     <?php $do=false; else: ?>
                                     <tr>
@@ -242,6 +252,15 @@
                                         <td>
                                             <?= $de["idSeccion"]?>
                                         </td>
+                                        <?php if($de["Habilitar"] == 1):?>
+                                        <td>
+                                            <a href="php/creacionAS.php?Seccion=<?= $de["idSeccion"]?>&Habilitar=false" class="btn btn-primary" data-original-title="Deshabilitar" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-eye"></i></a>
+                                        </td>
+                                        <?php else:?>
+                                        <td>
+                                            <a href="php/creacionAS.php?Seccion=<?= $de["idSeccion"]?>&Habilitar=true" class="btn btn-primary" data-original-title="Habilitar" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-eye-slash"></i></a>
+                                        </td>
+                                        <?php endif;?>
                                     </tr>
                                     <?php endif;
                                           endif;
@@ -392,6 +411,10 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    </script>
+    
+    <script>
+         $('[data-toggle="tooltip"]').tooltip();
     </script>
 </body>
 
