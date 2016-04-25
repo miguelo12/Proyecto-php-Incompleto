@@ -29,9 +29,9 @@ class Criterio {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into criterio values(?,?,?)");
+      $sentencia=$c->prepare("insert into criterio(Nombre,TipoCriterioRubrica_idTipoCriterioRubrica)values(?,?)");
       
-      $sentencia->bind_param("isi", $a=0 ,$this->Nombre, $this->TipoCriterioRubrica_TipoCriterioRubrica);
+      $sentencia->bind_param("si", $this->Nombre, $this->TipoCriterioRubrica_idTipoCriterioRubrica);
       
       $sentencia->execute();
       

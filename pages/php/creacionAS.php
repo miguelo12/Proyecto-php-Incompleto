@@ -1,9 +1,4 @@
 <?php
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 session_start();
 include_once("./CRUD/Seccion.php");
 include_once("./CRUD/Asignatura.php");
@@ -78,10 +73,10 @@ elseif(isset($_GET["Seccion"])){
  header("location: ../cursos.php");
  die();
  }  
-//header("location: ../error404.php");
-//die();
+header("location: ../error404.php");
+die();
 }
 else{
-//header("location: ../cursos.php");
-//die();
+header("location: ../cursos.php");
+die();
 }

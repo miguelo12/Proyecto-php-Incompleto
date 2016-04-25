@@ -19,6 +19,10 @@
        {
           $problem = true;
        }
+       unset($_SESSION["autoevaluacion"]);
+       unset($_SESSION["coevaluacion"]);
+       unset($_SESSION["evaluacion"]);
+       unset($_SESSION["rubrica"]);
       }
 ?>
 <!DOCTYPE html>

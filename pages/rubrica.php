@@ -1,5 +1,5 @@
 <?php session_start();
-      error_reporting(0);
+//  error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -18,47 +18,58 @@
         
         if(isset($_SESSION["rubrica"]))
        {
-           if(!isset($_SESSION["autoevaluacion"])){
-           $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
-           $_SESSION["autoevaluacion"] = $arrey;}
-       
-           if(!isset($_SESSION["coevaluacion"])){
-           $arrey[0] = array("id"=> 0, "pregunta"=> "Cumplí con mis compromisos.", "unico"=>null);
-           $_SESSION["coevaluacion"] = $arrey;}
+           $rubrica = $_SESSION["rubrica"];
+           
+           foreach ($rubrica["tipo"] as $tipo){
+               
+               if($tipo["tipos"]==2){
+                   if(!isset($_SESSION["autoevaluacion"])){
+                        foreach ($rubrica["criterio"] as $criterio){
+                            for($x = 0;$x<=count($criterio)-1;$x++){
+                            if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                            $arrey1[] = array("id"=> -1, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
+                            }
+                        $_SESSION["autoevaluacion"] = $arrey1;
+                    }
+               }
+               
+               if($tipo["tipos"]==3){
+                   if(!isset($_SESSION["coevaluacion"])){
+                       foreach ($rubrica["criterio"] as $criterio){
+                           for($x = 0;$x<=count($criterio)-1;$x++){
+                           if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                           $arrey2[] = array("id"=> -1, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
+                        }
+                    $_SESSION["coevaluacion"] = $arrey2;
+                    }
+               }
+               
+               if($tipo["tipos"]==1){
+                   if(!isset($_SESSION["evaluacion"])){
+                        foreach ($rubrica["criterio"] as $criterio){
+                            for($x = 0;$x<=count($criterio)-1;$x++){
+                                if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                                foreach ($rubrica["competencia"] as $competencia){
+                                    for($y = 0;$y<=count($competencia)-1;$y++){
+                                       if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
+                                       $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"]);}
+                                    }   
+                                }
+                                $arrey[] = array("id"=> 0, "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi);
+                                unset($arreyi);
+                                } 
+                            }
+                        } 
+                    $_SESSION["evaluacion"] = $arrey;
+                   }
+               }
+           }
        }
        else
        {
           header("location: ../pages/error404.php");
           die();
        }
-        
-//        include '../pages/php/CRUD/Seccion.php';
-//        include '../pages/php/CRUD/Asignatura.php';
-//        
-//        $seccion = new Seccion();
-//        $asignatura = new Asignatura();
-//        
-//        $seccion->setDocente_idDocente($docente["id"]);
-//        $arraySeccion = $seccion->DevolverSeccionDocente();
-//        
-//        $asignatura->setDocente_idDocente($docente["id"]);
-//        $arrayAsignatura = $asignatura->DevolverAsignaturasDocente();  
-//        
-//        unset($conteo);
-//        $du = 0;
-//        $conteo;
-//        foreach ($arrayAsignatura as $tq)
-//        {
-//           foreach ($arraySeccion as $tk)
-//           {
-//              if($tq["idAsignatura"] == $tk["Asignatura_idAsignatura"])
-//              {
-//                $du = $du + 1;
-//              }
-//           }
-//           $conteo[] = $du;
-//           $du = 0;
-//        } 
         
       }
 ?>
@@ -77,9 +88,6 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="../dist/css/timeline.css" rel="stylesheet">
@@ -165,7 +173,7 @@
                   <ul class="dropdown-menu">
                     <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
+                      <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
                     <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
@@ -191,33 +199,33 @@
                     </a>
                 </li>
                 <li> 
-                    <a href="indexDocente.php">Inicio</a>
+                    <a data-toggle="modal" data-target="#myModal" href="#">Inicio</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="CrearUnidad.php">Crear una actividad</a></li>
-                    <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
-                    <li class="active"><a href="#">Crear Asignatura o Sección</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
                 <li> 
-                      <a href="Evaluar.php">Evaluar Proyectos</a>
+                      <a data-toggle="modal" data-target="#myModal" href="#">Evaluar Proyectos</a>
                 </li>
                 <li> 
-                      <a href="Biblioteca.php">Biblioteca</a>
+                      <a data-toggle="modal" data-target="#myModal" href="#">Biblioteca</a>
                 </li>
                 <li class="dropdown hidden-lg hidden-md">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
+                      <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
                     <?php endif;?>  
                     <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
                 </li>
             </ul>
@@ -264,25 +272,25 @@
                                             <li><a href="#tabi3" data-toggle="tab">Editar Evaluación</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane well" id="tabi1">
-                                            <table class="table table-bordered">
+                                        <div class="tab-pane well" id="tabi1" style="overflow-x: auto;">
+                                            <table class="table table-bordered" style="min-width:500px" >
                                                 <tr>
                                                     <th class="text-center">Seleccionar:</th>
                                                     <th class="text-center">Criterios</th>
                                                     <th class="text-center">Nota</th>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
+                                                <form method="POST" action="php/RubricaEdit.php?pre=1" id="formulario1" autocomplete="off">
                                                     <?php if(isset($_SESSION["autoevaluacion"])):
                                                           $autoeval = $_SESSION["autoevaluacion"];
-                                                          foreach($autoeval as $pu):?>
+                                                          foreach($autoeval as $pu): ?>
                                                     <tr>
                                                     <td style="width: 7%">
                                                         <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
                                                     </td>
-                                                    <td style="width: 78%">
+                                                    <td style="width: 83%">
                                                         <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
                                                     </td>
-                                                    <td style="width: 15%">
+                                                    <td style="width: 10%">
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                     </td>
                                                     </tr>
@@ -297,8 +305,8 @@
                                                     <tr>
                                                         <td colspan="3">
                                                             <div class="form-group">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -314,7 +322,7 @@
                                                     <tr>                                                 
                                                         <td colspan="3">
                                                             <div class="form-group">                                                             
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                                 <a name="submit3"></a>
                                                             </div>
@@ -331,8 +339,8 @@
                                                 </form>
                                             </table>
                                         </div>
-                                        <div class="tab-pane well" id="tabi2">
-                                            <table class="table table-bordered">
+                                        <div class="tab-pane well" id="tabi2" style="overflow-x: auto;">
+                                            <table class="table table-bordered" style="min-width:500px">
                                                 <tr>
                                                     <th colspan="2" class="text-center">Criterios</th>
                                                     <th colspan="5" class="text-center">integrantes</th>
@@ -369,7 +377,7 @@
                                                         <th class="text-center">3</th>
                                                     <?php endif;?>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=4" id="formulario2" autocomplete="off">
+                                                <form method="POST" action="php/RubricaEdit.php?pre=2" id="formulario2" autocomplete="off">
                                                         <?php // Meter un for para mostrar la cantidad de criterios e integrantes.
                                                               if(isset($_SESSION["tabla"])):
                                                               if($_SESSION["tabla"]==1):
@@ -512,8 +520,8 @@
                                                     <tr>
                                                         <td colspan="7">
                                                             <div class="form-group">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=2" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=2" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -529,7 +537,7 @@
                                                     <tr>                                                 
                                                         <td colspan="7">
                                                             <div class="form-group">                                                             
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=4&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -559,35 +567,41 @@
                                             </form>-->
                                             
                                         </div>
-                                        <div class="tab-pane well" id="tabi3">
-                                            <table class="table table-bordered">
+                                        <div class="tab-pane well" id="tabi3" style="overflow-x: auto;">
+                                            <form method="POST" action="php/RubricaEdit.php?pre=3" id="formulario1" autocomplete="off">
+                                            <table class="table table-bordered" style="min-width:800px">
                                                 <tr>
-                                                    <th class="text-center">Criterios</th>
-                                                    <?php //puntaje ?>
-                                                    <th class="text-center"><input class="form-control" type="text" value="" name="procedimiento"></th>
-                                                    <?php ?>
+                                                    <th class="text-center" style="width: 22%;">Criterios</th>
+                                                    <?php $a = $_SESSION["evaluacion"];
+                                                          foreach($a[0]["NivelCompetencia"] as $key1): ?>
+                                                    <th><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
+                                                    <?php endforeach;?>
                                                 </tr>
-                                                <form method="POST" action="php/AvanceDidactico.php?pre=3" id="formulario1" autocomplete="off">
+                                                    <?php $a = $_SESSION["evaluacion"]; $linea = 0;
+                                                          foreach($a as $key1 => $innerArray): ?>
                                                     <tr>
-                                                        <td style="width: 35%">
-                                                            <input class="form-control" type="text" value="" name="criterio">
-                                                        </td>
                                                         <td>
-                                                            <textarea class="form-control" rows="4" name="procedimiento"></textarea>
+                                                            <input class="form-control" type="text" value="<?= $innerArray["Criterio"]?>" name="criterios[]">
                                                         </td>
+                                                        <?php foreach($innerArray["NivelCompetencia"] as $key1 => $value): ?>
+                                                        <td>
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $linea?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        </td>
+                                                        <?php endforeach; $linea++;?>
                                                     </tr>
+                                                    <?php endforeach;?>
                                                     <tr>
-                                                        <td colspan="3">
+                                                        <td colspan="6">
                                                             <div class="form-group text-center" style="margin: 0px auto">
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=2" class="btn btn-warning" >Agregar Criterio</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=1" class="btn btn-warning" >Agregar Criterio</button>&nbsp;&nbsp;&nbsp;
                                                                 <br/>
                                                                 <br/>
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-danger" >Eliminar Competencia</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-warning" >Agregar Competencia</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=4" class="btn btn-danger" >Eliminar Competencia</button>&nbsp;&nbsp;&nbsp;
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=2" class="btn btn-warning" >Agregar Competencia</button>&nbsp;&nbsp;&nbsp;
                                                                 <br/>
                                                                 <br/>
-                                                                <button type="submit" formaction="php/AvanceDidactico.php?pre=3&a=1" class="btn btn-success" >Guardar</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=5" class="btn btn-success" >Guardar</button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -600,9 +614,9 @@
                                                                 <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
                                                                 </div>
                                                         <?php endif; endif;?>
-                                                    </tr>
-                                                </form>
+                                                    </tr>  
                                             </table>
+                                            </form>
                                         </div>                                        
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="javascript:;">First</a></li>
@@ -636,7 +650,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No, quiero volver.</button>
-                    <a class="btn btn-primary" href="php/rubricas.php?new=3">Sí, estoy seguro.</a>
+                    <a class="btn btn-primary" href="php/RubricaEdit.php?pre=-1">Sí, estoy seguro.</a>
                 </div>
                 </form>
             </div>
@@ -645,9 +659,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
     
     <script src="../js/jquery.validate.min.js"></script>
     

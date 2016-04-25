@@ -1,9 +1,4 @@
 <?php
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 ob_start();
 session_start();
 if(isset($_GET["user"])){
@@ -84,6 +79,7 @@ if(isset($_GET["user"])){
                                 $array_descripuntaje[] = array(array("puntos"=>3,"text"=>$R3),array("puntos"=>2,"text"=>$R2),array("puntos"=>1,"text"=>$R1),array("puntos"=>0,"text"=>$R0)); 
                                 
                                 $conteo=0;
+                                //evaluacion.
                                 foreach ($array_criterios as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
@@ -101,7 +97,8 @@ if(isset($_GET["user"])){
                                  $conteo = $conteo + 1;
                                 }             
                                 
-                                $array_criterios1 = array("Cumpli con mis compromisos","Participe de forma activa","Me esforce para alcanzar los objetivos","Demostre mis habilidades durante el trabajo", "Ingresar Comentarios");
+                                //autoevaluacion.
+                                $array_criterios1 = array("Cumpli con mis compromisos","Participe de forma activa","Me esforce para alcanzar los objetivos","Demostre mis habilidades durante el trabajo");
                                 foreach ($array_criterios1 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);
@@ -109,7 +106,8 @@ if(isset($_GET["user"])){
                                  $idCriterio = $criterio->Ingresar();
                                 }
                                 
-                                $array_criterios2 = array("Participa de forma activa","Realiza aportes al trabajo grupal","Es responsable en sus compromisos","Dedica el tiempo suficiente al trabajo grupal", "Comparte sus conocimientos", "Agregar Comentarios");
+                                //coevaluacion
+                                $array_criterios2 = array("Participa de forma activa","Realiza aportes al trabajo grupal","Es responsable en sus compromisos","Dedica el tiempo suficiente al trabajo grupal", "Comparte sus conocimientos");
                                 foreach ($array_criterios2 as $da){
                                  $criterio = new Criterio();
                                  $criterio->setNombre($da);

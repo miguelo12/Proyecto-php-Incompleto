@@ -25,6 +25,11 @@
        $resultunidad = new UnidadAprendizaje();
        $resultunidad->setDocente_idDocente($docente["id"]);
        $Unidadresult = $resultunidad->DevolverUnidadDocente();
+       
+        unset($_SESSION["autoevaluacion"]);
+        unset($_SESSION["coevaluacion"]);
+        unset($_SESSION["evaluacion"]);
+        unset($_SESSION["rubrica"]);
       }
 ?>
 <!DOCTYPE html>

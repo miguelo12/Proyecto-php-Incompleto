@@ -1,11 +1,6 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 ob_start();
+error_reporting(0);
 session_start();
 include_once("./CRUD/RecursosDidacticos.php");
 include_once("./CRUD/UnidadAprendizaje.php");
@@ -16,6 +11,10 @@ include_once("./CRUD/NivelCompetencia.php");
 if(isset($_GET["new"])){
     if($_GET["new"]==1)
     {
+        unset($_SESSION["rubrica"]);
+        unset($_SESSION["autoevaluacion"]);
+        unset($_SESSION["coevaluacion"]);
+        unset($_SESSION["evaluacion"]);
         unset($tipocriteriorubrica);
         unset($nivelcompetencia);
         unset($criterio);
@@ -28,8 +27,7 @@ if(isset($_GET["new"])){
         $docente = $_SESSION["docente"];
 
         $rubrica->setDocente_idDocente($docente["id"]);
-        $rubrica->setIdRubrica($_GET["idRubrica"]);
-        $rubricadocente = $rubrica->DevolverRubricaid();
+        $rubricadocente = $rubrica->DevolverRubricaPredeterminada();
 
         $tipocriteriorubrica->setRubrica_idRubrica($rubricadocente["idRubrica"]);
         $tipocriteriorubricaarray = $tipocriteriorubrica->DevolverTipoCriterioRubrica();
@@ -38,22 +36,24 @@ if(isset($_GET["new"])){
         $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($ti["idTipoCriterioRubrica"]);
         $arraycriterio[] = $criterio->DevolverCriterio(); 
         }
-
-        foreach ($arraycriterio as $ti){
-        $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
-        $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
-        }
-
-        $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
-        $_SESSION["rubrica"] = $RubricaCompleta;
         
-        if(isset($_SESSION["rubrica"])){
+        foreach($arraycriterio[0] as $doif){
+            $nivelcompetencia->setCriterio_idCriterio($doif["idCriterio"]);
+            $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
+        }
+            
+        
+        
+        $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
+        
+        if(isset($RubricaCompleta["rubrica"])){
+        $_SESSION["rubrica"] =  $RubricaCompleta;
         header("location: ../rubrica.php");
         die();
         }
         else
         {
-        header("location: ../indexDocente.php");
+        header("location: ../error404.php");
         die();
         }
     }
@@ -62,6 +62,9 @@ if(isset($_GET["new"])){
     }
     elseif($_GET["new"]==3){
       unset($_SESSION["rubrica"]);
+      unset($_SESSION["autoevaluacion"]);
+      unset($_SESSION["coevaluacion"]);
+      unset($_SESSION["evaluacion"]);
       header("location: ../indexDocente.php");
       die();
     } 
