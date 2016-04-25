@@ -270,6 +270,7 @@
                                             <li><a href="#tabi1" data-toggle="tab">Editar Autoevaluación</a></li>
                                             <li><a href="#tabi2" data-toggle="tab">Editar Coevaluación</a></li>
                                             <li><a href="#tabi3" data-toggle="tab">Editar Evaluación</a></li>
+                                            <li><a href="#tabi4" data-toggle="tab">Guardar Rubrica</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" id="tabi1" style="overflow-x: auto;">
@@ -616,6 +617,21 @@
                                                         <?php endif; endif;?>
                                                     </tr>  
                                             </table>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane well" id="tabi4" style="overflow-x: auto;">
+                                            <form method="POST" action="php/RubricaEdit.php?pre=4" id="formulario1" autocomplete="off">
+                                                <div class="panel panel-success" id="contenido">
+                                                    <div class="panel-heading text-center">
+                                                        <h2>
+                                                            Guardar Rubrica
+                                                        </h2>
+                                                        <label style="float: left">Nombre:</label>
+                                                        <input type="text" value="" name="nombre" placeholder="Ingrese nombre." class="form-control text-center" />
+                                                        <p>Ingresar nombre antes de guardar.</p>
+                                                        <button name="boton" class="btn btn-success" type="submit">Guardar</button>  
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>                                        
                                         <ul class="pager wizard">

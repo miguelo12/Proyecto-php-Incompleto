@@ -235,6 +235,14 @@ if(!isset($_GET["edit"])){
           
           header("location: ../rubrica.php?jump=2#submit4");
           die();
+        } elseif ($_GET["pre"] == 4) {
+          if(isset($_POST["nombre"])){
+           //Guardar todo.
+           $name = $_POST["nombre"];
+           
+           header("location: ../biblioteca.php");
+           die();
+          }
         } elseif ($_GET["pre"] == -1) {
           //rubricaevaluativa
           unset($_SESSION["autoevaluacion"]);
