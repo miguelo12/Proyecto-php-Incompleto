@@ -171,9 +171,16 @@
         
         <?php if(isset($_GET["creado"])):
                 if($_GET["creado"]=="1"):?>
-                    <div class="alert alert-success">
+                    <div class="alert alert-success text-center">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> se ha creado una unidad de aprendizaje.
+                    <strong >Listo, </strong> se ha creado una unidad de aprendizaje.
+                    </div>
+        <?php endif; endif; ?>
+        <?php if(isset($_GET["creado"])):
+                if($_GET["creado"]=="2"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Listo, </strong> una rubrica nueva.
                     </div>
         <?php endif; endif; ?>
         <div id="page-content-wrapper content" >
@@ -224,9 +231,9 @@
                             <div class="panel panel-primary">
                               <div class="panel-body">
                                   <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a>
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="#">Editar</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a><br/>
                                   <?php else: ?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a>   
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="#">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a> <br/>   
                                   <?php endif; endforeach; endif; ?>
                               </div>
                             </div>  

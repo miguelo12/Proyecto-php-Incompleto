@@ -1,5 +1,9 @@
 <?php
 session_start();
+include_once("./CRUD/Rubrica.php");
+include_once("./CRUD/TipoCriterioRubrica.php");  
+include_once("./CRUD/Criterio.php");
+include_once("./CRUD/NivelCompetencia.php");
 if(!isset($_GET["edit"])){
     if(isset($_GET["pre"])){
         if($_GET["pre"] == 1){
@@ -239,8 +243,73 @@ if(!isset($_GET["edit"])){
           if(isset($_POST["nombre"])){
            //Guardar todo.
            $name = $_POST["nombre"];
+           if($name.trim()!=""){
+               
+               //creacion de la rubrica principal + el nombre.
+               $rubrica = new Rubrica();
+               $rubrica->setDocente_idDocente($_SESSION["docente"]["id"]);
+               $rubrica->setnombre($name);
+               $idrubrica = $rubrica->Ingresar();
+
+               //sessiones que se guardan necesarias.
+               $autoeva = $_SESSION["autoevaluacion"];
+               $coeva = $_SESSION["coevaluacion"];
+               $eva  = $_SESSION["evaluacion"];
+
+               //creacion de los tipo de rubrica.
+               $idtipocriteriorubrica;
+               for ($i = 1; $i <= 3; $i++){
+                 $tipocriteriorubrica = new TipoCriterioRubrica();
+                 $tipocriteriorubrica->setRubrica_idRubrica($idrubrica);
+                 $tipocriteriorubrica->settipos($i);
+                 $idtipocriteriorubrica[$i] = array($tipocriteriorubrica->Ingresar(),$i);
+                 unset($tipocriteriorubrica);
+               }
+
+               $criterio = new Criterio();
+
+                foreach ($idtipocriteriorubrica as $da){
+                    if($da[1]==1){
+                    foreach ($eva as $da2){
+                        $criterio = new Criterio();
+                        $criterio->setNombre($da2["Criterio"]);
+                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                        $idCriterio = $criterio->Ingresar();
+
+                        foreach ($da2["NivelCompetencia"] as $value){
+                            $nivelcompetencia = new NivelCompetencia();
+                            $nivelcompetencia->setCriterio_idCriterio($idCriterio);
+                            $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                            $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                            $nivelcompetencia->Ingresar();
+                            unset($nivelcompetencia);
+                        }
+                    }
+                    } elseif ($da[1]==2) {
+                        foreach ($autoeva as $da3){
+                        $criterio = new Criterio();
+                        $criterio->setNombre($da3["pregunta"]);
+                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                        $idCriterio1 = $criterio->Ingresar();
+                        }
+                    } elseif ($da[1]==3) {
+                        foreach ($coeva as $da4){
+                        $criterio = new Criterio();
+                        $criterio->setNombre($da4["pregunta"]);
+                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                        $idCriterio2 = $criterio->Ingresar();
+                        }
+                    }
+                }
+                unset($_SESSION["autoevaluacion"]);
+                unset($_SESSION["coevaluacion"]);
+                unset($_SESSION["evaluacion"]);
+                unset($_SESSION["rubrica"]);
+                header("location: ../biblioteca.php?creado=2");
+                die();
+           }
            
-           header("location: ../biblioteca.php");
+           header("location: ../rubrica.php?jump=3&error=100");
            die();
           }
         } elseif ($_GET["pre"] == -1) {

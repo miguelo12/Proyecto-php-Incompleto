@@ -254,6 +254,12 @@
            <p class="text-center"><strong>Listo, </strong> se acaba de enviar el email.</p>
         </div>
         <?php endif; endif;?>
+        <?php  if(isset($_GET["error"])): if($_GET["error"]==100):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> nombre de rubrica no ingresado.</p>
+        </div>
+        <?php endif; endif;?>
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
