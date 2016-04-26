@@ -53,7 +53,7 @@ if(!isset($_SESSION["editar"])){
             $rubricadocente = $rubrica->DevolverRubricaid();
 
             $_SESSION["rubrica"] = $rubricadocente;
-
+            
             if(isset($_SESSION["rubrica"])){
             header("location: ../CrearUnidad.php");
             die();
@@ -131,7 +131,7 @@ if(!isset($_SESSION["editar"])){
         if($new2 == 0)
         {
 
-          $sec = $_COOKIE["recursosdidacticos"];
+          $sec = json_decode($_COOKIE["recursosdidacticos"]);
           $docente = $_SESSION["docente"];
           date_default_timezone_set('Chile/Continental');
           $date = date("mY");
@@ -267,7 +267,7 @@ if(!isset($_SESSION["editar"])){
         {
           if(isset($_COOKIE["recursosdidacticos"]))
           {
-              $recursosdidacticos = $_COOKIE["recursosdidacticos"];
+              $recursosdidacticos = json_decode($_COOKIE["recursosdidacticos"]);
 
               if(isset($_SESSION["Ayuda"]))
               {
@@ -325,7 +325,7 @@ else
             unset($_SESSION["editar"]);
             unset($_SESSION["NuevaUnidad"]);
             unset($_SESSION["preguntas"]);
-            $sec = $_COOKIE["recursosdidacticos"];
+            $sec = json_decode($_COOKIE["recursosdidacticos"]);
              //elimina los archivos.
             foreach($sec as $do)
             {
@@ -370,7 +370,7 @@ else
               $edita = $_SESSION["editar"];
               
               if(isset($_COOKIE["recursosdidacticos"])){
-              $newRecursos = $_COOKIE["recursosdidacticos"];
+              $newRecursos = json_decode($_COOKIE["recursosdidacticos"]);
               }
               if(isset($_SESSION["preguntas"])){
               $newPreguntas = $_SESSION["preguntas"];

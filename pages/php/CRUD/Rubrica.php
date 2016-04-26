@@ -131,7 +131,7 @@ class Rubrica {
       if($resu -> num_rows > 0)
       {
           while($row = $resu->fetch_assoc()){
-              $res[] = $row;
+              $res = $row;
           }
       }
       else {

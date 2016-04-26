@@ -95,7 +95,7 @@ else{
         $arraycriterio[] = $criterio->DevolverCriterio(); 
         }
 
-        foreach ($arraycriterio as $ti){
+        foreach ($arraycriterio[0] as $ti){
         $nivelcompetencia->setCriterio_idCriterio($ti["idCriterio"]);
         $arraycompetencia[] = $nivelcompetencia->DevolverNivelCompetencia();
         }
