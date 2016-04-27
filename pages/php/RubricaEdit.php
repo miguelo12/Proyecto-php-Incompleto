@@ -320,6 +320,7 @@ if(!isset($_GET["edit"])){
           unset($_SESSION["evaluacion"]);
           unset($_SESSION["rubrica"]);
           unset($_SESSION["ver"]);
+          unset($_SESSION["edita"]);
           
           header("location: ../Biblioteca.php");
           die();

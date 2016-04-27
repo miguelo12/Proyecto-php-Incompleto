@@ -32,6 +32,7 @@
         unset($_SESSION["evaluacion"]);
         unset($_SESSION["rubrica"]);
         unset($_SESSION["ver"]);
+        unset($_SESSION["edita"]);
       }
 ?>
 <!DOCTYPE html>
@@ -235,7 +236,7 @@
                                   <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
                                   <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a><br/>
                                   <?php else: ?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a> <br/>   
+                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a> <br/>   
                                   <?php endif; endforeach; endif; ?>
                               </div>
                             </div>  

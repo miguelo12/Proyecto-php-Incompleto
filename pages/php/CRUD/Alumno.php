@@ -119,26 +119,40 @@ class Alumno {
       return $res;
     }
     
+    function Codigo()
+    {
+    $uc=TRUE;
+    $n=TRUE;
+    $sc=TRUE;
+    $source = 'abcdefghijklmnopqrstuvwxyz';
+    if($uc==1){ $source .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';}
+    if($n==1){ $source .= '1234567890';}
+    if($sc==1){ $source .= '@*';}
+    $max_chars = round(rand(10,15));
+    if($max_chars>0){
+        $rstr = "";
+        $source = str_split($source,1);
+        for($i=1; $i<=$max_chars; $i++){
+            mt_srand((double)microtime() * 1000000);
+            $num = mt_rand(1,count($source));
+            $rstr .= $source[$num-1];
+        }
+ 
+    }
+      $this->setidAlumno($rstr);
+    }
+    
     public function Ingresar()
     {
       
       $c=$this->con->getConexion();
       
-      date_default_timezone_set('Chile/Continental');
+      $this->codigo();
       
-      $dates1 = date("d");
-      
-      $dates2 = date("s");
-      
-      $subemail = substr($this->email, 0, 2);
-      
-      $rand1 = chr(rand(65,90));
-      
-      $rand3 = chr(rand(65,90));
-      
-      $rand2 = rand(1,8);
-      
-      $this->setidAlumno((string)"{$rand3}{$dates2}{$rand1}{$dates1}{$subemail}{$rand2}ALU");
+      while($this->ExisteonoPorID())
+      {
+        $this->codigo();
+      }
       
       $this->sethabilitado(0);
       

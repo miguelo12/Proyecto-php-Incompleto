@@ -16,61 +16,111 @@
       {
         $docente = $_SESSION["docente"];
         
-        if(isset($_SESSION["rubrica"]))
-       {
-           $rubrica = $_SESSION["rubrica"];
-           
-           foreach ($rubrica["tipo"] as $tipo){
-               
-               if($tipo["tipos"]==2){
-                   if(!isset($_SESSION["autoevaluacion"])){
-                        foreach ($rubrica["criterio"] as $criterio){
-                            for($x = 0;$x<=count($criterio)-1;$x++){
-                            if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                            $arrey1[] = array("id"=> -1, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
-                            }
-                        $_SESSION["autoevaluacion"] = $arrey1;
-                    }
-               }
-               
-               if($tipo["tipos"]==3){
-                   if(!isset($_SESSION["coevaluacion"])){
-                       foreach ($rubrica["criterio"] as $criterio){
-                           for($x = 0;$x<=count($criterio)-1;$x++){
-                           if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                           $arrey2[] = array("id"=> -1, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
+        if(isset($_SESSION["edita"])){
+            
+            $rubrica = $_SESSION["edita"];
+          
+            foreach ($rubrica["tipo"] as $tipo){
+
+            if($tipo["tipos"]==2){
+               if(!isset($_SESSION["autoevaluacion"])){
+                    foreach ($rubrica["criterio"] as $criterio){
+                        for($x = 0;$x<=count($criterio)-1;$x++){
+                        if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                        $arrey1[] = array("id"=> $criterio[$x]["idCriterio"], "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
                         }
-                    $_SESSION["coevaluacion"] = $arrey2;
+                    $_SESSION["autoevaluacion"] = $arrey1;
+                }
+            }
+
+            if($tipo["tipos"]==3){
+               if(!isset($_SESSION["coevaluacion"])){
+                   foreach ($rubrica["criterio"] as $criterio){
+                       for($x = 0;$x<=count($criterio)-1;$x++){
+                       if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                       $arrey2[] = array("id"=> $criterio[$x]["idCriterio"], "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
                     }
-               }
-               
-               if($tipo["tipos"]==1){
-                   if(!isset($_SESSION["evaluacion"])){
-                        foreach ($rubrica["criterio"] as $criterio){
-                            for($x = 0;$x<=count($criterio)-1;$x++){
-                                if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                                foreach ($rubrica["competencia"] as $competencia){
-                                    for($y = 0;$y<=count($competencia)-1;$y++){
-                                       if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
-                                       $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"]);}
-                                    }   
-                                }
-                                $arrey[] = array("id"=> 0, "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi);
-                                unset($arreyi);
-                                } 
+                $_SESSION["coevaluacion"] = $arrey2;
+                }
+            }
+
+            if($tipo["tipos"]==1){
+               if(!isset($_SESSION["evaluacion"])){
+                    foreach ($rubrica["criterio"] as $criterio){
+                        for($x = 0;$x<=count($criterio)-1;$x++){
+                            if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                            foreach ($rubrica["competencia"] as $competencia){
+                                for($y = 0;$y<=count($competencia)-1;$y++){
+                                   if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
+                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>null);}
+                                }   
                             }
-                        } 
-                    $_SESSION["evaluacion"] = $arrey;
+                            $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>null);
+                            unset($arreyi);
+                            } 
+                        }
+                    } 
+                $_SESSION["evaluacion"] = $arrey;
+               }
+            }
+            }
+        }
+        else{
+            if(isset($_SESSION["rubrica"]))
+            {
+               $rubrica = $_SESSION["rubrica"];
+
+               foreach ($rubrica["tipo"] as $tipo){
+
+                   if($tipo["tipos"]==2){
+                       if(!isset($_SESSION["autoevaluacion"])){
+                            foreach ($rubrica["criterio"] as $criterio){
+                                for($x = 0;$x<=count($criterio)-1;$x++){
+                                if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                                $arrey1[] = array("pregunta"=> $criterio[$x]["Nombre"]);}}
+                                }
+                            $_SESSION["autoevaluacion"] = $arrey1;
+                        }
+                   }
+
+                   if($tipo["tipos"]==3){
+                       if(!isset($_SESSION["coevaluacion"])){
+                           foreach ($rubrica["criterio"] as $criterio){
+                               for($x = 0;$x<=count($criterio)-1;$x++){
+                               if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                               $arrey2[] = array("pregunta"=> $criterio[$x]["Nombre"]);}}
+                            }
+                        $_SESSION["coevaluacion"] = $arrey2;
+                        }
+                   }
+
+                   if($tipo["tipos"]==1){
+                       if(!isset($_SESSION["evaluacion"])){
+                            foreach ($rubrica["criterio"] as $criterio){
+                                for($x = 0;$x<=count($criterio)-1;$x++){
+                                    if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
+                                    foreach ($rubrica["competencia"] as $competencia){
+                                        for($y = 0;$y<=count($competencia)-1;$y++){
+                                           if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
+                                           $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"]);}
+                                        }   
+                                    }
+                                    $arrey[] = array("Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi);
+                                    unset($arreyi);
+                                    } 
+                                }
+                            } 
+                        $_SESSION["evaluacion"] = $arrey;
+                       }
                    }
                }
-           }
-       }
-       else
-       {
-          header("location: ../pages/error404.php");
-          die();
-       }
-        
+            }
+            else
+            {
+              header("location: ../pages/error404.php");
+              die();
+            }
+        }
       }
 ?>
 <!DOCTYPE html>

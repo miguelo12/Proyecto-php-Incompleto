@@ -23,6 +23,7 @@
        unset($_SESSION["coevaluacion"]);
        unset($_SESSION["evaluacion"]);
        unset($_SESSION["rubrica"]);
+       unset($_SESSION["edita"]);
       }
 ?>
 <!DOCTYPE html>

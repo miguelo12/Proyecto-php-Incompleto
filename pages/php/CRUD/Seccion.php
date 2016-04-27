@@ -36,7 +36,7 @@ class Seccion {
     $source = 'abcdefghijklmnopqrstuvwxyz';
     if($uc==1){ $source .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';}
     if($n==1){ $source .= '1234567890';}
-    if($sc==1){ $source .= '@#*';}
+    if($sc==1){ $source .= '@*';}
     $max_chars = 5;
     if($max_chars>0){
         $rstr = "";

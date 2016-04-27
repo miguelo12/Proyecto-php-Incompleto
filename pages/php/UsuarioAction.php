@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+error_reporting(0);
 if(isset($_GET["user"])){
 
     if($_GET["user"]==1){
@@ -145,7 +146,6 @@ if(isset($_GET["user"])){
                 //eliminar
                 if(isset($_GET["id"]))
                 {
-                   
                    $id = $_GET["id"];
                    try{    
                        $docente = new Docente();
