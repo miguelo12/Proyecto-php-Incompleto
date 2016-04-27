@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 if(!isset($_SESSION["editar"])){
     if(isset($_COOKIE["titulocreacion"])){
         if(isset($_GET["tipo"])){

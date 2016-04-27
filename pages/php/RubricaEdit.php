@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 include_once("./CRUD/Rubrica.php");
 include_once("./CRUD/TipoCriterioRubrica.php");  
 include_once("./CRUD/Criterio.php");
@@ -318,8 +319,9 @@ if(!isset($_GET["edit"])){
           unset($_SESSION["coevaluacion"]);
           unset($_SESSION["evaluacion"]);
           unset($_SESSION["rubrica"]);
+          unset($_SESSION["ver"]);
           
-          header("location: ../indexDocente.php");
+          header("location: ../Biblioteca.php");
           die();
         }
     }

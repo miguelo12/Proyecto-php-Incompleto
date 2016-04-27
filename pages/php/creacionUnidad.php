@@ -131,7 +131,7 @@ if(!isset($_SESSION["editar"])){
         if($new2 == 0)
         {
 
-          $sec = json_decode($_COOKIE["recursosdidacticos"]);
+          $sec = json_decode($_COOKIE["recursosdidacticos"],TRUE);
           $docente = $_SESSION["docente"];
           date_default_timezone_set('Chile/Continental');
           $date = date("mY");
@@ -236,6 +236,7 @@ if(!isset($_SESSION["editar"])){
                  }
 
                  $recurso = $unidad["recursosdidacticos"];
+                 var_dump($recurso);
                  foreach ($recurso as $dy){
                      $recursosdidactico->setIdUnidadAprendizaje_idUnidadAprendizaje($idunidad);
                      $recursosdidactico->setNombre($dy["nombre"]);
@@ -267,7 +268,7 @@ if(!isset($_SESSION["editar"])){
         {
           if(isset($_COOKIE["recursosdidacticos"]))
           {
-              $recursosdidacticos = json_decode($_COOKIE["recursosdidacticos"]);
+              $recursosdidacticos = json_decode($_COOKIE["recursosdidacticos"],TRUE);
 
               if(isset($_SESSION["Ayuda"]))
               {
@@ -325,7 +326,7 @@ else
             unset($_SESSION["editar"]);
             unset($_SESSION["NuevaUnidad"]);
             unset($_SESSION["preguntas"]);
-            $sec = json_decode($_COOKIE["recursosdidacticos"]);
+            $sec = json_decode($_COOKIE["recursosdidacticos"],TRUE);
              //elimina los archivos.
             foreach($sec as $do)
             {
@@ -370,7 +371,7 @@ else
               $edita = $_SESSION["editar"];
               
               if(isset($_COOKIE["recursosdidacticos"])){
-              $newRecursos = json_decode($_COOKIE["recursosdidacticos"]);
+              $newRecursos = json_decode($_COOKIE["recursosdidacticos"],TRUE);
               }
               if(isset($_SESSION["preguntas"])){
               $newPreguntas = $_SESSION["preguntas"];

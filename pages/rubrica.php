@@ -276,7 +276,11 @@
                                             <li><a href="#tabi1" data-toggle="tab">Editar Autoevaluación</a></li>
                                             <li><a href="#tabi2" data-toggle="tab">Editar Coevaluación</a></li>
                                             <li><a href="#tabi3" data-toggle="tab">Editar Evaluación</a></li>
+                                            <?php if(!isset($_SESSION["ver"])): ?>
                                             <li><a href="#tabi4" data-toggle="tab">Guardar Rubrica</a></li>
+                                            <?php else: ?>
+                                            <li><a href="#tabi4" data-toggle="tab">Modo vista</a></li>
+                                            <?php endif; ?>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" id="tabi1" style="overflow-x: auto;">
@@ -309,6 +313,7 @@
                                                             <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
                                                         </td>
                                                     </tr>
+                                                    <?php if(!isset($_SESSION["ver"])): ?>
                                                     <tr>
                                                         <td colspan="3">
                                                             <div class="form-group">
@@ -334,15 +339,30 @@
                                                                 <a name="submit3"></a>
                                                             </div>
                                                         </td>
+                                                    </tr>
+                                                    <tr>
                                                         <?php	
                                                         if(isset($_GET['pre'])):
                                                             if($_GET['pre']=="102"):?>
+                                                        <td colspan="3">
                                                                 <div class="alert alert-warning">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
                                                                 </div>
+                                                        </td>
                                                         <?php endif; endif;?>
                                                     </tr>
+                                                    <?php else: ?>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <div class="text-center">
+                                                                <br/>
+                                                                    <a class="btn btn-info" href="php/RubricaEdit.php?pre=-1">Volver a Biblioteca</a>
+                                                                <br/>
+                                                            </div>  
+                                                        </td>
+                                                    </tr>
+                                                    <?php endif; ?>
                                                 </form>
                                             </table>
                                         </div>
@@ -524,6 +544,7 @@
                                                             <textarea class="form-control" rows="2" name="procedimiento" disabled="true"></textarea>
                                                         </td>
                                                     </tr>
+                                                    <?php if(!isset($_SESSION["ver"])): ?>
                                                     <tr>
                                                         <td colspan="7">
                                                             <div class="form-group">
@@ -549,13 +570,26 @@
                                                             </div>
                                                         </td>
                                                         <?php if(isset($_GET['pre'])):
-                                                            if($_GET['pre']=="103"):?>  
+                                                            if($_GET['pre']=="103"):?>
+                                                        <td colspan="7">
                                                                 <div class="alert alert-warning">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
-                                                                </div> 
+                                                                </div>
+                                                        </td>
                                                         <?php endif;endif;?>        
                                                     </tr>
+                                                    <?php else: ?>
+                                                    <tr>                                                 
+                                                        <td colspan="7">
+                                                            <div class="text-center">
+                                                                <br/>
+                                                                    <a class="btn btn-info" href="php/RubricaEdit.php?pre=-1">Volver a Biblioteca</a>
+                                                                <br/>
+                                                            </div> 
+                                                        </td>
+                                                    </tr>
+                                                    <?php endif; ?>
                                                 </form>
                                             </table>
                                             <br/>
@@ -597,6 +631,7 @@
                                                         <?php endforeach; $linea++;?>
                                                     </tr>
                                                     <?php endforeach;?>
+                                                    <?php if(!isset($_SESSION["ver"])): ?>
                                                     <tr>
                                                         <td colspan="6">
                                                             <div class="form-group text-center" style="margin: 0px auto">
@@ -612,20 +647,34 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr>                                                 
+                                                    <tr>  
                                                         <?php	
                                                         if(isset($_GET['pre'])):
                                                             if($_GET['pre']=="102"):?>
+                                                        <td colspan="6">
                                                                 <div class="alert alert-warning">
                                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
                                                                 </div>
+                                                        </td>
                                                         <?php endif; endif;?>
-                                                    </tr>  
+                                                    </tr>
+                                                    <?php else: ?>
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            <div class="text-center">
+                                                                <br/>
+                                                                    <a class="btn btn-info" href="php/RubricaEdit.php?pre=-1">Volver a Biblioteca</a>
+                                                                <br/>
+                                                            </div> 
+                                                        </td>
+                                                    </tr>
+                                                    <?php endif; ?>
                                             </table>
                                             </form>
                                         </div>
                                         <div class="tab-pane well" id="tabi4" style="overflow-x: auto;">
+                                            <?php if(!isset($_SESSION["ver"])): ?>
                                             <form method="POST" action="php/RubricaEdit.php?pre=4" id="formulario1" autocomplete="off">
                                                 <div class="panel panel-success" id="contenido">
                                                     <div class="panel-heading text-center">
@@ -639,6 +688,19 @@
                                                     </div>
                                                 </div>
                                             </form>
+                                            <?php else: ?>
+                                            <div class="panel panel-success" id="contenido">
+                                                    <div class="panel-heading text-center">
+                                                        <h2>
+                                                            Modo vista
+                                                        </h2>
+                                                        <p>No se puede editar o guardar una rubrica.</p>
+                                                        <br/>
+                                                        <a class="btn btn-info" href="php/RubricaEdit.php?pre=-1">Volver a Biblioteca</a>
+                                                        <br/>
+                                                    </div>
+                                                </div>
+                                            <?php endif;?>
                                         </div>                                        
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="javascript:;">First</a></li>

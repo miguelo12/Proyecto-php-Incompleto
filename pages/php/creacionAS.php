@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 include_once("./CRUD/Seccion.php");
 include_once("./CRUD/Asignatura.php");
 if(isset($_POST["codigo"]))

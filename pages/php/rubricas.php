@@ -47,9 +47,10 @@ if(isset($_GET["new"])){
         $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
         
         if(isset($RubricaCompleta["rubrica"])){
-        $_SESSION["rubrica"] =  $RubricaCompleta;
-        header("location: ../rubrica.php");
-        die();
+               $_SESSION["rubrica"] =  $RubricaCompleta;
+               unset($_SESSION["ver"]);
+               header("location: ../rubrica.php");
+               die(); 
         }
         else
         {
@@ -59,15 +60,10 @@ if(isset($_GET["new"])){
     }
     elseif($_GET["new"]==2){
         
+    } else{
+      header("location: ../error404.php");
+      die(); 
     }
-    elseif($_GET["new"]==3){
-      unset($_SESSION["rubrica"]);
-      unset($_SESSION["autoevaluacion"]);
-      unset($_SESSION["coevaluacion"]);
-      unset($_SESSION["evaluacion"]);
-      header("location: ../indexDocente.php");
-      die();
-    } 
 }
 else{
     if (isset($_GET["idRubrica"])) {
@@ -101,11 +97,19 @@ else{
         }
 
         $RubricaCompleta = array("rubrica" => $rubricadocente,"tipo"=>$tipocriteriorubricaarray,"criterio"=>$arraycriterio,"competencia"=>$arraycompetencia);
-        $_SESSION["rubrica"] = $RubricaCompleta;
 
-        if(isset($_SESSION["rubrica"])){
-        header("location: ../rubrica.php");
-        die();
+        if(isset($RubricaCompleta["rubrica"])){
+            if(isset($_GET["ver"])){
+               $_SESSION["rubrica"] =  $RubricaCompleta;
+               $_SESSION["ver"] =  true;
+               header("location: ../rubrica.php");
+               die(); 
+            }else{
+               $_SESSION["rubrica"] =  $RubricaCompleta;
+               unset($_SESSION["ver"]);
+               header("location: ../rubrica.php");
+               die(); 
+            }
         }
         else
         {
