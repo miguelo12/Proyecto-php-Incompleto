@@ -333,7 +333,7 @@ else
                 unlink($do["url"]);
             }
             setcookie('recursosdidacticos', null, -1, '/');
-            header("location: ../indexDocente.php");
+            header("location: ../Biblioteca.php");
             die();
         } elseif ($_GET["action"]==1) {
             //Verificar primero si hay un recurso, sino devolverlo a la pagina recursosDidactico,

@@ -27,7 +27,7 @@
                     foreach ($rubrica["criterio"] as $criterio){
                         for($x = 0;$x<=count($criterio)-1;$x++){
                         if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                        $arrey1[] = array("id"=> $criterio[$x]["idCriterio"], "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
+                        $arrey1[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
                         }
                     $_SESSION["autoevaluacion"] = $arrey1;
                 }
@@ -38,7 +38,7 @@
                    foreach ($rubrica["criterio"] as $criterio){
                        for($x = 0;$x<=count($criterio)-1;$x++){
                        if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                       $arrey2[] = array("id"=> $criterio[$x]["idCriterio"], "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null);}}
+                       $arrey2[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
                     }
                 $_SESSION["coevaluacion"] = $arrey2;
                 }
@@ -77,7 +77,7 @@
                             foreach ($rubrica["criterio"] as $criterio){
                                 for($x = 0;$x<=count($criterio)-1;$x++){
                                 if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                                $arrey1[] = array("pregunta"=> $criterio[$x]["Nombre"]);}}
+                                $arrey1[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"]);}}
                                 }
                             $_SESSION["autoevaluacion"] = $arrey1;
                         }
@@ -88,7 +88,7 @@
                            foreach ($rubrica["criterio"] as $criterio){
                                for($x = 0;$x<=count($criterio)-1;$x++){
                                if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                               $arrey2[] = array("pregunta"=> $criterio[$x]["Nombre"]);}}
+                               $arrey2[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"]);}}
                             }
                         $_SESSION["coevaluacion"] = $arrey2;
                         }
