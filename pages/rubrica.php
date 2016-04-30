@@ -77,7 +77,7 @@
                             foreach ($rubrica["criterio"] as $criterio){
                                 for($x = 0;$x<=count($criterio)-1;$x++){
                                 if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                                $arrey1[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"]);}}
+                                $arrey1[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"], "unico"=>-1);}}
                                 }
                             $_SESSION["autoevaluacion"] = $arrey1;
                         }
@@ -88,7 +88,7 @@
                            foreach ($rubrica["criterio"] as $criterio){
                                for($x = 0;$x<=count($criterio)-1;$x++){
                                if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                               $arrey2[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"]);}}
+                               $arrey2[$x] = array("id"=>$x, "pregunta"=> $criterio[$x]["Nombre"], "unico"=>-1);}}
                             }
                         $_SESSION["coevaluacion"] = $arrey2;
                         }
@@ -343,7 +343,7 @@
                                                 <form method="POST" action="php/RubricaEdit.php?pre=1" id="formulario1" autocomplete="off">
                                                     <?php if(isset($_SESSION["autoevaluacion"])):
                                                           $autoeval = $_SESSION["autoevaluacion"];
-                                                          foreach($autoeval as $pu): ?>
+                                                          foreach($autoeval as $pu): if($pu["unico"]==-1): ?>
                                                     <tr>
                                                     <td style="width: 7%">
                                                         <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
@@ -355,7 +355,19 @@
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                     </td>
                                                     </tr>
-                                                    <?php endforeach; endif;?>
+                                                    <?php else:?>
+                                                    <tr>
+                                                    <td style="width: 7%" class="info">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 83%" class="info">
+                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                    </td>
+                                                    <td style="width: 10%" class="info">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
+                                                    </tr>
+                                                    <?php endif; endforeach; endif;?>
                                                     <tr>
                                                         <td colspan="3">
                                                             <label for="moreinput">Agregar Comentario</label>

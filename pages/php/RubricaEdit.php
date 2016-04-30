@@ -19,14 +19,14 @@ if(!isset($_SESSION["edita"])){
                         $preauto = $_POST["preguntas"];
                         $arrey = $_SESSION["autoevaluacion"];
                         $index = count($arrey);
-                        $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>null);
+                        $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index);
                         $_SESSION["autoevaluacion"] = $arrey;
 
                         }else{
 
                          $preauto = $_POST["preguntas"];
                          $index = 0;
-                         $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>null);
+                         $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index);
                          $_SESSION["autoevaluacion"] = $arrey;
                         }
                     }else{
@@ -44,7 +44,7 @@ if(!isset($_SESSION["edita"])){
                     $index = 0;
                     foreach ($arrey as $key => $n)
                     {
-                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
+                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n);
                       $index = $index + 1;
                     }
 
@@ -72,7 +72,7 @@ if(!isset($_SESSION["edita"])){
                   {
                      if(isset($ta))
                      {
-                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
+                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"]);
                         $index = $index + 1;
                      } 
                   }
@@ -94,7 +94,7 @@ if(!isset($_SESSION["edita"])){
                     $precoe = $_POST["preguntas"];
                     $arrey = $_SESSION["coevaluacion"];
                     $index = count($arrey);
-                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe);
                     $_SESSION["coevaluacion"] =  $arrey;
 
                     }
@@ -103,7 +103,7 @@ if(!isset($_SESSION["edita"])){
 
                     $precoe = $_POST["preguntas"];
                     $index = 0;
-                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
+                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe);
                     $_SESSION["coevaluacion"] = $arrey;
 
                     }
@@ -122,7 +122,7 @@ if(!isset($_SESSION["edita"])){
                     $index = 0;
                     foreach ($arrey as $key => $n)
                     {
-                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
+                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n);
                       $index = $index + 1;
                     }
 
@@ -153,7 +153,7 @@ if(!isset($_SESSION["edita"])){
                   {
                      if(isset($ta))
                      {
-                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
+                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"]);
                         $index = $index + 1;
                      } 
                   }
@@ -342,16 +342,10 @@ else{
                         $preauto = $_POST["preguntas"];
                         $arrey = $_SESSION["autoevaluacion"];
                         $index = count($arrey);
-                        $arrey[$index] = array("id"=> $index, "pregunta"=> $preauto, "Cambios"=>null, "unico"=>-1);
+                        $arrey[$index] = array("id"=> $index, "pregunta"=> $preauto, "Cambios"=>"false", "unico"=>-1);
                         
                         $_SESSION["autoevaluacion"] = $arrey;
 
-                        }else{
-
-                         $preauto = $_POST["preguntas"];
-                         $index = 0;
-                         $arrey[$index] = array("pregunta"=>$preauto, "id"=>$index, "unico"=>-1);
-                         $_SESSION["autoevaluacion"] = $arrey;
                         }
                     }else{
                         header("location:../rubrica.php?jump=0&pre=102");
@@ -365,14 +359,17 @@ else{
                     $arrey = $_POST["preg"];
                     $arrayPreg = $_SESSION["autoevaluacion"];
 
-                    $index = 0;
-                    foreach ($arrey as $key => $n)
+                    foreach ($arrayPreg as $key => $n)
                     {
-                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
-                      $index = $index + 1;
+                      if($arrayPreg[$key]["unico"]!=-1){  
+                      $arrayPreg[$key] = array("id"=> $index, "pregunta"=> $arrey[$key], "Cambios"=>"true", "unico"=>$arrayPreg[$key]["unico"]);
+                      }
+                      else{
+                      $arrayPreg[$key] = array("id"=> $index, "pregunta"=> $arrey[$key], "Cambios"=>"false", "unico"=>-1);
+                      }
                     }
 
-                    $_SESSION["autoevaluacion"] = $arroy;
+                    $_SESSION["autoevaluacion"] = $arrayPreg;
                  }
                 }
             } elseif($_GET["a"] == 3){
@@ -386,27 +383,38 @@ else{
                   {
                      if(isset($to[0]))
                      {
+                        if($array[$to[0]]["unico"]!=-1){  
+                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $ta["pregunta"], "Cambios"=>"eliminar", "unico"=>$ta["unico"]);
+                        }
+                        else{
                         unset($array[$to[0]]);
+                        }
                      } 
                   }
 
-                  $index = 0;
-                  $arroy;
-                  foreach ($array as $ta)
+                  $desc = 0;
+                  foreach ($array as $key => $ta)
                   {
                      if(isset($ta))
                      {
-                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
-                        $index = $index + 1;
+                        if($array[$key]["unico"]!=-1){  
+                        $array[$key-$desc] = array("id"=> $key-$desc, "pregunta"=> $ta["pregunta"], "Cambios"=>$ta["Cambios"], "unico"=>$ta["unico"]);
+                        }
+                        else{
+                        $array[$key-$desc] = array("id"=> $key-$desc, "pregunta"=> $ta["pregunta"], "Cambios"=>$ta["Cambios"], "unico"=>-1);
+                        }
                      } 
+                     else{
+                         $desc++;
+                     }
                   }
 
                   $_SESSION["autoevaluacion"] = $arroy;
                 }
             }
           }
-          header("location: ../rubrica.php?jump=0#submit3");
-          die();
+//          header("location: ../rubrica.php?jump=0#submit3");
+//          die();
         } elseif ($_GET["pre"] == 2) {
           if(isset($_GET["a"])){
             if($_GET["a"] == 1){
