@@ -27,7 +27,7 @@
                     foreach ($rubrica["criterio"] as $criterio){
                         for($x = 0;$x<=count($criterio)-1;$x++){
                         if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                        $arrey1[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
+                        $arrey1[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>"false", "unico"=>$criterio[$x]["idCriterio"]);}}
                         }
                     $_SESSION["autoevaluacion"] = $arrey1;
                 }
@@ -38,7 +38,7 @@
                    foreach ($rubrica["criterio"] as $criterio){
                        for($x = 0;$x<=count($criterio)-1;$x++){
                        if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                       $arrey2[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
+                       $arrey2[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>"false", "unico"=>$criterio[$x]["idCriterio"]);}}
                     }
                 $_SESSION["coevaluacion"] = $arrey2;
                 }
@@ -52,10 +52,10 @@
                             foreach ($rubrica["competencia"] as $competencia){
                                 for($y = 0;$y<=count($competencia)-1;$y++){
                                    if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
-                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>null);}
+                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>"false");}
                                 }   
                             }
-                            $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>null);
+                            $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>"false");
                             unset($arreyi);
                             } 
                         }
@@ -355,7 +355,8 @@
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                     </td>
                                                     </tr>
-                                                    <?php else:?>
+                                                    <?php else:
+                                                          if($pu["Cambios"] != "eliminar"):?>
                                                     <tr>
                                                     <td style="width: 7%" class="info">
                                                         <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
@@ -367,7 +368,31 @@
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                     </td>
                                                     </tr>
-                                                    <?php endif; endforeach; endif;?>
+                                                    <?php elseif($pu["Cambios"] != "true"):?>
+                                                    <tr>
+                                                    <td style="width: 7%" class="warning">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 83%" class="warning">
+                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                    </td>
+                                                    <td style="width: 10%" class="warning">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
+                                                    </tr>
+                                                    <?php else:?>
+                                                    <tr>
+                                                    <td style="width: 7%" class="danger">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 83%" class="danger">
+                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                    </td>
+                                                    <td style="width: 10%" class="danger">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
+                                                    </tr>
+                                                    <?php endif; endif; endforeach; endif;?>
                                                     <tr>
                                                         <td colspan="3">
                                                             <label for="moreinput">Agregar Comentario</label>

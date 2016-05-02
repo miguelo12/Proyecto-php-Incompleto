@@ -361,11 +361,13 @@ else{
 
                     foreach ($arrayPreg as $key => $n)
                     {
-                      if($arrayPreg[$key]["unico"]!=-1){  
-                      $arrayPreg[$key] = array("id"=> $index, "pregunta"=> $arrey[$key], "Cambios"=>"true", "unico"=>$arrayPreg[$key]["unico"]);
-                      }
-                      else{
-                      $arrayPreg[$key] = array("id"=> $index, "pregunta"=> $arrey[$key], "Cambios"=>"false", "unico"=>-1);
+                      if($arrayPreg[$key]["Cambios"]!="eliminar"){
+                          if($arrayPreg[$key]["unico"]!=-1){  
+                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "Cambios"=>"true", "unico"=>$arrayPreg[$key]["unico"]);
+                          }
+                          else{
+                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "Cambios"=>"false", "unico"=>-1);
+                          }
                       }
                     }
 
@@ -381,10 +383,11 @@ else{
 
                   foreach ($id as $to)
                   {
+                      var_dump($to);
                      if(isset($to[0]))
                      {
                         if($array[$to[0]]["unico"]!=-1){  
-                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $ta["pregunta"], "Cambios"=>"eliminar", "unico"=>$ta["unico"]);
+                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $array[$to[0]]["pregunta"], "Cambios"=>"eliminar", "unico"=>$array[$to[0]]["unico"]);
                         }
                         else{
                         unset($array[$to[0]]);
@@ -409,12 +412,12 @@ else{
                      }
                   }
 
-                  $_SESSION["autoevaluacion"] = $arroy;
+                  $_SESSION["autoevaluacion"] = $array;
                 }
             }
           }
-//          header("location: ../rubrica.php?jump=0#submit3");
-//          die();
+          header("location: ../rubrica.php?jump=0#submit3");
+          die();
         } elseif ($_GET["pre"] == 2) {
           if(isset($_GET["a"])){
             if($_GET["a"] == 1){
