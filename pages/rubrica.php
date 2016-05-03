@@ -27,7 +27,7 @@
                     foreach ($rubrica["criterio"] as $criterio){
                         for($x = 0;$x<=count($criterio)-1;$x++){
                         if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                        $arrey1[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>"false", "unico"=>$criterio[$x]["idCriterio"]);}}
+                        $arrey1[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
                         }
                     $_SESSION["autoevaluacion"] = $arrey1;
                 }
@@ -38,7 +38,7 @@
                    foreach ($rubrica["criterio"] as $criterio){
                        for($x = 0;$x<=count($criterio)-1;$x++){
                        if($tipo["idTipoCriterioRubrica"] == $criterio[$x]["TipoCriterioRubrica_idTipoCriterioRubrica"]){
-                       $arrey2[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>"false", "unico"=>$criterio[$x]["idCriterio"]);}}
+                       $arrey2[$x] = array("id"=> $x, "pregunta"=> $criterio[$x]["Nombre"], "Cambios"=>null, "unico"=>$criterio[$x]["idCriterio"]);}}
                     }
                 $_SESSION["coevaluacion"] = $arrey2;
                 }
@@ -52,10 +52,10 @@
                             foreach ($rubrica["competencia"] as $competencia){
                                 for($y = 0;$y<=count($competencia)-1;$y++){
                                    if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
-                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>"false");}
+                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>null);}
                                 }   
                             }
-                            $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>"false");
+                            $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>null);
                             unset($arreyi);
                             } 
                         }
@@ -356,7 +356,7 @@
                                                     </td>
                                                     </tr>
                                                     <?php else:
-                                                          if($pu["Cambios"] != "eliminar"):?>
+                                                          if($pu["Cambios"] == null):?>
                                                     <tr>
                                                     <td style="width: 7%" class="info">
                                                         <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
@@ -368,28 +368,38 @@
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                     </td>
                                                     </tr>
-                                                    <?php elseif($pu["Cambios"] != "true"):?>
-                                                    <tr>
-                                                    <td style="width: 7%" class="warning">
-                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
-                                                    </td>
-                                                    <td style="width: 83%" class="warning">
-                                                        <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
-                                                    </td>
-                                                    <td style="width: 10%" class="warning">
-                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
-                                                    </td>
-                                                    </tr>
-                                                    <?php else:?>
+                                                    <?php elseif($pu["Cambios"] == "Eliminar!!."):?>
                                                     <tr>
                                                     <td style="width: 7%" class="danger">
                                                         <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
                                                     </td>
                                                     <td style="width: 83%" class="danger">
+                                                        <div class="input-group">
                                                         <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-danger" formaction="php/RubricaEdit.php?pre=1&a=4&n=<?= $pu["id"] ?>" type="submit">Cancelar</button>
+                                                        </span>
+                                                        </div>
                                                     </td>
                                                     <td style="width: 10%" class="danger">
                                                         <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                    </td>
+                                                    </tr>
+                                                    <?php else:?>
+                                                    <tr>
+                                                    <td style="width: 7%" class="warning">
+                                                        <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist1[]">
+                                                    </td>
+                                                    <td style="width: 83%" class="warning">
+                                                        <div class="input-group">
+                                                        <input class="form-control" type="text" value="<?= $pu["Cambios"]?>" name="preg[]">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-danger" formaction="php/RubricaEdit.php?pre=1&a=4&n=<?= $pu["id"] ?>" type="submit">Cancelar</button>
+                                                        </span>
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: 10%" class="warning">
+                                                        <input class="form-control" type="text" value="" name="procedimiento" disabled="true">      
                                                     </td>
                                                     </tr>
                                                     <?php endif; endif; endforeach; endif;?>
@@ -404,8 +414,10 @@
                                                     <tr>
                                                         <td colspan="3">
                                                             <div class="form-group">
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=2" class="btn btn-warning" style="float:right;">Guardar</button>&nbsp;&nbsp;&nbsp;
+                                                                <div class="btn-group" role="group" aria-label="..." style="float:right;">
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=2" class="btn btn-warning">Guardar</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=1&a=3" class="btn btn-danger">Eliminar</button>
+                                                                </div>
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -603,8 +615,7 @@
                                                               else:
                                                               if(isset($_SESSION["coevaluacion"])):
                                                               $autoeval = $_SESSION["coevaluacion"];
-                                                              foreach($autoeval as $pu):?>
-                                                        
+                                                              foreach($autoeval as $pu): if($pu["unico"]==-1): ?>       
                                                         <tr>
                                                             <td style="width: 7%">
                                                                 <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
@@ -622,7 +633,72 @@
                                                                 <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
                                                             </td>
                                                         </tr>
-                                                        <?php endforeach; endif; endif;?>
+                                                        <?php else:
+                                                              if($pu["Cambios"] == null):?>
+                                                        <tr>
+                                                        <td style="width: 7%" class="info">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
+                                                        </td>
+                                                        <td style="width: 72%" class="info">
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                        </td>
+                                                        <td style="width: 7%" class="info">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="info">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="info">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        </tr>
+                                                        <?php elseif($pu["Cambios"] == "Eliminar!!."):?>
+                                                        <tr>
+                                                        <td style="width: 7%" class="danger">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
+                                                        </td>
+                                                        <td style="width: 72%" class="danger">
+                                                            <div class="input-group">
+                                                            <input class="form-control" type="text" value="<?= $pu["pregunta"]?>" name="preg[]">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-danger" formaction="php/RubricaEdit.php?pre=2&a=4&n=<?= $pu["id"] ?>" type="submit">Cancelar</button>
+                                                            </span>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width: 7%" class="danger">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="danger">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="danger">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        </tr>
+                                                        <?php else:?>
+                                                        <tr>
+                                                        <td style="width: 7%" class="warning">
+                                                            <input class="checkbox" type="checkbox" value="<?= $pu["id"] ?>" name="checklist[]">
+                                                        </td>
+                                                        <td style="width: 72%" class="warning">
+                                                            <div class="input-group">
+                                                            <input class="form-control" type="text" value="<?= $pu["Cambios"]?>" name="preg[]">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-danger" formaction="php/RubricaEdit.php?pre=2&a=4&n=<?= $pu["id"] ?>" type="submit">Cancelar</button>
+                                                            </span>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width: 7%" class="warning">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="warning">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        <td style="width: 7%" class="warning">
+                                                            <input class="form-control" type="text" value="" name="procedimiento" disabled="true">
+                                                        </td>
+                                                        </tr>
+                                                        <?php endif; endif; endforeach; endif; endif;?>
                                                     <tr>
                                                         <td colspan="7">
                                                             <a name="submit4"></a>
@@ -635,8 +711,10 @@
                                                     <tr>
                                                         <td colspan="7">
                                                             <div class="form-group">
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=3" class="btn btn-danger" style="float:right;">Eliminar</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=2" class="btn btn-warning" style="float:right;">Editar</button>&nbsp;&nbsp;&nbsp;
+                                                                <div class="btn-group" role="group" aria-label="..." style="float:right;">
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=2" class="btn btn-warning">Guardar</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=3" class="btn btn-danger">Eliminar</button>
+                                                                </div>
                                                                 <p class="help-block" style="float:right;">Selecciona cual quieres eliminar o editar.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
                                                         </td>
@@ -655,17 +733,20 @@
                                                                 <button type="submit" formaction="php/RubricaEdit.php?pre=2&a=1" class="btn btn-success" style="float:right;">Agregar</button>&nbsp;&nbsp;&nbsp;
                                                                 <p class="help-block" style="float:right;">Al guardar se modificara.&nbsp;&nbsp;&nbsp;</p>
                                                             </div>
-                                                        </td>
-                                                        <?php if(isset($_GET['pre'])):
+                                                        </td>    
+                                                    </tr>
+                                                    
+                                                    <?php if(isset($_GET['pre'])):
                                                             if($_GET['pre']=="103"):?>
+                                                    <tr>
                                                         <td colspan="7">
                                                                 <div class="alert alert-warning">
-                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                                                 <strong>Error, </strong> el nuevo criterio no puede estar en blanco.
                                                                 </div>
                                                         </td>
-                                                        <?php endif;endif;?>        
                                                     </tr>
+                                                    <?php endif;endif;?>  
+                                                    
                                                     <?php else: ?>
                                                     <tr>                                                 
                                                         <td colspan="7">

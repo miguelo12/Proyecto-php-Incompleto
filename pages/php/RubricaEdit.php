@@ -362,11 +362,13 @@ else{
                     foreach ($arrayPreg as $key => $n)
                     {
                       if($arrayPreg[$key]["Cambios"]!="eliminar"){
-                          if($arrayPreg[$key]["unico"]!=-1){  
-                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "Cambios"=>"true", "unico"=>$arrayPreg[$key]["unico"]);
+                          if($arrayPreg[$key]["unico"]!=-1){
+                            if($arrey[$key]!=$n["pregunta"]){
+                            $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $n["pregunta"], "Cambios"=> $arrey[$key], "unico"=>$arrayPreg[$key]["unico"]);
+                            }
                           }
                           else{
-                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "Cambios"=>"false", "unico"=>-1);
+                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "unico"=>-1);
                           }
                       }
                     }
@@ -387,7 +389,7 @@ else{
                      if(isset($to[0]))
                      {
                         if($array[$to[0]]["unico"]!=-1){  
-                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $array[$to[0]]["pregunta"], "Cambios"=>"eliminar", "unico"=>$array[$to[0]]["unico"]);
+                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $array[$to[0]]["pregunta"], "Cambios"=>"Eliminar!!.", "unico"=>$array[$to[0]]["unico"]);
                         }
                         else{
                         unset($array[$to[0]]);
@@ -414,7 +416,17 @@ else{
 
                   $_SESSION["autoevaluacion"] = $array;
                 }
-            }
+            } elseif ($_GET["a"] == 4) {
+                //volver a null;
+                if(isset($_GET["n"])){
+                    $array = $_SESSION["autoevaluacion"];
+                    $number = $_GET["n"];
+                    
+                    $array[$number]["Cambios"] = null;
+                    
+                    $_SESSION["autoevaluacion"] = $array;
+                }
+            } 
           }
           header("location: ../rubrica.php?jump=0#submit3");
           die();
@@ -424,27 +436,24 @@ else{
               if(isset($_POST["preguntas"]))
               {//agregar
                 //coevaluacion.
-                if(!empty($_POST["preguntas"])){
-                    if(isset($_SESSION["coevaluacion"])){
-                    $precoe = $_POST["preguntas"];
-                    $arrey = $_SESSION["coevaluacion"];
-                    $index = count($arrey);
-                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
-                    $_SESSION["coevaluacion"] =  $arrey;
+                if(isset($_POST["preguntas"])){
+                    //agregar
+                    //autoevaluacion.
+                    if(!empty($_POST["preguntas"])){
 
+                        if(isset($_SESSION["coevaluacion"])){
+                        $preauto = $_POST["preguntas"];
+                        $arrey = $_SESSION["coevaluacion"];
+                        $index = count($arrey);
+                        $arrey[$index] = array("id"=> $index, "pregunta"=> $preauto, "Cambios"=>"false", "unico"=>-1);
+                        
+                        $_SESSION["coevaluacion"] = $arrey;
+
+                        }
+                    }else{
+                        header("location:../rubrica.php?jump=1&pre=103");
+                        die();
                     }
-                    else
-                    {
-
-                    $precoe = $_POST["preguntas"];
-                    $index = 0;
-                    $arrey[$index] = array("id"=>$index, "pregunta"=>$precoe, "unico"=>null);
-                    $_SESSION["coevaluacion"] = $arrey;
-
-                    }
-                }else{
-                    header("location:../rubrica.php?jump=1&pre=103");
-                    die();
                 }
               }
             } elseif ($_GET["a"] == 2) {
@@ -454,16 +463,24 @@ else{
                     $arrey = $_POST["preg"];
                     $arrayPreg = $_SESSION["coevaluacion"];
 
-                    $index = 0;
-                    foreach ($arrey as $key => $n)
+                    foreach ($arrayPreg as $key => $n)
                     {
-                      $arroy[$index] = array("id"=>$index,"pregunta"=>$n, "unico"=>null);
-                      $index = $index + 1;
+                      if($arrayPreg[$key]["Cambios"]!="eliminar"){
+                          if($arrayPreg[$key]["unico"]!=-1){
+                            if($arrey[$key]!=$n["pregunta"]){
+                            $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $n["pregunta"], "Cambios"=> $arrey[$key], "unico"=>$arrayPreg[$key]["unico"]);
+                            }
+                          }
+                          else{
+                          $arrayPreg[$key] = array("id"=> $key, "pregunta"=> $arrey[$key], "unico"=>-1);
+                          }
+                      }
                     }
 
-                    $_SESSION["coevaluacion"] = $arroy;
+                    $_SESSION["coevaluacion"] = $arrayPreg;
                  }
                 }
+                
                 header("location: ../rubrica.php?jump=1&#submit4");
                 die();
 
@@ -476,26 +493,51 @@ else{
 
                   foreach ($id as $to)
                   {
+                      var_dump($to);
                      if(isset($to[0]))
                      {
+                        if($array[$to[0]]["unico"]!=-1){  
+                        $array[$to[0]] = array("id"=> $to[0], "pregunta"=> $array[$to[0]]["pregunta"], "Cambios"=>"Eliminar!!.", "unico"=>$array[$to[0]]["unico"]);
+                        }
+                        else{
                         unset($array[$to[0]]);
-                     }
-                  }
-
-                  $index = 0;
-                  $arroy;
-                  foreach ($array as $ta)
-                  {
-                     if(isset($ta))
-                     {
-                        $arroy[$index] = array("id"=>$index,"pregunta"=>$ta["pregunta"], "unico"=>null);
-                        $index = $index + 1;
+                        }
                      } 
                   }
 
-                  $_SESSION["coevaluacion"] = $arroy;
+                  $desc = 0;
+                  foreach ($array as $key => $ta)
+                  {
+                     if(isset($ta))
+                     {
+                        if($array[$key]["unico"]!=-1){  
+                        $array[$key-$desc] = array("id"=> $key-$desc, "pregunta"=> $ta["pregunta"], "Cambios"=>$ta["Cambios"], "unico"=>$ta["unico"]);
+                        }
+                        else{
+                        $array[$key-$desc] = array("id"=> $key-$desc, "pregunta"=> $ta["pregunta"], "Cambios"=>$ta["Cambios"], "unico"=>-1);
+                        }
+                     } 
+                     else{
+                         $desc++;
+                     }
+                  }
+
+                  $_SESSION["coevaluacion"] = $array;
                 }
-            }
+                
+                header("location: ../rubrica.php?jump=1&#submit4");
+                die();
+            } elseif ($_GET["a"] == 4) {
+                //volver a null;
+                if(isset($_GET["n"])){
+                    $array = $_SESSION["coevaluacion"];
+                    $number = $_GET["n"];
+                    
+                    $array[$number]["Cambios"] = null;
+                    
+                    $_SESSION["coevaluacion"] = $array;
+                }
+            } 
 
             header("location: ../rubrica.php?jump=1&#submit4");
             die();

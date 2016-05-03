@@ -211,7 +211,7 @@
                             
                             <div style="text-align: center; overflow-x: auto">
                                 <table class="table table-bordered table-condensed">
-                                    <caption><h2 class="text-center" style="color: #23527c"><ins>Secciones o Cursos</ins></h2></caption>
+                                    <caption><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
                                     <tr>
                                         <th class="text-center" style="width: 30%">Nombre Asignatura</th>
                                         <th class="text-center" style="width: 20%">curso o sección</th>

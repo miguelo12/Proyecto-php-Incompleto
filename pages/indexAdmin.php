@@ -140,9 +140,9 @@
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
                             <br/>
-                            <h4 style="float: right; margin-right: 20px; color: #23527c">Portal Admin</h4>
+                            <h4 style="float: right; margin-right: 20px;">Portal Admin</h4>
                             <br/>
-                            <h1><ins style="color: #23527c">Sugerencias que puedes elegir</ins></h1>
+                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
                             <br/>
                         </div>
                         <div class="row">

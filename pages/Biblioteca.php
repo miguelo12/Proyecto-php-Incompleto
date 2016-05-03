@@ -190,7 +190,7 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="well well-lg">
+                    <div class="panel panel-info panel-footer">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
                             <br/>
@@ -222,7 +222,7 @@
                 </div>
                 <br/>
                 <div class="col-xs-12">
-                    <div class="well well-lg">
+                    <div class="panel panel-info panel-footer">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
                             <br/>

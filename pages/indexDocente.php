@@ -212,9 +212,9 @@
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
                             <br/>
-                            <h4 style="float: right; margin-right: 20px; color: #23527c">Portal Docente</h4>
+                            <h4 style="float: right; margin-right: 20px;">Portal Docente</h4>
                             <br/>
-                            <h1><ins style="color: #23527c">Sugerencias que puedes elegir</ins></h1>
+                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
                             <br/>
                         </div>
                         <div class="row">
@@ -275,7 +275,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <p class="lead" style="color: #23527c">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
                                         </div>
                                     </div> 
@@ -295,7 +295,7 @@
                                             <br/>
                                             <br/>
                                             <br/>
-                                            <p class="lead" style="color: #23527c">Administración de Cursos o Secciones.</p>
+                                            <p class="lead">Administración de Cursos o Secciones.</p>
                                             <br/>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
                                             <br/>
@@ -317,7 +317,7 @@
                                             <br/>
                                             <br/>
                                             <img src="img/mail.png" alt="mail" width="120" height="120"/>
-                                            <p class="lead" style="color: #23527c">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
                                         </div>
                                     </div> 
@@ -331,7 +331,7 @@
                                             <br/>
                                             <br/>
                                             <img src="img/folder.png" alt="folder" width="120" height="120"/>
-                                            <p class="lead" style="color: #23527c">Administración de Cursos o Secciones.</p>
+                                            <p class="lead">Administración de Cursos o Secciones.</p>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
                                             <br/>
                                         </div>        

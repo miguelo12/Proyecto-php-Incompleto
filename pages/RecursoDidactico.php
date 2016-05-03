@@ -211,7 +211,7 @@ error_reporting(0);
                             <section id="wizard">
                                 <div class="page-header">
                                 <?php if(!isset($_SESSION["editar"])):?>
-                                <h1 style="color: #476d97">Crea tu unidad de aprendizaje</h1>
+                                <h1>Crea tu unidad de aprendizaje</h1>
                                 <?php else:?>
                                 <h1>Editar unidad de aprendizaje</h1>
                                 <?php endif;?>
@@ -258,8 +258,10 @@ error_reporting(0);
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo1" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .txt</p>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="button" id="resume_link1" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
                                                                 <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
@@ -276,8 +278,10 @@ error_reporting(0);
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo2" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .doc o .docx</p>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="button" id="resume_link2" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
                                                                 <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
@@ -293,8 +297,10 @@ error_reporting(0);
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo3" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .pdf</p>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="button" id="resume_link3" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
                                                                 <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
@@ -310,8 +316,10 @@ error_reporting(0);
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo4" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .powerpoint</p>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="button" id="resume_link4" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
                                                                 <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
@@ -327,8 +335,10 @@ error_reporting(0);
                                                                 <label for="exampleInputFile">Sube tu archivo.</label>
                                                                 <p id="archivo5" class="well"></p>
                                                                 <p class="help-block">Solamente se aceptan .jpg o .png</p>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="button" id="resume_link5" class="btn btn-default">Agregar Archivo</button>
                                                                 <button type="submit" name="subirarchivo" class="btn btn-success" disabled="true">Subir Archivo</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
                                                                 <p class="help-block text-center">Sugerencia: Es necesario tener una buena descripción de lo que subes.</p>
@@ -468,7 +478,7 @@ error_reporting(0);
                                                 </tr>
                                             </table>
                                             <?php endif;?>
-                                            <table class="editinplace table table-hover">
+                                            <table class="editinplace table">
                                                 <tr>
                                                     <th colspan="3">Sugerencias de Preguntas de Investigación</th>
                                                 </tr>

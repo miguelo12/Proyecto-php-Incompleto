@@ -252,9 +252,9 @@ error_reporting(0);
                             <div class="text-center">
                                 <br/>
                                 <?php if(isset($_SESSION["editar"])):?>
-                                <h2 style="color: #23527c"><ins>Editar Unidad de Aprendizaje</ins></h2>
+                                <h2><ins>Editar Unidad de Aprendizaje</ins></h2>
                                 <?php else:?>
-                                <h2 style="color: #23527c"><ins>Crear Unidad de Aprendizaje</ins></h2>
+                                <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
                                 <?php endif;?>
                             </div>
                             <div class="row">
@@ -263,18 +263,18 @@ error_reporting(0);
                                     <div class="panel panel-default" id="contenido">
                                       <div class="panel-heading">
                                     <br/>
-                                    <label style="color: #23527c">Titulo</label>
+                                    <label>Titulo</label>
                                     <div class="text-center">
                                         
                                     <?php if(isset($_SESSION["editar"])):?>
-                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                                    <p style="color: #23527c; font-weight:bold;">Modo editar no se puede cambiar el nombre solamente su contenido.</p>
+                                    <input style="text-align: center;" class="form-control" type="text" name="nameActivity" value="<?= $titu["unidad"]["Titulo"] ?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p style="font-weight:bold;">Modo editar no se puede cambiar el nombre solamente su contenido.</p>
                                     <?php elseif(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"])):?>
-                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
-                                    <p style="color: #23527c;font-weight:bold;">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
+                                    <input style="text-align: center;" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo" readonly="true"/>
+                                    <p style="font-weight:bold;">Para cambiar de nombre debes volver al portal docente cancelar la creacion de esta unidad, perdiendo todo lo avanzado.</p>
                                     <?php else:?>
-                                    <input style="text-align: center; color: #23527c" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
-                                    <p style="color: #23527c;font-weight:bold;">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
+                                    <input style="text-align: center;" class="form-control" type="text" name="nameActivity" value="<?php if(isset($_COOKIE["titulocreacion"])){echo $_COOKIE["titulocreacion"];}?>" placeholder="Ingrese aquí el titulo"/>
+                                    <p style="font-weight:bold;">Una vez sea agregado los documentos, ppt, txt entre otros.<br/> No podras cambiar el título.</p>
                                     <?php endif;?>
                                     </div>
                                     </div>

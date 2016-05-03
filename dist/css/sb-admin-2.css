@@ -7,3 +7,11 @@
 body {
     background-color: #e5e5e5;
 }
+
+h1, h2, input{
+   color: #476d97;
+}
+
+h3, h4, label, p, th{
+    color: #23527c;
+}
