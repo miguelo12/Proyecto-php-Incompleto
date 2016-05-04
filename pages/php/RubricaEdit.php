@@ -549,9 +549,9 @@ else{
                 $eva  = $_SESSION["evaluacion"];
                 if(count($eva)<8){
                     foreach($eva[0]["NivelCompetencia"] as $key1 => $value){
-                       $arreyi[] = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> $value[$key1]["Puntaje"]);
+                       $arreyi[] = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> $value[$key1]["Puntaje"], "id"=> -1, "Cambios"=> null);
                     }
-                    $eva[] = array("id"=> 0, "Criterio"=> "Ingresar criterio.", "NivelCompetencia"=> $arreyi);    
+                    $eva[] = array("id"=> -1, "Criterio"=> "Ingresar criterio.", "NivelCompetencia"=> $arreyi, "Cambios"=> null);    
                 }
                 
                 $_SESSION["evaluacion"] = $eva;
@@ -560,26 +560,72 @@ else{
                 $eva  = $_SESSION["evaluacion"];
                 if(count($eva[0]["NivelCompetencia"])<5){
                     foreach ($eva as $tei => $innerArray){
-                        $arreyi = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> 0);
+                        $arreyi = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> 0, "id"=> -1, "Cambios"=> null);
                         $eva[$tei]["NivelCompetencia"][] = $arreyi;
                     }
                 }
                 $_SESSION["evaluacion"] = $eva;
             } elseif ($_GET["a"] == 3) {
-                //guardar eliminar criterio
+                //eliminar criterio
                 $eva  = $_SESSION["evaluacion"];
-                if(count($eva)>1){
-                    unset($eva[count($eva)-1]);    
+                
+                if($eva[count($eva)-1]["id"]==-1){
+                    if(count($eva)>1){
+                        unset($eva[count($eva)-1]);    
+                    }
                 }
+                else{
+                    $do=true;
+                    $nu = 0;
+                    while($do){
+                        if(count($eva)-$nu>1){
+                            if($eva[count($eva)-($nu+1)]["Cambios"]!= "Eliminar!!."){
+                               $eva[count($eva)-($nu+1)]["Cambios"] = "Eliminar!!.";
+                               foreach($eva[count($eva)-($nu+1)]["NivelCompetencia"] as $key1 => $value){
+                                   $eva[count($eva)-($nu+1)]["NivelCompetencia"][$key1]["Cambios"] = "Eliminar!!.";
+                               }
+                               $do=false;
+                            }
+                        }
+                        else{
+                           $do=false;
+                        }
+                        $nu++;
+                    }
+                }
+                
                 
                 $_SESSION["evaluacion"] = $eva;
             } elseif ($_GET["a"] == 4) {
-                //guardar eliminar Nivel de competencia
+                //eliminar Nivel de competencia
                 $eva  = $_SESSION["evaluacion"];
-                if(count($eva[0]["NivelCompetencia"])>1){
-                    $count = count($eva[0]["NivelCompetencia"])-1;
-                    foreach ($eva as $tei => $innerArray){
-                        unset($eva[$tei]["NivelCompetencia"][$count]);
+                
+                $do=true;
+                $nu = 0;
+                
+                $count1 = count($eva[0]["NivelCompetencia"])-1;
+                if($eva[0]["NivelCompetencia"][$count1]["id"]==-1){
+                    foreach($eva as $tei => $ley){
+                        unset($eva[$tei]["NivelCompetencia"][$count1]);
+                    }
+                }
+                else{
+                    while($do){
+                        $count = count($eva[0]["NivelCompetencia"])-($nu+1);
+                        if($count>0){
+                            foreach ($eva as $tei => $innerArray){
+                                if($eva[$tei]["NivelCompetencia"][$count]["Cambios"]!= "Eliminar!!."){
+
+                                   $eva[$tei]["NivelCompetencia"][$count]["Cambios"]="Eliminar!!.";
+
+                                   $do=false;
+                                }
+                            }
+                        }
+                        else{
+                           $do=false;
+                        }
+                        $nu++;
                     }
                 }
                 $_SESSION["evaluacion"] = $eva;
@@ -592,12 +638,74 @@ else{
                         $criterioo = $_POST["criterios"];
                         $puntaje = $_POST["puntaje"];
                         foreach ($eva as $tei => $innerArray){
-                            $eva[$tei]["Criterio"] = $criterioo[$tei];
+                            //revisara primero que la id no sea -1 en la cual esta en la BDD y si es asi preguntara si hay cambios.
+                            if($eva[$tei]["id"]!=-1){
+                                if($eva[$tei]["Criterio"] != $criterioo[$tei]){
+                                    $eva[$tei]["Cambios"] = $criterioo[$tei];
+                                }
+                            }
+                            else{
+                            $eva[$tei]["Criterio"] = $criterioo[$tei];    
+                            }
+                            //cambios en nivel de competencias.
                             foreach($innerArray["NivelCompetencia"] as $key1 => $value){
-                                $eva[$tei]["NivelCompetencia"][$key1]["Puntaje"] = $puntaje[$key1];
+                                if($eva[$tei]["NivelCompetencia"][$key1]["id"]!=-1){
+                                    if($eva[$tei]["NivelCompetencia"][$key1]["Puntaje"]!=$puntaje[$key1]){
+                                        $eva[$tei]["NivelCompetencia"][$key1]["CambiosPuntaje"] = $puntaje[$key1];
+                                    }
+                                }
+                                else{
+                                $eva[$tei]["NivelCompetencia"][$key1]["Puntaje"] = $puntaje[$key1];    
+                                }
+                                
                                 if(isset($_POST["nivelcompetencia{$tei}"])){
                                    $nivel = $_POST["nivelcompetencia{$tei}"];
-                                   $eva[$tei]["NivelCompetencia"][$key1]["Descripcion"] = $nivel[$key1];
+                                   if($eva[$tei]["NivelCompetencia"][$key1]["id"]!=-1){
+                                       if($eva[$tei]["NivelCompetencia"][$key1]["Descripcion"]!= $nivel[$key1]){
+                                            $eva[$tei]["NivelCompetencia"][$key1]["Cambios"] = $nivel[$key1];
+                                       }
+                                   }
+                                   else{
+                                       $eva[$tei]["NivelCompetencia"][$key1]["Descripcion"] = $nivel[$key1];   
+                                   }
+                                }
+                            }
+                        }
+                    }
+                    else{
+                    header("location: ../error404.php");
+                    die();
+                    }
+                }
+                else{
+                    header("location: ../error404.php");
+                    die();
+                }
+                
+                $_SESSION["evaluacion"] = $eva;
+            } elseif ($_GET["a"] == 6) {
+                 //guardar modificaciones.
+                $eva  = $_SESSION["evaluacion"];
+                if(isset($_POST["puntaje"])){
+                    if(isset($_POST["criterios"])){
+                        $criterioo = $_POST["criterios"];
+                        $puntaje = $_POST["puntaje"];
+                        foreach ($eva as $tei => $innerArray){
+                            //revisara primero que la id no sea -1 en la cual esta en la BDD y si es asi preguntara si hay cambios.
+                            if($eva[$tei]["id"]!=-1){
+                                $eva[$tei]["Cambios"] = null;
+                            }
+                            //cambios en nivel de competencias.
+                            foreach($innerArray["NivelCompetencia"] as $key1 => $value){
+                                if($eva[$tei]["NivelCompetencia"][$key1]["id"]!=-1){
+                                    $eva[$tei]["NivelCompetencia"][$key1]["CambiosPuntaje"] = null;
+                                }
+                                
+                                if(isset($_POST["nivelcompetencia{$tei}"])){
+                                   $nivel = $_POST["nivelcompetencia{$tei}"];
+                                   if($eva[$tei]["NivelCompetencia"][$key1]["id"]!=-1){
+                                        $eva[$tei]["NivelCompetencia"][$key1]["Cambios"] = null;
+                                   }
                                 }
                             }
                         }
@@ -617,6 +725,7 @@ else{
           
           header("location: ../rubrica.php?jump=2#submit4");
           die();
+          
         } elseif ($_GET["pre"] == 4) {
           if(isset($_POST["nombre"])){
            //Guardar todo.

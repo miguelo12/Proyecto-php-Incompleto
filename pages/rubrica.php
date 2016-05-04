@@ -52,7 +52,7 @@
                             foreach ($rubrica["competencia"] as $competencia){
                                 for($y = 0;$y<=count($competencia)-1;$y++){
                                    if($competencia[$y]["Criterio_idCriterio"] == $criterio[$x]["idCriterio"]){         
-                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>null);}
+                                   $arreyi[] = array("Descripcion"=> $competencia[$y]["Descripcion"], "Puntaje"=> $competencia[$y]["Puntaje"], "Cambios"=>null, "CambiosPuntaje"=>null, "id"=> $competencia[$y]["idNivelCompetencia"]);}
                                 }   
                             }
                             $arrey[] = array("id"=> $criterio[$x]["idCriterio"], "Criterio"=> $criterio[$x]["Nombre"], "NivelCompetencia"=> $arreyi, "Cambios"=>null);
@@ -786,32 +786,73 @@
                                                     <th><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
                                                     <?php endforeach;?>
                                                 </tr>
-                                                    <?php $a = $_SESSION["evaluacion"]; $linea = 0;
+                                                    <?php $a = $_SESSION["evaluacion"];
                                                           foreach($a as $key1 => $innerArray): ?>
                                                     <tr>
+                                                        <?php if($innerArray["id"]==-1):?>
                                                         <td>
                                                             <input class="form-control" type="text" value="<?= $innerArray["Criterio"]?>" name="criterios[]">
                                                         </td>
-                                                        <?php foreach($innerArray["NivelCompetencia"] as $key1 => $value): ?>
-                                                        <td>
-                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $linea?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        <?php else:
+                                                              if($innerArray["Cambios"]==null):?>
+                                                        <td class="info">
+                                                            <input class="form-control" type="text" value="<?= $innerArray["Criterio"]?>" name="criterios[]">
                                                         </td>
-                                                        <?php endforeach; $linea++;?>
+                                                        <?php elseif($innerArray["Cambios"]=="Eliminar!!."):?>
+                                                        <td class="danger">
+                                                            <input class="form-control" type="text" value="<?= $innerArray["Criterio"]?>" name="criterios[]">
+                                                        </td>
+                                                        <?php else:?>
+                                                        <td class="warning">
+                                                            <input class="form-control" type="text" value="<?= $innerArray["Cambios"]?>" name="criterios[]">
+                                                        </td>
+                                                        <?php endif; endif; foreach($innerArray["NivelCompetencia"] as $key2 => $value): ?>
+                                                        <?php if($value["id"]==-1):?>
+                                                        <?php if($value["Cambios"] == null):?>
+                                                        <td>
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        </td>
+                                                        <?php else:?>
+                                                        <td class="danger">
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        </td>
+                                                        <?php endif;?>
+                                                        <?php else:
+                                                              if($value["Cambios"] == null):?>
+                                                        <td class="info">
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        </td>
+                                                        <?php elseif($value["Cambios"] == "Eliminar!!."):?>
+                                                        <td class="danger">
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Descripcion"]?></textarea>
+                                                        </td>
+                                                        <?php else: ?>
+                                                        <td class="warning">
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Cambios"]?></textarea>
+                                                        </td>
+                                                        <?php endif; endif; endforeach;?>
                                                     </tr>
                                                     <?php endforeach;?>
                                                     <?php if(!isset($_SESSION["ver"])): ?>
                                                     <tr>
                                                         <td colspan="6">
                                                             <div class="form-group text-center" style="margin: 0px auto">
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=1" class="btn btn-warning" >Agregar Criterio</button>&nbsp;&nbsp;&nbsp;
+                                                                <div class="btn-group" role="group" aria-label="...">
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=3" class="btn btn-danger" >Eliminar Criterio</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=1" class="btn btn-warning" >Agregar Criterio</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=4" class="btn btn-danger" >Eliminar Competencia</button>&nbsp;&nbsp;&nbsp;
-                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=2" class="btn btn-warning" >Agregar Competencia</button>&nbsp;&nbsp;&nbsp;
+                                                                <div class="btn-group" role="group" aria-label="...">
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=4" class="btn btn-danger" >Eliminar Competencia</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=2" class="btn btn-warning" >Agregar Competencia</button>
+                                                                </div>
                                                                 <br/>
                                                                 <br/>
+                                                                <div class="btn-group" role="group" aria-label="...">
                                                                 <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=5" class="btn btn-success" >Guardar</button>
+                                                                <button type="submit" formaction="php/RubricaEdit.php?pre=3&a=6" class="btn btn-primary" >Cancelar</button>
+                                                                </div>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -842,6 +883,21 @@
                                             </form>
                                         </div>
                                         <div class="tab-pane well" id="tabi4" style="overflow-x: auto;">
+                                            <?php if(isset($_SESSION["edita"])): $rubrica1 = $_SESSION["edita"];?>
+                                            <form method="POST" action="php/RubricaEdit.php?pre=4" id="formulario1" autocomplete="off">
+                                                <div class="panel panel-success" id="contenido">
+                                                    <div class="panel-heading text-center">
+                                                        <h2>
+                                                            Editar Rubrica
+                                                        </h2>
+                                                        <label style="float: left">Nombre:</label>
+                                                        <input type="text" value="<?= $rubrica1["rubrica"]["nombre"]?>" name="nombre" placeholder="Ingrese nombre." class="form-control text-center" disabled="true"/>
+                                                        <p>Si ya terminaste guardalo.</p>
+                                                        <button name="boton" class="btn btn-success" type="submit">Guardar</button>  
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <?php else: ?>
                                             <?php if(!isset($_SESSION["ver"])): ?>
                                             <form method="POST" action="php/RubricaEdit.php?pre=4" id="formulario1" autocomplete="off">
                                                 <div class="panel panel-success" id="contenido">
@@ -868,7 +924,7 @@
                                                         <br/>
                                                     </div>
                                                 </div>
-                                            <?php endif;?>
+                                            <?php endif; endif;?>
                                         </div>                                        
                                         <ul class="pager wizard">
                                                 <li class="previous first" style="display:none;"><a href="javascript:;">First</a></li>
