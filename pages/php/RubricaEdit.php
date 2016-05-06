@@ -727,16 +727,10 @@ else{
           die();
           
         } elseif ($_GET["pre"] == 4) {
-          if(isset($_POST["nombre"])){
            //Guardar todo.
-           $name = $_POST["nombre"];
-           if($name.trim()!=""){
-               
+              
                //creacion de la rubrica principal + el nombre.
-               $rubrica = new Rubrica();
-               $rubrica->setDocente_idDocente($_SESSION["docente"]["id"]);
-               $rubrica->setnombre($name);
-               $idrubrica = $rubrica->Ingresar();
+               $idRubrica = $_SESSION["edita"]["rubrica"]["idRubrica"];
 
                //sessiones que se guardan necesarias.
                $autoeva = $_SESSION["autoevaluacion"];
@@ -744,61 +738,161 @@ else{
                $eva  = $_SESSION["evaluacion"];
 
                //creacion de los tipo de rubrica.
-               $idtipocriteriorubrica;
-               for ($i = 1; $i <= 3; $i++){
-                 $tipocriteriorubrica = new TipoCriterioRubrica();
-                 $tipocriteriorubrica->setRubrica_idRubrica($idrubrica);
-                 $tipocriteriorubrica->settipos($i);
-                 $idtipocriteriorubrica[$i] = array($tipocriteriorubrica->Ingresar(),$i);
-                 unset($tipocriteriorubrica);
+               $tipocriterioru = $_SESSION["edita"]["tipo"];
+               foreach($tipocriterioru as $td => $tw){
+                 $idtipocriteriorubrica[$td] = array($tw["idTipoCriterioRubrica"],($td+1));
                }
-
+               
                $criterio = new Criterio();
 
                 foreach ($idtipocriteriorubrica as $da){
                     if($da[1]==1){
                     foreach ($eva as $da2){
-                        $criterio = new Criterio();
-                        $criterio->setNombre($da2["Criterio"]);
-                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
-                        $idCriterio = $criterio->Ingresar();
+                        if($da2["id"]==-1){
+                            $criterio = new Criterio();
+                            $criterio->setNombre($da2["Criterio"]);
+                            $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                            $idCriterio = $criterio->Ingresar();
 
-                        foreach ($da2["NivelCompetencia"] as $value){
-                            $nivelcompetencia = new NivelCompetencia();
-                            $nivelcompetencia->setCriterio_idCriterio($idCriterio);
-                            $nivelcompetencia->setDescripcion($value["Descripcion"]);
-                            $nivelcompetencia->setPuntaje($value["Puntaje"]);
-                            $nivelcompetencia->Ingresar();
-                            unset($nivelcompetencia);
+                            foreach ($da2["NivelCompetencia"] as $value){
+                                $nivelcompetencia = new NivelCompetencia();
+                                $nivelcompetencia->setCriterio_idCriterio($idCriterio);
+                                $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                                $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                $nivelcompetencia->Ingresar();
+                                unset($nivelcompetencia);
+                            }
+                        }
+                        elseif($da2["Cambios"]=="Eliminar!!."){
+                            $criterio = new Criterio();
+                            $idCriterio = $da2["id"];
+                            $criterio->setidCriterio($idCriterio);
+                            foreach ($da2["NivelCompetencia"] as $value){
+                                $nivelcompetencia = new NivelCompetencia();
+                                $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                $nivelcompetencia->Eliminar();
+                                unset($nivelcompetencia);
+                            }
+                            $criterio->Eliminar();
+                        }
+                        elseif($da2["Cambios"]!=null){
+                            $criterio = new Criterio();
+                            $idCriterio = $da2["id"];
+                            $criterio->setidCriterio($idCriterio);
+                            $criterio->setNombre($da2["Cambios"]);
+                            $criterio->Actualizar();
+
+                            foreach ($da2["NivelCompetencia"] as $value){
+                                if($value["id"]!=-1){
+                                    if($value["Cambios"]=="Eliminar!!."){
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                    $nivelcompetencia->Eliminar();
+                                    unset($nivelcompetencia);
+                                    }
+                                    elseif($value["Cambios"]!=null){
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                    $nivelcompetencia->setDescripcion($value["Cambios"]);
+                                    $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    $nivelcompetencia->Actualizar();
+                                    unset($nivelcompetencia);
+                                    }
+                                }
+                                else{
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setCriterio_idCriterio($idCriterio);
+                                    $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                                    $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    $nivelcompetencia->Ingresar();    
+                                }
+                            }
+                        }
+                        else{
+                            foreach ($da2["NivelCompetencia"] as $value){
+                                if($value["id"]!=-1){
+                                    if($value["Cambios"]=="Eliminar!!."){
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                    $nivelcompetencia->Eliminar();
+                                    unset($nivelcompetencia);
+                                    }
+                                    elseif($value["Cambios"]!=null){
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                    $nivelcompetencia->setDescripcion($value["Cambios"]);
+                                    $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    $nivelcompetencia->Actualizar();
+                                    unset($nivelcompetencia);
+                                    }
+                                }
+                                else{
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setCriterio_idCriterio($da2["id"]);
+                                    $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                                    $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    $nivelcompetencia->Ingresar();    
+                                }
+                            }
                         }
                     }
+                    
                     } elseif ($da[1]==2) {
                         foreach ($autoeva as $da3){
-                        $criterio = new Criterio();
-                        $criterio->setNombre($da3["pregunta"]);
-                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
-                        $idCriterio1 = $criterio->Ingresar();
+                            if($da3["unico"]==-1){
+                                $criterio = new Criterio();
+                                $criterio->setNombre($da3["pregunta"]);
+                                $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                                $idCriterio1 = $criterio->Ingresar();
+                            }
+                            else{
+                                if($da3["Cambios"]=="Eliminar!!."){
+                                    $criterio = new Criterio();
+                                    $idCriterio = $da3["unico"];
+                                    $criterio->setidCriterio($idCriterio);
+                                    $criterio->Eliminar();
+                                } elseif ($da3["Cambios"]!=null) {
+                                    $criterio = new Criterio();
+                                    $idCriterio = $da3["unico"];
+                                    $criterio->setidCriterio($idCriterio);
+                                    $criterio->setNombre($da3["Cambios"]);
+                                    $criterio->Actualizar();
+                                }
+                            }
+                        
                         }
                     } elseif ($da[1]==3) {
                         foreach ($coeva as $da4){
-                        $criterio = new Criterio();
-                        $criterio->setNombre($da4["pregunta"]);
-                        $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
-                        $idCriterio2 = $criterio->Ingresar();
+                            if($da4["unico"]==-1){
+                                $criterio = new Criterio();
+                                $criterio->setNombre($da4["pregunta"]);
+                                $criterio->setTipoCriterioRubrica_idTipoCriterioRubrica($da[0]);
+                                $idCriterio2 = $criterio->Ingresar();
+                            }
+                            else{
+                                if($da4["Cambios"]=="Eliminar!!."){
+                                    $criterio = new Criterio();
+                                    $idCriterio = $da4["unico"];
+                                    $criterio->setidCriterio($idCriterio);
+                                    $criterio->Eliminar();
+                                } elseif ($da4["Cambios"]!=null) {
+                                    $criterio = new Criterio();
+                                    $idCriterio = $da4["unico"];
+                                    $criterio->setidCriterio($idCriterio);
+                                    $criterio->setNombre($da4["Cambios"]);
+                                    $criterio->Actualizar();
+                                }
+                            }
                         }
                     }
                 }
+                
                 unset($_SESSION["autoevaluacion"]);
                 unset($_SESSION["coevaluacion"]);
                 unset($_SESSION["evaluacion"]);
                 unset($_SESSION["rubrica"]);
                 header("location: ../biblioteca.php?creado=2");
                 die();
-           }
-           
-           header("location: ../rubrica.php?jump=3&error=100");
-           die();
-          }
         } elseif ($_GET["pre"] == -1) {
           //rubricaevaluativa
           unset($_SESSION["autoevaluacion"]);
@@ -813,5 +907,5 @@ else{
         }
     }
 }
-//header("location: ../error404.php");
-//die();
+header("location: ../error404.php");
+die();

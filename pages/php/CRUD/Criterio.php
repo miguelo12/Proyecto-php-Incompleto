@@ -45,6 +45,46 @@ class Criterio {
       }
     }
     
+    public function Eliminar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("delete from criterio where idCriterio=?");
+      
+      $sentencia->bind_param("i", $this->idCriterio);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+       //devuelve la id.
+       return true;
+      }
+      else {
+       return false;
+      }
+    }
+    
+    public function Actualizar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update criterio set Nombre=? where idCriterio=?");
+      
+      $sentencia->bind_param("si", $this->Nombre, $this->idCriterio);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+       //devuelve la id.
+       return true;
+      }
+      else {
+       return false;
+      }
+    }
+    
     public function ExisteonoPorID()
     {
       $c=$this->con->getConexion();

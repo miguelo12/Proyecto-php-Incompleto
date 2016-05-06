@@ -46,6 +46,46 @@ class NivelCompetencia {
       }
     }
     
+    public function Eliminar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("delete from nivelcompetencia where idNivelCompetencia=?");
+      
+      $sentencia->bind_param("i", $this->idNivelCompetencia);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+       //devuelve la id.
+       return true;
+      }
+      else {
+       return false;
+      }
+    }
+    
+    public function Actualizar()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("update nivelcompetencia set Descripcion=?,Puntaje=? where idNivelCompetencia=?");
+      
+      $sentencia->bind_param("sii", $this->Descripcion, $this->Puntaje, $this->idNivelCompetencia);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+       //devuelve la id.
+       return true;
+      }
+      else {
+       return false;
+      }
+    }
+    
     public function DevolverNivelCompetencia()
     {
       $c=$this->con->getConexion();

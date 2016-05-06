@@ -80,11 +80,12 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 <div class="panel panel-info" id="contenido">
                       <div class="panel-heading">
-                        <h3>Actualización 16/04/2016:</h3>
+                        <h3>Actualización 06/05/2016:</h3>
                         <ul>
-                            <li>Cambios en las paletas de colores.</li>
-                            <li>Recursos Didacticos ahora acepta PDF.</li>
-                            <li>Correcciones menores.</li>
+                            <li style="font-size: 16px">Creacion de Rubrica:<span style="color: green;">Habilitado</span></li>
+                            <li style="font-size: 16px">Editar Rubrica:<span style="color: green;">Habilitado</span></li>
+                            <li style="font-size: 16px">Ver Rubrica:<span style="color: green;">Habilitado</span></li>
+                            <li style="font-size: 16px">Correcciones menores de colores, fondo entre otras cosas.</li>
                         </ul>
                     </div>
                 </div>
