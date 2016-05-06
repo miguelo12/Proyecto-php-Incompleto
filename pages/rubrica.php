@@ -787,7 +787,8 @@
                                                     <?php endforeach;?>
                                                 </tr>
                                                     <?php $a = $_SESSION["evaluacion"];
-                                                          foreach($a as $key1 => $innerArray): ?>
+                                                          foreach($a as $key1 => $innerArray):
+                                                          if(!isset($_SESSION["rubrica"])):?>
                                                     <tr>
                                                         <?php if($innerArray["id"]==-1):?>
                                                         <td>
@@ -832,7 +833,18 @@
                                                         </td>
                                                         <?php endif; endif; endforeach;?>
                                                     </tr>
+                                                    <?php else:?>
+                                                    <tr>
+                                                        <td>
+                                                            <input class="form-control" type="text" value="<?= $innerArray["Criterio"]?>" name="criterios[]">
+                                                            <?php foreach($innerArray["NivelCompetencia"] as $key2 => $value):?>
+                                                            <td>
+                                                            <textarea style="resize: none;" class="form-control" rows="4" name="nivelcompetencia<?= $key1?>[]"><?= $value["Descripcion"]?></textarea>
+                                                            </td>
+                                                        </td>  
                                                     <?php endforeach;?>
+                                                    </tr>
+                                                    <?php endif; endforeach;?>
                                                     <?php if(!isset($_SESSION["ver"])): ?>
                                                     <tr>
                                                         <td colspan="6">
