@@ -70,44 +70,10 @@ error_reporting(0);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Heuristica Movil</a>
+              <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                    <a href="indexDocente.php">Inicio</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Inicio</a>
-                    <?php endif;?></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li class="active"><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                      <a href="CrearUnidad.php">Crear una actividad</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a>
-                    <?php endif;?></li>
-                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                      <a href="Biblioteca.php">Ir a biblioteca</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a>
-                    <?php endif;?></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Recuerda</li>
-                    <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                        <a href="cursos.php">Crear Asignatura o Sección</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a>
-                    <?php endif;?></li>
-                  </ul>
-                </li>
-                <li><?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                      <a href="#contact">Contáctenos</a>
-                    <?php else:?>
-                      <a data-toggle="modal" data-target="#myModal" href="#">Contáctenos</a>
-                    <?php endif;?></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right hidden-xs">
+              <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
@@ -225,6 +191,11 @@ error_reporting(0);
         </nav>
         </div>
         
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <br/>

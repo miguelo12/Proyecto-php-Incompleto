@@ -53,7 +53,7 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>   
+            <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>   
         </div>
     </div>
 </nav>

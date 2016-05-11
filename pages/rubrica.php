@@ -200,24 +200,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Heuristica Movil</a>
+              <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                  <li><a data-toggle="modal" data-target="#myModal" href="#">Inicio</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a></li>
-                    <li><a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Recuerda</li>
-                    <li class="active"><a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a></li>
-                  </ul>
-                </li>
-                <li><a data-toggle="modal" data-target="#myModal" href="#">Contáctenos</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right hidden-xs">
+              <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
@@ -283,6 +269,11 @@
         </nav>
         </div>
             
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <br/>
