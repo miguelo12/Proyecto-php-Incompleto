@@ -59,22 +59,51 @@
 </nav>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="login-panel panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Bienvenido Ingrese</h3>
+            <div class="col-xs-12">
+                <div class="row" id="paso1">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <a type="button" class="btn btn-lg btn-block" id="profe"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
                     </div>
-                    <div class="panel-body">
-                        <fieldset>
-
-                            <!-- Botones donde se dirige -->
-                            <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Profesor" onclick=" window.location='../pages/loginProfesor.php'  ">
-                            <input type="button" class="btn btn-lg btn-success btn-block" value="Ingresar Alumno" onclick=" window.location='../pages/loginAlumno.php'  ">
-                        </fieldset>
+                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <a type="button" class="btn btn-lg btn-block" id="alu"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row" id="paso2">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <a type="button" class="btn btn-lg btn-block" id="profe"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <p>Hola</p>
+                        <a class="opened"/>hola</a>
+                    </div>
+                </div>
+                <div class="row" id="paso3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <a type="button" class="btn btn-lg btn-block" id="alu"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                        <!-- Botones donde se dirige -->
+                        <br/>
+                        <br/>
+                        <p>Hola</p>
+                        <a class="opened"/>hola</a>
+                    </div>
+                </div>
         <br/>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
@@ -103,6 +132,29 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $().ready(function(){
+        $("#paso1").show();
+        $("#paso2").hide();
+        $("#paso3").hide();
+        $("#profe").click(function(){
+            $("#paso2").show();
+            $("#paso1").hide();
+            $("#paso3").hide();
+        });
+        $("#alu").click(function(){
+            $("#paso3").show();
+            $("#paso2").hide();
+            $("#paso1").hide();    
+        });
+        $(".opened").click(function(){
+            $("#paso1").show();
+            $("#paso2").hide();
+            $("#paso3").hide();    
+        });
+    });
+    </script>
 
 </body>
 
