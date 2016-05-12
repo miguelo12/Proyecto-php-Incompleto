@@ -54,7 +54,19 @@
                     <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
                 </div>
             </div>
-    </nav>  
+    </nav>
+    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==4):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el usuario existe y fue actualizado.</p>
+        </div>
+    <?php endif; endif;?>
+    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==20):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el codigo de invitacion es erronea.</p>
+        </div>
+    <?php endif; endif;?>
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -85,7 +97,7 @@
 
                                         <!-- Change this to a button or input when using this as a form -->
                                         <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear">
-                                        <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/loginAlumno.php'  ">
+                                        <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/inicio.php'  ">
                                         </fieldset>
                                 </form>
                             </div>

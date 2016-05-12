@@ -319,8 +319,6 @@
                                             <li><a href="#tabi3" data-toggle="tab">Editar Evaluación</a></li>
                                             <?php if(!isset($_SESSION["ver"])): ?>
                                             <li><a href="#tabi4" data-toggle="tab">Guardar Rubrica</a></li>
-                                            <?php else: ?>
-                                            <li><a href="#tabi4" data-toggle="tab">Modo vista</a></li>
                                             <?php endif; ?>
                                     </ul>
                                     <div class="tab-content">
@@ -915,18 +913,6 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <?php else: ?>
-                                            <div class="panel panel-success" id="contenido">
-                                                    <div class="panel-heading text-center">
-                                                        <h2>
-                                                            Modo vista
-                                                        </h2>
-                                                        <p>No se puede editar o guardar una rubrica.</p>
-                                                        <br/>
-                                                        <a class="btn btn-info" href="php/RubricaEdit.php?pre=-1">Volver a Biblioteca</a>
-                                                        <br/>
-                                                    </div>
-                                                </div>
                                             <?php endif; endif;?>
                                         </div>                                        
                                         <ul class="pager wizard">

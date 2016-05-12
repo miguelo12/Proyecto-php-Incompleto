@@ -45,6 +45,51 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $().ready(function(){
+        <?php if(isset($_GET['error'])):?>
+        $("#paso1").hide();
+        $("#paso2").show();
+        $("#paso3").hide();
+        <?php elseif(isset($_GET['error1']) || isset($_GET['exito1'])):?>
+        $("#paso1").hide();
+        $("#paso2").hide();
+        $("#paso3").show();
+        <?php else:?>
+        $("#paso1").show();
+        $("#paso2").hide();
+        $("#paso3").hide();
+        <?php endif;?>
+        $("#profe").click(function(){
+            $("#paso2").fadeIn("slow");
+            $("#paso1").hide();
+            $("#paso3").hide();
+        });
+        $("#alu").click(function(){
+            $("#paso3").fadeIn("slow");
+            $("#paso2").hide();
+            $("#paso1").hide();   
+        });
+        $(".opened").click(function(){
+            $("#paso1").fadeIn("slow");
+            $("#paso2").hide();
+            $("#paso3").hide(); 
+        });
+    });
+    </script>
 
 </head>
 
@@ -65,43 +110,137 @@
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block" id="profe"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-block" id="profe"><img src="img/pensar.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <p class="text-center lead">Profesor</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block" id="alu"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-block"><img src="img/pensar.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <p class="text-center lead">Alumno</p>
                     </div>
                 </div>
                 <div class="row" id="paso2">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block" id="profe"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-lg btn-block"><img src="img/pensar.png" id="profe" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <p class="text-center lead">Profesor</p>
                     </div>
-                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <p>Hola</p>
-                        <a class="opened"/>hola</a>
+                        <h1>Acceso</h1>
+                        <form role="form" method="POST" action="php/loginDocente.php">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        </span>
+                                        <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus>
+                                    </div> 
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                        </span>
+                                        <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
+                                    </div>                               
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Ingresar">
+                                <input type="button" class="btn btn-lg btn-success btn-block opened" value="Atras">
+                                </fieldset>
+
+                                <?php	
+                                if(isset($_GET['error'])){
+                                    if($_GET['error']=="error"){
+                                        echo "<div class='alert alert-warning'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "<strong>Error, </strong> ingrese nuevamente su correo y su contraseña.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
+                        </form>
                     </div>
                 </div>
                 <div class="row" id="paso3">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block" id="alu"><img src="img/pensar.png" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-lg btn-block"><img src="img/pensar.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <p class="text-center lead">Alumno</p>
                     </div>
-                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <p>Hola</p>
-                        <a class="opened"/>hola</a>
+                        <h1>Acceso</h1>
+                        <form role="form" method="POST" action="php/loginAlumno.php">
+                            <fieldset>
+                                <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-key" aria-hidden="true"></i>
+                                    </span>
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div> 
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Ingresar">
+                                <input type="button" class="btn btn-lg btn-success btn-block" value="Crear Cuenta" onclick=" window.location='../pages/crearAlumno.php'">
+                                <input type="button" class="btn btn-lg btn-success btn-block opened " value="Atras">
+                                </fieldset>
+                                <br/>
+                                <?php	
+                                if(isset($_GET['error1'])){
+                                    if($_GET['error1']=="error"){
+                                        echo "<div class='alert alert-warning'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "<strong>Error, </strong> ingrese nuevamente su correo y su contraseña.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
+                                
+                                <?php	
+                                if(isset($_GET['exito1'])){
+                                    if($_GET['exito1']==1){
+                                        echo "<div class='alert alert-success'>";
+                                        echo "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+                                        echo "Se ha podido <strong>Actualizar</strong> el alumno, ahora ingrese.";
+                                        echo "</div>"; 
+                                    }
+                                }
+                                ?>
+                        </form>
                     </div>
                 </div>
         <br/>
@@ -121,40 +260,6 @@
             </div>
         </div>
     </div>
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    
-    <script>
-    $().ready(function(){
-        $("#paso1").show();
-        $("#paso2").hide();
-        $("#paso3").hide();
-        $("#profe").click(function(){
-            $("#paso2").show();
-            $("#paso1").hide();
-            $("#paso3").hide();
-        });
-        $("#alu").click(function(){
-            $("#paso3").show();
-            $("#paso2").hide();
-            $("#paso1").hide();    
-        });
-        $(".opened").click(function(){
-            $("#paso1").show();
-            $("#paso2").hide();
-            $("#paso3").hide();    
-        });
-    });
-    </script>
 
 </body>
 

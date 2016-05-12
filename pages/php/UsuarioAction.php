@@ -237,20 +237,20 @@ if(isset($_GET["user"])){
                     if(!$alumno->FueActualizado()){
                         if($alumno->Actualizar())
                         {
-                          header("location: ../loginAlumno.php?exito=1");
+                          header("location: ../inicio.php?exito1=1");
                           die();
                         }
                         else
                         {
                           //error sql :(
-                          header("location: ../loginAlumno.php?error=9000");
+                          header("location: ../inicio.php?error1=9000");
                           die();
                         }
                     }
                     else
                     {
                         //fue creado y actualizado..
-                        header("location: ../loginAlumno.php?error=4");
+                        header("location: ../crearAlumno.php?error1=4");
                         die();
                     }
                  }
