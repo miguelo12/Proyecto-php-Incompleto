@@ -911,7 +911,7 @@ else{
                 unset($_SESSION["coevaluacion"]);
                 unset($_SESSION["evaluacion"]);
                 unset($_SESSION["rubrica"]);
-                header("location: ../biblioteca.php?creado=2");
+                header("location: ../biblioteca.php?editado=2");
                 die();
         } elseif ($_GET["pre"] == -1) {
           //rubricaevaluativa

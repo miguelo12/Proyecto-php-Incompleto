@@ -467,7 +467,7 @@ else
               unset($_SESSION["editar"]);
               unset($_SESSION["NuevaUnidad"]);
               unset($_SESSION["preguntas"]);
-              header("location: ../Biblioteca.php");
+              header("location: ../Biblioteca.php?editado=1");
               die();
            }
            else{

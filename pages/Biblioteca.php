@@ -86,7 +86,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -175,6 +175,20 @@
                     <div class="alert alert-success text-center">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Listo, </strong> una rubrica nueva.
+                    </div>
+        <?php endif; endif; ?>
+        <?php if(isset($_GET["editado"])):
+                if($_GET["editado"]=="1"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Listo, </strong> se ha editado con exito la unidad de aprendizaje.
+                    </div>
+        <?php endif; endif; ?>
+        <?php if(isset($_GET["editado"])):
+                if($_GET["editado"]=="2"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Listo, </strong> se ha editado con exito la rubrica.
                     </div>
         <?php endif; endif; ?>
         <div id="page-content-wrapper content" >
