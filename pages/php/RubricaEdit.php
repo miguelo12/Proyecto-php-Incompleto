@@ -549,7 +549,7 @@ else{
                 $eva  = $_SESSION["evaluacion"];
                 if(count($eva)<8){
                     foreach($eva[0]["NivelCompetencia"] as $key1 => $value){
-                       $arreyi[] = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> $value[$key1]["Puntaje"], "id"=> -1, "Cambios"=> null);
+                       $arreyi[] = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> $value[$key1]["Puntaje"], "id"=> -1, "Cambios"=> null, "CambiosPuntaje"=>null);
                     }
                     $eva[] = array("id"=> -1, "Criterio"=> "Ingresar criterio.", "NivelCompetencia"=> $arreyi, "Cambios"=> null);    
                 }
@@ -560,7 +560,7 @@ else{
                 $eva  = $_SESSION["evaluacion"];
                 if(count($eva[0]["NivelCompetencia"])<5){
                     foreach ($eva as $tei => $innerArray){
-                        $arreyi = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> 0, "id"=> -1, "Cambios"=> null);
+                        $arreyi = array("Descripcion"=> "Ingresar nivel de competencia.", "Puntaje"=> 0, "id"=> -1, "Cambios"=> null, "CambiosPuntaje"=>null);
                         $eva[$tei]["NivelCompetencia"][] = $arreyi;
                     }
                 }
@@ -617,7 +617,7 @@ else{
                                 if($eva[$tei]["NivelCompetencia"][$count]["Cambios"]!= "Eliminar!!."){
 
                                    $eva[$tei]["NivelCompetencia"][$count]["Cambios"]="Eliminar!!.";
-
+                                   $eva[$tei]["NivelCompetencia"][$count]["CambiosPuntaje"]="Eliminar!!.";
                                    $do=false;
                                 }
                             }
@@ -703,9 +703,7 @@ else{
                                 
                                 if(isset($_POST["nivelcompetencia{$tei}"])){
                                    $nivel = $_POST["nivelcompetencia{$tei}"];
-                                   if($eva[$tei]["NivelCompetencia"][$key1]["id"]!=-1){
-                                        $eva[$tei]["NivelCompetencia"][$key1]["Cambios"] = null;
-                                   }
+                                   $eva[$tei]["NivelCompetencia"][$key1]["Cambios"] = null;
                                 }
                             }
                         }
@@ -758,7 +756,12 @@ else{
                                 $nivelcompetencia = new NivelCompetencia();
                                 $nivelcompetencia->setCriterio_idCriterio($idCriterio);
                                 $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                                if($value["CambiosPuntaje"]==null){
                                 $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                }
+                                else{
+                                $nivelcompetencia->setPuntaje($value["CambiosPuntaje"]);   
+                                }
                                 $nivelcompetencia->Ingresar();
                                 unset($nivelcompetencia);
                             }
@@ -794,7 +797,12 @@ else{
                                     $nivelcompetencia = new NivelCompetencia();
                                     $nivelcompetencia->setIdNivelCompetencia($value["id"]);
                                     $nivelcompetencia->setDescripcion($value["Cambios"]);
+                                    if($value["CambiosPuntaje"]==null){
                                     $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    }
+                                    else{
+                                    $nivelcompetencia->setPuntaje($value["CambiosPuntaje"]);   
+                                    }
                                     $nivelcompetencia->Actualizar();
                                     unset($nivelcompetencia);
                                     }
@@ -821,10 +829,22 @@ else{
                                     $nivelcompetencia = new NivelCompetencia();
                                     $nivelcompetencia->setIdNivelCompetencia($value["id"]);
                                     $nivelcompetencia->setDescripcion($value["Cambios"]);
+                                    if($value["CambiosPuntaje"]==null){
                                     $nivelcompetencia->setPuntaje($value["Puntaje"]);
+                                    }
+                                    else{
+                                    $nivelcompetencia->setPuntaje($value["CambiosPuntaje"]);   
+                                    }
                                     $nivelcompetencia->Actualizar();
                                     unset($nivelcompetencia);
-                                    }
+                                    } elseif($value["CambiosPuntaje"]!=null){
+                                    $nivelcompetencia = new NivelCompetencia();
+                                    $nivelcompetencia->setIdNivelCompetencia($value["id"]);
+                                    $nivelcompetencia->setDescripcion($value["Descripcion"]);
+                                    $nivelcompetencia->setPuntaje($value["CambiosPuntaje"]);   
+                                    $nivelcompetencia->Actualizar();
+                                    unset($nivelcompetencia);
+                                    } 
                                 }
                                 else{
                                     $nivelcompetencia = new NivelCompetencia();

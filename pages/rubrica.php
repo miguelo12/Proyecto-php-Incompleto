@@ -771,9 +771,20 @@
                                                 <tr>
                                                     <th class="text-center" style="width: 22%;">Criterios</th>
                                                     <?php $a = $_SESSION["evaluacion"];
-                                                          foreach($a[0]["NivelCompetencia"] as $key1): ?>
+                                                          foreach($a[0]["NivelCompetencia"] as $key1): 
+                                                          if(isset($_SESSION["rubrica"])):?>
                                                     <th><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
-                                                    <?php endforeach;?>
+                                                    <?php else:?>
+                                                    <?php if($key1["id"]==-1):?>
+                                                    <th><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
+                                                    <?php else:?>
+                                                    <?php if($key1["CambiosPuntaje"]==null):?>
+                                                    <th class="info"><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
+                                                    <?php elseif($key1["CambiosPuntaje"]=="Eliminar!!."):?>
+                                                    <th class="danger"><input class="form-control text-center" type="text" value="<?= $key1["Puntaje"]?>" name="puntaje[]"></th>
+                                                    <?php else:?>
+                                                    <th class="warning"><input class="form-control text-center" type="text" value="<?= $key1["CambiosPuntaje"]?>" name="puntaje[]"></th>
+                                                    <?php endif; endif; endif; endforeach;?>
                                                 </tr>
                                                     <?php $a = $_SESSION["evaluacion"];
                                                           foreach($a as $key1 => $innerArray):
