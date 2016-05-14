@@ -143,6 +143,31 @@ class Seccion {
       return $res;
     }
     
+    public function DevolverSeccionDocenteAsignatura()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from seccion where Docente_idDocente=? and Asignatura_idAsignatura=?");
+      
+      $sentencia->bind_param("si", $this->Docente_idDocente, $this->Asignatura_idAsignatura);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function Habilitar()
     {
       try{

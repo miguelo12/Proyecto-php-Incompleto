@@ -15,25 +15,25 @@
       }
   else
       {
+       if(isset($_SESSION["publicar"])){
        $docente = $_SESSION["docente"];
        
-       include '../pages/php/CRUD/Rubrica.php';
-       $result = new Rubrica();
-       $result->setDocente_idDocente($docente["id"]);
-       $rubricaresult = $result->DevolverRubrica();
-       
-       include '../pages/php/CRUD/UnidadAprendizaje.php';
+       include_once '../pages/php/CRUD/Asignatura.php';
+       include_once '../pages/php/CRUD/UnidadAprendizaje.php';
        $resultunidad = new UnidadAprendizaje();
+       $asignatura = new Asignatura();
+       
        $resultunidad->setDocente_idDocente($docente["id"]);
        $Unidadresult = $resultunidad->DevolverUnidadDocente();
+        
+       $asignatura->setDocente_idDocente($docente["id"]);
+       $arrayAsignatura = $asignatura->DevolverAsignaturasDocente();  
        
-        unset($_SESSION["autoevaluacion"]);
-        unset($_SESSION["coevaluacion"]);
-        unset($_SESSION["evaluacion"]);
-        unset($_SESSION["rubrica"]);
-        unset($_SESSION["ver"]);
-        unset($_SESSION["edita"]);
-        unset($_SESSION["publicar"]);
+       }
+       else{
+        header("location: Biblioteca.php");
+        die();
+       }
       }
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
-    <title>Biblioteca</title>
+    <title>Publicar</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,31 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+    
+    <script src="../js/jquery.maskedinput.min.js" type="text/javascript"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+    jQuery(function($){
+           $("#fechainicio").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+           $("#fechatermino").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+    });
+    </script>
 </head>
 
 <body>
@@ -103,7 +127,6 @@
                   </ul>
                 </li>
               </ul>
-              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Biblioteca</h1>  
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -165,124 +188,115 @@
         <br/>
         <br/>
         
-        <?php if(isset($_GET["creado"])):
-                if($_GET["creado"]=="1"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong >Listo, </strong> se ha creado una unidad de aprendizaje.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["creado"])):
-                if($_GET["creado"]=="2"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> una rubrica nueva.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["editado"])):
-                if($_GET["editado"]=="1"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> se ha editado con exito la unidad de aprendizaje.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["editado"])):
-                if($_GET["editado"]=="2"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> se ha editado con exito la rubrica.
-                    </div>
-        <?php endif; endif; ?>
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
+                    <div>
+                    <h1 class="text-center">Crear Actividad</h1>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
-                            <br/>
-                            <h2><ins>Unidades de Aprendizaje</ins></h2>
-                            <br/>
-                            <br/>
-                            <p class="lead">Presenta on-line o edita tus Unidades de Aprendizaje.</p>
-                            <br/>
-                            <div class="panel panel-primary">
-                              <div class="panel-body">
-                                  <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
-                                  <i class="fa fa-chevron-circle-right">&nbsp;</i><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;<?= $de["Titulo"] ?><br/>
-                                  <?php endforeach; else: ?>
-                                  <p>No tienes aún una unidad de aprendizaje</p>
-                                  <?php endif; ?>
-                              </div>
-                            </div> 
-                            <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
+                        <form method="post" autocomplete="off">
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+                        <fieldset>
+                           <legend><p>PrePublicación:</p></legend>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Fecha Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </span>
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="email" id="fechainicio" type="text" autofocus>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        Fecha Termino:
+                                    </span>
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="email" id="fechatermino" type="text" autofocus>
+                                </div> 
+                            </div>
+                           <p class="text-center help-block">Formato es: dia/mes/año</p>
+                           <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">
+                        </fieldset>
                         </div>
-                        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 text-left">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <img src="../pages/img/libro.png" alt="libros" class="img-rounded">
+                        <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-left">
+                            <table class="table table-bordered table-condensed">
+                                <th class="text-center">
+                                    Asignatura
+                                </th>
+                                <th class="text-center">
+                                    Seccion
+                                </th>
+                                <tr>
+                                    <td class="text-center">
+                                        <select class="form-control" name="asignatura" id="asignatura">
+                                            <option value="-1">Elige alguna opción</option>
+                                            <?php if(isset($arrayAsignatura)):?>
+                                            <?php foreach ($arrayAsignatura as $du):?>
+                                            <option value="<?= $du["idAsignatura"]?>"><?= $du["Nombre"]?></option>
+                                            <?php endforeach;?>
+                                            <?php endif;?>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <select class="form-control" name="seccion" id="seccion" disabled="true">
+                                            <option>Elige una asignatura</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class="text-center" id="resultado"></p>
                         </div>
-                        
+                        </form>
                     </div>
                     </div>
                 </div>
                 <br/>
-                <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
-                            <br/>
-                            <h2><ins>Rubricas</ins></h2>
-                            <br/>
-                            <br/>
-                            <p class="lead">Selecciona la rubrica, que quieras utilizar para tu nueva unidad de aprendizaje.</p>
-                            <br/>
-                            <div class="panel panel-primary">
-                              <div class="panel-body">
-                                  <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a><br/>
-                                  <?php else: ?>
-                                  <i class="fa fa-chevron-circle-right"></i></span>&nbsp;<?=$da["nombre"]?>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a> <br/>   
-                                  <?php endif; endforeach; endif; ?>
-                              </div>
-                            </div>  
-                            <a href="php/rubricas.php?new=1" class="btn btn-info btn-lg">Nueva rubrica</a>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 text-left">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <img src="../pages/img/rubri.png" alt="libros" class="img-rounded">
-                        </div>
-                    </div>
-                    </div>
-                </div>
             </div>
         </div>
         </div>
         
         <br/>
         <br/>
-
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+        
+        <script>
+        $('select#asignatura').on('change',function(){
+            var valor = $(this).val();
+            if(valor !== "-1"){
+            var parametros = {"id" : valor};
+            $.ajax({
+                data:  parametros,
+                url:   'php/publicar.php?buscar=1',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                        $("#resultado").html("");
+                        $("select#seccion option").remove(); // Remove all <option> child tags.
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.Codigo)
+                                    .val(item.idSeccion)
+                            );
+                        });
+                }
+            });
+            
+            $('select#seccion').prop( "disabled", false );
+            }
+            else{
+            $('select#seccion').prop( "disabled", true );
+            $("select#seccion option").remove(); // Remove all <option> child tags.
+            $("select#seccion").append( // Append an object to the inside of the select box
+                $("<option></option>") // Yes you can do this.
+                    .text("Elige una asignatura")
+            );
+            }
+        });
+        </script>
 </body>
-
 </html>

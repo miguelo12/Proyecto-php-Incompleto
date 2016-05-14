@@ -80,6 +80,7 @@
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Portal Alumno</h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>

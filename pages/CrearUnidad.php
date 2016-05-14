@@ -104,6 +104,7 @@ error_reporting(0);
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right hidden-sm" style="margin-top: 50px; margin-right: 80px">Unidad de aprendizaje</h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -227,9 +228,9 @@ error_reporting(0);
                             <div class="text-center">
                                 <br/>
                                 <?php if(isset($_SESSION["editar"])):?>
-                                <h2><ins>Editar Unidad de Aprendizaje</ins></h2>
+                                <h2><ins>Editar Unidad</ins></h2>
                                 <?php else:?>
-                                <h2><ins>Crear Unidad de Aprendizaje</ins></h2>
+                                <h2><ins>Crear Unidad</ins></h2>
                                 <?php endif;?>
                             </div>
                             <div class="row">

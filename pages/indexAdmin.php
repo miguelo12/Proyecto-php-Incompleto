@@ -87,6 +87,7 @@
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Portal Admin</h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -140,9 +141,6 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="panel panel-info panel-footer">
                         <div class="text-center">
-                            <br/>
-                            <h4 style="float: right; margin-right: 20px;">Portal Admin</h4>
-                            <br/>
                             <h1><ins>Sugerencias que puedes elegir</ins></h1>
                             <br/>
                         </div>

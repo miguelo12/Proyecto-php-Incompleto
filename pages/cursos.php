@@ -113,6 +113,7 @@
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right hidden-sm" style="margin-top: 50px; margin-right: 80px">Cursos o Secciones</h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>

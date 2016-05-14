@@ -110,14 +110,14 @@
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-block" id="profe"><img src="img/pensar.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-block" id="profe"><img src="img/docente.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
                         <p class="text-center lead">Profesor</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-block"><img src="img/pensar.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-block"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
                         <p class="text-center lead">Alumno</p>
                     </div>
                 </div>
@@ -126,16 +126,16 @@
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block"><img src="img/pensar.png" id="profe" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-lg btn-block"><img src="img/docente.png" id="profe" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
                         <p class="text-center lead">Profesor</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <h1>Acceso</h1>
                         <form role="form" method="POST" action="php/loginDocente.php">
-                            <fieldset>
+                                <fieldset>
+                                <legend><h1>Acceso:</h1></legend>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -181,16 +181,16 @@
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <a type="button" class="btn btn-lg btn-block"><img src="img/pensar.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <a type="button" class="btn btn-lg btn-block"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
                         <p class="text-center lead">Alumno</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <br/>
-                        <h1>Acceso</h1>
                         <form role="form" method="POST" action="php/loginAlumno.php">
                             <fieldset>
+                                <legend><h1>Acceso:</h1></legend>
                                 <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -243,6 +243,7 @@
                         </form>
                     </div>
                 </div>
+        <br/>
         <br/>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">

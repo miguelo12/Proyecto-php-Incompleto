@@ -23,7 +23,9 @@
        unset($_SESSION["coevaluacion"]);
        unset($_SESSION["evaluacion"]);
        unset($_SESSION["rubrica"]);
+       unset($_SESSION["ver"]);
        unset($_SESSION["edita"]);
+       unset($_SESSION["publicar"]);
       }
 ?>
 <!DOCTYPE html>
@@ -117,6 +119,7 @@
                   </ul>
                 </li>
               </ul>
+                <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Portal Docente</h1>  
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -213,7 +216,7 @@
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" alt="lista" width="200" height="200"></p> Crear Actividad</a>
+                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" class="img-circle img-thumbnail" alt="lista" width="200" height="200"></p> Crear Actividad</a>
                                         <br/>
                                         <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
                                     </div>     
@@ -227,7 +230,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
                                         <div>
-                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
+                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle img-thumbnail" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
                                         <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
                                         <br/>
                                         </div>
@@ -241,7 +244,7 @@
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <a class="lead" href="#"><p><img src="img/lista.png" alt="lista" width="200" height="200"></p>Evaluar</a>
+                                        <a class="lead" href="#"><p><img src="img/lista.png" alt="lista" class="img-circle img-thumbnail" width="200" height="200"></p>Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
                                         <br/>
                                     </div>
@@ -274,7 +277,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" width="128" height="128"/>
+                                            <img src="img/mail.png" alt="mail" class="img-circle img-thumbnail" width="180" height="180"/>
                                         </div>
                                     </div>
                                 </div>
@@ -307,7 +310,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" width="120" height="120"/>
+                                            <img src="img/mail.png" alt="mail" class="img-circle img-thumbnail" width="180" height="180"/>
                                             <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
                                         </div>
