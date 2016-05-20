@@ -86,6 +86,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     
+    <script src="../js/jquery.validate.min.js"></script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -127,6 +129,7 @@
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Crear Actividad</h1>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -188,14 +191,20 @@
         <br/>
         <br/>
         
+        <?php  if(isset($_GET["error"])): if($_GET["error"]==100):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> no corresponde a una fecha correcta.</p>
+        </div>
+        <?php endif; endif;?>
+
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
                     <div>
-                    <h1 class="text-center">Crear Actividad</h1>
                     <div class="row">
-                        <form method="post" autocomplete="off">
+                        <form method="post" action="php/publicar.php?crear=1" autocomplete="off" id="formulario">
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
                         <fieldset>
                            <legend><p>PrePublicación:</p></legend>
@@ -204,7 +213,7 @@
                                     <span class="input-group-addon">
                                         Fecha Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
-                                    <input class="form-control" placeholder="dd/mm/yyyy" name="email" id="fechainicio" type="text" autofocus>
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="fechainicio" id="fechainicio" type="text" autofocus>
                                 </div> 
                             </div>
                             <div class="form-group">
@@ -212,15 +221,27 @@
                                     <span class="input-group-addon">
                                         Fecha Termino:
                                     </span>
-                                    <input class="form-control" placeholder="dd/mm/yyyy" name="email" id="fechatermino" type="text" autofocus>
+                                    <input class="form-control" placeholder="dd/mm/yyyy" name="fechatermino" id="fechatermino" type="text" autofocus>
                                 </div> 
                             </div>
-                           <p class="text-center help-block">Formato es: dia/mes/año</p>
-                           <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">
+                           <div class="alert alert-info" role="alert"><p>La fecha de hoy es: <?= date("d-m-Y")?></p><p class="text-center help-block">Formato es: dia/mes/año</p></div>
+                           
                         </fieldset>
                         </div>
-                        <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-left">
-                            <table class="table table-bordered table-condensed">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 text-left">
+                            <div class="hidden-sm hidden-xs">
+                                <br/>
+                                <br/>
+                            </div>
+                            <table class="table table-condensed table-striped table-bordered">
+                                <tr>
+                                    <td style="width: 50%" class="text-center">
+                                        <span class="text-primary">Unidad de aprendizaje:</span>
+                                    </td>
+                                    <td style="width: 50%" class="text-center">
+                                        <span class="text-success"><?= $_SESSION["publicar"]["nombre"] ?></span>
+                                    </td>
+                                </tr>
                                 <th class="text-center">
                                     Asignatura
                                 </th>
@@ -247,6 +268,9 @@
                             </table>
                             <p class="text-center" id="resultado"></p>
                         </div>
+                        <div class="col-xs-12">
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">   
+                        </div>
                         </form>
                     </div>
                     </div>
@@ -258,6 +282,56 @@
         
         <br/>
         <br/>
+        
+        <script>
+              $.validator.setDefaults({
+                errorElement: "span",
+                errorClass: "help-block",
+                highlight: function(element) {
+                    $(element).parent().removeClass('has-success').addClass('has-error');
+                },
+                unhighlight: function(element) {
+                    $(element).parent().removeClass('has-error').addClass('has-success');
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+                });
+
+                $("#formulario").validate({
+                rules: {
+                    'fechainicio': {
+                        required: true
+                    },
+                    'fechatermino': {
+                        required: true
+                    },
+                    'asignatura': {
+                        valueNotEquals: "-1"
+                    }
+                },
+               messages: {
+                   'fechainicio': {
+                        required: "Esta en blanco."
+                    },
+                    'fechatermino': {
+                        required: "Esta en blanco."
+                    },
+                    'asignatura':{
+                        valueNotEquals: "Selecciona una asignatura."
+                    }
+                }
+            });
+            
+            jQuery.validator.addMethod("valueNotEquals", function(value, element, arg){
+              return arg !== value;
+            }, "Value must not equal arg.");
+            
+        </script>
         
         <script>
         $('select#asignatura').on('change',function(){
@@ -296,6 +370,13 @@
                     .text("Elige una asignatura")
             );
             }
+        });
+        </script>
+        
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
         });
         </script>
 </body>

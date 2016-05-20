@@ -1,3 +1,14 @@
+<?php session_start(); 
+  error_reporting(0);
+
+        unset($_SESSION["autoevaluacion"]);
+        unset($_SESSION["coevaluacion"]);
+        unset($_SESSION["evaluacion"]);
+        unset($_SESSION["rubrica"]);
+        unset($_SESSION["ver"]);
+        unset($_SESSION["edita"]);
+        unset($_SESSION["publicar"]);
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.

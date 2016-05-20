@@ -209,7 +209,7 @@
                             <div class="panel panel-primary">
                               <div class="panel-body">
                                   <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
-                                  <i class="fa fa-chevron-circle-right">&nbsp;</i><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;<?= $de["Titulo"] ?><br/>
+                                  <i class="fa fa-chevron-circle-right">&nbsp;</i><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a>&nbsp;&nbsp;&nbsp;<?= $de["Titulo"] ?><br/>
                                   <?php endforeach; else: ?>
                                   <p>No tienes aún una unidad de aprendizaje</p>
                                   <?php endif; ?>
