@@ -28,26 +28,12 @@ else{
         if($_GET["crear"]==1){
             $fecha1 = $_POST["fechainicio"];
             $fecha2 = $_POST["fechatermino"];
+            $Unidadid = $_SESSION["publicar"]["id"];
             $seccionid = $_POST["seccion"];
-            $seguir = true;
-            //primera fecha
-            list($d, $m, $y) = explode('/', $fecha1);
-            if(!checkdate($m, $d, $y)) {
-               $seguir = false;
-            }
-            //segunda fecha
-            list($d, $m, $y) = explode('/', $fecha2);
-            if(!checkdate($m, $d, $y)) {
-               $seguir = false;
-            }
-            
-            if($seguir){
-                echo "Seguir";
-            }
-            else{
-                header("location: ../publicar.php?error=100");
-                die();   
-            } 
+            echo $fecha1."</br>";
+            echo $fecha2."</br>";
+            echo $Unidadid."</br>";
+            echo $seccionid;
         }
     } else{
     header("location: ../Biblioteca.php");

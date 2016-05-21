@@ -66,13 +66,19 @@
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
     
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="css/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-        <!-- jQuery -->
+    <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
     
     <script src="../js/jquery.maskedinput.min.js" type="text/javascript"></script>
@@ -88,16 +94,59 @@
     
     <script src="../js/jquery.validate.min.js"></script>
     
+    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    </script>
     
-    jQuery(function($){
-           $("#fechainicio").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
-           $("#fechatermino").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
-    });
+            
+    <script>
+      $(document).ready(function() {
+          $('#btn').click(function() {
+            $("#fechainicio").focus();
+        });
+          $('#btn1').click(function() {
+            $("#fechatermino").focus();
+        });
+      });
+      
+      $(function() {
+        $( "#fechainicio" ).datepicker({gotoCurrent: true, currentText: "Now",altField: "#fechainicio",
+            onSelect: function( selectedDate ) {
+            $( "#fechatermino" ).datepicker( "option", "minDate", selectedDate );},
+            beforeShow: function(input, inst)
+            {
+                inst.dpDiv.css({marginLeft: input.offsetWidth-200  + 'px'});
+            }
+      });
+        $( "#fechatermino" ).datepicker({defaultDate: "+7",altField: "#fechatermino",
+            onSelect: function( selectedDate ) {
+            $( "#fechainicio" ).datepicker( "option", "maxDate", selectedDate );},
+            beforeShow: function(input, inst)
+            {
+                inst.dpDiv.css({marginLeft: input.offsetWidth-200 + 'px'});
+            }
+      });
+      });
+      
+      $(function() {
+        $("#fechainicio").keypress(function(event) {event.preventDefault();});
+        $("#fechatermino").keypress(function(event) {event.preventDefault();});
+      });
+      
+      $.datepicker.setDefaults({
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+        firstDay: 1,
+        maxDate: "+1m +7d",
+        minDate: "0",
+        constrainInput: false,
+        dateFormat:"dd/mm/yy",
+        showOptions: { direction: "down" }
+      });
     </script>
 </head>
 
@@ -211,20 +260,26 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        Fecha Inicio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Fecha Inicio: &nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
-                                    <input class="form-control" placeholder="dd/mm/yyyy" name="fechainicio" id="fechainicio" type="text" autofocus>
-                                </div> 
+                                    <input class="form-control text-center" placeholder="Selecciona una fecha" name="fechainicio" id="fechainicio" type="text">
+                                    <span class="input-group-addon" id="btn" style="cursor:pointer;">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         Fecha Termino:
                                     </span>
-                                    <input class="form-control" placeholder="dd/mm/yyyy" name="fechatermino" id="fechatermino" type="text" autofocus>
-                                </div> 
+                                    <input class="form-control text-center" placeholder="Selecciona una fecha" name="fechatermino" id="fechatermino" type="text">
+                                    <span class="input-group-addon" id="btn1" style="cursor:pointer;">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
-                           <div class="alert alert-info" role="alert"><p>La fecha de hoy es: <?= date("d-m-Y")?></p><p class="text-center help-block">Formato es: dia/mes/año</p></div>
+                           <div class="alert alert-info" role="alert"><p>Si la fecha de inicio y la fecha de termino son iguales pasando el dia, se cerrara o mediante autorizacion suya.</p></div>
                            
                         </fieldset>
                         </div>
@@ -268,7 +323,12 @@
                             </table>
                             <p class="text-center" id="resultado"></p>
                         </div>
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 hidden-xs hidden-sm">
+                            <br/>
+                            <br/>
+                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">   
+                        </div>
+                        <div class="col-xs-12 hidden-lg hidden-md">
                             <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">   
                         </div>
                         </form>
