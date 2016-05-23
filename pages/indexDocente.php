@@ -26,6 +26,7 @@
        unset($_SESSION["ver"]);
        unset($_SESSION["edita"]);
        unset($_SESSION["publicar"]);
+       unset($_SESSION["Actividad"]);
       }
 ?>
 <!DOCTYPE html>
@@ -112,7 +113,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i> Configuracion</a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i>&nbsp;Cambiar a Administrador</a></li>
+                      <li><a href="indexAdmin.php"><i class="fa fa-gear fa-fw"></i> Cambiar a Administrador</a></li>
                     <?php endif;?>  
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout/Salir</a></li>
@@ -199,10 +200,6 @@
         <?php endif; endif;?>
         <div id="page-content-wrapper content" >
             <div class="container separate-rows tall-rows">
-                <a class="btn" id="help1" data-placement="right" title="Popover Title"><i class="fa fa-question" aria-hidden="true"></i></a>
-                <div id="popover_content_wrapper" style="display: none">
-                  <div>This is your div content</div>
-                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="panel panel-info panel-footer">
@@ -457,15 +454,5 @@
     });
     </script>
     
-    <script>
-        $(document).ready(function(){
-          $('#help1').popover({ 
-            html : true,
-            content: function() {
-              return $('#popover_content_wrapper').html();
-            }
-          });
-        });
-    </script>
 </body>
 </html>

@@ -1,6 +1,4 @@
 <?php session_start(); 
-  error_reporting(0);
-  ob_start();
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -16,25 +14,14 @@
   else
       {
        $docente = $_SESSION["docente"];
-       
-       include '../pages/php/CRUD/Rubrica.php';
-       $result = new Rubrica();
-       $result->setDocente_idDocente($docente["id"]);
-       $rubricaresult = $result->DevolverRubrica();
-       
-       include '../pages/php/CRUD/UnidadAprendizaje.php';
-       $resultunidad = new UnidadAprendizaje();
-       $resultunidad->setDocente_idDocente($docente["id"]);
-       $Unidadresult = $resultunidad->DevolverUnidadDocente();
-       
-        unset($_SESSION["autoevaluacion"]);
-        unset($_SESSION["coevaluacion"]);
-        unset($_SESSION["evaluacion"]);
-        unset($_SESSION["rubrica"]);
-        unset($_SESSION["ver"]);
-        unset($_SESSION["edita"]);
-        unset($_SESSION["publicar"]);
-        unset($_SESSION["Actividad"]);
+       if(isset($_SESSION["Actividad"]))
+       {
+           
+       }
+       else{
+          header("location: ../pages/indexDocente.php");
+          die();
+       }
       }
 ?>
 <!DOCTYPE html>
@@ -173,98 +160,49 @@
                     <strong >Listo, </strong> se ha creado una unidad de aprendizaje.
                     </div>
         <?php endif; endif; ?>
-        <?php if(isset($_GET["creado"])):
-                if($_GET["creado"]=="2"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> una rubrica nueva.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["editado"])):
-                if($_GET["editado"]=="1"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> se ha editado con exito la unidad de aprendizaje.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["editado"])):
-                if($_GET["editado"]=="2"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Listo, </strong> se ha editado con exito la rubrica.
-                    </div>
-        <?php endif; endif; ?>
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
-                    <div class="row">
-                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
-                            <br/>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                            <br/>
-                            <h2><ins>Unidades de Aprendizaje</ins></h2>
-                            <br/>
-                            <br/>
-                            <p class="lead">Presenta on-line o edita tus Unidades de Aprendizaje.</p>
-                            <br/>
-                            <ul class="list-group text-left">
-                                <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
-                                <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?><span class="pull-right"><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a></span></li>
-                                <?php endforeach; else: ?>
-                                <li class="list-group-item disabled">No tienes aún una unidad de aprendizaje</li>
-                                <?php endif; ?>
-                            </ul>
-                            <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-center">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <img src="../pages/img/libro.png" alt="libros" class="img-rounded">
-                        </div>
-                        
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
                     </div>
-                    </div>
-                </div>
-                <br/>
-                <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
-                    <div class="row">
-                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                        <div class="hidden-sm hidden-xs">
+                            <br/>
                             <br/>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                            <br/>
-                            <h2><ins>Rubricas</ins></h2>
-                            <br/>
-                            <br/>
-                            <p class="lead">Selecciona la rubrica, que quieras utilizar para tu nueva unidad de aprendizaje.</p>
-                            <br/>
-                            <ul class="list-group text-left">
-                                  <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
-                                  <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a></span></li>
-                                  <?php else: ?>
-                                  <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a></span></li>
-                                  <?php endif; endforeach; endif; ?>
-                            </ul> 
-                            <a href="php/rubricas.php?new=1" class="btn btn-info btn-lg">Nueva rubrica</a>
-                        </div>
-                        <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-center">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <img src="../pages/img/rubri.png" alt="libros" class="img-rounded">
-                        </div>
+                        <table class="table table-condensed table-striped table-bordered">
+                            <tr>
+                                <td style="width: 50%" class="text-center">
+                                    <span class="text-primary">Unidad de aprendizaje:</span>
+                                </td>
+                                <td style="width: 50%" class="text-center">
+                                    <span class="text-success"><?= $_SESSION["publicar"]["nombre"] ?></span>
+                                </td>
+                            </tr>
+                            <th class="text-center">
+                                Asignatura
+                            </th>
+                            <th class="text-center">
+                                Seccion
+                            </th>
+                            <tr>
+                                <td class="text-center">
+                                    <select class="form-control" name="asignatura" id="asignatura">
+                                        <option value="-1">Elige alguna opción</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <select class="form-control" name="seccion" id="seccion" disabled="true">
+                                        <option>Elige una asignatura</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <p class="text-center" id="resultado"></p>
                     </div>
-                    </div>
-                </div>
             </div>
         </div>
         </div>
-        
         <br/>
         <br/>
 

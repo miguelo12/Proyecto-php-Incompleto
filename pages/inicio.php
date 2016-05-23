@@ -104,6 +104,23 @@
 </nav>
     <div class="container">
         <div class="row">
+            <a class="btn" id="help1" data-placement="right" title="Actualización 06/05/2016:">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-square-o fa-stack-2x"></i>
+                  <i class="fa fa-question fa-stack-1x"></i>
+                </span>
+            </a>
+            
+            <div id="popover_content_wrapper" style="display: none">
+              <div>
+                    <ul>
+                        <li style="font-size: 16px">Creacion de Rubrica:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Editar Rubrica:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Ver Rubrica:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Correcciones menores de colores, fondo entre otras cosas.</li>
+                    </ul>
+              </div>
+            </div>
             <div class="col-xs-12">
                 <div class="row" id="paso1">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -139,7 +156,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                                         </span>
                                         <input class="form-control" placeholder="E-mail" name="email" id="email" type="email" autofocus>
                                     </div> 
@@ -147,7 +164,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                            <i class="fa fa-key fa-fw" aria-hidden="true"></i>
                                         </span>
                                         <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
                                     </div>                               
@@ -194,7 +211,7 @@
                                 <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i class="fa fa-user fa-fw" aria-hidden="true"></i>
                                     </span>
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
@@ -202,7 +219,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-key" aria-hidden="true"></i>
+                                        <i class="fa fa-key fa-fw" aria-hidden="true"></i>
                                     </span>
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                     </div> 
@@ -245,23 +262,19 @@
                 </div>
         <br/>
         <br/>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <div class="panel panel-info" id="contenido">
-                      <div class="panel-heading">
-                        <h3>Actualización 06/05/2016:</h3>
-                        <ul>
-                            <li style="font-size: 16px">Creacion de Rubrica:<span style="color: green;">Habilitado</span></li>
-                            <li style="font-size: 16px">Editar Rubrica:<span style="color: green;">Habilitado</span></li>
-                            <li style="font-size: 16px">Ver Rubrica:<span style="color: green;">Habilitado</span></li>
-                            <li style="font-size: 16px">Correcciones menores de colores, fondo entre otras cosas.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+          $('#help1').popover({ 
+            html : true,
+            content: function() {
+              return $('#popover_content_wrapper').html();
+            }
+          });
+        });
+    </script>        
 </body>
 
 </html>

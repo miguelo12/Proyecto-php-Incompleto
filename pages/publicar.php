@@ -283,7 +283,7 @@
                            
                         </fieldset>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 text-left">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                             <div class="hidden-sm hidden-xs">
                                 <br/>
                                 <br/>

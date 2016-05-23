@@ -26,19 +26,29 @@ else{
         }
     } elseif(isset($_GET["crear"])){
         if($_GET["crear"]==1){
+            //crea la actividad.
             $fecha1 = $_POST["fechainicio"];
             $fecha2 = $_POST["fechatermino"];
             $Unidadid = $_SESSION["publicar"]["id"];
             $seccionid = $_POST["seccion"];
-            echo $fecha1."</br>";
-            echo $fecha2."</br>";
-            echo $Unidadid."</br>";
-            echo $seccionid;
+            
+            include_once("./CRUD/Actividad.php");
+            $actividad = new Actividad();
+            $actividad->setUnidadAprendizaje_idUnidadAprendizaje($Unidadid);
+            $actividad->setfecha_inicio($fecha1);
+            $actividad->setfecha_termino($fecha2);
+            $actividad->setSeccion_idSeccion($seccionid);
+            
+            $idActividad = $actividad->Ingresar();
+            
+            $_SESSION["Actividad"] = $idActividad;
+            header("location: ../Actividades.php");
+            die(); 
         }
     } else{
     header("location: ../Biblioteca.php");
     die();   
     }
 }
-//header("location: ../error404.php");
-//die(); 
+header("location: ../error404.php");
+die(); 
