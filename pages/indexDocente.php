@@ -197,10 +197,12 @@
         </div>
         <?php endif;?>
         <?php endif; endif;?>
-        
         <div id="page-content-wrapper content" >
             <div class="container separate-rows tall-rows">
-                
+                <a class="btn" id="help1" data-placement="right" title="Popover Title"><i class="fa fa-question" aria-hidden="true"></i></a>
+                <div id="popover_content_wrapper" style="display: none">
+                  <div>This is your div content</div>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="panel panel-info panel-footer">
@@ -454,6 +456,16 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+    
+    <script>
+        $(document).ready(function(){
+          $('#help1').popover({ 
+            html : true,
+            content: function() {
+              return $('#popover_content_wrapper').html();
+            }
+          });
+        });
+    </script>
 </body>
-
 </html>
