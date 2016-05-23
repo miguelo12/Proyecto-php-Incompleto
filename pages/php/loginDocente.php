@@ -40,8 +40,9 @@ if( isset($_POST["email"]) && isset($_POST["password"]) )
        }
        
        
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
+    } catch (RuntimeException $ex) {
+        header("location:../error.php?error=500");
+        die();
     }
     
 }

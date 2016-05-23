@@ -50,7 +50,7 @@ if(isset($_POST["codigo"]))
         }
     }
     
-    header("location: ../error404.php");
+    header("location: ../error.php?error=404");
     die();
 }
 elseif(isset($_GET["Seccion"])){
@@ -74,7 +74,7 @@ elseif(isset($_GET["Seccion"])){
  header("location: ../cursos.php");
  die();
  }  
-header("location: ../error404.php");
+header("location: ../error.php?error=404");
 die();
 }
 else{

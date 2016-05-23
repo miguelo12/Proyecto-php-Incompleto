@@ -28,7 +28,7 @@ if(!isset($_SESSION["editar"])){
                  }
                  else
                  {
-                    header("location: ../error404.php");
+                    header("location: ../error.php?error=404");
                     die();
                  }
               }
@@ -115,7 +115,7 @@ if(!isset($_SESSION["editar"])){
             }
             else
             {
-            header("location: ../error404.php");
+            header("location: ../error.php?error=404");
             die();  
             }
         }

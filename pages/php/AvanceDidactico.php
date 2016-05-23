@@ -434,5 +434,5 @@ else
     header("location: ../RecursoDidactico.php");
     die();
 }
-header("location: ../error404.php");
+header("location: ../error.php?error=404");
 die();

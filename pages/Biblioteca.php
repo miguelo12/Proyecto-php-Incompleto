@@ -88,7 +88,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -210,11 +211,11 @@
                             <br/>
                             <p class="lead">Presenta on-line o edita tus Unidades de Aprendizaje.</p>
                             <br/>
-                            <ul class="list-group text-left">
+                            <ul class="list-group">
                                 <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
-                                <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?><span class="pull-right"><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a></span></li>
+                                <li class="list-group-item text-left"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?><span class="pull-right"><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a></span></li>
                                 <?php endforeach; else: ?>
-                                <li class="list-group-item disabled">No tienes aún una unidad de aprendizaje</li>
+                                <li class="list-group-item disabled text-center">No tienes aún una unidad de aprendizaje</li>
                                 <?php endif; ?>
                             </ul>
                             <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>

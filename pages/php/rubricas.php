@@ -54,7 +54,7 @@ if(isset($_GET["new"])){
         }
         else
         {
-        header("location: ../error404.php");
+        header("location: ../error.php?error=404");
         die();
         }
     }
@@ -105,7 +105,7 @@ if(isset($_GET["new"])){
         }
         
     } else{
-      header("location: ../error404.php");
+      header("location: ../error.php?error=404");
       die(); 
     }
 }

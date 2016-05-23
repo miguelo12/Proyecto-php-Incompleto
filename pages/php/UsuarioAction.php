@@ -131,7 +131,7 @@ if(isset($_GET["user"])){
                     }
                     catch(Exception $e)
                     {
-                        header("location: ../error404.php");
+                        header("location: ../error.php?error=404");
                         die();
                     }
 
@@ -172,7 +172,7 @@ if(isset($_GET["user"])){
                    }
                    catch (mysqli_sql_exception $ex)
                    {
-                       header("location: ../error404.php");
+                       header("location: ../error.php?error=404");
                         die();
                    }
                 }
@@ -275,7 +275,7 @@ if(isset($_GET["user"])){
     }
     else
     {
-       header("location: ../error404.php");
+       header("location: ../error.php?error=404");
        die();  
     }
 }

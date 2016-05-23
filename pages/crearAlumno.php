@@ -51,7 +51,8 @@
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                    <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                    <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
                 </div>
             </div>
     </nav>

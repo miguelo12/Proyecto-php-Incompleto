@@ -15,12 +15,10 @@ class Conexion {
     private $conn=null;
     
     public function __construct() {
-        try{
-            $this->conn= new mysqli("localhost", "root","","heuristica");
-        }
-        catch(Exception $e)
-        {
-            throw new Exception("No se pudo conectar a la base de datos".$this->conn->errno);
+        $this->conn= new mysqli("localhost", "root1","","heuristica");
+        if($this->conn->connect_errno){
+            unset($this->conn);
+            throw new RuntimeException("Fallo la coneccion");
         }
     }
     

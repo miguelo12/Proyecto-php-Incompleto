@@ -104,7 +104,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -202,15 +203,15 @@
             <div class="container separate-rows tall-rows">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="panel panel-info panel-footer">
-                        <div class="text-center">
-                            <br/>
-                            <h4 style="float: right; margin-right: 20px;">Portal Docente</h4>
-                            <br/>
-                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
-                            <br/>
-                        </div>
                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+                                <div class="text-center">
+                                    <h4 style="float: right; margin-right: 20px;">Portal Docente</h4>
+                                    <br/>
+                                    <h1><ins>Sugerencias que puedes elegir</ins></h1>
+                                    <br/>
+                                </div>
+                            </div>
                          
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
@@ -254,13 +255,11 @@
                             <div   class="clearfix visible-xs"></div>
                             
                         </div>
-                        </div>
                     </div>     
                 </div>
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="panel panel-info panel-footer">
                         <div class="row">
                             <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
                                 <div class="row">
@@ -333,7 +332,6 @@
                             </div>
                         </div>
                         <br/><br/>
-                    </div>
                 </div>
                 <!--Fin seccion de cursos-->
                 </div>

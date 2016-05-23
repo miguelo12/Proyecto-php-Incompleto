@@ -67,7 +67,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -140,7 +141,6 @@
                 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="panel panel-info panel-footer">
                         <div class="text-center">
                             <br/>
                             <h4 style="float: right; margin-right: 20px">Portal Estudiante</h4>
@@ -198,7 +198,6 @@
                                 
                             <div   class="clearfix visible-xs"></div>
                             
-                        </div>
                         </div>
                     </div>     
                 </div>

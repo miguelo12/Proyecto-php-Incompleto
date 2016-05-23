@@ -22,7 +22,7 @@ and open the template in the editor.
         <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     </head>
     <body>
-        <h1>Error404</h1>
+        <h1>Error <?= $_GET["error"]?></h1>
         <p><a href="inicio.php">Vuelva..</a></p>
     </body>
 </html>
