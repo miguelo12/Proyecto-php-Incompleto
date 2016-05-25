@@ -15,7 +15,7 @@ class Conexion {
     private $conn=null;
     
     public function __construct() {
-        $this->conn= new mysqli("localhost", "root1","","heuristica");
+        $this->conn= new mysqli("localhost", "root","","heuristica");
         if($this->conn->connect_errno){
             unset($this->conn);
             throw new RuntimeException("Fallo la coneccion");

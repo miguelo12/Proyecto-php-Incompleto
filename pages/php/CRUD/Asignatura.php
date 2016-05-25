@@ -65,6 +65,31 @@ class Asignatura {
       return false;
     }
     
+    public function DevolverAsignaturasid()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from asignatura where idAsignatura=?");
+      
+      $sentencia->bind_param("i", $this->idAsignatura);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row["Nombre"];
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function DevolverAsignaturasNombre()
     {
       $c=$this->con->getConexion();

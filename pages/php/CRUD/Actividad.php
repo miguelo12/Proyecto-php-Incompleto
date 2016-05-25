@@ -19,8 +19,10 @@ class Actividad {
     private $fecha_inicio; #s
     private $fecha_termino; #s
     private $finalizada; #b
+    private $evaluado; #b
     private $UnidadAprendizaje_idUnidadAprendizaje; #i
     private $Seccion_idSeccion; #s
+    private $docente;
     
     private $con;
     
@@ -82,13 +84,13 @@ class Actividad {
       }
     }
     
-    public function ExisteonoPorID()
+    public function DevolverActividadNuevas()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from seccion where idSeccion=? and Docente_idDocente=?");
+      $sentencia=$c->prepare("SELECT c.Nombre as nombre,b.Codigo as codigo,d.Titulo as titulo,a.fecha_inicio as fechainicio,a.fecha_termino as fechatermino,a.finalizada,a.evaluado,a.idActividad as id from actividad as a INNER JOIN seccion as b ON a.Seccion_idSeccion=b.idSeccion INNER JOIN asignatura as c ON b.Asignatura_idAsignatura=c.idAsignatura INNER JOIN unidadaprendizaje as d on a.UnidadAprendizaje_idUnidadAprendizaje=d.idUnidadAprendizaje where fecha_termino>=CURDATE() and finalizada=0 and d.Docente_idDocente=?");
       
-      $sentencia->bind_param("ss", $this->idSeccion, $this->Docente_idDocente);
+      $sentencia->bind_param("s", $this->docente);
       
       $sentencia->execute();
       
@@ -96,9 +98,42 @@ class Actividad {
       
       if($resu -> num_rows > 0)
       {
-        return true;
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
       }
-      return false;
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
+    
+    
+    public function DevolverActividadAntiguas()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("SELECT c.Nombre as nombre,b.Codigo as codigo,d.Titulo as titulo,a.fecha_inicio as fechainicio,a.fecha_termino as fechatermino,a.finalizada,a.evaluado,a.idActividad as id from actividad as a INNER JOIN seccion as b ON a.Seccion_idSeccion=b.idSeccion INNER JOIN asignatura as c ON b.Asignatura_idAsignatura=c.idAsignatura INNER JOIN unidadaprendizaje as d on a.UnidadAprendizaje_idUnidadAprendizaje=d.idUnidadAprendizaje where fecha_termino<=CURDATE() and finalizada=1 and d.Docente_idDocente=?");
+      
+      $sentencia->bind_param("s", $this->docente);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
     }
     
     public function setidActividad($idActividad)
@@ -129,5 +164,15 @@ class Actividad {
     public function setfinalizada($finalizada)
     {
         $this->finalizada=$finalizada;
+    } 
+    
+    public function setevaluado($evaluado)
+    {
+        $this->evaluado=$evaluado;
+    } 
+    
+    public function setdocente($docente)
+    {
+        $this->docente=$docente;
     } 
 }

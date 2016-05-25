@@ -52,6 +52,25 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+            
+   <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 
 <body>
@@ -67,7 +86,7 @@
                 <span class="icon-bar"></span>
               </button>
                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexAlumno.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-               <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexAlumno.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+               <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexAlumno.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -154,25 +173,7 @@
             </div>
         </div>
         </div>
-        
-   <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
     </body>
 
 </html>

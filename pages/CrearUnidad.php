@@ -56,6 +56,65 @@ error_reporting(0);
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+           
+        
+    <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script src="../js/jquery.validate.min.js"></script>
+    <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nameActivity': {
+                    required: true,
+                    maxlength: 20
+                }
+            },
+           messages: {
+                'nameActivity': {
+                    required: "Ingrese un Titulo.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+            }
+        });
+    </script>
+    <?php endif;?>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 
 <body>
@@ -72,7 +131,7 @@ error_reporting(0);
               </button>
               <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
               <?php else:?>
                 <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
                 <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
@@ -106,7 +165,7 @@ error_reporting(0);
                   </ul>
                 </li>
               </ul>
-              <h1 class="navbar-text navbar-right hidden-sm" style="margin-top: 50px; margin-right: 80px">Unidad de aprendizaje</h1> 
+              <h1 class="navbar-text navbar-right hidden-sm" style="margin-top: 50px; margin-right: 80px"><?php if(isset($_SESSION["editar"])):?> Editar Unidad <?php else:?> Crear Unidad <?php endif;?></h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -223,18 +282,8 @@ error_reporting(0);
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="panel panel-info panel-footer">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="">
-                            <div class="text-center">
-                                <br/>
-                                <?php if(isset($_SESSION["editar"])):?>
-                                <h2><ins>Editar Unidad</ins></h2>
-                                <?php else:?>
-                                <h2><ins>Crear Unidad</ins></h2>
-                                <?php endif;?>
-                            </div>
                             <div class="row">
                                 <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -350,73 +399,13 @@ error_reporting(0);
                                 </form>
                                 <div class="clearfix visible-xs"></div>
                             </div>
-                            </div>
                         </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
       </div>
-    
-        
-        
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script src="../js/jquery.validate.min.js"></script>
-    <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nameActivity': {
-                    required: true,
-                    maxlength: 20
-                }
-            },
-           messages: {
-                'nameActivity': {
-                    required: "Ingrese un Titulo.",
-                    maxlength: "A superado el numero de caracter.."
-                }
-            }
-        });
-    </script>
-    <?php endif;?>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+ 
 </body>
 
 </html>

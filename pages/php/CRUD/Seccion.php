@@ -143,6 +143,31 @@ class Seccion {
       return $res;
     }
     
+    public function DevolverSeccionid()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from seccion where idSeccion=?");
+      
+      $sentencia->bind_param("s", $this->idSeccion);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = array("Codigo"=>$row["Codigo"],"Asignatura"=>$row["Asignatura_idAsignatura"]);
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function DevolverSeccionDocenteAsignatura()
     {
       $c=$this->con->getConexion();

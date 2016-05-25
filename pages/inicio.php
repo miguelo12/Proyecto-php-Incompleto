@@ -108,7 +108,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-            <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+            <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
         </div>
     </div>
 </nav>
@@ -120,7 +120,6 @@
                   <i class="fa fa-question fa-stack-1x"></i>
                 </span>
             </a>
-            
             <div id="popover_content_wrapper" style="display: none">
               <div>
                     <ul>
@@ -136,15 +135,21 @@
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
-                        <br/>
-                        <a type="button" class="btn btn-block" id="profe"><img src="img/docente.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <div class="row">
+                            <div class="center-block" style="width:190px; height: 190px">
+                               <a class="btn" id="profe"><img src="img/docente.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            </div>
+                        </div>
                         <p class="text-center lead">Profesor</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
-                        <br/>
-                        <a type="button" class="btn btn-block"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <div class="row">
+                            <div class="center-block" style="width:190px; height: 190px">
+                              <a class="btn"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            </div>
+                        </div>
                         <p class="text-center lead">Alumno</p>
                     </div>
                 </div>
@@ -152,14 +157,15 @@
                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
-                        <br/>
-                        <a type="button" class="btn btn-lg btn-block"><img src="img/docente.png" id="profe" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <div class="row">
+                            <div class="center-block" style="width:190px; height: 190px">
+                              <a><img src="img/docente.png" id="profe" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            </div>
+                        </div>
                         <p class="text-center lead">Profesor</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
-                        <br/>
-                        <br/>
                         <form role="form" method="POST" action="php/loginDocente.php">
                                 <fieldset>
                                 <legend><h1>Acceso:</h1></legend>
@@ -207,14 +213,15 @@
                     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
-                        <br/>
-                        <a type="button" class="btn btn-lg btn-block"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                        <div class="row">
+                            <div class="center-block" style="width:190px; height: 190px">
+                               <a class="center-block"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            </div>
+                        </div>
                         <p class="text-center lead">Alumno</p>
                     </div>
                     <div class="col-xs-12 col-sm-12  col-md-7 col-lg-7">
                         <!-- Botones donde se dirige -->
-                        <br/>
-                        <br/>
                         <form role="form" method="POST" action="php/loginAlumno.php">
                             <fieldset>
                                 <legend><h1>Acceso:</h1></legend>

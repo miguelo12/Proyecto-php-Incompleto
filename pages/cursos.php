@@ -84,6 +84,80 @@
     <![endif]-->
 <!--jquery code -->
   <script src="../component/jquery/dist/jquery.min.js"></script>
+  
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre': {
+                    required: true,
+                    maxlength: 20,
+                    lettersonly: true
+                },
+                'codigo': {
+                    required: true,
+                    maxlength: 10,
+                    number: true
+                }
+            },
+           messages: {
+               'nombre': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'codigo': {
+                    required: "Ingrese un codigo.",
+                    maxlength: "A superado el numero de caracter..",
+                    number: "Se permite numero..."
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    
+    <script>
+         $('[data-toggle="tooltip"]').tooltip();
+    </script>
 </head>
 <body>
         <!-- Navigation -->
@@ -98,7 +172,7 @@
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-              <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+              <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -198,13 +272,12 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
                     <div class="row">
                         <div class="col-xs-12">
                             
                             <div style="text-align: center; overflow-x: auto">
                                 <table class="table table-bordered table-condensed">
-                                    <caption><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
+                                    <caption class="hidden-lg hidden-md"><h2 class="text-center"><ins>Secciones o Cursos</ins></h2></caption>
                                     <tr>
                                         <th class="text-center" style="width: 30%">Nombre Asignatura</th>
                                         <th class="text-center" style="width: 20%">curso o sección</th>
@@ -327,88 +400,11 @@
                         </div>
                     </div>
                     </div>
-                    </div>
                 </div>
             </div>
           </div>
         </div>
-        
-        
-        
-    <!-- jQuery -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    
-    <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nombre': {
-                    required: true,
-                    maxlength: 20,
-                    lettersonly: true
-                },
-                'codigo': {
-                    required: true,
-                    maxlength: 10,
-                    number: true
-                }
-            },
-           messages: {
-               'nombre': {
-                    required: "Ingrese un nombre.",
-                    maxlength: "A superado el numero de caracter.."
-                },
-                'codigo': {
-                    required: "Ingrese un codigo.",
-                    maxlength: "A superado el numero de caracter..",
-                    number: "Se permite numero..."
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-          return this.optional(element) || /^[a-z ]+$/i.test(value);
-        }, "Solamente letras, sin acento."); 
-    </script>
-    
-    <script>
-    $('#myLink').addClass('disabled');
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-    
-    <script>
-         $('[data-toggle="tooltip"]').tooltip();
-    </script>
 </body>
 
 </html>

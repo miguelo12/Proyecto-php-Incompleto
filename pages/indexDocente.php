@@ -27,6 +27,7 @@
        unset($_SESSION["edita"]);
        unset($_SESSION["publicar"]);
        unset($_SESSION["Actividad"]);
+       unset($_SESSION["actividades"]);
       }
 ?>
 <!DOCTYPE html>
@@ -90,6 +91,72 @@
           die();
           endif;?>
     <?php endif;?>
+    
+            
+    <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!--//nueva forma de llamar phptag-->
+    <?php if($problem):?>
+    <script> $('#myModal1').modal('show');</script>
+    <?php endif;?>
+  
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'email1': {
+                    required: true,
+                    emailnew: true,
+                    email: false
+                }
+            },
+           messages: {
+                'email1': {
+                    required: "Ingrese un email.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 
 <body>
@@ -105,7 +172,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -244,7 +311,7 @@
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <a class="lead" href="#"><p><img src="img/lista.png" alt="lista" class="img-circle img-thumbnail" width="200" height="200"></p>Evaluar</a>
+                                        <a class="lead" href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle img-thumbnail" width="200" height="200"></p>Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
                                         <br/>
                                     </div>
@@ -331,7 +398,7 @@
                                 </div>
                             </div>
                         </div>
-                        <br/><br/>
+                        <br/>
                 </div>
                 <!--Fin seccion de cursos-->
                 </div>
@@ -386,71 +453,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-        
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!--//nueva forma de llamar phptag-->
-    <?php if($problem):?>
-    <script> $('#myModal1').modal('show');</script>
-    <?php endif;?>
-  
-    <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'email1': {
-                    required: true,
-                    emailnew: true,
-                    email: false
-                }
-            },
-           messages: {
-                'email1': {
-                    required: "Ingrese un email.",
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
     
 </body>
 </html>

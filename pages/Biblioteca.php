@@ -35,6 +35,7 @@
         unset($_SESSION["edita"]);
         unset($_SESSION["publicar"]);
         unset($_SESSION["Actividad"]);
+        unset($_SESSION["actividades"]);
       }
 ?>
 <!DOCTYPE html>
@@ -73,7 +74,25 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+        <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 
 <body>
@@ -89,7 +108,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -205,9 +224,7 @@
                             <br/>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                            <br/>
                             <h2><ins>Unidades de Aprendizaje</ins></h2>
-                            <br/>
                             <br/>
                             <p class="lead">Presenta on-line o edita tus Unidades de Aprendizaje.</p>
                             <br/>
@@ -221,7 +238,6 @@
                             <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
                         </div>
                         <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-center">
-                            <br/>
                             <br/>
                             <br/>
                             <img src="../pages/img/libro.png" alt="libros" class="img-rounded">
@@ -238,9 +254,7 @@
                             <br/>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                            <br/>
                             <h2><ins>Rubricas</ins></h2>
-                            <br/>
                             <br/>
                             <p class="lead">Selecciona la rubrica, que quieras utilizar para tu nueva unidad de aprendizaje.</p>
                             <br/>
@@ -268,25 +282,6 @@
         
         <br/>
         <br/>
-
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </body>
 
 </html>

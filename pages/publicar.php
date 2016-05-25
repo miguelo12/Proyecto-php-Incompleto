@@ -148,6 +148,104 @@
         showOptions: { direction: "down" }
       });
     </script>
+    
+            
+        <script>
+              $.validator.setDefaults({
+                errorElement: "span",
+                errorClass: "help-block",
+                highlight: function(element) {
+                    $(element).parent().removeClass('has-success').addClass('has-error');
+                },
+                unhighlight: function(element) {
+                    $(element).parent().removeClass('has-error').addClass('has-success');
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+                });
+
+                $("#formulario").validate({
+                rules: {
+                    'fechainicio': {
+                        required: true
+                    },
+                    'fechatermino': {
+                        required: true
+                    },
+                    'asignatura': {
+                        valueNotEquals: "-1"
+                    }
+                },
+               messages: {
+                   'fechainicio': {
+                        required: "Esta en blanco."
+                    },
+                    'fechatermino': {
+                        required: "Esta en blanco."
+                    },
+                    'asignatura':{
+                        valueNotEquals: "Selecciona una asignatura."
+                    }
+                }
+            });
+            
+            jQuery.validator.addMethod("valueNotEquals", function(value, element, arg){
+              return arg !== value;
+            }, "Value must not equal arg.");
+            
+        </script>
+        
+        <script>
+        $('select#asignatura').on('change',function(){
+            var valor = $(this).val();
+            if(valor !== "-1"){
+            var parametros = {"id" : valor};
+            $.ajax({
+                data:  parametros,
+                url:   'php/publicar.php?buscar=1',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                        $("#resultado").html("");
+                        $("select#seccion option").remove(); // Remove all <option> child tags.
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.Codigo)
+                                    .val(item.idSeccion)
+                            );
+                        });
+                }
+            });
+            
+            $('select#seccion').prop( "disabled", false );
+            }
+            else{
+            $('select#seccion').prop( "disabled", true );
+            $("select#seccion option").remove(); // Remove all <option> child tags.
+            $("select#seccion").append( // Append an object to the inside of the select box
+                $("<option></option>") // Yes you can do this.
+                    .text("Elige una asignatura")
+            );
+            }
+        });
+        </script>
+        
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
 </head>
 
 <body>
@@ -163,7 +261,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -343,102 +441,6 @@
         
         <br/>
         <br/>
-        
-        <script>
-              $.validator.setDefaults({
-                errorElement: "span",
-                errorClass: "help-block",
-                highlight: function(element) {
-                    $(element).parent().removeClass('has-success').addClass('has-error');
-                },
-                unhighlight: function(element) {
-                    $(element).parent().removeClass('has-error').addClass('has-success');
-                },
-                errorPlacement: function (error, element) {
-                    if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                        error.insertAfter(element.parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                }
-                });
 
-                $("#formulario").validate({
-                rules: {
-                    'fechainicio': {
-                        required: true
-                    },
-                    'fechatermino': {
-                        required: true
-                    },
-                    'asignatura': {
-                        valueNotEquals: "-1"
-                    }
-                },
-               messages: {
-                   'fechainicio': {
-                        required: "Esta en blanco."
-                    },
-                    'fechatermino': {
-                        required: "Esta en blanco."
-                    },
-                    'asignatura':{
-                        valueNotEquals: "Selecciona una asignatura."
-                    }
-                }
-            });
-            
-            jQuery.validator.addMethod("valueNotEquals", function(value, element, arg){
-              return arg !== value;
-            }, "Value must not equal arg.");
-            
-        </script>
-        
-        <script>
-        $('select#asignatura').on('change',function(){
-            var valor = $(this).val();
-            if(valor !== "-1"){
-            var parametros = {"id" : valor};
-            $.ajax({
-                data:  parametros,
-                url:   'php/publicar.php?buscar=1',
-                type:  'post',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                },
-                success:  function (response) {
-                        $("#resultado").html("");
-                        $("select#seccion option").remove(); // Remove all <option> child tags.
-                        $.each(response, function(index, item) { // Iterates through a collection
-                            $("select#seccion").append( // Append an object to the inside of the select box
-                                $("<option></option>") // Yes you can do this.
-                                    .text(item.Codigo)
-                                    .val(item.idSeccion)
-                            );
-                        });
-                }
-            });
-            
-            $('select#seccion').prop( "disabled", false );
-            }
-            else{
-            $('select#seccion').prop( "disabled", true );
-            $("select#seccion option").remove(); // Remove all <option> child tags.
-            $("select#seccion").append( // Append an object to the inside of the select box
-                $("<option></option>") // Yes you can do this.
-                    .text("Elige una asignatura")
-            );
-            }
-        });
-        </script>
-        
-        <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        </script>
 </body>
 </html>

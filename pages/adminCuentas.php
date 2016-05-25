@@ -64,6 +64,105 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+            
+        
+        
+        
+    <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre1': {
+                    required: true,
+                    maxlength: 15,
+                    lettersonly: true
+                },
+                'email2': {
+                    required: true,
+                    emailnew: true
+                },
+                'password3': {
+                    required: true,
+                    maxlength: 15
+                }
+//                'confirm_pass': {
+//                    required: true,
+//                    maxlength: 20,
+//                    equalTo: "#pass"
+//                }
+            },
+           messages: {
+               'nombre1': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'email2': {
+                    required: "Ingrese un email.",
+                },
+                'password3': {
+                    required: "Ingrese una password.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+                
+//                'confirm_pass': {
+//                    required: "Esta casilla se requiere.",
+//                    maxlength: "A superado el numero de caracter..",
+//                    equalTo: "No coincide con la password."
+//                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 <body>
         <!-- Navigation -->
@@ -79,7 +178,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -256,103 +355,6 @@
             </div>
           </div>
         </div>
-        
-        
-        
-        
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-    
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    
-    <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nombre1': {
-                    required: true,
-                    maxlength: 15,
-                    lettersonly: true
-                },
-                'email2': {
-                    required: true,
-                    emailnew: true
-                },
-                'password3': {
-                    required: true,
-                    maxlength: 15
-                }
-//                'confirm_pass': {
-//                    required: true,
-//                    maxlength: 20,
-//                    equalTo: "#pass"
-//                }
-            },
-           messages: {
-               'nombre1': {
-                    required: "Ingrese un nombre.",
-                    maxlength: "A superado el numero de caracter.."
-                },
-                'email2': {
-                    required: "Ingrese un email.",
-                },
-                'password3': {
-                    required: "Ingrese una password.",
-                    maxlength: "A superado el numero de caracter.."
-                }
-                
-//                'confirm_pass': {
-//                    required: "Esta casilla se requiere.",
-//                    maxlength: "A superado el numero de caracter..",
-//                    equalTo: "No coincide con la password."
-//                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-        
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-          return this.optional(element) || /^[a-z ]+$/i.test(value);
-        }, "Solamente letras, sin acento."); 
-    </script>
-    
-    <script>
-    $('#myLink').addClass('disabled');
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </body>
 </html>

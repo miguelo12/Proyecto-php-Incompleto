@@ -93,6 +93,196 @@ error_reporting(0);
     });
 </script>
     
+        
+    <script>    
+    $('#resume_link1').click(function( e ) {
+        if ($('#descripcion1').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume1').trigger('click');
+        }
+    });
+    $('#resume1').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="txt")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo1").innerHTML = myfile;
+           document.myform1.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link2').click(function( e ) {
+        if ($('#descripcion2').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume2').trigger('click');
+        }
+    });
+    $('#resume2').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="docx" || ext==="doc")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo2").innerHTML = myfile;
+           document.myform2.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link3').click(function( e ) {
+        if ($('#descripcion3').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume3').trigger('click');
+        }
+    });
+    $('#resume3').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="pdf")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo3").innerHTML = myfile;
+           document.myform3.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link4').click(function( e ) {
+        if ($('#descripcion4').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume4').trigger('click');
+        }
+    });
+    $('#resume4').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="ppt" || ext==="pptx")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo4").innerHTML = myfile;
+           document.myform4.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link5').click(function( e ) {
+        if ($('#descripcion5').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume5').trigger('click');
+        }
+    });
+    $('#resume5').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="png"|| ext==="jpg"|| ext==="JPG" || ext==="PNG")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo5").innerHTML = myfile;
+           document.myform5.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario1").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+            
+            $("#formulario2").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
 </head>
 
 <body>
@@ -108,7 +298,7 @@ error_reporting(0);
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-              <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+              <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -185,7 +375,6 @@ error_reporting(0);
         <br/>
         <br/>
         <br/>
-        <br/>
 
          <?php  if(isset($_GET["errorSubir"])): if($_GET["errorSubir"]==1):?>
         <div class="alert alert-danger">
@@ -210,11 +399,11 @@ error_reporting(0);
                                 </div>
                                 <div id="pills">
                                     <ul>
-                                            <li><a href="#tabi1" data-toggle="tab">Agregar Archivos</a></li>
-                                            <li><a href="#tabi2" data-toggle="tab">Verificar</a></li>
-                                            <li><a href="#tabi3" data-toggle="tab">Agregar preguntas</a></li>
-                                            <li><a href="#tabi4" data-toggle="tab">Ayudas</a></li>
-                                            <li><a href="#tabi5" data-toggle="tab">Finalizar</a></li>
+                                        <li><a href="#tabi1" data-toggle="tab">Agregar Archivos</a></li>
+                                        <li><a href="#tabi2" data-toggle="tab">Verificar</a></li>
+                                        <li><a href="#tabi3" data-toggle="tab">Agregar preguntas</a></li>
+                                        <li><a href="#tabi4" data-toggle="tab">Ayudas</a></li>
+                                        <li><a href="#tabi5" data-toggle="tab">Finalizar</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane well" style="background-color: #ffffff" id="tabi1">
@@ -912,196 +1101,7 @@ error_reporting(0);
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    
-    <script>    
-    $('#resume_link1').click(function( e ) {
-        if ($('#descripcion1').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume1').trigger('click');
-        }
-    });
-    $('#resume1').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="txt")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo1").innerHTML = myfile;
-           document.myform1.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link2').click(function( e ) {
-        if ($('#descripcion2').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume2').trigger('click');
-        }
-    });
-    $('#resume2').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="docx" || ext==="doc")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo2").innerHTML = myfile;
-           document.myform2.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link3').click(function( e ) {
-        if ($('#descripcion3').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume3').trigger('click');
-        }
-    });
-    $('#resume3').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="pdf")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo3").innerHTML = myfile;
-           document.myform3.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link4').click(function( e ) {
-        if ($('#descripcion4').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume4').trigger('click');
-        }
-    });
-    $('#resume4').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="ppt" || ext==="pptx")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo4").innerHTML = myfile;
-           document.myform4.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link5').click(function( e ) {
-        if ($('#descripcion5').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume5').trigger('click');
-        }
-    });
-    $('#resume5').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="png"|| ext==="jpg"|| ext==="JPG" || ext==="PNG")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo5").innerHTML = myfile;
-           document.myform5.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 
-    <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario1").validate({
-            rules: {
-                'preguntas': {
-                    required: true,
-                    maxlength: 30
-                }
-            },
-           messages: {
-                'preguntas': {
-                    required: "Ingrese un criterio.",
-                }
-            }
-        });
-            
-            $("#formulario2").validate({
-            rules: {
-                'preguntas': {
-                    required: true,
-                    maxlength: 30
-                }
-            },
-           messages: {
-                'preguntas': {
-                    required: "Ingrese un criterio.",
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-    </script>
     
 </body>
 

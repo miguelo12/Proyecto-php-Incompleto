@@ -187,6 +187,69 @@
             ?>
     });
 </script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre': {
+                    required: true,
+                    maxlength: 20,
+                    lettersonly: true
+                },
+                'codigo': {
+                    required: true,
+                    maxlength: 10,
+                    number: true
+                }
+            },
+           messages: {
+               'nombre': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'codigo': {
+                    required: "Ingrese un codigo.",
+                    maxlength: "A superado el numero de caracter..",
+                    number: "Se permite numero..."
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 <body>
         <!-- Navigation -->
@@ -201,7 +264,7 @@
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -967,70 +1030,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-    
-    <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nombre': {
-                    required: true,
-                    maxlength: 20,
-                    lettersonly: true
-                },
-                'codigo': {
-                    required: true,
-                    maxlength: 10,
-                    number: true
-                }
-            },
-           messages: {
-               'nombre': {
-                    required: "Ingrese un nombre.",
-                    maxlength: "A superado el numero de caracter.."
-                },
-                'codigo': {
-                    required: "Ingrese un codigo.",
-                    maxlength: "A superado el numero de caracter..",
-                    number: "Se permite numero..."
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-          return this.optional(element) || /^[a-z ]+$/i.test(value);
-        }, "Solamente letras, sin acento."); 
-    </script>
-    
-    <script>
-    $('#myLink').addClass('disabled');
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+
 </body>
 
 </html>

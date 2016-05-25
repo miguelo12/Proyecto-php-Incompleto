@@ -32,16 +32,21 @@ else{
             $Unidadid = $_SESSION["publicar"]["id"];
             $seccionid = $_POST["seccion"];
             
+            list($dia, $mes, $ano) = explode('/', $fecha1);
+            
+            list($dia2, $mes2, $ano2) = explode('/', $fecha2);
+            
             include_once("./CRUD/Actividad.php");
             $actividad = new Actividad();
             $actividad->setUnidadAprendizaje_idUnidadAprendizaje($Unidadid);
-            $actividad->setfecha_inicio($fecha1);
-            $actividad->setfecha_termino($fecha2);
+            $actividad->setfecha_inicio("{$ano}-{$mes}-{$dia}");
+            $actividad->setfecha_termino("{$ano2}-{$mes2}-{$dia2}");
             $actividad->setSeccion_idSeccion($seccionid);
             
             $idActividad = $actividad->Ingresar();
             
-            $_SESSION["Actividad"] = $idActividad;
+            $_SESSION["Actividad"] = array("id"=>$idActividad,"Unidad"=>$_SESSION["publicar"],"FechaInicio"=>$fecha1,"FechaTermino"=>$fecha2, "idSeccion"=>$seccionid);
+            unset($_SESSION["publicar"]);
             header("location: ../Actividades.php");
             die(); 
         }

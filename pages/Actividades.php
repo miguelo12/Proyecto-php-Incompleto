@@ -1,4 +1,5 @@
 <?php session_start(); 
+  error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -16,11 +17,29 @@
        $docente = $_SESSION["docente"];
        if(isset($_SESSION["Actividad"]))
        {
+            $actividad = $_SESSION["Actividad"];
            
+            include_once("./php/CRUD/Seccion.php");
+            $seccion = new Seccion();
+            
+            $seccion->setidSeccion($actividad["idSeccion"]);
+            $arraySeccion = $seccion->DevolverSeccionid();
+            
+            include_once("./php/CRUD/Asignatura.php");
+            $asignatura = new Asignatura();
+            $asignatura->setidAsignatura($arraySeccion["Asignatura"]);
+            
+            $arrayasignatura = $asignatura->DevolverAsignaturasid();
+            
        }
        else{
-          header("location: ../pages/indexDocente.php");
+          if(isset($_GET["idActividad"])){
+              
+          }
+          else{
+          header("location: ../pages/Biblioteca.php");
           die();
+          }
        }
       }
 ?>
@@ -60,7 +79,25 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+        <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </head>
 
 <body>
@@ -76,7 +113,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -92,7 +129,7 @@
                   </ul>
                 </li>
               </ul>
-              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Biblioteca</h1>  
+              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Actividad</h1>  
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -165,66 +202,50 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
-                    </div>
-                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-                        <div class="hidden-sm hidden-xs">
-                            <br/>
-                            <br/>
+                    <fieldset class="form-horizontal">
+                        <legend><p>Información:</p></legend>
+                        <div class="form-group">
+                          <label class="col-xs-4 control-label">Pin Actividad</label>
+                          <div class="col-xs-8">
+                            <p class="form-control-static"><?= $actividad["id"]?></p>
+                          </div>
                         </div>
-                        <table class="table table-condensed table-striped table-bordered">
-                            <tr>
-                                <td style="width: 50%" class="text-center">
-                                    <span class="text-primary">Unidad de aprendizaje:</span>
-                                </td>
-                                <td style="width: 50%" class="text-center">
-                                    <span class="text-success"><?= $_SESSION["publicar"]["nombre"] ?></span>
-                                </td>
-                            </tr>
-                            <th class="text-center">
-                                Asignatura
-                            </th>
-                            <th class="text-center">
-                                Seccion
-                            </th>
-                            <tr>
-                                <td class="text-center">
-                                    <select class="form-control" name="asignatura" id="asignatura">
-                                        <option value="-1">Elige alguna opción</option>
-                                    </select>
-                                </td>
-                                <td class="text-center">
-                                    <select class="form-control" name="seccion" id="seccion" disabled="true">
-                                        <option>Elige una asignatura</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <p class="text-center" id="resultado"></p>
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Unidad de Aprendizaje</label>
+                          <div class="col-sm-8">
+                            <p class="form-control-static"><?= $actividad["Unidad"]["nombre"]?></p>
+                          </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="hidden-sm hidden-xs">
+                        <br/>
+                        <br/>
                     </div>
+                    <table class="table table-condensed table-striped table-bordered">
+                        <th class="text-center">
+                            Asignatura
+                        </th>
+                        <th class="text-center">
+                            Seccion
+                        </th>
+                        <tr>
+                            <td class="text-center">
+                                <?= $arrayasignatura?>
+                            </td>
+                            <td class="text-center">
+                                <?= $arraySeccion["Codigo"]?>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="text-center" id="resultado"></p>
+                </div>
             </div>
         </div>
         </div>
         <br/>
         <br/>
-
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </body>
 
 </html>
