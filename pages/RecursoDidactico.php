@@ -56,8 +56,12 @@ error_reporting(0);
     <!-- JavaScript -->
     <?php //Este es el orden siempre... ?>
     <script src="../component/jquery/dist/jquery.min.js"></script>
+    
     <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+    
     <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+    
+    <script src="../js/jquery.validate.min.js"></script>
     
     <script>
     $(document).ready(function() {
@@ -93,144 +97,6 @@ error_reporting(0);
     });
 </script>
     
-        
-    <script>    
-    $('#resume_link1').click(function( e ) {
-        if ($('#descripcion1').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume1').trigger('click');
-        }
-    });
-    $('#resume1').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="txt")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo1").innerHTML = myfile;
-           document.myform1.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link2').click(function( e ) {
-        if ($('#descripcion2').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume2').trigger('click');
-        }
-    });
-    $('#resume2').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="docx" || ext==="doc")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo2").innerHTML = myfile;
-           document.myform2.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link3').click(function( e ) {
-        if ($('#descripcion3').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume3').trigger('click');
-        }
-    });
-    $('#resume3').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="pdf")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo3").innerHTML = myfile;
-           document.myform3.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link4').click(function( e ) {
-        if ($('#descripcion4').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume4').trigger('click');
-        }
-    });
-    $('#resume4').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="ppt" || ext==="pptx")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo4").innerHTML = myfile;
-           document.myform4.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    var myfile="";
-    $('#resume_link5').click(function( e ) {
-        if ($('#descripcion5').val().trim() === "") {
-             $('#myModal2').modal('show');           
-        }
-        else
-        {
-            e.preventDefault();
-            $('#resume5').trigger('click');
-        }
-    });
-    $('#resume5').on( 'change', function() {
-       myfile= $( this ).val();
-       var ext = myfile.split('.').pop();
-       if(!(ext==="png"|| ext==="jpg"|| ext==="JPG" || ext==="PNG")){
-           $('#myModal').modal('show');
-       }
-       else
-       {
-           document.getElementById("archivo5").innerHTML = myfile;
-           document.myform5.subirarchivo.disabled=false;
-       }
-    });
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-    <script src="../js/jquery.validate.min.js"></script>
     
     <script>
           $.validator.setDefaults({
@@ -297,8 +163,9 @@ error_reporting(0);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-              <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
+              <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+              <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+              <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -1102,6 +969,141 @@ error_reporting(0);
     </div>
     <!-- /.modal -->
 
+    <script>    
+    $('#resume_link1').click(function( e ) {
+        if ($('#descripcion1').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume1').trigger('click');
+        }
+    });
+    $('#resume1').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="txt")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo1").innerHTML = myfile;
+           document.myform1.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link2').click(function( e ) {
+        if ($('#descripcion2').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume2').trigger('click');
+        }
+    });
+    $('#resume2').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="docx" || ext==="doc")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo2").innerHTML = myfile;
+           document.myform2.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link3').click(function( e ) {
+        if ($('#descripcion3').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume3').trigger('click');
+        }
+    });
+    $('#resume3').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="pdf")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo3").innerHTML = myfile;
+           document.myform3.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link4').click(function( e ) {
+        if ($('#descripcion4').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume4').trigger('click');
+        }
+    });
+    $('#resume4').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="ppt" || ext==="pptx")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo4").innerHTML = myfile;
+           document.myform4.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    var myfile="";
+    $('#resume_link5').click(function( e ) {
+        if ($('#descripcion5').val().trim() === "") {
+             $('#myModal2').modal('show');           
+        }
+        else
+        {
+            e.preventDefault();
+            $('#resume5').trigger('click');
+        }
+    });
+    $('#resume5').on( 'change', function() {
+       myfile= $( this ).val();
+       var ext = myfile.split('.').pop();
+       if(!(ext==="png"|| ext==="jpg"|| ext==="JPG" || ext==="PNG")){
+           $('#myModal').modal('show');
+       }
+       else
+       {
+           document.getElementById("archivo5").innerHTML = myfile;
+           document.myform5.subirarchivo.disabled=false;
+       }
+    });
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     
 </body>
 

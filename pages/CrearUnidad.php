@@ -130,11 +130,13 @@ error_reporting(0);
                 <span class="icon-bar"></span>
               </button>
               <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
-                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
               <?php else:?>
-                <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="160"/></a>
+                <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+                <a data-toggle="modal" data-target="#myModal" class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
               <?php endif;?>
             </div>
             <div id="navbar" class="navbar-collapse collapse">

@@ -103,53 +103,6 @@
     });
     </script>
     
-            
-    <script>
-      $(document).ready(function() {
-          $('#btn').click(function() {
-            $("#fechainicio").focus();
-        });
-          $('#btn1').click(function() {
-            $("#fechatermino").focus();
-        });
-      });
-      
-      $(function() {
-        $( "#fechainicio" ).datepicker({gotoCurrent: true, currentText: "Now",altField: "#fechainicio",
-            onSelect: function( selectedDate ) {
-            $( "#fechatermino" ).datepicker( "option", "minDate", selectedDate );},
-            beforeShow: function(input, inst)
-            {
-                inst.dpDiv.css({marginLeft: input.offsetWidth-200  + 'px'});
-            }
-      });
-        $( "#fechatermino" ).datepicker({defaultDate: "+7",altField: "#fechatermino",
-            onSelect: function( selectedDate ) {
-            $( "#fechainicio" ).datepicker( "option", "maxDate", selectedDate );},
-            beforeShow: function(input, inst)
-            {
-                inst.dpDiv.css({marginLeft: input.offsetWidth-200 + 'px'});
-            }
-      });
-      });
-      
-      $(function() {
-        $("#fechainicio").keypress(function(event) {event.preventDefault();});
-        $("#fechatermino").keypress(function(event) {event.preventDefault();});
-      });
-      
-      $.datepicker.setDefaults({
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-        firstDay: 1,
-        maxDate: "+1m +7d",
-        minDate: "0",
-        constrainInput: false,
-        dateFormat:"dd/mm/yy",
-        showOptions: { direction: "down" }
-      });
-    </script>
-    
-            
         <script>
               $.validator.setDefaults({
                 errorElement: "span",
@@ -201,46 +154,6 @@
         </script>
         
         <script>
-        $('select#asignatura').on('change',function(){
-            var valor = $(this).val();
-            if(valor !== "-1"){
-            var parametros = {"id" : valor};
-            $.ajax({
-                data:  parametros,
-                url:   'php/publicar.php?buscar=1',
-                type:  'post',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                },
-                success:  function (response) {
-                        $("#resultado").html("");
-                        $("select#seccion option").remove(); // Remove all <option> child tags.
-                        $.each(response, function(index, item) { // Iterates through a collection
-                            $("select#seccion").append( // Append an object to the inside of the select box
-                                $("<option></option>") // Yes you can do this.
-                                    .text(item.Codigo)
-                                    .val(item.idSeccion)
-                            );
-                        });
-                }
-            });
-            
-            $('select#seccion').prop( "disabled", false );
-            }
-            else{
-            $('select#seccion').prop( "disabled", true );
-            $("select#seccion option").remove(); // Remove all <option> child tags.
-            $("select#seccion").append( // Append an object to the inside of the select box
-                $("<option></option>") // Yes you can do this.
-                    .text("Elige una asignatura")
-            );
-            }
-        });
-        </script>
-        
-        <script>
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
@@ -260,8 +173,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -442,5 +356,90 @@
         <br/>
         <br/>
 
+        
+        <script>
+        $('select#asignatura').on('change',function(){
+            var valor = $(this).val();
+            if(valor !== "-1"){
+            var parametros = {"id" : valor};
+            $.ajax({
+                data:  parametros,
+                url:   'php/publicar.php?buscar=1',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                        $("#resultado").html("");
+                        $("select#seccion option").remove(); // Remove all <option> child tags.
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.Codigo)
+                                    .val(item.idSeccion)
+                            );
+                        });
+                }
+            });
+            
+            $('select#seccion').prop( "disabled", false );
+            }
+            else{
+            $('select#seccion').prop( "disabled", true );
+            $("select#seccion option").remove(); // Remove all <option> child tags.
+            $("select#seccion").append( // Append an object to the inside of the select box
+                $("<option></option>") // Yes you can do this.
+                    .text("Elige una asignatura")
+            );
+            }
+        });
+        </script>
+             
+    <script>
+      $(document).ready(function() {
+          $('#btn').click(function() {
+            $("#fechainicio").focus();
+        });
+          $('#btn1').click(function() {
+            $("#fechatermino").focus();
+        });
+      });
+      
+      $(function() {
+        $( "#fechainicio" ).datepicker({gotoCurrent: true, currentText: "Now",altField: "#fechainicio",
+            onSelect: function( selectedDate ) {
+            $( "#fechatermino" ).datepicker( "option", "minDate", selectedDate );},
+            beforeShow: function(input, inst)
+            {
+                inst.dpDiv.css({marginLeft: input.offsetWidth-200  + 'px'});
+            }
+      });
+        $( "#fechatermino" ).datepicker({defaultDate: "+7",altField: "#fechatermino",
+            onSelect: function( selectedDate ) {
+            $( "#fechainicio" ).datepicker( "option", "maxDate", selectedDate );},
+            beforeShow: function(input, inst)
+            {
+                inst.dpDiv.css({marginLeft: input.offsetWidth-200 + 'px'});
+            }
+      });
+      });
+      
+      $(function() {
+        $("#fechainicio").keypress(function(event) {event.preventDefault();});
+        $("#fechatermino").keypress(function(event) {event.preventDefault();});
+      });
+      
+      $.datepicker.setDefaults({
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+        firstDay: 1,
+        maxDate: "+1m +7d",
+        minDate: "0",
+        constrainInput: false,
+        dateFormat:"dd/mm/yy",
+        showOptions: { direction: "down" }
+      });
+    </script>
 </body>
 </html>

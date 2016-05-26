@@ -142,8 +142,9 @@
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand hidden-xs hidden-sm" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                    <a class="navbar-brand hidden-md hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="150"/></a>
+                    <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
                 </div>
             </div>
     </nav>

@@ -67,10 +67,12 @@ class Actividad {
       
       $this->setfinalizada(false);
       
+      $this->setevaluado(false);
+      
       //prepara los datos antes de insertarlo
-      $sentencia=$c->prepare("insert into actividad values(?,?,?,?,?,?)");
+      $sentencia=$c->prepare("insert into actividad values(?,?,?,?,?,?,?)");
       //inserta los datos
-      $sentencia->bind_param("sssiis", $this->idActividad, $this->fecha_inicio, $this->fecha_termino, $this->finalizada, $this->UnidadAprendizaje_idUnidadAprendizaje, $this->Seccion_idSeccion);
+      $sentencia->bind_param("sssiiis", $this->idActividad, $this->fecha_inicio, $this->fecha_termino, $this->finalizada, $this->evaluado, $this->UnidadAprendizaje_idUnidadAprendizaje,$this->Seccion_idSeccion);
       //ejecutar el script
       $sentencia->execute();
       //reviza si se hizo un cambio
@@ -82,6 +84,25 @@ class Actividad {
       else {
        return null;    
       }
+    }
+    
+    public function ExisteonoPorID()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from actividad where idActividad=?");
+      
+      $sentencia->bind_param("s", $this->idActividad);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        return true;
+      }
+      return false;
     }
     
     public function DevolverActividadNuevas()
