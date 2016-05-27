@@ -15,7 +15,7 @@
       {
        $docente = $_SESSION["docente"];
        $problem = FALSE;
-       if(isset($_SESSION["titulocreacion"]))
+       if(isset($_COOKIE["titulocreacion"]))
        {
           $problem = true;
        }
@@ -104,59 +104,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
-    <!--//nueva forma de llamar phptag-->
-    <?php if($problem):?>
-    <script> $('#myModal1').modal('show');</script>
-    <?php endif;?>
   
     <script src="../js/jquery.validate.min.js"></script>
     
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'email1': {
-                    required: true,
-                    emailnew: true,
-                    email: false
-                }
-            },
-           messages: {
-                'email1': {
-                    required: "Ingrese un email.",
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </head>
 
 <body>
@@ -250,7 +200,6 @@
         <br/>
         <br/>
         <br/>
-        <br/>
         <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
         <div class="alert alert-danger">
            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -277,15 +226,13 @@
                                     <h4 style="float: right; margin-right: 20px;">Portal Docente</h4>
                                     <br/>
                                     <h1><ins>Sugerencias que puedes elegir</ins></h1>
-                                    <br/>
                                 </div>
                             </div>
                          
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" class="img-circle img-thumbnail" alt="lista" width="200" height="200"></p> Crear Actividad</a>
-                                        <br/>
+                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" class="img-circle" alt="lista" width="220" height="220"></p> Crear Actividad</a>
                                         <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
                                     </div>     
                                 </div>
@@ -298,9 +245,8 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
                                         <div>
-                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle img-thumbnail" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
+                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle" alt="lista" width="220" height="220"></p> Biblioteca y Rúbricas</a>
                                         <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
-                                        <br/>
                                         </div>
                                     </div>
                                     
@@ -312,9 +258,8 @@
                             <div class="col-xs-12 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <a class="lead" href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle img-thumbnail" width="200" height="200"></p>Evaluar</a>
+                                        <a class="lead" href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle" width="220" height="220"></p>Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
-                                        <br/>
                                     </div>
                                     
                                 </div>    
@@ -343,7 +288,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" class="img-circle img-thumbnail" width="180" height="180"/>
+                                            <img src="img/mail.png" alt="mail" class="img-circle" width="200" height="200"/>
                                         </div>
                                     </div>
                                 </div>
@@ -358,7 +303,6 @@
                                             <p class="lead">Administración de Cursos o Secciones.</p>
                                             <br/>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
-                                            <br/>
                                         </div>        
                                     </div>
                                     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
@@ -376,7 +320,7 @@
                                         <div class="text-center">
                                             <br/>
                                             <br/>
-                                            <img src="img/mail.png" alt="mail" class="img-circle img-thumbnail" width="180" height="180"/>
+                                            <img src="img/mail.png" alt="mail" class="img-circle" width="200" height="200"/>
                                             <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
                                             <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
                                         </div>
@@ -393,7 +337,6 @@
                                             <img src="img/folder.png" alt="folder" width="120" height="120"/>
                                             <p class="lead">Administración de Cursos o Secciones.</p>
                                             <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
-                                            <br/>
                                         </div>        
                                     </div>
                                 </div>
@@ -455,6 +398,54 @@
     </div>
     <!-- /.modal -->
 
+     <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'email1': {
+                    required: true,
+                    emailnew: true,
+                    email: false
+                }
+            },
+           messages: {
+                'email1': {
+                    required: "Ingrese un email.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
     
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    
+    <?php if($problem):?>
+    <script> $('#myModal1').modal('show');</script>
+    <?php endif;?>
 </body>
 </html>

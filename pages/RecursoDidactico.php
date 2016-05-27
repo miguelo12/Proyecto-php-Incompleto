@@ -63,92 +63,6 @@ error_reporting(0);
     
     <script src="../js/jquery.validate.min.js"></script>
     
-    <script>
-    $(document).ready(function() {
-            $('#rootwizard').bootstrapWizard();
-           
-            $('#pills').bootstrapWizard({
-                 //bloquear los tabs de arriba.
-                onTabClick: function(tab, navigation, index) {return false;},
-                'tabClass': 'nav nav-tabs'
-            });
-		window.prettyPrint && prettyPrint()
-            //que hace el boton finish
-            $('#pills .finish').click(function() {
-                <?php if(isset($_SESSION["editar"])):?>
-                    document.getElementById("finalformedit").submit();
-                <?php else:?>
-                <?php if(isset($_COOKIE["recursosdidacticos"])): ?>
-                    document.getElementById("finalform").submit();
-                <?php else: ?>
-                    alert('No puedes terminar la unidad lea los requisitos.');
-                <?php endif; ?>
-                <?php endif;?>
-                
-	    });
-            
-            <?php if(isset($_GET["jump"]))
-            {
-             //permite mostrar que parte del tab cuando genere el post.
-             $num = $_GET["jump"];
-             echo "$('#pills').bootstrapWizard('show',{$num});";
-            }
-            ?>
-    });
-</script>
-    
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario1").validate({
-            rules: {
-                'preguntas': {
-                    required: true,
-                    maxlength: 30
-                }
-            },
-           messages: {
-                'preguntas': {
-                    required: "Ingrese un criterio.",
-                }
-            }
-        });
-            
-            $("#formulario2").validate({
-            rules: {
-                'preguntas': {
-                    required: true,
-                    maxlength: 30
-                }
-            },
-           messages: {
-                'preguntas': {
-                    required: "Ingrese un criterio.",
-                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-    </script>
 </head>
 
 <body>
@@ -969,6 +883,93 @@ error_reporting(0);
     </div>
     <!-- /.modal -->
 
+     <script>
+    $(document).ready(function() {
+            $('#rootwizard').bootstrapWizard();
+           
+            $('#pills').bootstrapWizard({
+                 //bloquear los tabs de arriba.
+                onTabClick: function(tab, navigation, index) {return false;},
+                'tabClass': 'nav nav-tabs'
+            });
+		window.prettyPrint && prettyPrint()
+            //que hace el boton finish
+            $('#pills .finish').click(function() {
+                <?php if(isset($_SESSION["editar"])):?>
+                    document.getElementById("finalformedit").submit();
+                <?php else:?>
+                <?php if(isset($_COOKIE["recursosdidacticos"])): ?>
+                    document.getElementById("finalform").submit();
+                <?php else: ?>
+                    alert('No puedes terminar la unidad lea los requisitos.');
+                <?php endif; ?>
+                <?php endif;?>
+                
+	    });
+            
+            <?php if(isset($_GET["jump"]))
+            {
+             //permite mostrar que parte del tab cuando genere el post.
+             $num = $_GET["jump"];
+             echo "$('#pills').bootstrapWizard('show',{$num});";
+            }
+            ?>
+    });
+</script>
+    
+    
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario1").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+            
+            $("#formulario2").validate({
+            rules: {
+                'preguntas': {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+           messages: {
+                'preguntas': {
+                    required: "Ingrese un criterio.",
+                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+    </script>
+    
     <script>    
     $('#resume_link1').click(function( e ) {
         if ($('#descripcion1').val().trim() === "") {

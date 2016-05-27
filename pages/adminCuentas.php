@@ -82,87 +82,7 @@
     <script src="../dist/js/sb-admin-2.js"></script>
     
     <script src="../js/jquery.validate.min.js"></script>
-    
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nombre1': {
-                    required: true,
-                    maxlength: 15,
-                    lettersonly: true
-                },
-                'email2': {
-                    required: true,
-                    emailnew: true
-                },
-                'password3': {
-                    required: true,
-                    maxlength: 15
-                }
-//                'confirm_pass': {
-//                    required: true,
-//                    maxlength: 20,
-//                    equalTo: "#pass"
-//                }
-            },
-           messages: {
-               'nombre1': {
-                    required: "Ingrese un nombre.",
-                    maxlength: "A superado el numero de caracter.."
-                },
-                'email2': {
-                    required: "Ingrese un email.",
-                },
-                'password3': {
-                    required: "Ingrese una password.",
-                    maxlength: "A superado el numero de caracter.."
-                }
-                
-//                'confirm_pass': {
-//                    required: "Esta casilla se requiere.",
-//                    maxlength: "A superado el numero de caracter..",
-//                    equalTo: "No coincide con la password."
-//                }
-            }
-        });
-        
-        jQuery.validator.addMethod("emailnew", function(value, element) {
-          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
-        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
-        
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-          return this.optional(element) || /^[a-z ]+$/i.test(value);
-        }, "Solamente letras, sin acento."); 
-    </script>
-    
-    <script>
-    $('#myLink').addClass('disabled');
-    </script>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+   
 </head>
 <body>
         <!-- Navigation -->
@@ -357,5 +277,86 @@
           </div>
         </div>
 
+         
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nombre1': {
+                    required: true,
+                    maxlength: 15,
+                    lettersonly: true
+                },
+                'email2': {
+                    required: true,
+                    emailnew: true
+                },
+                'password3': {
+                    required: true,
+                    maxlength: 15
+                }
+//                'confirm_pass': {
+//                    required: true,
+//                    maxlength: 20,
+//                    equalTo: "#pass"
+//                }
+            },
+           messages: {
+               'nombre1': {
+                    required: "Ingrese un nombre.",
+                    maxlength: "A superado el numero de caracter.."
+                },
+                'email2': {
+                    required: "Ingrese un email.",
+                },
+                'password3': {
+                    required: "Ingrese una password.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+                
+//                'confirm_pass': {
+//                    required: "Esta casilla se requiere.",
+//                    maxlength: "A superado el numero de caracter..",
+//                    equalTo: "No coincide con la password."
+//                }
+            }
+        });
+        
+        jQuery.validator.addMethod("emailnew", function(value, element) {
+          return this.optional(element) || /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
+        }, "Debe cumplir el formato de un email. Ej: user@dominio.com");
+        
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+          return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Solamente letras, sin acento."); 
+    </script>
+    
+    <script>
+    $('#myLink').addClass('disabled');
+    </script>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </body>
 </html>

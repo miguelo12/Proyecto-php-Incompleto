@@ -96,69 +96,6 @@
     
     <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
     
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-    
-        <script>
-              $.validator.setDefaults({
-                errorElement: "span",
-                errorClass: "help-block",
-                highlight: function(element) {
-                    $(element).parent().removeClass('has-success').addClass('has-error');
-                },
-                unhighlight: function(element) {
-                    $(element).parent().removeClass('has-error').addClass('has-success');
-                },
-                errorPlacement: function (error, element) {
-                    if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                        error.insertAfter(element.parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                }
-                });
-
-                $("#formulario").validate({
-                rules: {
-                    'fechainicio': {
-                        required: true
-                    },
-                    'fechatermino': {
-                        required: true
-                    },
-                    'asignatura': {
-                        valueNotEquals: "-1"
-                    }
-                },
-               messages: {
-                   'fechainicio': {
-                        required: "Esta en blanco."
-                    },
-                    'fechatermino': {
-                        required: "Esta en blanco."
-                    },
-                    'asignatura':{
-                        valueNotEquals: "Selecciona una asignatura."
-                    }
-                }
-            });
-            
-            jQuery.validator.addMethod("valueNotEquals", function(value, element, arg){
-              return arg !== value;
-            }, "Value must not equal arg.");
-            
-        </script>
-        
-        <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        </script>
 </head>
 
 <body>
@@ -269,7 +206,7 @@
                         <form method="post" action="php/publicar.php?crear=1" autocomplete="off" id="formulario">
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
                         <fieldset>
-                           <legend><p>PrePublicación:</p></legend>
+                           <legend><p>Publicación:</p></legend>
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -441,5 +378,62 @@
         showOptions: { direction: "down" }
       });
     </script>
+    
+        <script>
+              $.validator.setDefaults({
+                errorElement: "span",
+                errorClass: "help-block",
+                highlight: function(element) {
+                    $(element).parent().removeClass('has-success').addClass('has-error');
+                },
+                unhighlight: function(element) {
+                    $(element).parent().removeClass('has-error').addClass('has-success');
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+                });
+
+                $("#formulario").validate({
+                rules: {
+                    'fechainicio': {
+                        required: true
+                    },
+                    'fechatermino': {
+                        required: true
+                    },
+                    'asignatura': {
+                        valueNotEquals: "-1"
+                    }
+                },
+               messages: {
+                   'fechainicio': {
+                        required: "Esta en blanco."
+                    },
+                    'fechatermino': {
+                        required: "Esta en blanco."
+                    },
+                    'asignatura':{
+                        valueNotEquals: "Selecciona una asignatura."
+                    }
+                }
+            });
+            
+            jQuery.validator.addMethod("valueNotEquals", function(value, element, arg){
+              return arg !== value;
+            }, "Value must not equal arg.");
+            
+        </script>
+        
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
 </body>
 </html>

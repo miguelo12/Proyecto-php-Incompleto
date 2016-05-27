@@ -77,12 +77,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </head>
 
 <body>
@@ -164,16 +158,12 @@
                 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="text-center">
-                            <h1><ins>Sugerencias que puedes elegir</ins></h1>
-                            <br/>
-                        </div>
                         <div class="row">
                          
                             <div class="col-xs-12 col-md-12 col-lg-12">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                        <a class="lead" href="adminCuentas.php"><p><img src="img/actividad.png" alt="lista" width="200" height="200"></p>Crear Profesor o<br> Administrar cuentas.</a>
+                                        <a class="lead" href="adminCuentas.php"><p><img src="img/admin.png" alt="lista" width="200" height="200"></p>Crear Profesor o<br> Administrar cuentas.</a>
                                     </div>     
                                 </div>
                             </div>
@@ -184,7 +174,12 @@
                 </div>
             </div>
         </div>
-
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </body>
 
 </html>

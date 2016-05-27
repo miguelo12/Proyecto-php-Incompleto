@@ -105,6 +105,34 @@ class Actividad {
       return false;
     }
     
+    public function Finalizar()
+    {
+      try{
+      $c=$this->con->getConexion();
+      
+      $this->setfinalizada(1);
+      
+      $sentencia=$c->prepare("update actividad set finalizada=? where idActividad=?");
+      
+      $sentencia->bind_param("is", $this->finalizada, $this->idActividad);
+      
+      $sentencia->execute();
+      
+      if($sentencia->affected_rows)
+      {
+        return true;    
+      }
+      else
+      {
+        return false;
+      }
+      }
+      catch (Exception $e)
+      {
+        return false;
+      }
+    }
+    
     public function DevolverActividadNuevas()
     {
       $c=$this->con->getConexion();
@@ -130,13 +158,36 @@ class Actividad {
       return $res;
     }
     
-    
+    public function DevolverPorIdActividad()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("SELECT c.Nombre as nombre,b.Codigo as codigo,d.Titulo as titulo,a.fecha_inicio as fechainicio,a.fecha_termino as fechatermino from actividad as a INNER JOIN seccion as b ON a.Seccion_idSeccion=b.idSeccion INNER JOIN asignatura as c ON b.Asignatura_idAsignatura=c.idAsignatura INNER JOIN unidadaprendizaje as d on a.UnidadAprendizaje_idUnidadAprendizaje=d.idUnidadAprendizaje where a.idActividad=?");
+      
+      $sentencia->bind_param("s", $this->idActividad);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
     
     public function DevolverActividadAntiguas()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("SELECT c.Nombre as nombre,b.Codigo as codigo,d.Titulo as titulo,a.fecha_inicio as fechainicio,a.fecha_termino as fechatermino,a.finalizada,a.evaluado,a.idActividad as id from actividad as a INNER JOIN seccion as b ON a.Seccion_idSeccion=b.idSeccion INNER JOIN asignatura as c ON b.Asignatura_idAsignatura=c.idAsignatura INNER JOIN unidadaprendizaje as d on a.UnidadAprendizaje_idUnidadAprendizaje=d.idUnidadAprendizaje where fecha_termino<=CURDATE() and finalizada=1 and d.Docente_idDocente=?");
+      $sentencia=$c->prepare("SELECT c.Nombre as nombre,b.Codigo as codigo,d.Titulo as titulo,a.fecha_inicio as fechainicio,a.fecha_termino as fechatermino,a.finalizada,a.evaluado,a.idActividad as id from actividad as a INNER JOIN seccion as b ON a.Seccion_idSeccion=b.idSeccion INNER JOIN asignatura as c ON b.Asignatura_idAsignatura=c.idAsignatura INNER JOIN unidadaprendizaje as d on a.UnidadAprendizaje_idUnidadAprendizaje=d.idUnidadAprendizaje where fecha_termino<=CURDATE() OR finalizada=1 and d.Docente_idDocente=?");
       
       $sentencia->bind_param("s", $this->docente);
       

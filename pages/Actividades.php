@@ -1,5 +1,5 @@
 <?php session_start(); 
-  error_reporting(0);
+
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -17,27 +17,14 @@
        $docente = $_SESSION["docente"];
        if(isset($_SESSION["Actividad"]))
        {
-            $actividad = $_SESSION["Actividad"];
-           
-            include_once("./php/CRUD/Seccion.php");
-            $seccion = new Seccion();
-            
-            $seccion->setidSeccion($actividad["idSeccion"]);
-            $arraySeccion = $seccion->DevolverSeccionid();
-            
-            include_once("./php/CRUD/Asignatura.php");
-            $asignatura = new Asignatura();
-            $asignatura->setidAsignatura($arraySeccion["Asignatura"]);
-            
-            $arrayasignatura = $asignatura->DevolverAsignaturasid();
-            
+            $actividad = $_SESSION["Actividad"];        
        }
        else{
           if(isset($_GET["idActividad"])){
               
           }
           else{
-          header("location: ../pages/Biblioteca.php");
+          header('Location:' . getenv('HTTP_REFERER'));
           die();
           }
        }
@@ -92,12 +79,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </head>
 
 <body>
@@ -112,7 +93,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="indexDocente.phpi"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
                 <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
                 <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="indexDocente.php"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
             </div>
@@ -206,15 +187,27 @@
                     <fieldset class="form-horizontal">
                         <legend><p>Información:</p></legend>
                         <div class="form-group">
-                          <label class="col-xs-4 control-label">Pin Actividad</label>
-                          <div class="col-xs-8">
+                          <label class="col-sm-4 control-label">Pin Actividad</label>
+                          <div class="col-sm-8">
                             <p class="form-control-static"><?= $actividad["id"]?></p>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-sm-4 control-label">Unidad de Aprendizaje</label>
                           <div class="col-sm-8">
-                            <p class="form-control-static"><?= $actividad["Unidad"]["nombre"]?></p>
+                              <p class="form-control-static"><?= $actividad["Unidad"]?></p>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Fecha Inicio</label>
+                          <div class="col-sm-8">
+                              <p class="form-control-static"><?= $actividad["FechaInicio"]?></p>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Fecha Termino</label>
+                          <div class="col-sm-8">
+                              <p class="form-control-static"><?= $actividad["FechaTermino"]?></p>
                           </div>
                         </div>
                     </fieldset>
@@ -233,20 +226,43 @@
                         </th>
                         <tr>
                             <td class="text-center">
-                                <?= $arrayasignatura?>
+                                <?= $actividad["Asignatura"]?>
                             </td>
                             <td class="text-center">
-                                <?= $arraySeccion["Codigo"]?>
+                                <?= $actividad["CodigoSeccion"]?>
                             </td>
                         </tr>
                     </table>
-                    <p class="text-center" id="resultado"></p>
+                    <br/>
+                    <table class="table table-condensed table-striped table-bordered">
+                        <th class="text-center" style="width: 40%">
+                            Apellido
+                        </th>
+                        <th class="text-center" style="width: 60%">
+                            Correo Electronico
+                        </th>
+                        <tr>
+                            <td class="text-center">
+                               
+                            </td>
+                            <td class="text-center">
+                                
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
         </div>
         <br/>
         <br/>
+        
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </body>
 
 </html>

@@ -59,6 +59,71 @@
     
     <script src="../js/jquery.validate.min.js"></script>
     
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
+                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
+                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
+                </div>
+            </div>
+    </nav>
+    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==4):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el usuario existe y fue actualizado.</p>
+        </div>
+    <?php endif; endif;?>
+    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==20):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el codigo de invitacion es erronea.</p>
+        </div>
+    <?php endif; endif;?>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                        <div class="login-panel panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Crear cuenta</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2" autocomplete="off">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="E-mail" name="email1" type="text" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Confirma password" name="confiPassword" type="password" autofocus required>
+                                        </div>
+
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear">
+                                        <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/inicio.php'  ">
+                                        </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
           $.validator.setDefaults({
             errorElement: "span",
@@ -136,72 +201,6 @@
           return this.optional(element) || /^[a-z ]+$/i.test(value);
         }, "Solamente letras, sin acento."); 
     </script>
-</head>
-
-<body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
-                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
-                </div>
-            </div>
-    </nav>
-    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==4):?>
-        <div class="alert alert-danger">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-           <p class="text-center"><strong>Error, </strong> el usuario existe y fue actualizado.</p>
-        </div>
-    <?php endif; endif;?>
-    <?php  if(isset($_GET["error1"])): if($_GET["error1"]==20):?>
-        <div class="alert alert-danger">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-           <p class="text-center"><strong>Error, </strong> el codigo de invitacion es erronea.</p>
-        </div>
-    <?php endif; endif;?>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                        <div class="login-panel panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Crear cuenta</h3>
-                            </div>
-                            <div class="panel-body">
-                                <form role="form" method="POST" id="formulario" action="php/UsuarioAction.php?user=2&action=2" autocomplete="off">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Codigo de Invitacion" name="codigo" type="text" autofocus required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="E-mail" name="email1" type="text" autofocus>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Password" id="confiPassword" name="password" type="password" autofocus required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Confirma password" name="confiPassword" type="password" autofocus required>
-                                        </div>
-
-                                        <!-- Change this to a button or input when using this as a form -->
-                                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear">
-                                        <input type="button" class="btn btn-lg btn-success btn-block" value="Atras" onclick=" window.location='../pages/inicio.php'  ">
-                                        </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 </body>
 
 </html>

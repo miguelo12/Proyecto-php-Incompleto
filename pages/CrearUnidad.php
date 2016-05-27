@@ -72,49 +72,6 @@ error_reporting(0);
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script src="../js/jquery.validate.min.js"></script>
-    <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
-    <script>
-          $.validator.setDefaults({
-            errorElement: "span",
-            errorClass: "help-block",
-            highlight: function(element) {
-                $(element).parent().removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function(element) {
-                $(element).parent().removeClass('has-error').addClass('has-success');
-            },
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-            });
-            
-            $("#formulario").validate({
-            rules: {
-                'nameActivity': {
-                    required: true,
-                    maxlength: 20
-                }
-            },
-           messages: {
-                'nameActivity': {
-                    required: "Ingrese un Titulo.",
-                    maxlength: "A superado el numero de caracter.."
-                }
-            }
-        });
-    </script>
-    <?php endif;?>
-    
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </head>
 
 <body>
@@ -408,6 +365,50 @@ error_reporting(0);
         </div>
       </div>
  
+        
+    <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
+    <script>
+          $.validator.setDefaults({
+            errorElement: "span",
+            errorClass: "help-block",
+            highlight: function(element) {
+                $(element).parent().removeClass('has-success').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).parent().removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+            });
+            
+            $("#formulario").validate({
+            rules: {
+                'nameActivity': {
+                    required: true,
+                    maxlength: 20
+                }
+            },
+           messages: {
+                'nameActivity': {
+                    required: "Ingrese un Titulo.",
+                    maxlength: "A superado el numero de caracter.."
+                }
+            }
+        });
+    </script>
+    <?php endif;?>
+    
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </body>
 
 </html>

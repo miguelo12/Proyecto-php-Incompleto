@@ -74,17 +74,17 @@
         $("#paso3").hide();
         <?php endif;?>
         $("#profe").click(function(){
-            $("#paso2").fadeIn("slow");
+            $("#paso2").fadeIn("fast");
             $("#paso1").hide();
             $("#paso3").hide();
         });
         $("#alu").click(function(){
-            $("#paso3").fadeIn("slow");
+            $("#paso3").fadeIn("fast");
             $("#paso2").hide();
             $("#paso1").hide();   
         });
         $(".opened").click(function(){
-            $("#paso1").fadeIn("slow");
+            $("#paso1").fadeIn("fast");
             $("#paso2").hide();
             $("#paso3").hide(); 
         });

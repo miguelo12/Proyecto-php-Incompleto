@@ -45,7 +45,10 @@ else{
             
             $idActividad = $actividad->Ingresar();
             
-            $_SESSION["Actividad"] = array("id"=>$idActividad,"Unidad"=>$_SESSION["publicar"],"FechaInicio"=>$fecha1,"FechaTermino"=>$fecha2, "idSeccion"=>$seccionid);
+            $actividad->setidActividad($idActividad);
+            $content = $actividad->DevolverPorIdActividad();
+            
+            $_SESSION["Actividad"] = array("id"=>$idActividad,"Unidad"=> $content["titulo"],"Asignatura"=> $content["nombre"],"FechaInicio"=>$content["fechainicio"],"FechaTermino"=>$content["fechatermino"], "CodigoSeccion"=>$content["codigo"]);
             unset($_SESSION["publicar"]);
             header("location: ../Actividades.php");
             die(); 

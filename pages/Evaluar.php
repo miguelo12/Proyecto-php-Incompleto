@@ -22,7 +22,7 @@
           $actividad = $_SESSION["actividades"];
        }
        else{
-          header("location: ../pages/indexDocente.php");
+          header('Location:' . getenv('HTTP_REFERER'));
           die();
        }
        
@@ -84,12 +84,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 </head>
 <body>
         <!-- Navigation -->
@@ -181,7 +175,6 @@
         <br/>
         <br/>
         <br/>
-        <br/>
         
         <?php if(isset($_GET["creado"])):
                 if($_GET["creado"]=="1"):?>
@@ -215,7 +208,7 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div style="max-height: 450px; width: 100%; margin: 0; overflow: auto">
+                    <div style="max-height: 250px; width: 100%; margin: 0; overflow: auto">
                     <table class="table table-bordered table-condensed">
                         <caption><h2 class="text-center"><ins>Nuevos</ins></h2></caption>
                         <tr>
@@ -258,7 +251,7 @@
                         <?php endif;?>
                     </table>
                     </div>
-                    <div style="max-height: 450px; width: 100%; margin: 0; overflow: auto">
+                    <div style="max-height: 250px; width: 100%; margin: 0; overflow: auto">
                     <table class="table table-bordered table-condensed">
                         <caption><h2 class="text-center"><ins>Antiguos</ins></h2></caption>
                         <tr>
@@ -298,6 +291,12 @@
         
         <br/>
         <br/>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
 </body>
 
 </html>
