@@ -45,15 +45,15 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-        <!-- jQuery -->
+        
+    <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -64,13 +64,64 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $().ready(function(){
+        $("#paso1").show();
+        $("#paso2").hide();
+        $("#paso3").hide();
+        $("#paso4").hide();
+        $("#paso5").hide();
 
+        $("#opcion2").click(function(){
+            $("#paso2").fadeIn("fast");
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $("#opcion3").click(function(){
+            $("#paso3").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $("#opcion4").click(function(){
+            $("#paso4").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso5").hide();
+        });
+        $("#opcion5").click(function(){
+            $("#paso5").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+        });
+        $(".volver").click(function(){
+            $("#paso1").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $(".volver1").click(function(){
+            $("#paso2").fadeIn("fast");
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+    });
+    </script>
 
 </head>
 
 <body>
         <!-- Navigation -->
-        
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -85,7 +136,7 @@
                 <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
+                <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
@@ -131,7 +182,7 @@
                 <li class="dropdown hidden-lg hidden-md">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li> 
+                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
@@ -141,153 +192,205 @@
         </nav>
         </div>
         
+        <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el email introducido ya existe.</p>
+        </div>
+        <?php endif; endif;?>
+        <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
+        <?php if(isset($_SESSION["idAlumno"])):?>
+        <div class="alert alert-success">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="sacar()">&times;</a>
+           <p class="text-center"><strong>Listo, </strong> se acaba de enviar el email.</p>
+           <p class="text-center">El codigo de tu alumno es <strong><?= $_SESSION["idAlumno"]?></strong></p>
+           <p class="text-center">Este mensaje se eliminara en <span id="timer"></span> segundos. <button onclick="sacar()">Eliminar Mensaje</button></p>
+        </div>
+        <?php endif;?>
+        <?php endif; endif;?>
+        <div class="hidden-xs hidden-md hidden-lg">
+        <br/>
+        </div>
+        <div class="hidden-xs hidden-md hidden-sm">
         <br/>
         <br/>
         <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
-        <br/>
-        
-         <div id="page-content-wrapper content" >
+        </div>
+        <div id="page-content-wrapper content" >
             <div class="container separate-rows tall-rows">
-                
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="text-center">
-                            <br/>
-                            <h4 style="float: right; margin-right: 20px">Portal Estudiante</h4>
-                            <br/>
-                            <h1 style="float: top">¿<ins>Qué deseas hacer</ins>?</h1>
-                            <br/>
-                        </div>
                         <div class="row">
-                         
-                            <div class="col-xs-12 col-md-4 col-lg-4">
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <p style="margin-top: 20px"><img src="img/saber.png" alt="lista" width="128" height="128"></p>                           
-                                        <div>
-                                        <a class="lead" href="actividadAlumno.php">Revisar Unidad de Aprendizaje</a>
-                                        <br/>
-                                        <p>Ve todas las unidades de aprendizajes entregadas por tu profesor.</p>
-                                        </div>
-                                    </div>     
+                            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                                <div class="text-center">
+                                    <h4 style="float: right; margin-right: 20px">Portal Estudiante</h4>
+                                    <br/>
+                                    <h1 style="float: top">¿<ins>Qué deseas hacer</ins>?</h1>
                                 </div>
                             </div>
-                            
+                            <div id="paso1">
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
+                                            <a class="lead" href="actividadAlumno.php"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Revisar Unidad de Aprendizaje</a>
+                                            <p>Ve todas las unidades de aprendizajes entregadas por tu profesor o ingresa a uno nuevo.</p>
+                                        </div>     
+                                    </div>
+                                </div>
 
-                            <div class="clearfix visible-xs"></div>
-
-                            <div class="col-xs-12 col-md-4 col-lg-4">
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        </br>
-                                        <p><img src="img/pensar.png" alt="lista" width="128" height="128"></p>
-                                        <div style="margin-top: 10px">
-                                        <a class="lead" href="#">Responder Diagrama Heurístico</a>
-                                        <p>Hace la actividad entregada por tu profesor, debes pertenecer a un grupo o tambien puede hacerlo solo.</p>
-                                        <br/>
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
+                                            <div>
+                                            <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p> Responder Diagrama Heurístico </a>
+                                            <p>Hace la actividad entregada por tu profesor, debes pertenecer a un grupo o tambien puede hacerlo solo.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    
-                                </div>        
-                            </div>
-                            
-                            <div class="clearfix visible-xs"></div>
-                            
-                            <div class="col-xs-12 col-md-4 col-lg-4">
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        </br>
-                                        <p><img src="img/grupo.png" alt="lista" width="128" height="128"></p>
-                                        <a class="lead" href="#">Crea un Grupo</a>
-                                        <p>Unete con tus otros compañeros y hagan la actividad de manera grupal.</p>
-                                        <br/>
-                                    </div>
-                                    
+
+                                    </div>        
+                                </div>
+
+
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                            <a id="opcion2" class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Otros</a>
+                                            <p>Aquí para unirse a una seccion, grupo o actividad.</p>
+                                        </div>
+                                    </div>    
                                 </div>    
                             </div>    
-                                
-                            <div   class="clearfix visible-xs"></div>
                             
+                            <div id="paso2">
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
+                                            <a class="lead" href="#" id="opcion3"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a una Sección</a>
+                                        </div>     
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
+                                            <div>
+                                                <a class="lead" id="opcion4" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a una actividad</a>
+                                            </div>
+                                        </div>
+
+                                    </div>        
+                                </div>
+
+
+                                <div class="col-xs-4 col-md-4 col-lg-4">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                            <a class="lead" id="opcion5" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Grupo</a>
+                                        </div>
+                                    </div>    
+                                </div>
+                                
+                                <div class="col-xs-12">
+                                    <button class="pull-right btn btn-default volver">Volver</button>
+                                </div>
+                            </div> 
+                            <div id="paso3">
+                                <div class="col-xs-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <form class="form-horizontal" role="form">
+                                              <fieldset>
+                                              <legend><h1>Ingrese PIN Sección:</h1></legend>
+                                              <div class="form-group">
+                                                <label class="control-label col-sm-2" for="email">PIN:</label>
+                                                <div class="col-sm-10">
+                                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                </div>
+                                              </div> 
+                                              <div class="form-group pull-right"> 
+                                                <div class="col-xs-12">
+                                                  <button type="submit" class="btn btn-success">Enviar</button>
+                                                </div>
+                                              </div>
+                                              </fieldset>
+                                            </form>
+                                        </div>   
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12">
+                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                </div>
+                            </div>
+                            <div id="paso4">
+                                <div class="col-xs-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <form class="form-horizontal" role="form">
+                                              <fieldset>
+                                              <legend><h1>Ingrese PIN Asignatura:</h1></legend>
+                                              <div class="form-group">
+                                                <label class="control-label col-sm-2" for="email">PIN:</label>
+                                                <div class="col-sm-10">
+                                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                </div>
+                                              </div> 
+                                              <div class="form-group pull-right"> 
+                                                <div class="col-xs-12">
+                                                  <button type="submit" class="btn btn-success">Enviar</button>
+                                                </div>
+                                              </div>
+                                              </fieldset>
+                                            </form>
+                                        </div>   
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12">
+                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                </div>
+                            </div> 
+                            <div id="paso5">
+                                <div class="col-xs-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-6 col-lg-6">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
+                                                    <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Grupo nuevo</a>
+                                                </div>     
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6 col-md-6 col-lg-6">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
+                                                    <div>
+                                                    <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a un Grupo</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>        
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12">
+                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                </div>
+                            </div>
                         </div>
                     </div>     
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Ver más...
-                    </div>
-                    <!-- .panel-heading -->
-                    <div class="panel-body">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">¿Qué es la Heurística?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        &nbsp;Según la Real Académia de la Lengua Española (RAE) la heurística es una técnica de la indagación y del descubrimiento. En el ámbito de las ciencias, es un método que busca la solución de un problema mediante la comprobación de una hipótesis, siendo esta última una explicación tentativa para un conjunto de observaciones.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">¿Qué es un diagrama heurístico?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        &nbsp;Un diagrama heurístico es un esquema visual que se utiliza como un recurso para organizar ideas e información y que permite evidenciar lo que un estudiante comprende acerca de un tema en particular. Su diseño corresponde a una derivación de la V de Gowin, instrumento ideado por el profesor norteamericano Bob Gowin que se basa en un diagrama que representa la estructura del conocimiento que facilita el proceso de "aprender a aprender". Su utilidad comprende el análisis de una lectura, para llevar a cabo un proceso de investigación, para preparar material didáctico de una clase o para llevar a cabo el análisis de un currículo.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">¿Cómo se desarrolla un diagrama heurístico?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        &nbsp;José Antonio Chamizo (Chamizo, 2007) propuso un diagrama heurístico que contiene tres características conceptuales (aplicación, lenguaje, y modelos) y tres características procedimentales (procedimiento y recolección de datos, procesamiento de datos y resultados). Por ejemplo, para responder la pregunta de investigación: ¿Por qué no aumenta el nivel del agua cuando se funde un cubo de hielo? Chamizo propone el siguiente esquema:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">¿Qué es la heurística móvil?</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseFour" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        &nbsp;Heurística móvil es un software que facilitar el diseño,  desarrollo y evaluación integral de procesos que promueven el aprendizaje heurístico, mediante la construcción de archivos SCORM compatibles con dispositivos móviles y exportables a moodle. El software ha sido diseñado para facilitar el proceso de enseñanza-aprendizaje del público en general, pero principalmente para comunidades conformadas por estudiantes, docentes, administrativos y profesionales pertenecientes a instituciones de educación básica, media y superior. Contiene un portal docente que facilita el diseño de unidades de aprendizaje centradas en un diagrama heurístico, el cual puede ser complementado con diversos recursos de información (texto, documentos de word, diapositivas de power point), actividades de aprendizaje (cuestionarios) y distintos instrumentos de evaluación (autoevaluación, coevaluación y rúbricas). Por otra parte, contiene un portal estudiante que facilita el desarrollo de un diagrama heurístico de manera individual o por un grupo de estudiantes, quienes pueden utilizar el laboratorio móvil para registrar, graficar o tabular mediciones de distintas magnitudes físicas, químicas y biológicas u otras señales capturadas por un chip que se instala en dispositivos móviles. Si bien, Heurística Móvil responde a los requerimientos de asignaturas de índole científico, sus recursos y herramientas puede ser editados y adaptados para ser utilizado en cualquier asignatura. El software se encuentra disponible en el sitio web www.heuristicamovil.com y puede ser descargado de app.store como una aplicación para móviles compatible con sistemas ios y android.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- .panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
+        
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    </script>
+    </script> 
 </body>
-
 </html>

@@ -104,7 +104,7 @@
 
 <body>
     
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
@@ -133,29 +133,29 @@
             </div>
             <div class="col-xs-12">
                 <div class="row" id="paso1">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <div class="row">
-                            <div class="center-block" style="width:190px; height: 190px">
-                               <a class="btn" id="profe"><img src="img/docente.png" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            <div class="center-block repo">
+                               <a class="btn" id="profe"><img src="img/docente.png" class="img-thumbnail img-circle hidden-xs" height="180" width="180" alt=""/><img src="img/docente.png" class="img-thumbnail img-circle hidden-sm hidden-md hidden-lg" height="120" width="120" alt=""/></a>
                             </div>
                         </div>
                         <p class="text-center lead">Profesor</p>
                     </div>
-                    <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                    <div class="col-xs-6 col-sm-6  col-md-6 col-lg-6">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <div class="row">
-                            <div class="center-block" style="width:190px; height: 190px">
-                              <a class="btn"><img src="img/alumno.png" id="alu" class="img-thumbnail img-circle" height="180" width="180" alt=""/></a>
+                            <div class="center-block repo">
+                                <a class="btn" id="alu"><img src="img/alumno.png" class="img-thumbnail img-circle hidden-xs" height="180" width="180" alt=""/><img src="img/alumno.png" class="img-thumbnail img-circle hidden-sm hidden-md hidden-lg" height="120" width="120" alt=""/></a>
                             </div>
                         </div>
                         <p class="text-center lead">Alumno</p>
                     </div>
                 </div>
                 <div class="row" id="paso2">
-                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="hidden-xs hidden-sm col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <div class="row">
@@ -169,7 +169,7 @@
                         <!-- Botones donde se dirige -->
                         <form role="form" method="POST" action="php/loginDocente.php">
                                 <fieldset>
-                                <legend><h1>Acceso:</h1></legend>
+                                <legend><h1>Acceso Docente:</h1></legend>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -211,7 +211,7 @@
                     </div>
                 </div>
                 <div class="row" id="paso3">
-                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="hidden-xs hidden-sm col-md-5 col-lg-5">
                         <!-- Botones donde se dirige -->
                         <br/>
                         <div class="row">
@@ -225,7 +225,7 @@
                         <!-- Botones donde se dirige -->
                         <form role="form" method="POST" action="php/loginAlumno.php">
                             <fieldset>
-                                <legend><h1>Acceso:</h1></legend>
+                                <legend><h1>Acceso Alumno:</h1></legend>
                                 <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">

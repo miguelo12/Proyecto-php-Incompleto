@@ -235,16 +235,6 @@
         </nav>
         </div>
         <?php endif; ?> 
-       
-       
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">

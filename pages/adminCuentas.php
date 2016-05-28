@@ -148,15 +148,6 @@
         </div>
         </nav>
         </div>    
-            
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         
         <div id="page-content-wrapper content" >

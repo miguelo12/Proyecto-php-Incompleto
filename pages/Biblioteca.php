@@ -172,14 +172,6 @@
         </div>
         </nav>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         <?php if(isset($_GET["creado"])):
                 if($_GET["creado"]=="1"):?>
@@ -230,7 +222,7 @@
                                 <li class="list-group-item disabled text-center">No tienes aún una unidad de aprendizaje</li>
                                 <?php endif; ?>
                             </ul>
-                            <a href="CrearUnidad.php" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
+                            <a href="CrearUnidad.php?new=1" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
                         </div>
                         <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-center">
                             <br/>

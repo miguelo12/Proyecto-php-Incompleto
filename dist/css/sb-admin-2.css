@@ -11,3 +11,33 @@ h1, h2, input{
 h3, h4, label, p, th{
     color: #23527c;
 }
+
+@media (min-width: 1200px) {
+    body { padding-top: 150px; }
+    .repo{width:190px; height: 190px;}
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    body { padding-top: 150px; }
+    .repo{width:190px; height: 190px;}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    body { padding-top: 150px; }
+    .repo{width:190px; height: 190px;}
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    body { padding-top: 120px; }
+    .repo{width:150px; height: 150px;}
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+   body { padding-top: 130px; }
+   .repo{width:130px; height: 130px;}
+}
+

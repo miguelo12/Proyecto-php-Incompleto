@@ -177,16 +177,7 @@
             </ul>
         </div>
         </nav>
-        </div>
-        
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        </div>   
         
         <?php  if(isset($_GET["error"])): if($_GET["error"]==2):?>
         <div class="alert alert-warning">

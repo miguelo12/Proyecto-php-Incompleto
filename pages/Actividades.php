@@ -164,14 +164,6 @@
         </div>
         </nav>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         <?php if(isset($_GET["creado"])):
                 if($_GET["creado"]=="1"):?>

@@ -214,16 +214,7 @@ error_reporting(0);
             </ul>
         </div>
         </nav>
-        </div>
-        
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        </div> 
         
         <?php  if(isset($_GET["SinTerminar"])): if($_GET["SinTerminar"]==1):?>
         <div class="alert alert-danger">
@@ -364,7 +355,33 @@ error_reporting(0);
             </div>
         </div>
       </div>
- 
+        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" id="myModalLabel">Bienvenido a la creación de una unidad de aprendizaje</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Para poder avanzar, debe saber lo primero:</h4>
+                        <ul>
+                            <ol>1.- La rubrica actual es predeterminada, para poder cambiarlo debe ir a biblioteca y seleccionar la rubrica.</ol>
+                            <ol>2.- Si quedaste en la mitad de la creacion de la rubrica y accidentalmente se cierra la pagina, el pc donde te encuentres recordara solamente lo importante.</ol>
+                            <ol>3.- Todas las unidades de aprendizaje deben tener un recurso para poder finalizar.</ol>
+                        </ul>
+                        Ahora para seguir, seleccione Seguir o vaya a biblioteca
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Seguir</button>
+                        <a href="Biblioteca.php" type="submit" class="btn btn-primary" >ir a Biblioteca</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
         
     <?php if(!isset($_COOKIE["recursosdidacticos"])):?>
     <script>
@@ -409,6 +426,10 @@ error_reporting(0);
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+    <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?>
+    <?php if(isset($_GET["new"])): if($_GET["new"]==1): ?>
+        <script> $('#myModal1').modal('show');</script>
+    <?php endif; endif; endif;?>
 </body>
 
 </html>

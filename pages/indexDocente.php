@@ -148,8 +148,7 @@
         <div id="wrapper">
          <nav class="navbar-inverse" role="navigation">
          <div id="sidebar-wrapper">
-            <ul class="sidebar-nav navbar-nav">
-                <br/> 
+             <ul class="sidebar-nav navbar-nav">
                 <br/> 
                 <br/> 
                 <br/> 
@@ -193,13 +192,6 @@
         </nav>
         </div>
         
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
         <div class="alert alert-danger">
            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -221,52 +213,42 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
+                            <div class="col-xs-12 col-sm-12 hidden-sm hidden-md hidden-lg">
                                 <div class="text-center">
                                     <h4 style="float: right; margin-right: 20px;">Portal Docente</h4>
-                                    <br/>
-                                    <h1><ins>Sugerencias que puedes elegir</ins></h1>
                                 </div>
                             </div>
                          
-                            <div class="col-xs-12 col-md-4 col-lg-4">
+                            <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                        <a class="lead" href="CrearUnidad.php"><p><img src="img/actividad.png" class="img-circle" alt="lista" width="220" height="220"></p> Crear Actividad</a>
+                                        <a href="CrearUnidad.php?new=1"><p><img src="img/actividad.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/actividad.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/actividad.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Crear Actividad</a>
                                         <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
                                     </div>     
                                 </div>
                             </div>
                             
 
-                            <div class="clearfix visible-xs"></div>
-
-                            <div class="col-xs-12 col-md-4 col-lg-4">
+                            <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
-                                        <div>
-                                        <a class="lead" href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle" alt="lista" width="220" height="220"></p> Biblioteca y Rúbricas</a>
+                                        <a href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
                                         <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
-                                        </div>
                                     </div>
                                     
                                 </div>        
                             </div>
                             
-                            <div class="clearfix visible-xs"></div>
                             
-                            <div class="col-xs-12 col-md-4 col-lg-4">
+                            <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <a class="lead" href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle" width="220" height="220"></p>Evaluar</a>
+                                        <a href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle hidden-sm hidden-md hidden-lg" width="100" height="100"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-lg" width="160" height="160"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-sm hidden-md" width="200" height="200"></p>Evaluar</a>
                                         <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
                                     </div>
                                     
                                 </div>    
-                            </div>    
-                                
-                            <div   class="clearfix visible-xs"></div>
-                            
+                            </div>            
                         </div>
                     </div>     
                 </div>
@@ -274,75 +256,51 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
-                            <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
+                            <div class="hidden-xs hidden-sm col-md-6 col-lg-6 text-center">
                                 <div class="row">
-                                    <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center ">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                         <div class="text-center">
-                                            <br/>
-                                            <br/>
+                                            <a data-toggle="modal" data-target="#myModal" href="#"><img src="img/mail.png" alt="mail" class="img-circle" width="160" height="160"/></a>
                                             <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
-                                            <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
-                                        </div>
-                                    </div> 
-                                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
-                                        <div class="text-center">
-                                            <br/>
-                                            <br/>
-                                            <img src="img/mail.png" alt="mail" class="img-circle" width="200" height="200"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="hidden-xs col-sm-12 col-md-6 col-lg-6 text-center">
+                            <div class="hidden-xs hidden-sm col-md-6 col-lg-6 text-center">
                                 <div class="row">
-                                    <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <br/>
-                                            <br/>
+                                            <a href="cursos.php"><img src="img/folder.png" alt="folder" width="150" height="150"/></a>
+                                            <br/><br/>
                                             <p class="lead">Administración de Cursos o Secciones.</p>
-                                            <br/>
-                                            <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
                                         </div>        
                                     </div>
-                                    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 text-center">
-                                        <div class="text-center">
-                                            <br/>
-                                            <br/>
-                                            <img src="img/folder.png" alt="folder" width="128" height="128"/>
-                                        </div>
-                                    </div> 
                                 </div>
                             </div>
-                            <div class=" hidden-sm hidden-md hidden-lg text-center">
+                            <div class="hidden-md hidden-lg col-xs-6 col-sm-6 text-center">
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
-                                            <br/>
-                                            <br/>
-                                            <img src="img/mail.png" alt="mail" class="img-circle" width="200" height="200"/>
+                                            <a data-toggle="modal" data-target="#myModal" href="#"><img src="img/mail.png" alt="mail" class="img-circle" width="130" height="130"/></a>
                                             <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
-                                            <input style="margin-top: 10px" data-toggle="modal" data-target="#myModal" type="button" value="Generar invitación." name="btn3" class="btn btn-primary"/>
                                         </div>
                                     </div> 
                                 </div>
                             </div>
-                            <div class="hidden-sm hidden-md hidden-lg text-center">
+                            <div class="hidden-md hidden-lg col-xs-6 col-sm-6 text-center">
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <br/>
-                                            <br/>
-                                            <img src="img/folder.png" alt="folder" width="120" height="120"/>
+                                            <a href="cursos.php"><img src="img/folder.png" alt="folder" width="110" height="110"/></a>
+                                            <br/><br/>
                                             <p class="lead">Administración de Cursos o Secciones.</p>
-                                            <a  class="btn btn-primary" href="cursos.php">Administre sus Cursos</a>
-                                        </div>        
+                                        </div>         
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br/>
                 </div>
                 <!--Fin seccion de cursos-->
                 </div>

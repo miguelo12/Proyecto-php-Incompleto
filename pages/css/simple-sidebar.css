@@ -21,15 +21,25 @@ and open the template in the editor.
     padding-right: 260px;
 }
 
+@media screen and (orientation:portrait) { 
+    #sidebar-wrapper {
+height: 100%;}
+}
+@media screen and (orientation:landscape) { 
+    #sidebar-wrapper {
+        height: 84vh;
+    }
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     right: -260px;
     width: 0;
-    height: 120%;
     margin-right: -260px;
-    margin-top: 80px;
+    margin-top: -60px;
     overflow-y: auto;
+    overflow-x: hidden;
     background: #000;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;

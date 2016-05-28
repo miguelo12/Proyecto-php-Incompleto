@@ -148,14 +148,6 @@ error_reporting(0);
         </div>
         </nav>
         </div>
-        
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
 
          <?php  if(isset($_GET["errorSubir"])): if($_GET["errorSubir"]==1):?>
         <div class="alert alert-danger">

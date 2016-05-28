@@ -181,14 +181,6 @@
         </div>
         </nav>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
         
         <?php  if(isset($_GET["error"])): if($_GET["error"]==100):?>
         <div class="alert alert-danger">

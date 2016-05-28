@@ -7,7 +7,7 @@
         }
         else
         {
-            $alumno = $_SESSION["alumno"];
+           $alumno = $_SESSION["alumno"];
         }
       }
   else
@@ -27,7 +27,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
-    <title>Actividad Alumno</title>
+    <title>Actividad</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,15 +45,15 @@
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/simple-sidebar.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-            
-   <!-- jQuery -->
+        
+    <!-- jQuery -->
     <script src="../component/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -64,13 +64,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
+  
 </head>
 
 <body>
         <!-- Navigation -->
         
-        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" id="menu-toggle" href="#menu-toggle" aria-expanded="false" aria-controls="navbar">
@@ -84,7 +84,7 @@
                 <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="indexAlumno.php"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
+                <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i> <?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
@@ -94,6 +94,7 @@
                   </ul>
                 </li>
               </ul>
+              <h1 class="navbar-text navbar-right" style="margin-top: 50px; margin-right: 80px">Portal Alumno</h1> 
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -113,12 +114,12 @@
                     </a>
                 </li>
                 <li class="active"> 
-                    <a href="indexAlumno.php">Inicio</a>
+                      <a href="#">Inicio</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="active"><a href="actividadAlumno.php">Unete a una actividad</a></li>
+                    <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
                     <li><a href="#">Ver unidades de aprendizaje</a></li>
                     <li><a href="#">Responde una Actividad</a></li>
                     <li role="separator" class="divider"></li>
@@ -129,7 +130,7 @@
                 <li class="dropdown hidden-lg hidden-md">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li> 
+                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
                   </ul>
@@ -139,42 +140,49 @@
         </nav>
         </div>
         
+        <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
+        <div class="alert alert-danger">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           <p class="text-center"><strong>Error, </strong> el email introducido ya existe.</p>
+        </div>
+        <?php endif; endif;?>
+        <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
+        <?php if(isset($_SESSION["idAlumno"])):?>
+        <div class="alert alert-success">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="sacar()">&times;</a>
+           <p class="text-center"><strong>Listo, </strong> se acaba de enviar el email.</p>
+           <p class="text-center">El codigo de tu alumno es <strong><?= $_SESSION["idAlumno"]?></strong></p>
+           <p class="text-center">Este mensaje se eliminara en <span id="timer"></span> segundos. <button onclick="sacar()">Eliminar Mensaje</button></p>
+        </div>
+        <?php endif;?>
+        <?php endif; endif;?>
+        <div class="hidden-md hidden-xs hidden-sm">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        </div>
         <div id="page-content-wrapper content" >
-        <div class="container separate-rows tall-rows">
-            <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                    <div class="well well-lg">
-                    <div class="text-center">
-                        <h2><ins>Ingresa el PIN de la actividad</ins></h2>
-                    </div>
-                    <div class="row">
-                        
-                        <form role="form" method="POST" action="php/actividad.php">
-                            <fieldset>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <input class="form-control" placeholder="PIN" name="pin" type="text" autofocus required>
-                                </div>
-                                <input type="submit" class="btn btn-lg btn-success btn-group" value="Ingresar">
-                            </fieldset>
+            <div class="container separate-rows tall-rows">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">                      
+
+                            Pronto..
                             
-                        </form>    
-                        <div class="clearfix visible-xs"></div>
-                        
-                        
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    </div>
+                        </div>
+                    </div>     
                 </div>
             </div>
         </div>
-        </div>
 
+        
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    </script>
-    </body>
-
+    </script> 
+</body>
 </html>
