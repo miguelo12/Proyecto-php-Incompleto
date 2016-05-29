@@ -15,29 +15,57 @@ h3, h4, label, p, th{
 @media (min-width: 1200px) {
     body { padding-top: 150px; }
     .repo{width:190px; height: 190px;}
+    .titulolandscape{display: none;}
+    .pretitulolandscape{display: block;}
 }
 
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
     body { padding-top: 150px; }
     .repo{width:190px; height: 190px;}
+    .titulolandscape{display: none;}
+    .pretitulolandscape{display: block;}
 }
 
 /* Portrait tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px)  {
     body { padding-top: 150px; }
     .repo{width:190px; height: 190px;}
+    .titulolandscape{display: none;}
+    .pretitulolandscape{display: block;}
 }
 
 /* Landscape phones and portrait tablets */
-@media (max-width: 767px) {
+@media (max-width: 767px) and (orientation:portrait)  {
     body { padding-top: 120px; }
+    .imagelogo{width:145px; height: 75px;}
     .repo{width:150px; height: 150px;}
+    .titulolandscape{display: none;}
+    .pretitulolandscape{display: block;}
 }
 
 /* Portrait phones and smaller */
-@media (max-width: 480px) {
+@media (max-width: 480px) and (orientation:portrait)  {
    body { padding-top: 130px; }
    .repo{width:130px; height: 130px;}
+   .titulolandscape{display: none;}
+   .pretitulolandscape{display: block;}
 }
 
+/*landscape mobile*/
+
+@media (max-width: 767px) and (orientation:landscape) {
+      body { padding-top: 80px; }
+      .imagelogo{width:80px; height: 50px;}
+      .repo{width:150px; height: 150px;}
+      .titulolandscape{display: block;}
+      .pretitulolandscape{display: none;}
+}
+
+@media (max-width: 480px) and (orientation:landscape) {
+      body { padding-top: 80px; }
+      .imagelogo{width:80px; height: 50px;}
+      .repo{width:130px; height: 130px;}
+      .titulolandscape{display: block;}
+      .pretitulolandscape{display: none;}
+}

@@ -23,7 +23,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
@@ -131,10 +131,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-                <a class="navbar-brand hidden-xs hidden-sm hidden-md" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="100" width="200"/></a>
-                <a class="navbar-brand hidden-xs hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="90" width="180"/></a>
-                <a class="navbar-brand hidden-md hidden-sm hidden-lg" style="margin-left: 10px" href="#"><img src="img/logo.PNG" alt="" height="75" width="110"/></a>
-            </div>
+                <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" class="imagelogo" alt="" height="100" width="200"/></a>
+                <h3 class="navbar-text navbar-right pull-right titulolandscape" style="margin-top: 30px; margin-right: 80px">Portal Alumno</h3>
+            </div>          
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
                 <li class="dropdown">
@@ -223,14 +222,14 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
-                            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
-                                <div class="text-center">
-                                    <h4 style="float: right; margin-right: 20px">Portal Estudiante</h4>
-                                    <br/>
-                                    <h1 style="float: top">¿<ins>Qué deseas hacer</ins>?</h1>
-                                </div>
-                            </div>
                             <div id="paso1">
+                                <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                                    <div class="text-center">
+                                        <h4 style="float: right; margin-right: 20px" class="pretitulolandscape">Portal Estudiante</h4>
+                                        <br class="pretitulolandscape" />
+                                        <h1 style="float: top">¿<ins>Qué deseas hacer</ins>?</h1>
+                                    </div>
+                                </div>
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
@@ -260,10 +259,14 @@
                                             <p>Aquí para unirse a una seccion, grupo o actividad.</p>
                                         </div>
                                     </div>    
-                                </div>    
+                                </div>
+                               
                             </div>    
                             
                             <div id="paso2">
+                                <br/>
+                                <br/>
+                                <br/>
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
@@ -297,6 +300,7 @@
                                 </div>
                             </div> 
                             <div id="paso3">
+                                <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
@@ -323,8 +327,10 @@
                                 <div class="col-xs-12">
                                     <button class="pull-right btn btn-default volver1">Volver</button>
                                 </div>
+                                
                             </div>
                             <div id="paso4">
+                                <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
@@ -351,8 +357,12 @@
                                 <div class="col-xs-12">
                                     <button class="pull-right btn btn-default volver1">Volver</button>
                                 </div>
+
                             </div> 
                             <div id="paso5">
+                                <br/>
+                                <br/>
+                                <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-xs-6 col-md-6 col-lg-6">
@@ -378,7 +388,8 @@
                                 
                                 <div class="col-xs-12">
                                     <button class="pull-right btn btn-default volver1">Volver</button>
-                                </div>
+                                </div>   
+                                
                             </div>
                         </div>
                     </div>     
