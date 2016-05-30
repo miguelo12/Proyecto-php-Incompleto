@@ -113,19 +113,20 @@
 </nav>
     <div class="container">
         <div class="row">
-            <a class="btn" id="help1" data-placement="right" title="Actualización 06/05/2016:">
+            <a class="btn" id="help1" data-placement="right" title="Nueva actualización 29/05/2016:">
                 <span class="fa-stack fa-lg">
-                  <i class="fa fa-square-o fa-stack-2x"></i>
-                  <i class="fa fa-question fa-stack-1x"></i>
+                  <i class="fa fa-exclamation-triangle shake text-danger"></i>
                 </span>
             </a>
             <div id="popover_content_wrapper" style="display: none">
               <div>
                     <ul>
-                        <li style="font-size: 16px">Creacion de Rubrica:<span style="color: green;">Habilitado</span></li>
-                        <li style="font-size: 16px">Editar Rubrica:<span style="color: green;">Habilitado</span></li>
-                        <li style="font-size: 16px">Ver Rubrica:<span style="color: green;">Habilitado</span></li>
-                        <li style="font-size: 16px">Correcciones menores de colores, fondo entre otras cosas.</li>
+                        <li style="font-size: 16px">Publicar una unidad de aprendizaje:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Evaluar o revisar, accesible:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Nuevo modelo, tanto para docente como alumno:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Nuevo aviso al crear una unidad sin seleccionar una rubrica:<span style="color: green;">Habilitado</span></li>
+                        <li style="font-size: 16px">Nuevos iconos, temas responsive, nuevo header, inicio alumno cambiado.</li>
+                        <li style="font-size: 16px">Se corrigieron errores de la pagina, entre otras cosas.</li>
                     </ul>
               </div>
             </div>
