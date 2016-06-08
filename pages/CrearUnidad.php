@@ -224,12 +224,15 @@ error_reporting(0);
            <p class="text-center"><strong>Error, </strong> no has editado o finalizado el proceso.</p>
         </div>
         <?php endif; endif;?>
+        <div class="hidden-xs hidden-sm">
+            <br/>
+        </div>
         <div id="page-content-wrapper content">
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                             <div class="row">
                                 <form action="php/creacionUnidad.php" method="POST" id="formulario" autocomplete="off">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -257,19 +260,19 @@ error_reporting(0);
                                 <div class="col-xs-12 text-center">
                                     <div class="hidden-lg hidden-md hidden-sm ">
                                     <?php if(isset($_SESSION["editar"])):?>
-                                    <input value="Editar Recursos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"/>
+                                        <button name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"><i class="fa fa-sitemap fa-fw" aria-hidden="true"></i> Editar Recursos</button>
                                     <br/>
                                     <?php else:?>
-                                    <input value="Agregar Recursos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"/>
+                                        <button name="boton1" type="submit" class="btn btn-default btn-lg btn-block" disabled="da"><i class="fa fa-sitemap fa-fw" aria-hidden="true"></i> Agregar Recursos</button>
                                     <br/>
                                     <?php endif;?>
                                     </div>
                                     <div class="hidden-xs">
                                     <?php if(isset($_SESSION["editar"])):?>
-                                    <input value="Editar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                        <button name="boton1" type="submit" class="btn btn-default btn-lg btn-block"><i class="fa fa-sitemap fa-fw" aria-hidden="true"></i> Editar Recursos Didácticos</button>
                                     <br/>
                                     <?php else:?>
-                                    <input value="Agregar Recursos Didácticos" name="boton1" type="submit" class="btn btn-default btn-lg btn-block"/>
+                                        <button name="boton1" type="submit" class="btn btn-default btn-lg btn-block"><i class="fa fa-sitemap fa-fw" aria-hidden="true"></i> Agregar Recursos Didácticos</button>
                                     <br/>
                                     <?php endif;?>
                                     </div>
@@ -281,32 +284,29 @@ error_reporting(0);
                                     <div class="hidden-lg hidden-md hidden-sm">
                                     
                                     <?php if(isset($_SESSION["editar"])):?>
-                                        <input formaction="php/creacionUnidad.php?action=2" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
+                                        <button formaction="php/creacionUnidad.php?action=2" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="true"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Guardar Unidad</button>
                                     <br/>
                                     <?php else:?>
-                                        <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="da"/>
+                                        <button formaction="php/creacionUnidad.php?action=1" name="boton2" type="submit" class="btn btn-success btn-lg btn-block" disabled="true"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Guardar Unidad</button>
                                     <br/>
                                     <?php endif;?>
                                     </div>
                                     <div class="hidden-xs">
                                     <?php if(isset($_SESSION["editar"])):?>
-                                        <input formaction="php/creacionUnidad.php?action=2" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
+                                        <button formaction="php/creacionUnidad.php?action=2" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Guardar Unidad de aprendizaje</button>
                                     <br/>
                                     <?php else:?>
-                                        <input formaction="php/creacionUnidad.php?action=1" value="Guardar Unidad de aprendizaje" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"/>
+                                        <button formaction="php/creacionUnidad.php?action=1" name="boton2" type="submit" class="btn btn-success btn-lg btn-block"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> Guardar Unidad de aprendizaje</button>
                                     <br/>
                                     <?php endif;?>
                                     </div>
                                 </div>
 
-                                <div class="clearfix visible-xs"></div>
-
                                 <div class="col-xs-12 text-center">
-                                    <br/>
                                     <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?> 
-                                    <a name="btn3" class="btn btn-primary" href="indexDocente.php">Volver al Portal Docente</a>
+                                    <a name="btn3" class="btn btn-primary btn-lg btn-block" href="indexDocente.php"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
                                     <?php else:?>
-                                    <input data-toggle="modal" data-target="#myModal" type="button" value="Volver al Portal Docente" name="btn3" class="btn btn-primary"/>
+                                    <a data-toggle="modal" data-target="#myModal" name="btn3" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
                                     <?php endif;?>
                                     <br/>
                                     <br/>
@@ -345,6 +345,9 @@ error_reporting(0);
                                 </form>
                                 <div class="clearfix visible-xs"></div>
                             </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
+                            <span class="btn-block text-center"><img src="img/actividadcrear.png" alt=""/></span>
                         </div>
                         </div>
                 </div>

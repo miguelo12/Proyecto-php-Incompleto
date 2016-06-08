@@ -122,7 +122,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" class="imagelogo" alt="" height="100" width="200"/></a>
-                <h3 class="navbar-text navbar-right pull-right titulolandscape" style="margin-top: 30px; margin-right: 80px">Portal Alumno</h3>
+                <h4 class="navbar-text navbar-right pull-right titulolandscape" style="margin-top: 30px; margin-right: 80px">Portal Alumno</h4>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -222,7 +222,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
                                         <a href="CrearUnidad.php?new=1"><p><img src="img/actividad.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/actividad.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/actividad.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Crear Actividad</a>
-                                        <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>
+<!--                                        <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>-->
                                     </div>     
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
                                         <a href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
-                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>
+<!--                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>-->
                                     </div>
                                     
                                 </div>        
@@ -243,7 +243,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
                                         <a href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle hidden-sm hidden-md hidden-lg" width="100" height="100"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-lg" width="160" height="160"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-sm hidden-md" width="200" height="200"></p>Evaluar</a>
-                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>
+<!--                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>-->
                                     </div>
                                     
                                 </div>    
@@ -259,8 +259,9 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                         <div class="text-center">
-                                            <a data-toggle="modal" data-target="#myModal" href="#"><img src="img/mail.png" alt="mail" class="img-circle" width="160" height="160"/></a>
-                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <br/>
+                                            <a data-toggle="modal" data-target="#myModal" href="#"><p><img src="img/mail.png" alt="mail" class="img-circle" width="160" height="160"/></p><br/>Invitar Alumno</a>
+<!--                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>-->
                                         </div>
                                     </div>
                                 </div>
@@ -270,9 +271,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <a href="cursos.php"><img src="img/folder.png" alt="folder" width="150" height="150"/></a>
-                                            <br/><br/>
-                                            <p class="lead">Administración de Cursos o Secciones.</p>
+                                            <a href="cursos.php"><p><img src="img/folder.png" alt="folder" width="160" height="160"/></p><br/>Cursos o Secciones</a>
+<!--                                            <p class="lead">Administración de Cursos o Secciones.</p>-->
                                         </div>        
                                     </div>
                                 </div>
@@ -281,8 +281,9 @@
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
-                                            <a data-toggle="modal" data-target="#myModal" href="#"><img src="img/mail.png" alt="mail" class="img-circle" width="130" height="130"/></a>
-                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>
+                                            <br/>
+                                            <a data-toggle="modal" data-target="#myModal" href="#"><p><img src="img/mail.png" alt="mail" class="img-circle" width="90" height="90"/></p><br/>Invitar Alumno</a>
+<!--                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>-->
                                         </div>
                                     </div> 
                                 </div>
@@ -292,9 +293,8 @@
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <a href="cursos.php"><img src="img/folder.png" alt="folder" width="110" height="110"/></a>
-                                            <br/><br/>
-                                            <p class="lead">Administración de Cursos o Secciones.</p>
+                                            <a href="cursos.php"><p><img src="img/folder.png" alt="folder" width="90" height="90"/></p><br/>Cursos o Secciones</a>
+<!--                                            <p class="lead">Administración de Cursos o Secciones.</p>-->
                                         </div>         
                                     </div>
                                 </div>

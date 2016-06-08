@@ -171,6 +171,20 @@
         </nav>
         </div>
         
+        <?php if(isset($_GET["error"])):
+                if($_GET["error"]=="201"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong >Error, </strong> no puedes publicar una unidad, ya publicada.<br/> Primero finaliza la actividad y despues puedes publicar otra actividad.
+                    </div>
+        <?php endif; endif; ?>
+        <?php if(isset($_GET["error"])):
+                if($_GET["error"]=="202"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong >Error, </strong> no puedes editar una unidad, ya publicada.<br/> Primero finaliza la actividad y podras editar la unidad.
+                    </div>
+        <?php endif; endif; ?>
         <?php if(isset($_GET["creado"])):
                 if($_GET["creado"]=="1"):?>
                     <div class="alert alert-success text-center">

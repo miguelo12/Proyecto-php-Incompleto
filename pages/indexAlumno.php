@@ -67,12 +67,19 @@
     
     <script>
     $().ready(function(){
+        <?php if(isset($_GET["error"]) || isset($_GET["exito"])):?>
+        $("#paso3").show();
+        $("#paso2").hide();
+        $("#paso1").hide();
+        $("#paso4").hide();
+        $("#paso5").hide();
+        <?php else: ?>
         $("#paso1").show();
         $("#paso2").hide();
         $("#paso3").hide();
         $("#paso4").hide();
-        $("#paso5").hide();
-
+        $("#paso5").hide();    
+        <?php endif;?>
         $("#opcion2").click(function(){
             $("#paso2").fadeIn("fast");
             $("#paso1").hide();
@@ -93,6 +100,54 @@
             $("#paso1").hide();
             $("#paso3").hide();
             $("#paso5").hide();
+            
+            $.ajax({
+                url:   'php/actividades.php?accion=7',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").hide();
+                        $("#resultado1").show();
+                },
+                success:  function (response) {
+                        $("#resultado1").hide();
+                        $("#resultado").show();
+                        $('select#seccion').prop( "disabled", false );
+                        $("select#seccion option").remove(); // Remove all <option> child tags.
+                        if(response !== null){
+                        $('select#seccion').prop( "disabled", false );
+                        $('#enviar').prop( "disabled", false );
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.asignatura)
+                                    .val(item.idactividad)
+                            );
+                        });
+                        }
+                        else{
+                            $('select#seccion').prop( "disabled", true );
+                            $('#enviar').prop( "disabled", true );
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                            $("<option></option>") // Yes you can do this.
+                            .text("Sin actividad.")
+                            );
+                        }
+                },
+                error: function(xhr, status) {
+                    $("#resultado1").hide();
+                    $("#resultado").show();
+                    $('select#seccion').prop( "disabled", true );
+                    $('#enviar').prop( "disabled", true );
+                    $("select#seccion option").remove(); // Remove all <option> child tags.
+                    $("select#seccion").append( // Append an object to the inside of the select box
+                        $("<option></option>") // Yes you can do this.
+                            .text("Ocurrio un error inprevisto... reinicie la pagina.")
+                    );
+                }
+            });
+            
         });
         $("#opcion5").click(function(){
             $("#paso5").fadeIn("fast");
@@ -191,22 +246,7 @@
         </nav>
         </div>
         
-        <?php  if(isset($_GET["errorenvio"])): if($_GET["errorenvio"]==1):?>
-        <div class="alert alert-danger">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-           <p class="text-center"><strong>Error, </strong> el email introducido ya existe.</p>
-        </div>
-        <?php endif; endif;?>
-        <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
-        <?php if(isset($_SESSION["idAlumno"])):?>
-        <div class="alert alert-success">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close" onclick="sacar()">&times;</a>
-           <p class="text-center"><strong>Listo, </strong> se acaba de enviar el email.</p>
-           <p class="text-center">El codigo de tu alumno es <strong><?= $_SESSION["idAlumno"]?></strong></p>
-           <p class="text-center">Este mensaje se eliminara en <span id="timer"></span> segundos. <button onclick="sacar()">Eliminar Mensaje</button></p>
-        </div>
-        <?php endif;?>
-        <?php endif; endif;?>
+        
         <div class="hidden-xs hidden-md hidden-lg">
         <br/>
         </div>
@@ -264,9 +304,6 @@
                             </div>    
                             
                             <div id="paso2">
-                                <br/>
-                                <br/>
-                                <br/>
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
@@ -296,21 +333,21 @@
                                 </div>
                                 
                                 <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver">Volver</button>
+                                    <button class="pull-right btn btn-default volver"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
                                 </div>
                             </div> 
                             <div id="paso3">
-                                <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
+                                <br/>
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <form class="form-horizontal" role="form">
+                                            <form class="form-horizontal" role="form" method="POST" action="php/actividades.php?accion=4">
                                               <fieldset>
                                               <legend><h1>Ingrese PIN Sección:</h1></legend>
                                               <div class="form-group">
-                                                <label class="control-label col-sm-2" for="email">PIN:</label>
+                                                <label class="control-label col-sm-2" for="pin">PIN:</label>
                                                 <div class="col-sm-10">
-                                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                                    <input type="pin" name="pin" class="form-control" id="pin" placeholder="Ingresa el pin">
                                                 </div>
                                               </div> 
                                               <div class="form-group pull-right"> 
@@ -320,12 +357,30 @@
                                               </div>
                                               </fieldset>
                                             </form>
+                                            <?php  if(isset($_GET["error"])): if($_GET["error"]==1):?>
+                                            <div class="alert alert-danger">
+                                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                               <p class="text-center"><strong>Error, </strong> ya estas en esta seccion o curso.</p>
+                                            </div>
+                                            <?php endif; endif;?>
+                                            <?php  if(isset($_GET["error"])): if($_GET["error"]==2):?>
+                                            <div class="alert alert-danger">
+                                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                               <p class="text-center"><strong>Error, </strong> el pin de la seccion o curso ingresada no existe.</p>
+                                            </div>
+                                            <?php endif; endif;?>
+                                            <?php if(isset($_GET["exito"])): if($_GET["exito"]==1):?>
+                                            <div class="alert alert-success">
+                                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                               <p class="text-center"><strong>Listo, </strong> acabas de ingresar a una seccion.</p>
+                                            </div>
+                                            <?php endif; endif;?>
                                         </div>   
                                     </div>
                                 </div>
                                 
                                 <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                    <button class="pull-right btn btn-default volver1"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
                                 </div>
                                 
                             </div>
@@ -334,20 +389,27 @@
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <form class="form-horizontal" role="form">
-                                              <fieldset>
-                                              <legend><h1>Ingrese PIN Asignatura:</h1></legend>
-                                              <div class="form-group">
-                                                <label class="control-label col-sm-2" for="email">PIN:</label>
-                                                <div class="col-sm-10">
-                                                  <input type="email" class="form-control" id="email" placeholder="Enter email">
-                                                </div>
-                                              </div> 
-                                              <div class="form-group pull-right"> 
-                                                <div class="col-xs-12">
-                                                  <button type="submit" class="btn btn-success">Enviar</button>
-                                                </div>
-                                              </div>
+                                            <form class="form-horizontal" role="form" method="POST" action="php/actividades.php?accion=6">
+                                              <fieldset id="resultado">
+                                                  <legend><h1>Ingrese a una Actividad:</h1></legend>
+                                                  <div class="form-group">
+                                                    <label class="control-label col-sm-2" for="email">Actividad:</label>
+                                                    <div class="col-sm-10">
+                                                        <select id="seccion" name="actividad" class="form-control">
+                                                        </select>
+                                                    </div>
+                                                  </div> 
+                                                  <div class="form-group pull-right"> 
+                                                    <div class="col-xs-12">
+                                                        <button type="submit" id="enviar" class="btn btn-success">Enviar</button>
+                                                    </div>
+                                                  </div>
+                                              </fieldset>
+                                              <fieldset id="resultado1" class="text-center">
+                                                  <label class="control-label" for="email"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                                                  <span class="sr-only">Espere esta cargando...</span>
+                                                  <br/><br/>
+                                                  <p>&nbsp;Cargando...</p></label>
                                               </fieldset>
                                             </form>
                                         </div>   
@@ -360,9 +422,6 @@
 
                             </div> 
                             <div id="paso5">
-                                <br/>
-                                <br/>
-                                <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-xs-6 col-md-6 col-lg-6">
@@ -387,9 +446,8 @@
                                 </div>
                                 
                                 <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                    <button class="pull-right btn btn-default volver1"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
                                 </div>   
-                                
                             </div>
                         </div>
                     </div>     

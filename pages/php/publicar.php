@@ -4,9 +4,20 @@ session_start();
 if(isset($_GET["publicar"])){
     $publicar = $_GET["publicar"];
     $name = $_GET["name"];
-    echo $_SESSION["publicar"];
+    
+    include_once("./CRUD/Actividad.php");
+    $actividad = new Actividad();
+    $actividad->setUnidadAprendizaje_idUnidadAprendizaje($publicar);
+
+    if(!$actividad->ActividadOcupada()){
     $_SESSION["publicar"] = array("id"=>$publicar, "nombre"=>$name);
     header("location: ../publicar.php");
+    die();
+    }
+    else{
+    header("location: ../Biblioteca.php?error=201");
+    die();
+    }
     die();
 }
 else{

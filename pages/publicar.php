@@ -202,7 +202,7 @@
                                     <span class="input-group-addon">
                                         Fecha Inicio: &nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
-                                    <input class="form-control text-center" placeholder="Selecciona una fecha" name="fechainicio" id="fechainicio" type="text">
+                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechainicio" id="fechainicio" type="text" readonly="true">
                                     <span class="input-group-addon" id="btn" style="cursor:pointer;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -213,7 +213,7 @@
                                     <span class="input-group-addon">
                                         Fecha Termino:
                                     </span>
-                                    <input class="form-control text-center" placeholder="Selecciona una fecha" name="fechatermino" id="fechatermino" type="text">
+                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechatermino" id="fechatermino" type="text" readonly="true">
                                     <span class="input-group-addon" id="btn1" style="cursor:pointer;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

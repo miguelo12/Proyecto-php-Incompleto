@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 if(!isset($_GET["accion"])){
 include_once("./CRUD/Actividad.php");
@@ -48,7 +49,72 @@ else{
            header("location: actividades.php");
            die(); 
        } 
-    }
+    }   elseif ($_GET["accion"]==4) {
+       if(isset($_POST["pin"])){
+           $idseccion = $_POST["pin"];
+           $alumno = $_SESSION["alumno"];
+           //Ingresar alumno a la seccion.
+           include_once("./CRUD/AlumnoSeccion.php");
+           include_once("./CRUD/Seccion.php");
+           $seccion = new Seccion();
+           $seccion->setidSeccion($idseccion);
+           $aluseccion = new AlumnoSeccion();
+           $aluseccion->setAlumno_idAlumno($alumno["id"]);
+           $aluseccion->setSeccion_idSeccion($idseccion);
+           if(!$seccion->ExisteonoPorID()){
+               if(!$aluseccion->ExisteonoPorID()){
+               $aluseccion->Ingresar();
+               header("location: ../indexAlumno.php?exito=1");
+               die(); 
+               }
+               else{
+               header("location: ../indexAlumno.php?error=1");
+               die();    
+               }
+           }
+           else{
+            header("location: ../indexAlumno.php?error=2");
+            die();      
+           }
+       } 
+    }   elseif ($_GET["accion"]==5) {
+           //seccion alumno asignatura.
+           $alumno = $_SESSION["alumno"];
+           include_once("./CRUD/AlumnoSeccion.php");
+           $aluseccion = new AlumnoSeccion();
+           $aluseccion->setAlumno_idAlumno($alumno["id"]);
+           $array = $aluseccion->EntregarSeccionAlumno();
+           echo json_encode($array);
+           die();
+    }   elseif ($_GET["accion"]==6) {
+           //Alumno quedara ligado a la actividad.
+           if($_POST["actividad"]){
+           $alumno = $_SESSION["alumno"];
+           $act = $_POST["actividad"];
+           include_once("./CRUD/AlumnoUnidadAprendizaje.php");
+           $aluUnidadAprendizaje = new AlumnoUnidadAprendizaje();
+           $aluUnidadAprendizaje->setAlumno_idAlumno($alumno["id"]);
+           $aluUnidadAprendizaje->setActividad_idActividad($act);
+               if(!$aluUnidadAprendizaje->ExisteonoPorID()){
+               $_SESSION["idActividad"] = $aluUnidadAprendizaje->Ingresar();
+               header("location: ../actividadAlumno.php");
+               die();
+               }
+               else{
+               header("location: ../indexAlumno.php?error1=1");
+               die();   
+               }
+           }
+    }   elseif ($_GET["accion"]==7) {
+            //Alumno quedara ligado a la actividad.
+            $act = $_SESSION["Actividad"];
+            include_once("./CRUD/AlumnoUnidadAprendizaje.php");
+            $aluUnidadAprendizaje = new AlumnoUnidadAprendizaje();
+            $aluUnidadAprendizaje->setActividad_idActividad($act["id"]);
+            $array = $aluUnidadAprendizaje->DevolverAlumnos();
+            echo json_encode($array);
+            die();
+        }   
     
 }
 header("location: ../error.php?error=404");

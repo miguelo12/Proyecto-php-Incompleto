@@ -49,9 +49,9 @@ class AlumnoSeccion {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from alumnoseccion where idAlumnoSeccion=?");
+      $sentencia=$c->prepare("select * from alumnoseccion where Alumno_idAlumno=? and Seccion_idSeccion=?");
       
-      $sentencia->bind_param("i", $this->idAlumnoSeccion);
+      $sentencia->bind_param("ss", $this->Alumno_idAlumno, $this->Seccion_idSeccion);
       
       $sentencia->execute();
       
@@ -62,6 +62,31 @@ class AlumnoSeccion {
         return true;
       }
       return false;
+    }
+    
+    public function EntregarSeccionAlumno()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select asi.Nombre as asignatura, aluse.Seccion_idSeccion as idseccion, act.idActividad as idactividad from alumnoseccion as aluse inner JOIN seccion as se on se.idSeccion=aluse.Seccion_idSeccion inner join asignatura as asi on se.Asignatura_idAsignatura=asi.idAsignatura inner join actividad as act on act.Seccion_idSeccion=se.idSeccion where aluse.Alumno_idAlumno=? and act.finalizada=0 and act.fecha_termino>=CURDATE()");
+      
+      $sentencia->bind_param("s", $this->Alumno_idAlumno);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        while($row = $resu->fetch_assoc()){
+          $res[] = $row;
+        }
+      }
+      else{
+          $res = null;
+      }
+
+      return $res;
     }
     
     public function setidAlumnoSeccion($idAlumnoSeccion)

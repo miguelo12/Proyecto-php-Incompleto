@@ -21,7 +21,8 @@
        }
        else{
           if(isset($_GET["idActividad"])){
-              
+            $actividad = $_GET["idActividad"];
+            $_SESSION["Actividad"] = $actividad;
           }
           else{
           header('Location:' . getenv('HTTP_REFERER'));
@@ -224,9 +225,11 @@
                         </tr>
                     </table>
                     <br/>
-                    <table class="table table-condensed table-striped table-bordered">
+                    
+                    <fieldset id="resultado" class="text-center">
+                    <table id="add-table" class="table table-condensed table-striped table-bordered">
                         <th class="text-center" style="width: 40%">
-                            Apellido
+                            Nombre
                         </th>
                         <th class="text-center" style="width: 60%">
                             Correo Electronico
@@ -240,13 +243,60 @@
                             </td>
                         </tr>
                     </table>
+                    </fieldset>
+                    
+                    <fieldset id="resultado1" class="text-center">
+                        <label class="control-label" for="email"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                        <span class="sr-only">Espere esta cargando...</span>
+                        <br/><br/>
+                        <p>&nbsp;Cargando...</p></label>
+                    </fieldset>
                 </div>
             </div>
         </div>
         </div>
         <br/>
         <br/>
+     
+    
+    <script>
+    $().ready(function(){
+        $("#resultado").hide();
+        $("#resultado1").show();
+    });
+    </script>    
         
+    <script>
+    setInterval(function() {
+            $.ajax({
+                url:   'php/actividades.php?accion=7',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").hide();
+                        $("#resultado1").show();
+                },
+                success:  function (response) {
+                        $("#resultado1").hide();
+                        $("#resultado").show();
+                        
+                        // 1. remove all existing rows
+                        $("#add-table tr:has(td)").remove();
+                        
+                        if(response!==null){
+                        $.each(response, function(i, item) {
+                        var $tr = $('<tr>').append(
+                                $('<td>').text(item.nombre),
+                                $('<td>').text(item.email)
+                            ).appendTo('#add-table');
+                        });
+                        }                          
+                }
+            });
+    }, 8000); //5 seconds  
+    </script>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
