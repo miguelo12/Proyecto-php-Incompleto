@@ -215,7 +215,7 @@ class Alumno {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=?, habilitado=? where idAlumno=?");
+      $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=?, habilitado=? where idAlumno=? and nombre='Sin nombre'");
       
       $sentencia->bind_param("ssssi", $this->email, $this->nombre, $this->password, $this->habilitado, $this->idAlumno);
       

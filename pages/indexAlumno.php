@@ -102,7 +102,7 @@
             $("#paso5").hide();
             
             $.ajax({
-                url:   'php/actividades.php?accion=7',
+                url:   'php/actividades.php?accion=5',
                 type:  'post',
                 dataType: 'json',
                 cache: false,
