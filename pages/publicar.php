@@ -180,12 +180,13 @@
         </nav>
         </div>
         
-        <?php  if(isset($_GET["error"])): if($_GET["error"]==100):?>
-        <div class="alert alert-danger">
-           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-           <p class="text-center"><strong>Error, </strong> no corresponde a una fecha correcta.</p>
-        </div>
-        <?php endif; endif;?>
+        <?php if(isset($_GET["error"])):
+                if($_GET["error"]=="201"):?>
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong >Error, </strong> no puedes publicar una unidad de una seccion, ya publicada.<br/> Primero finaliza la actividad de la seccion y despues puedes publicar otra actividad a esa seccion.
+                    </div>
+        <?php endif; endif; ?>
 
         <div id="page-content-wrapper content" >
           <div class="container separate-rows tall-rows">
@@ -202,7 +203,7 @@
                                     <span class="input-group-addon">
                                         Fecha Inicio: &nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
-                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechainicio" id="fechainicio" type="text" readonly="true">
+                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechainicio" id="fechainicio" type="text" readonly="readonly">
                                     <span class="input-group-addon" id="btn" style="cursor:pointer;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -213,7 +214,7 @@
                                     <span class="input-group-addon">
                                         Fecha Termino:
                                     </span>
-                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechatermino" id="fechatermino" type="text" readonly="true">
+                                    <input class="form-control text-center" style="cursor:pointer;" placeholder="Selecciona una fecha" name="fechatermino" id="fechatermino" type="text" readonly="readonly">
                                     <span class="input-group-addon" id="btn1" style="cursor:pointer;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -266,10 +267,10 @@
                         <div class="col-xs-12 hidden-xs hidden-sm">
                             <br/>
                             <br/>
-                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">   
+                            <button type="submit" class="btn btn-lg btn-success btn-block"><i class="fa fa-pencil fa-1x fa-fw" aria-hidden="true"></i> Crear Actividad</button>   
                         </div>
                         <div class="col-xs-12 hidden-lg hidden-md">
-                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Crear Actividad">   
+                            <button type="submit" class="btn btn-lg btn-success btn-block"><i class="fa fa-pencil fa-1x fa-fw" aria-hidden="true"></i> Crear Actividad</button>
                         </div>
                         </form>
                     </div>

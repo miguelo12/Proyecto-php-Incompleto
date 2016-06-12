@@ -152,7 +152,7 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
+                    <div class="panel panel-default panel-footer">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <?php //Agregar for... ?>

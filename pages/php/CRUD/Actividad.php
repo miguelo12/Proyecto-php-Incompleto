@@ -137,9 +137,9 @@ class Actividad {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select uni.Titulo from actividad as act INNER JOIN unidadaprendizaje as uni on act.UnidadAprendizaje_idUnidadAprendizaje=uni.idUnidadAprendizaje where fecha_termino>=CURDATE() and finalizada=0 and uni.idUnidadAprendizaje=?");
+      $sentencia=$c->prepare("select uni.Titulo from actividad as act INNER JOIN unidadaprendizaje as uni on act.UnidadAprendizaje_idUnidadAprendizaje=uni.idUnidadAprendizaje where fecha_termino>=CURDATE() and finalizada=0 and uni.idUnidadAprendizaje=? and act.Seccion_idSeccion=?");
       
-      $sentencia->bind_param("i", $this->UnidadAprendizaje_idUnidadAprendizaje);
+      $sentencia->bind_param("is", $this->UnidadAprendizaje_idUnidadAprendizaje, $this->Seccion_idSeccion);
       
       $sentencia->execute();
       

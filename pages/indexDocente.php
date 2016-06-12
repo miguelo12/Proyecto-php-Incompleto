@@ -66,6 +66,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
     <?php if(isset($_GET["exitoenvio"])): if($_GET["exitoenvio"]==1):?>
     <?php if(isset($_SESSION["idAlumno"])):?>
     <script>
@@ -91,27 +92,27 @@
           die();
           endif;?>
     <?php endif;?>
-    
-            
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-  
-    <script src="../js/jquery.validate.min.js"></script>
-    
 </head>
 
 <body>
+    <div id="cargando">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="center-block text-center">
+                        <div class="cssload-container">
+                            <div class="cssload-arc">
+                                <div class="cssload-arc-cube"></div>
+                            </div>
+                            <div id="fountainTextG" style="margin-top: 140px; margin-left: 60px"><div id="fountainTextG_1" class="fountainTextG">c</div><div id="fountainTextG_2" class="fountainTextG">a</div><div id="fountainTextG_3" class="fountainTextG">r</div><div id="fountainTextG_4" class="fountainTextG">g</div><div id="fountainTextG_5" class="fountainTextG">a</div><div id="fountainTextG_6" class="fountainTextG">n</div><div id="fountainTextG_7" class="fountainTextG">d</div><div id="fountainTextG_8" class="fountainTextG">o</div><div id="fountainTextG_9" class="fountainTextG">.</div><div id="fountainTextG_10" class="fountainTextG">.</div><div id="fountainTextG_11" class="fountainTextG">.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="listo" style="display: none;">
         <!-- Navigation -->
-        
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -122,7 +123,7 @@
                 <span class="icon-bar"></span>
               </button>
                 <a class="navbar-brand" style="margin-left: 10px" href="#"><img src="img/logo.PNG" class="imagelogo" alt="" height="100" width="200"/></a>
-                <h4 class="navbar-text navbar-right pull-right titulolandscape" style="margin-top: 30px; margin-right: 80px">Portal Alumno</h4>
+                <h4 class="navbar-text navbar-right pull-right titulolandscape" style="margin-top: 30px; margin-right: 80px">Portal Docente</h4>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-xs" style="margin-top: 80px; margin-right: 0px">
@@ -221,7 +222,7 @@
                             <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                        <a href="CrearUnidad.php?new=1"><p><img src="img/actividad.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/actividad.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/actividad.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Crear Actividad</a>
+                                        <a href="CrearUnidad.php?new=1"><p><img src="img/actividad.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="80" height="80"><img src="img/actividad.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/actividad.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Crear Actividad</a>
 <!--                                        <p>Crea una nueva unidad de aprendizaje con diagramas heurísticos, recursos didácticos y diversos tipos de evaluaciones.</p>-->
                                     </div>     
                                 </div>
@@ -231,7 +232,7 @@
                             <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
-                                        <a href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="100" height="100"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
+                                        <a href="Biblioteca.php"><p><img src="img/biblioteca.png" class="img-circle hidden-sm hidden-md hidden-lg" alt="lista" width="80" height="80"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-lg" alt="lista" width="160" height="160"><img src="img/biblioteca.png" class="img-circle hidden-xs hidden-sm hidden-md" alt="lista" width="200" height="200"></p> Biblioteca y Rúbricas</a>
 <!--                                        <p>Revisa las actividades y rúbricas ya creadas para compartilas con tus alumnos</p>-->
                                     </div>
                                     
@@ -242,7 +243,7 @@
                             <div class="col-xs-4 col-md-4 col-lg-4">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                        <a href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle hidden-sm hidden-md hidden-lg" width="100" height="100"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-lg" width="160" height="160"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-sm hidden-md" width="200" height="200"></p>Evaluar</a>
+                                        <a href="php/actividades.php"><p><img src="img/lista.png" alt="lista" class="img-circle hidden-sm hidden-md hidden-lg" width="80" height="80"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-lg" width="160" height="160"><img src="img/lista.png" alt="lista" class="img-circle hidden-xs hidden-sm hidden-md" width="200" height="200"></p>Evaluar</a>
 <!--                                        <p>Evalua los proyectos realizados con las rúbricas predeterminadas con anterioridad</p>-->
                                     </div>
                                     
@@ -282,7 +283,7 @@
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <a data-toggle="modal" data-target="#myModal" href="#"><p><img src="img/mail.png" alt="mail" class="img-circle" width="90" height="90"/></p><br/>Invitar Alumno</a>
+                                            <a data-toggle="modal" data-target="#myModal" href="#"><p><img src="img/mail.png" alt="mail" class="img-circle" width="80" height="80"/></p><br/>Invitar Alumno</a>
 <!--                                            <p class="lead">Invita a tus estudiantes por correo electrónico y forma distintos cursos o secciones.</p>-->
                                         </div>
                                     </div> 
@@ -293,7 +294,7 @@
                                     <div class="col-xs-12 text-center">
                                         <div class="text-center">
                                             <br/>
-                                            <a href="cursos.php"><p><img src="img/folder.png" alt="folder" width="90" height="90"/></p><br/>Cursos o Secciones</a>
+                                            <a href="cursos.php"><p><img src="img/folder.png" alt="folder" width="80" height="80"/></p><br/>Cursos o Secciones</a>
 <!--                                            <p class="lead">Administración de Cursos o Secciones.</p>-->
                                         </div>         
                                     </div>
@@ -354,8 +355,23 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    </div>
+    
+     <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
 
-     <script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+  
+    <script src="../js/jquery.validate.min.js"></script>
+    
+    <script>
           $.validator.setDefaults({
             errorElement: "span",
             errorClass: "help-block",
@@ -404,5 +420,13 @@
     <?php if($problem):?>
     <script> $('#myModal1').modal('show');</script>
     <?php endif;?>
+    
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1600).fadeIn(400);
+    });
+    </script>
 </body>
 </html>

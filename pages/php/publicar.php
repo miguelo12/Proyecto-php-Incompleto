@@ -9,15 +9,8 @@ if(isset($_GET["publicar"])){
     $actividad = new Actividad();
     $actividad->setUnidadAprendizaje_idUnidadAprendizaje($publicar);
 
-    if(!$actividad->ActividadOcupada()){
     $_SESSION["publicar"] = array("id"=>$publicar, "nombre"=>$name);
     header("location: ../publicar.php");
-    die();
-    }
-    else{
-    header("location: ../Biblioteca.php?error=201");
-    die();
-    }
     die();
 }
 else{
@@ -54,6 +47,8 @@ else{
             $actividad->setfecha_termino("{$ano2}-{$mes2}-{$dia2}");
             $actividad->setSeccion_idSeccion($seccionid);
             
+            //cambiar
+            if(!$actividad->ActividadOcupada()){
             $idActividad = $actividad->Ingresar();
             
             $actividad->setidActividad($idActividad);
@@ -63,6 +58,11 @@ else{
             unset($_SESSION["publicar"]);
             header("location: ../Actividades.php");
             die(); 
+            }
+            else{
+                header("location: ../publicar.php?error=201");
+                die(); 
+            }
         }
     } else{
     header("location: ../Biblioteca.php");

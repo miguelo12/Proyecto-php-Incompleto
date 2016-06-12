@@ -172,13 +172,6 @@
         </div>
         
         <?php if(isset($_GET["error"])):
-                if($_GET["error"]=="201"):?>
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong >Error, </strong> no puedes publicar una unidad, ya publicada.<br/> Primero finaliza la actividad y despues puedes publicar otra actividad.
-                    </div>
-        <?php endif; endif; ?>
-        <?php if(isset($_GET["error"])):
                 if($_GET["error"]=="202"):?>
                     <div class="alert alert-success text-center">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -217,7 +210,7 @@
           <div class="container separate-rows tall-rows">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
+                    <div class="panel panel-default panel-footer">
                     <div class="row">
                         <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
                             <br/>
@@ -229,12 +222,14 @@
                             <br/>
                             <ul class="list-group">
                                 <?php if(isset($Unidadresult)): foreach($Unidadresult as $de):?>
-                                <li class="list-group-item text-left"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?><span class="pull-right"><a href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a href="#">Exportar</a></span></li>
+                                <li class="list-group-item text-left hidden-xs"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?><span class="pull-right"><a class="label label-warning" href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a class="label label-default" href="#">Exportar</a></span></li>
+                                <li class="list-group-item text-center hidden-lg hidden-md hidden-sm"><i class="fa fa-angle-right fa-fw"></i><?= $de["Titulo"]?> <a class="label label-warning" href="php/creacionUnidad.php?editar=<?= $de["idUnidadAprendizaje"] ?>">Editar</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="php/publicar.php?publicar=<?= $de["idUnidadAprendizaje"] ?>&name=<?= $de["Titulo"] ?>">Publicar</a>&nbsp;&nbsp;&nbsp;<a class="label label-default" href="#">Exportar</a></li>
                                 <?php endforeach; else: ?>
                                 <li class="list-group-item disabled text-center">No tienes aún una unidad de aprendizaje</li>
                                 <?php endif; ?>
                             </ul>
-                            <a href="CrearUnidad.php?new=1" class="btn btn-info btn-lg">Nueva Unidad de aprendizaje</a>
+                            <a href="CrearUnidad.php?new=1" class="btn btn-info btn-lg hidden-xs">Nueva unidad de aprendizaje</a>
+                            <a href="CrearUnidad.php?new=1" class="btn btn-info btn-lg hidden-lg hidden-md hidden-sm">Nueva unidad de <br/> aprendizaje</a>
                         </div>
                         <div class="hidden-xs hidden-sm col-md-5 col-lg-5 text-center">
                             <br/>
@@ -247,7 +242,7 @@
                 </div>
                 <br/>
                 <div class="col-xs-12">
-                    <div class="panel panel-info panel-footer">
+                    <div class="panel panel-default panel-footer">
                     <div class="row">
                         <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
                             <br/>
@@ -259,9 +254,11 @@
                             <br/>
                             <ul class="list-group text-left">
                                   <?php if(isset($rubricaresult)): foreach($rubricaresult as $da): if($da["nombre"]=="Predeterminado"):?>
-                                  <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="CrearUnidad.php">Seleccionar</a></span></li>
+                                  <li class="list-group-item hidden-xs"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a class="label label-primary" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="CrearUnidad.php">Seleccionar</a></span></li>
+                                  <li class="list-group-item text-center hidden-lg hidden-md hidden-sm"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?> <a class="label label-primary" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="CrearUnidad.php">Seleccionar</a></li>
                                   <?php else: ?>
-                                  <li class="list-group-item"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a></span></li>
+                                  <li class="list-group-item hidden-xs"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?><span class="pull-right"><a class="label label-primary" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a class="label label-warning" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a></span></li>
+                                  <li class="list-group-item text-center hidden-lg hidden-md hidden-sm"><i class="fa fa-angle-right fa-fw"></i><?=$da["nombre"]?> <a class="label label-primary" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&ver=<?=$da["idRubrica"]?>">Ver</a>&nbsp;&nbsp;&nbsp;<a class="label label-warning" href="php/rubricas.php?idRubrica=<?=$da["idRubrica"]?>&new=2">Editar</a>&nbsp;&nbsp;&nbsp;<a class="label label-success" href="php/creacionUnidad.php?idRubrica=<?=$da["idRubrica"]?>">Seleccionar</a></li>
                                   <?php endif; endforeach; endif; ?>
                             </ul> 
                             <a href="php/rubricas.php?new=1" class="btn btn-info btn-lg">Nueva rubrica</a>

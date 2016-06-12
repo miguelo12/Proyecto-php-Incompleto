@@ -246,7 +246,7 @@
                     </fieldset>
                     
                     <fieldset id="resultado1" class="text-center">
-                        <label class="control-label" for="email"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                        <label class="control-label" for="cargar"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
                         <span class="sr-only">Espere esta cargando...</span>
                         <br/><br/>
                         <p>&nbsp;Cargando...</p></label>

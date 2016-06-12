@@ -243,21 +243,21 @@ if(isset($_GET["user"])){
                         else
                         {
                           //error sql :(
-                          header("location: ../inicio.php?error1=9000");
+                          header("location: ../error.php?error=500");
                           die();
                         }
                     }
                     else
                     {
                         //fue creado y actualizado..
-                        header("location: ../crearAlumno.php?error1=4");
+                        header("location: ../inicio.php?error2=1");
                         die();
                     }
                  }
                  else
                  {
                     //noexiste su id.
-                    header("location: ../crearAlumno.php?error=20");
+                    header("location: ../inicio.php?error2=2");
                     die();  
                  }
 
