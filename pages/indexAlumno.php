@@ -29,22 +29,41 @@
     <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Inicio Alumno</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    
+    <!-- Custom Fonts -->
+    <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
 
+    <!-- MetisMenu CSS -->
+    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <link href="css/simple-sidebar.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    
+    <noscript>
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <!-- MetisMenu CSS -->
+    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet">
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    </noscript>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,130 +71,27 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-        
-    <!-- jQuery -->
-    <script src="../component/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    
-    <script>
-    $().ready(function(){
-        <?php if(isset($_GET["error"]) || isset($_GET["exito"])):?>
-        $("#paso3").show();
-        $("#paso2").hide();
-        $("#paso1").hide();
-        $("#paso4").hide();
-        $("#paso5").hide();
-        <?php else: ?>
-        $("#paso1").show();
-        $("#paso2").hide();
-        $("#paso3").hide();
-        $("#paso4").hide();
-        $("#paso5").hide();    
-        <?php endif;?>
-        $("#opcion2").click(function(){
-            $("#paso2").fadeIn("fast");
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-        $("#opcion3").click(function(){
-            $("#paso3").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso1").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-        $("#opcion4").click(function(){
-            $("#paso4").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso5").hide();
-            
-            $.ajax({
-                url:   'php/actividades.php?accion=5',
-                type:  'post',
-                dataType: 'json',
-                cache: false,
-                beforeSend: function () {
-                        $("#resultado").hide();
-                        $("#resultado1").show();
-                },
-                success:  function (response) {
-                        $("#resultado1").hide();
-                        $("#resultado").show();
-                        $('select#seccion').prop( "disabled", false );
-                        $("select#seccion option").remove(); // Remove all <option> child tags.
-                        if(response !== null){
-                        $('select#seccion').prop( "disabled", false );
-                        $('#enviar').prop( "disabled", false );
-                        $.each(response, function(index, item) { // Iterates through a collection
-                            $("select#seccion").append( // Append an object to the inside of the select box
-                                $("<option></option>") // Yes you can do this.
-                                    .text(item.asignatura)
-                                    .val(item.idactividad)
-                            );
-                        });
-                        }
-                        else{
-                            $('select#seccion').prop( "disabled", true );
-                            $('#enviar').prop( "disabled", true );
-                            $("select#seccion").append( // Append an object to the inside of the select box
-                            $("<option></option>") // Yes you can do this.
-                            .text("Sin actividad.")
-                            );
-                        }
-                },
-                error: function(xhr, status) {
-                    $("#resultado1").hide();
-                    $("#resultado").show();
-                    $('select#seccion').prop( "disabled", true );
-                    $('#enviar').prop( "disabled", true );
-                    $("select#seccion option").remove(); // Remove all <option> child tags.
-                    $("select#seccion").append( // Append an object to the inside of the select box
-                        $("<option></option>") // Yes you can do this.
-                            .text("Ocurrio un error inprevisto... reinicie la pagina.")
-                    );
-                }
-            });
-            
-        });
-        $("#opcion5").click(function(){
-            $("#paso5").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-        });
-        $(".volver").click(function(){
-            $("#paso1").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-        $(".volver1").click(function(){
-            $("#paso2").fadeIn("fast");
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-    });
-    </script>
-
+   
 </head>
 
 <body>
+    <div id="cargando">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="center-block text-center">
+                        <div class="cssload-container">
+                            <div class="cssload-arc">
+                                <div class="cssload-arc-cube"></div>
+                            </div>
+                            <div id="fountainTextG" style="margin-top: 140px; margin-left: 60px"><div id="fountainTextG_1" class="fountainTextG">c</div><div id="fountainTextG_2" class="fountainTextG">a</div><div id="fountainTextG_3" class="fountainTextG">r</div><div id="fountainTextG_4" class="fountainTextG">g</div><div id="fountainTextG_5" class="fountainTextG">a</div><div id="fountainTextG_6" class="fountainTextG">n</div><div id="fountainTextG_7" class="fountainTextG">d</div><div id="fountainTextG_8" class="fountainTextG">o</div><div id="fountainTextG_9" class="fountainTextG">.</div><div id="fountainTextG_10" class="fountainTextG">.</div><div id="fountainTextG_11" class="fountainTextG">.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="listo" style="display: none;">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
@@ -223,22 +139,20 @@
                       <a href="#">Inicio</a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades<i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
                     <li><a href="#">Ver unidades de aprendizaje</a></li>
                     <li><a href="#">Responde una Actividad</a></li>
-                    <li role="separator" class="divider"></li>
                     <li><a href="#">Crea un grupo</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact">Contáctenos</a></li>
                 <li class="dropdown hidden-lg hidden-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i><span class="sidebar-nav-item"><?php echo $alumno["nombre"]; ?><i class="fa fa-caret-down"></span></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                      <li><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i><span class="sidebar-nav-item">Configuración</span></a></li>
+                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i><span class="sidebar-nav-item">Logout/Salir</span></a></li>
                   </ul>
                 </li>
             </ul>
@@ -273,7 +187,7 @@
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                            <a class="lead" href="actividadAlumno.php"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Revisar Unidad de Aprendizaje</a>
+                                            <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Revisar Unidad de Aprendizaje</a>
                                             <p>Ve todas las unidades de aprendizajes entregadas por tu profesor o ingresa a uno nuevo.</p>
                                         </div>     
                                     </div>
@@ -283,7 +197,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
                                             <div>
-                                            <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p> Responder Diagrama Heurístico </a>
+                                            <a class="lead" href="actividadAlumno.php"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p> Responder Diagrama Heurístico </a>
                                             <p>Hace la actividad entregada por tu profesor, debes pertenecer a un grupo o tambien puede hacerlo solo.</p>
                                             </div>
                                         </div>
@@ -454,6 +368,128 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="../component/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../component/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../component/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script>
+    $().ready(function(){
+        <?php if(isset($_GET["error"]) || isset($_GET["exito"])):?>
+        $("#paso3").show();
+        $("#paso2").hide();
+        $("#paso1").hide();
+        $("#paso4").hide();
+        $("#paso5").hide();
+        <?php else: ?>
+        $("#paso1").show();
+        $("#paso2").hide();
+        $("#paso3").hide();
+        $("#paso4").hide();
+        $("#paso5").hide();    
+        <?php endif;?>
+        $("#opcion2").click(function(){
+            $("#paso2").fadeIn("fast");
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $("#opcion3").click(function(){
+            $("#paso3").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $("#opcion4").click(function(){
+            $("#paso4").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso5").hide();
+            
+            $.ajax({
+                url:   'php/actividades.php?accion=5',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").hide();
+                        $("#resultado1").show();
+                },
+                success:  function (response) {
+                        $("#resultado1").hide();
+                        $("#resultado").show();
+                        $('select#seccion').prop( "disabled", false );
+                        $("select#seccion option").remove(); // Remove all <option> child tags.
+                        if(response !== null){
+                        $('select#seccion').prop( "disabled", false );
+                        $('#enviar').prop( "disabled", false );
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.asignatura)
+                                    .val(item.idactividad)
+                            );
+                        });
+                        }
+                        else{
+                            $('select#seccion').prop( "disabled", true );
+                            $('#enviar').prop( "disabled", true );
+                            $("select#seccion").append( // Append an object to the inside of the select box
+                            $("<option></option>") // Yes you can do this.
+                            .text("Sin actividad.")
+                            );
+                        }
+                },
+                error: function(xhr, status) {
+                    $("#resultado1").hide();
+                    $("#resultado").show();
+                    $('select#seccion').prop( "disabled", true );
+                    $('#enviar').prop( "disabled", true );
+                    $("select#seccion option").remove(); // Remove all <option> child tags.
+                    $("select#seccion").append( // Append an object to the inside of the select box
+                        $("<option></option>") // Yes you can do this.
+                            .text("Ocurrio un error inprevisto... reinicie la pagina.")
+                    );
+                }
+            });
+            
+        });
+        $("#opcion5").click(function(){
+            $("#paso5").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+        });
+        $(".volver").click(function(){
+            $("#paso1").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+        $(".volver1").click(function(){
+            $("#paso2").fadeIn("fast");
+            $("#paso1").hide();
+            $("#paso3").hide();
+            $("#paso4").hide();
+            $("#paso5").hide();
+        });
+    });
+    </script>
+
         
     <script>
     $("#menu-toggle").click(function(e) {
@@ -461,5 +497,13 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script> 
+    
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1600).fadeIn(400);
+    });
+    </script>
 </body>
 </html>

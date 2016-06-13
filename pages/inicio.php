@@ -27,15 +27,29 @@
     
     <title>Heuristica Movil</title>
     
-    <!-- Bootstrap Core CSS -->
-    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    
+    <!-- Custom Fonts -->
+    <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
+
+    <noscript>
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    </noscript>
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
