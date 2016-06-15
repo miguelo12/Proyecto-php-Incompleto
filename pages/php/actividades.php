@@ -96,12 +96,15 @@ else{
            $aluUnidadAprendizaje->setAlumno_idAlumno($alumno["id"]);
            $aluUnidadAprendizaje->setActividad_idActividad($act);
                if(!$aluUnidadAprendizaje->ExisteonoPorID()){
-               $_SESSION["idActividad"] = $aluUnidadAprendizaje->Ingresar();
+               $id = $aluUnidadAprendizaje->Ingresar();
+               $aluUnidadAprendizaje->setActividad_idActividad($id);
+               $_SESSION["idActividad"] = $aluUnidadAprendizaje->DevolveridActividad();
                header("location: ../actividadAlumno.php");
                die();
                }
                else{
-               header("location: ../indexAlumno.php?error1=1");
+               $_SESSION["idActividad"] = $aluUnidadAprendizaje->DevolverActividad();
+               header("location: ../actividadAlumno.php");
                die();   
                }
            }

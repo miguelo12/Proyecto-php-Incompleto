@@ -15,8 +15,9 @@ include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Grupo {
-    private $idGrupo;
-    private $idUnidadAprendizaje;
+    private $idGrupo; #i
+    private $Nombre; #s
+    private $Actividad_idActividad; #s
     
     private $con;
     
@@ -28,9 +29,9 @@ class Grupo {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into grupo values(?,?)");
+      $sentencia=$c->prepare("insert into grupo values(?,?,?)");
       
-      $sentencia->bind_param("ii", $this->idGrupo, $this->idUnidadAprendizaje);
+      $sentencia->bind_param("iss", $this->idGrupo, $this->Nombre, $this->Actividad_idActividad);
       
       $sentencia->execute();
       
@@ -44,13 +45,13 @@ class Grupo {
       }
     }
     
-    public function ExisteonoPorID()
+    public function Existeono()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from grupo where idGrupo=?");
+      $sentencia=$c->prepare("select * from grupo where Actividad_idActividad=? and Nombre=?");
       
-      $sentencia->bind_param("i", $this->idGrupo);
+      $sentencia->bind_param("ss", $this->Actividad_idActividad, $this->Nombre);
       
       $sentencia->execute();
       
@@ -63,11 +64,40 @@ class Grupo {
       return false;
     }
     
+    public function DevolverGrupoActividad()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from grupo where Actividad_idActividad=?");
+      
+      $sentencia->bind_param("s", $this->Actividad_idActividad);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function setIdGrupo($idGrupo) {
         $this->idGrupo = $idGrupo;
     }
 
-    public function setIdUnidadAprendizaje($idUnidadAprendizaje) {
-        $this->idUnidadAprendizaje = $idUnidadAprendizaje;
+    public function setNombre($Nombre) {
+        $this->Nombre = $Nombre;
+    }
+    
+    public function setActividad_idActividad($Actividad_idActividad) {
+        $this->Actividad_idActividad = $Actividad_idActividad;
     }
 }

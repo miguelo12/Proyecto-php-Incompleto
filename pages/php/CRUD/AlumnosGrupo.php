@@ -1,11 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of AlumnoGrupo
  *
@@ -18,6 +11,7 @@ class AlumnosGrupo {
     private $idAlumnosGrupo; #i
     private $Alumno_idAlumno; #s
     private $Grupo_idGrupo; #i
+    private $Actividad_idActividad; /*externo*/
     
     private $con;
     
@@ -29,29 +23,29 @@ class AlumnosGrupo {
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("insert into alumnogrupo values(?,?,?)");
+      $sentencia=$c->prepare("insert into alumnosgrupo values(?,?,?)");
       
-      $sentencia->bind_param("iii", $this->idAlumnosGrupo, $this->Alumno_idAlumno, $this->Grupo_idGrupo);
+      $sentencia->bind_param("isi", $this->idAlumnosGrupo, $this->Alumno_idAlumno, $this->Grupo_idGrupo);
       
       $sentencia->execute();
       
       if($sentencia->affected_rows)
       {
-          //devuelve la id.
-       return $sentencia->insert_id;
+        //devuelve la id.
+        return $sentencia->insert_id;
       }
       else {
-       return null;    
+        return null;    
       }
     }
     
-    public function ExisteonoPorID()
+    public function ExistegrupoenActividad()
     {
       $c=$this->con->getConexion();
       
-      $sentencia=$c->prepare("select * from alumnogrupo where idAlumnosGrupo=?");
+      $sentencia=$c->prepare("select * from alumnosgrupo as alug INNER join grupo as g on alug.Grupo_idGrupo=g.idGrupo where alug.Alumno_idAlumno=? and g.Actividad_idActividad=?");
       
-      $sentencia->bind_param("i", $this->idAlumnosGrupo);
+      $sentencia->bind_param("ss", $this->Alumno_idAlumno, $this->Actividad_idActividad);
       
       $sentencia->execute();
       
@@ -77,5 +71,10 @@ class AlumnosGrupo {
     public function setidGrupo($idGrupo)
     {
         $this->Grupo_idGrupo=$idGrupo;
+    }
+    
+    public function setActividad_idActividad($Actividad_idActividad)
+    {
+        $this->Actividad_idActividad=$Actividad_idActividad;
     }
 }

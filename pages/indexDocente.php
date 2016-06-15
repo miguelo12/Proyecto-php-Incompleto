@@ -185,7 +185,6 @@
                   <ul class="dropdown-menu">
                     <li><a href="CrearUnidad.php">Crear una actividad</a></li>
                     <li><a href="Biblioteca.php">Ir a biblioteca</a></li>
-                    <li class="dropdown-header">Recuerda</li>
                     <li><a href="cursos.php">Crear Asignatura o Sección</a></li>
                   </ul>
                 </li>
@@ -227,7 +226,7 @@
         <?php endif;?>
         <?php endif; endif;?>
         <div id="page-content-wrapper content" >
-            <div class="container separate-rows tall-rows">
+            <div class="container-fluid separate-rows tall-rows">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
@@ -443,7 +442,7 @@
     $(window).load(function (){
     // Una vez se cargue al completo la página desaparecerá el div "cargando"
     $('#cargando').delay(1200).fadeOut(200);
-    $('#listo').delay(1600).fadeIn(400);
+    $('#listo').delay(1500).fadeIn(400);
     });
     </script>
 </body>

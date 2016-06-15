@@ -16,8 +16,8 @@
       {
         $docente = $_SESSION["docente"];
         
-        include '../pages/php/CRUD/Seccion.php';
-        include '../pages/php/CRUD/Asignatura.php';
+        include_once '../pages/php/CRUD/Seccion.php';
+        include_once '../pages/php/CRUD/Asignatura.php';
         
         $seccion = new Seccion();
         $asignatura = new Asignatura();
@@ -393,6 +393,14 @@
     
     <script>
          $('[data-toggle="tooltip"]').tooltip();
+    </script>
+    
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1600).fadeIn(400);
+    });
     </script>
 </body>
 

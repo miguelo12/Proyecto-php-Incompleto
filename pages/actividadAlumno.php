@@ -1,4 +1,5 @@
-<?php session_start(); 
+<?php session_start();
+  error_reporting(0);
   if(!isset($_SESSION["docente"]))
       { 
         if(!isset($_SESSION["alumno"])){
@@ -8,6 +9,18 @@
         else
         {
            $alumno = $_SESSION["alumno"];
+           if(isset($_SESSION["idActividad"])){
+               //preguntar si tiene un grupo en alumnogrupo.
+               include_once '../pages/php/CRUD/AlumnosGrupo.php';
+               $AlumnoGrupo = new AlumnosGrupo();
+               $AlumnoGrupo->setidAlumno($alumno["id"]);
+               $AlumnoGrupo->setActividad_idActividad($_SESSION["idActividad"][0]["Actividad_idActividad"]);
+               $grupoexiste = $AlumnoGrupo->ExistegrupoenActividad();
+           }
+           else{
+           header("location: ../pages/inicio.php");
+           die();    
+           }
         }
       }
   else
@@ -162,25 +175,203 @@
         <br/>
         </div>
         <div id="page-content-wrapper content" >
-            <div class="container separate-rows tall-rows">
+            <div class="container-fluid separate-rows tall-rows">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">                      
-
-                            aun nada.
+                            <?php if(!$grupoexiste): ?>
+                            <div id="paso1">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        <a id="opcion1" class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="80" height="80"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Crear Grupo</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12 col-lg-12 text-center">
+                                        <a id="opcion2" class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="80" height="80"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a Grupo</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                             
+                            <div id="paso2">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <form class="form-horizontal" role="form" method="POST" action="php/grupo.php?accion=2">
+                                      <fieldset>
+                                      <legend><h1>Creación del grupo:</h1></legend>
+                                      <div class="form-group">
+                                        <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingresa un nombre">
+                                            <p class="help-block text-center">Recuerda que al crear el grupo no hay vuelta atras.</p>
+                                        </div>
+                                      </div> 
+                                      <div class="form-group pull-right"> 
+                                        <div class="col-xs-12">
+                                          <button type="submit" class="btn btn-success">Crear</button>
+                                        </div>
+                                      </div>
+                                      </fieldset>
+                                    </form>
+                                    <?php  if(isset($_GET["error"])): if($_GET["error"]==1):?>
+                                    <div class="alert alert-danger">
+                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                       <p class="text-center"><strong>Error, </strong> ya existe ese nombre.</p>
+                                    </div>
+                                    <?php endif; endif;?>
+                                    <?php  if(isset($_GET["error"])): if($_GET["error"]==2):?>
+                                    <div class="alert alert-danger">
+                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                       <p class="text-center"><strong>Error, </strong> el pin de la seccion o curso ingresada no existe.</p>
+                                    </div>
+                                    <?php endif; endif;?>
+                                    <?php if(isset($_GET["exito"])): if($_GET["exito"]==1):?>
+                                    <div class="alert alert-success">
+                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                       <p class="text-center"><strong>Listo, </strong> acabas de ingresar a una seccion.</p>
+                                    </div>
+                                    <?php endif; endif;?>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                </div>
+                            </div>
+                            
+                            <div id="paso3">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <form class="form-horizontal" role="form" method="POST" action="php/grupo.php?accion=3">
+                                      <fieldset id="resultado">
+                                          <legend><h1>Ingrese a una Grupo:</h1></legend>
+                                          <div class="form-group">
+                                            <label class="control-label col-sm-2" for="grupo">grupo:</label>
+                                            <div class="col-sm-10">
+                                                <select id="grupo" name="grupo" class="form-control">
+                                                </select>
+                                                <p class="help-block text-center">Recuerda que si te unes no podras salirte del grupo.</p>
+                                            </div>
+                                          </div> 
+                                          <div class="form-group pull-right"> 
+                                            <div class="col-xs-12">
+                                                <button type="submit" id="enviar" class="btn btn-success">Enviar</button>
+                                            </div>
+                                          </div>
+                                      </fieldset>
+                                      <fieldset id="resultado1" class="text-center">
+                                          <label class="control-label" for="email"><i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                                          <span class="sr-only">Espere esta cargando...</span>
+                                          <br/><br/>
+                                          <p>&nbsp;Cargando...</p></label>
+                                      </fieldset>
+                                    </form>
+                                </div>   
+                                <div class="col-xs-12">
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                </div>
+                            </div>
+                            <?php else:?>
+                            
+                            <?php endif;?>
                         </div>
                     </div>     
                 </div>
             </div>
         </div>
 
+    <script>
+    $().ready(function(){
+        <?php if(isset($_GET["error"]) || isset($_GET["exito"])):?>
+        $("#paso3").hide();
+        $("#paso2").show();
+        $("#paso1").hide();
+        <?php else: ?>
+        $("#paso1").show();
+        $("#paso2").hide();
+        $("#paso3").hide();   
+        <?php endif;?>
+        $("#opcion1").click(function(){
+            $("#paso2").fadeIn("fast");
+            $("#paso3").hide();
+            $("#paso1").hide();
+        });
+        $("#opcion2").click(function(){
+            $("#paso3").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso1").hide();
+            
+            $.ajax({
+                url:   'php/grupo.php?accion=1',
+                type:  'post',
+                dataType: 'json',
+                cache: false,
+                beforeSend: function () {
+                        $("#resultado").hide();
+                        $("#resultado1").show();
+                },
+                success:  function (response) {
+                        $("#resultado1").hide();
+                        $("#resultado").show();
+                        $('select#grupo').prop( "disabled", false );
+                        $("select#grupo option").remove(); // Remove all <option> child tags.
+                        if(response !== null){
+                        $('select#grupo').prop( "disabled", false );
+                        $('#enviar').prop( "disabled", false );
+                        $.each(response, function(index, item) { // Iterates through a collection
+                            $("select#grupo").append( // Append an object to the inside of the select box
+                                $("<option></option>") // Yes you can do this.
+                                    .text(item.Nombre)
+                                    .val(item.idGrupo)
+                            );
+                        });
+                        }
+                        else{
+                            $('select#grupo').prop( "disabled", true );
+                            $('#enviar').prop( "disabled", true );
+                            $("select#grupo").append( // Append an object to the inside of the select box
+                            $("<option></option>") // Yes you can do this.
+                            .text("No hay grupos.")
+                            );
+                        }
+                },
+                error: function(xhr, status) {
+                    $("#resultado1").hide();
+                    $("#resultado").show();
+                    $('select#grupo').prop( "disabled", true );
+                    $('#enviar').prop( "disabled", true );
+                    $("select#grupo option").remove(); // Remove all <option> child tags.
+                    $("select#grupo").append( // Append an object to the inside of the select box
+                        $("<option></option>") // Yes you can do this.
+                            .text("Ocurrio un error inprevisto... reinicie la pagina.")
+                    );
+                }
+            });
+            
+        });
+        $(".volver").click(function(){
+            $("#paso1").fadeIn("fast");
+            $("#paso2").hide();
+            $("#paso3").hide();
+        });
+    });
+    </script>    
         
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    </script> 
+    </script>
+    
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1600).fadeIn(400);
+    });
+    </script>
 </body>
 </html>

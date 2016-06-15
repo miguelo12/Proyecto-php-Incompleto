@@ -64,6 +64,56 @@ class AlumnoUnidadAprendizaje {
       return false;
     }
     
+    public function DevolveridActividad()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumnounidadaprendizaje where idAlumnoUnidadAprendizaje=?");
+      
+      $sentencia->bind_param("i", $this->idAlumnoUnidadAprendizaje);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
+    public function DevolverActividad()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select * from alumnounidadaprendizaje where Alumno_idAlumno=? and Actividad_idActividad=?");
+      
+      $sentencia->bind_param("ss", $this->Alumno_idAlumno, $this->Actividad_idActividad);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+          while($row = $resu->fetch_assoc()){
+              $res[] = $row;
+          }
+      }
+      else {
+          unset($res);
+      }
+      
+      return $res;
+    }
+    
     public function DevolverAlumnos()
     {
       $c=$this->con->getConexion();

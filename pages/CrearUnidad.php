@@ -304,9 +304,9 @@ error_reporting(0);
 
                                 <div class="col-xs-12 text-center">
                                     <?php if(!(isset($_COOKIE["recursosdidacticos"]) || isset($_SESSION["NuevaUnidad"]) || isset($_SESSION["editar"]))):?> 
-                                    <a name="btn3" class="btn btn-primary btn-lg btn-block" href="indexDocente.php"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
+                                    <a name="btn3" class="btn btn-primary btn-lg btn-block" href="indexDocente.php"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
                                     <?php else:?>
-                                    <a data-toggle="modal" data-target="#myModal" name="btn3" class="btn btn-primary btn-lg btn-block"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
+                                    <a data-toggle="modal" data-target="#myModal" name="btn3" class="btn btn-primary btn-lg btn-block"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver al Portal</a>
                                     <?php endif;?>
                                     <br/>
                                     <br/>
@@ -429,6 +429,14 @@ error_reporting(0);
     <?php if(isset($_GET["new"])): if($_GET["new"]==1): ?>
         <script> $('#myModal1').modal('show');</script>
     <?php endif; endif; endif;?>
+        
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1600).fadeIn(400);
+    });
+    </script>
 </body>
 
 </html>

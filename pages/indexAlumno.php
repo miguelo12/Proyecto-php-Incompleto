@@ -172,10 +172,11 @@
         <br/>
         </div>
         <div id="page-content-wrapper content" >
-            <div class="container separate-rows tall-rows">
+            <div class="container-fluid separate-rows tall-rows">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="row">
+                            
                             <div id="paso1">
                                 <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
                                     <div class="text-center">
@@ -187,70 +188,32 @@
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                            <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Revisar Unidad de Aprendizaje</a>
-                                            <p>Ve todas las unidades de aprendizajes entregadas por tu profesor o ingresa a uno nuevo.</p>
+                                            <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="80" height="80"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unidades de aprendizaje</a>
+                                            <p>Ve todas unidades entregadas por tu profesor.</p>
                                         </div>     
                                     </div>
                                 </div>
-
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
                                             <div>
-                                            <a class="lead" href="actividadAlumno.php"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p> Responder Diagrama Heurístico </a>
-                                            <p>Hace la actividad entregada por tu profesor, debes pertenecer a un grupo o tambien puede hacerlo solo.</p>
+                                            <a class="lead" id="opcion2" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="80" height="80"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Actividad</a>
+                                            <p>Hace la actividad entregada por tu profesor.</p>
                                             </div>
                                         </div>
-
                                     </div>        
                                 </div>
-
-
                                 <div class="col-xs-4 col-md-4 col-lg-4">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                            <a id="opcion2" class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Otros</a>
-                                            <p>Aquí para unirse a una seccion, grupo o actividad.</p>
+                                            <a id="opcion1" class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="80" height="80"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Sección</a>
+                                            <p>Unirse a una seccion.</p>
                                         </div>
                                     </div>    
                                 </div>
-                               
-                            </div>    
+                            </div>                           
                             
                             <div id="paso2">
-                                <div class="col-xs-4 col-md-4 col-lg-4">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                            <a class="lead" href="#" id="opcion3"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a una Sección</a>
-                                        </div>     
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-4 col-md-4 col-lg-4">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
-                                            <div>
-                                                <a class="lead" id="opcion4" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a una actividad</a>
-                                            </div>
-                                        </div>
-
-                                    </div>        
-                                </div>
-
-
-                                <div class="col-xs-4 col-md-4 col-lg-4">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12 col-lg-12 text-center">
-                                            <a class="lead" id="opcion5" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Grupo</a>
-                                        </div>
-                                    </div>    
-                                </div>
-                                
-                                <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
-                                </div>
-                            </div> 
-                            <div id="paso3">
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                 <br/>
                                     <div class="row">
@@ -261,7 +224,7 @@
                                               <div class="form-group">
                                                 <label class="control-label col-sm-2" for="pin">PIN:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="pin" name="pin" class="form-control" id="pin" placeholder="Ingresa el pin">
+                                                    <input type="text" name="pin" class="form-control" id="pin" placeholder="Ingresa el pin">
                                                 </div>
                                               </div> 
                                               <div class="form-group pull-right"> 
@@ -294,11 +257,12 @@
                                 </div>
                                 
                                 <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver1"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
-                                </div>
-                                
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                </div>                           
                             </div>
-                            <div id="paso4">
+                            
+                            <div id="paso3">
                                 <br/>
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <div class="row">
@@ -307,7 +271,7 @@
                                               <fieldset id="resultado">
                                                   <legend><h1>Ingrese a una Actividad:</h1></legend>
                                                   <div class="form-group">
-                                                    <label class="control-label col-sm-2" for="email">Actividad:</label>
+                                                    <label class="control-label col-sm-2" for="seccion">Actividad:</label>
                                                     <div class="col-sm-10">
                                                         <select id="seccion" name="actividad" class="form-control">
                                                         </select>
@@ -329,40 +293,11 @@
                                         </div>   
                                     </div>
                                 </div>
-                                
                                 <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver1">Volver</button>
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
                                 </div>
-
                             </div> 
-                            <div id="paso5">
-                                <div class="col-xs-12 col-md-12 col-lg-12">
-                                    <div class="row">
-                                        <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <div class="row">
-                                                <div class="col-xs-12 col-md-12 col-lg-12 text-center">                       
-                                                    <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Grupo nuevo</a>
-                                                </div>     
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-6 col-md-6 col-lg-6">
-                                            <div class="row">
-                                                <div class="col-xs-12 col-md-12 col-lg-12 text-center">                                    
-                                                    <div>
-                                                    <a class="lead" href="#"><p><img src="img/actividad.png" alt="lista" class="img-circle hidden-lg hidden-md" width="100" height="100"><img src="img/actividad.png" alt="lista" class="img-circle hidden-xs hidden-sm" width="200" height="200"></p>Unirse a un Grupo</a>
-                                                    </div>
-                                                </div>
-
-                                            </div>        
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-xs-12">
-                                    <button class="pull-right btn btn-default volver1"><i class="fa fa-arrow-left fa-1x fa-fw" aria-hidden="true"></i> Volver</button>
-                                </div>   
-                            </div>
                         </div>
                     </div>     
                 </div>
@@ -388,35 +323,20 @@
         $("#paso3").show();
         $("#paso2").hide();
         $("#paso1").hide();
-        $("#paso4").hide();
-        $("#paso5").hide();
         <?php else: ?>
         $("#paso1").show();
         $("#paso2").hide();
-        $("#paso3").hide();
-        $("#paso4").hide();
-        $("#paso5").hide();    
+        $("#paso3").hide();   
         <?php endif;?>
-        $("#opcion2").click(function(){
+        $("#opcion1").click(function(){
             $("#paso2").fadeIn("fast");
-            $("#paso1").hide();
             $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
+            $("#paso1").hide();
         });
-        $("#opcion3").click(function(){
+        $("#opcion2").click(function(){
             $("#paso3").fadeIn("fast");
             $("#paso2").hide();
             $("#paso1").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-        $("#opcion4").click(function(){
-            $("#paso4").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso5").hide();
             
             $.ajax({
                 url:   'php/actividades.php?accion=5',
@@ -466,26 +386,10 @@
             });
             
         });
-        $("#opcion5").click(function(){
-            $("#paso5").fadeIn("fast");
-            $("#paso2").hide();
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-        });
         $(".volver").click(function(){
             $("#paso1").fadeIn("fast");
             $("#paso2").hide();
             $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
-        });
-        $(".volver1").click(function(){
-            $("#paso2").fadeIn("fast");
-            $("#paso1").hide();
-            $("#paso3").hide();
-            $("#paso4").hide();
-            $("#paso5").hide();
         });
     });
     </script>
@@ -502,7 +406,7 @@
     $(window).load(function (){
     // Una vez se cargue al completo la página desaparecerá el div "cargando"
     $('#cargando').delay(1200).fadeOut(200);
-    $('#listo').delay(1600).fadeIn(400);
+    $('#listo').delay(1500).fadeIn(400);
     });
     </script>
 </body>

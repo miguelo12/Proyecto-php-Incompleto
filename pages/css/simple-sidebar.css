@@ -96,7 +96,7 @@ height: 100%;
 
 .sidebar-nav li {
     text-indent: 10px;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .sidebar-nav ul a:hover, .sidebar-nav ul a:focus, .sidebar-nav ul a:active {

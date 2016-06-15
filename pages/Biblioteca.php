@@ -51,22 +51,42 @@
     <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
     <title>Biblioteca</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="../dist/css/timeline.css" rel="stylesheet">
-
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    
+    <!-- Custom Fonts -->
+    <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
 
+    <!-- MetisMenu CSS -->
+    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <link href="css/simple-sidebar.css" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    
+    <noscript>
+    <!-- Loading -->
+    <link href="css/loading.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../component/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <!-- MetisMenu CSS -->
+    <link href="../component/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Timeline CSS -->
+    <link href="../dist/css/timeline.css" rel="stylesheet">
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    </noscript>
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,8 +110,24 @@
 </head>
 
 <body>
+        <div id="cargando">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="center-block text-center">
+                        <div class="cssload-container">
+                            <div class="cssload-arc">
+                                <div class="cssload-arc-cube"></div>
+                            </div>
+                            <div id="fountainTextG" style="margin-top: 140px; margin-left: 60px"><div id="fountainTextG_1" class="fountainTextG">c</div><div id="fountainTextG_2" class="fountainTextG">a</div><div id="fountainTextG_3" class="fountainTextG">r</div><div id="fountainTextG_4" class="fountainTextG">g</div><div id="fountainTextG_5" class="fountainTextG">a</div><div id="fountainTextG_6" class="fountainTextG">n</div><div id="fountainTextG_7" class="fountainTextG">d</div><div id="fountainTextG_8" class="fountainTextG">o</div><div id="fountainTextG_9" class="fountainTextG">.</div><div id="fountainTextG_10" class="fountainTextG">.</div><div id="fountainTextG_11" class="fountainTextG">.</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="listo" style="display: none;">
         <!-- Navigation -->
-        
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -278,11 +314,20 @@
         
         <br/>
         <br/>
-        
+        </div>
+    
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    
+    <script>
+    $(window).load(function (){
+    // Una vez se cargue al completo la página desaparecerá el div "cargando"
+    $('#cargando').delay(1200).fadeOut(200);
+    $('#listo').delay(1500).fadeIn(400);
     });
     </script>
 </body>

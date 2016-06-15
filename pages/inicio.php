@@ -458,7 +458,7 @@
     $(window).load(function (){
     // Una vez se cargue al completo la página desaparecerá el div "cargando"
     $('#cargando').delay(1200).fadeOut(200);
-    $('#listo').delay(1600).fadeIn(400);
+    $('#listo').delay(1500).fadeIn(400);
     });
     </script>
 </body>
