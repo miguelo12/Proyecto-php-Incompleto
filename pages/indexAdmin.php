@@ -113,8 +113,7 @@
         <div id="wrapper">
          <nav class="navbar-inverse" role="navigation">
          <div id="sidebar-wrapper">
-            <ul class="sidebar-nav navbar-nav">
-                <br/> 
+         <ul class="sidebar-nav navbar-nav">
                 <br/> 
                 <br/> 
                 <br/> 
@@ -130,17 +129,17 @@
                     <a href="adminCuentas.php">Administrar Cuentas</a>
                 </li>
                 <li class="dropdown hidden-lg hidden-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i><span class="sidebar-nav-item"><?php echo $alumno["nombre"]; ?><i class="fa fa-caret-down"></span></i></a>
                   <ul class="dropdown-menu">
-                    <li><a href="indexDocente.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;Cambiar a Docente</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                    <li><a href="indexDocente.php"><i class="fa fa-gear fa-fw"></i><span class="sidebar-nav-item">Cambiar a Docente</span></a></li>
+                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i><span class="sidebar-nav-item">Logout/Salir</span></a></li>
                   </ul>
                 </li>
             </ul>
         </div>
         </nav>
         </div>
+       
         
         
         <div id="page-content-wrapper content" >

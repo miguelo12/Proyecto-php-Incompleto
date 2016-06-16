@@ -200,7 +200,6 @@
                 <br/> 
                 <br/> 
                 <br/> 
-                <br/> 
                 <li class="sidebar-brand">
                     <a href="#">
                         Menu Alumno
@@ -210,22 +209,20 @@
                       <a href="#">Inicio</a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades<i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="actividadAlumno.php">Unete a una actividad</a></li>
                     <li><a href="#">Ver unidades de aprendizaje</a></li>
                     <li><a href="#">Responde una Actividad</a></li>
-                    <li role="separator" class="divider"></li>
                     <li><a href="#">Crea un grupo</a></li>
                   </ul>
                 </li>
                 <li><a href="#contact">Contáctenos</a></li>
                 <li class="dropdown hidden-lg hidden-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $alumno["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i><span class="sidebar-nav-item"><?= $alumno["nombre"]; ?></span><i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li class="active"><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li> 
-                    <li role="separator" class="divider"></li>
-                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                    <li class="active"><a href="Perfil.php"><i class="fa fa-gear fa-fw"></i><span class="sidebar-nav-item">Configuración</span></a></li>
+                    <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i><span class="sidebar-nav-item">Logout/Salir</span></a></li>
                   </ul>
                 </li>
             </ul>

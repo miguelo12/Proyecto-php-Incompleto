@@ -13,7 +13,7 @@ and open the template in the editor.
 	width: 275px;
 	height: 275px;
 	display:block;
-	margin:69px auto;
+	
 	perspective: 1375px;
 		-o-perspective: 1375px;
 		-ms-perspective: 1375px;
@@ -25,6 +25,58 @@ and open the template in the editor.
 		-webkit-perspective: 1375px;
 		-moz-perspective: 1375px;
 	overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+    .cssload-container{
+    margin:50px auto;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .cssload-container{
+    margin:50px auto;
+}
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px)  {
+    .cssload-container{
+    margin:40px auto;
+}
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (min-width: 481px) and (max-width: 767px) and (orientation:portrait)  {
+    .cssload-container{
+    margin:20px auto;
+}
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) and (orientation:portrait)  {
+    .cssload-container{
+    margin:10px auto;
+}
+
+}
+
+/*landscape mobile*/
+
+@media (min-width: 481px) and (max-width: 767px) and (orientation:landscape) {
+    .cssload-container{
+    margin:0px auto;
+}
+
+}
+
+@media (max-width: 480px) and (orientation:landscape) {
+    .cssload-container{
+    margin:0px auto;
+}
 }
 
 .cube {

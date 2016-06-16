@@ -290,7 +290,6 @@
                 <br/> 
                 <br/> 
                 <br/> 
-                <br/> 
                 <li class="sidebar-brand">
                     <a href="#">
                         Menu Docente
@@ -300,11 +299,10 @@
                     <a data-toggle="modal" data-target="#myModal" href="#">Inicio</a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actividades<i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
                     <li><a data-toggle="modal" data-target="#myModal" href="#">Crear una actividad</a></li>
                     <li><a data-toggle="modal" data-target="#myModal" href="#">Ir a biblioteca</a></li>
-                    <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Recuerda</li>
                     <li><a data-toggle="modal" data-target="#myModal" href="#">Crear Asignatura o Sección</a></li>
                   </ul>
@@ -316,21 +314,19 @@
                       <a data-toggle="modal" data-target="#myModal" href="#">Biblioteca</a>
                 </li>
                 <li class="dropdown hidden-lg hidden-md">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $docente["nombre"]; ?> <i class="fa fa-caret-down"></i></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i><span class="sidebar-nav-item"><?php echo $docente["nombre"]; ?></span><i class="fa fa-caret-down"></i></a>
                   <ul class="dropdown-menu">
-                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Configuración</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i><span class="sidebar-nav-item">Configuración</span></a></li>
                     <?php if($docente["admin"]==1):?>
-                      <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambiar a Administrador</a></li>
-                    <?php endif;?>  
-                    <li role="separator" class="divider"></li>
-                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout/Salir</a></li>
+                      <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-gear fa-fw"></i><span class="sidebar-nav-item">Cambiar a Administrador</span></a></li>
+                    <?php endif;?>
+                    <li><a data-toggle="modal" data-target="#myModal" href="#"><i class="fa fa-sign-out fa-fw"></i><span class="sidebar-nav-item">Logout/Salir</span></a></li>
                   </ul>
                 </li>
             </ul>
         </div>
         </nav>
         </div>
-            
         
         <?php  if(isset($_GET["error"])): if($_GET["error"]==2):?>
         <div class="alert alert-warning">
@@ -1021,6 +1017,12 @@
         <!-- /.modal-dialog -->
     </div>
     
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     
     <script>
     $(window).load(function (){

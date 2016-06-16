@@ -129,7 +129,6 @@
                 <br/> 
                 <br/> 
                 <br/> 
-                <br/> 
                 <li class="sidebar-brand">
                     <a href="#">
                         Menu Alumno
@@ -257,8 +256,8 @@
                                 </div>
                                 
                                 <div class="col-xs-12">
-                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
-                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn-lg btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn-lg btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
                                 </div>                           
                             </div>
                             
@@ -294,8 +293,8 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <div class="hidden-lg hidden-md"><button class="pull-right btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
-                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-lg hidden-md"><button class="pull-right btn-lg btn btn-default volver" ><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
+                                    <div class="hidden-sm hidden-xs"><button class="pull-right btn-lg btn btn-default volver" style="margin-right: 50px"><i class="fa fa-undo fa-1x fa-fw" aria-hidden="true"></i> Volver</button></div>
                                 </div>
                             </div> 
                         </div>

@@ -36,7 +36,7 @@ h3, h4, label, p, th{
 }
 
 /* Landscape phones and portrait tablets */
-@media (max-width: 767px) and (orientation:portrait)  {
+@media (min-width: 481px) and (max-width: 767px) and (orientation:portrait)  {
     body { padding-top: 120px; }
     .imagelogo{width:145px; height: 75px;}
     .repo{width:150px; height: 150px;}
@@ -47,14 +47,15 @@ h3, h4, label, p, th{
 /* Portrait phones and smaller */
 @media (max-width: 480px) and (orientation:portrait)  {
    body { padding-top: 130px; }
-   .repo{width:130px; height: 130px;}
+    .imagelogo{width:115px; height: 70px;}
+   .repo{width:120px; height: 120px;}
    .titulolandscape{display: none;}
    .pretitulolandscape{display: block;}
 }
 
 /*landscape mobile*/
 
-@media (max-width: 767px) and (orientation:landscape) {
+@media (min-width: 481px) and (max-width: 767px) and (orientation:landscape) {
       body { padding-top: 80px; }
       .imagelogo{width:63px; height: 33px;}
       .repo{width:150px; height: 150px;}

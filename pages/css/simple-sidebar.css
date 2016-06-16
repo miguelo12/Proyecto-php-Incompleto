@@ -34,7 +34,7 @@ height: 100%;
 }
 
 #sidebar-wrapper {
-    z-index: 1000;
+    z-index: 1010;
     position: fixed;
     right: -260px;
     width: 0;

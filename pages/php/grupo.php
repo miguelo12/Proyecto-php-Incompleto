@@ -45,10 +45,19 @@ if(isset($_GET["accion"])){
         $alumnosgrupo = new AlumnosGrupo();
         $alumnosgrupo->setidAlumno($alumno["id"]);
         $alumnosgrupo->setidGrupo($grupito);
-        $alumnosgrupo->Ingresar();
-      
-        header("location: ../actividadAlumno.php");
-        die();
+        $alumnosgrupo->setActividad_idActividad($_SESSION["idActividad"][0]["Actividad_idActividad"]);
+        
+        //maximo son 3 por grupo.
+        if(!$alumnosgrupo->Existelamaxima()){
+            $alumnosgrupo->Ingresar();
+            header("location: ../actividadAlumno.php");
+            die();
+        }
+        else{
+            header("location: ../actividadAlumno.php?error1=1");
+            die();   
+        }
+        
     }
 }
 header("location: ../error.php?error=404");

@@ -15,11 +15,11 @@ include_once("..\pages\php\Conexion\Conexion.php");
 include_once("..\php\Conexion\Conexion.php");
 include_once("../../php/Conexion/Conexion.php");
 class Alumno {
-    private $idAlumno;
-    private $email;
-    private $nombre;
-    private $password;
-    private $habilitado;
+    private $idAlumno; #s
+    private $email; #s
+    private $nombre; #s 
+    private $password; #s
+    private $habilitado; #i
     
     private $con;
     
@@ -158,7 +158,7 @@ class Alumno {
       
       $sentencia=$c->prepare("insert into alumno values(?,?,?,?,?)");
       
-      $sentencia->bind_param("sssss", $this->idAlumno, $this->email, $this->password, $this->nombre, $this->habilitado);
+      $sentencia->bind_param("ssssi", $this->idAlumno, $this->email, $this->password, $this->nombre, $this->habilitado);
       
       $sentencia->execute();
       
@@ -217,7 +217,7 @@ class Alumno {
       
       $sentencia=$c->prepare("update alumno set email=?, nombre=?, password=?, habilitado=? where idAlumno=? and nombre='Sin nombre'");
       
-      $sentencia->bind_param("ssssi", $this->email, $this->nombre, $this->password, $this->habilitado, $this->idAlumno);
+      $sentencia->bind_param("sssis", $this->email, $this->nombre, $this->password, $this->habilitado, $this->idAlumno);
       
       $sentencia->execute();
       

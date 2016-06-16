@@ -58,6 +58,31 @@ class AlumnosGrupo {
       return false;
     }
     
+    public function Existelamaxima()
+    {
+      $c=$this->con->getConexion();
+      
+      $sentencia=$c->prepare("select COUNT(*) as conteo from alumnosgrupo as alug INNER join grupo as g on alug.Grupo_idGrupo=g.idGrupo where g.Actividad_idActividad=? and g.idGrupo=?");
+      
+      $sentencia->bind_param("si", $this->Actividad_idActividad, $this->Grupo_idGrupo);
+      
+      $sentencia->execute();
+      
+      $resu = $sentencia->get_result();
+      
+      if($resu -> num_rows > 0)
+      {
+        while($row = $resu->fetch_assoc()){
+              $res = $row["conteo"];
+        }
+        
+        if($res > 2){
+          return true;   
+        }
+      }
+      return false;
+    }
+    
     public function setidAlumnosGrupo($idAlumnosGrupo)
     {
         $this->idAlumnosGrupo=$idAlumnosGrupo;
